@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="">
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -87,6 +87,7 @@
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
 <meta property="og:description" content="share my technology">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kunrong-blog">
 <meta name="twitter:description" content="share my technology">
@@ -105,7 +106,7 @@
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"left"}},
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -142,7 +143,7 @@
 <!-- 背景动画 -->
 <script type="text/javascript" src="/js/src/particle.js"></script>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -191,7 +192,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
@@ -201,7 +202,27 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            About
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -211,7 +232,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -391,7 +412,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -415,9 +436,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-10T09:42:53+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-10T09:42:53+08:00">
                 2017-12-10
               </time>
             
@@ -436,7 +457,7 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -479,122 +500,16 @@
       
         
           
-            <p>昨晚了解到Python的itchat包，很强，已经完成了wechat的个人账号API接口，就可以用他来做很多数据分析的有趣事情了。<br>首先引入各个包</p>
-<pre><code><figure class="highlight plain"><figcaption><span>itchat  # itchat documentation -- https:/   itchat.readthedocs.io/zh/latest/api/</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import re</span><br><span class="line">from wordcloud import WordCloud, ImageColorGenerator</span><br><span class="line">import PIL.Image as Image # pillow</span><br><span class="line">import jieba  # chinese word segementation tool</span><br><span class="line">from matplotlib.font_manager import FontProperties</span><br><span class="line"># since matplotlib and pandas.plot cannot display chinese</span><br><span class="line">font = FontProperties(fname=&apos;./data/test.ttf&apos;, size=14)  # load chinese font</span><br></pre></td></tr></table></figure>
-</code></pre><p><em>引入包时遇到很多麻烦，首先很多包不支持3.7，然后我又下了个3.6的，应该把2.7的也下载，Python的版本啊~~~~ 我一般直接用Pycharm的直接下载，但到了wordcloud却不支持了，经过我不懈的查找，踩了很多坑，在stackOverflow查到了</em></p>
-<ol>
-<li>download wordcloud‑1.3.2‑cp36‑cp36m‑win_amd64.whl from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud</a></li>
-<li>Copy the file to your current working directory</li>
-<li>Open command prompt from Tools</li>
-<li><p>python -m pip install wordcloud-1.3.2-cp36-cp36m-win_amd64.whl</p>
-<h2 id="然后登陆网页版微信获取好友数据"><a href="#然后登陆网页版微信获取好友数据" class="headerlink" title="然后登陆网页版微信获取好友数据"></a>然后登陆网页版微信获取好友数据</h2><p><code>#login, default a QR code will be generated, scan for login
-itchat.login()
-friends = itchat.get_friends(update=True)[0:]  # get all friends
-print(friends[0])  # the first one is yourself</code></p>
-</li>
-</ol>
-<h2 id="扫描二维码来登陆即可对我好友的男女比例进行统计"><a href="#扫描二维码来登陆即可对我好友的男女比例进行统计" class="headerlink" title="扫描二维码来登陆即可对我好友的男女比例进行统计"></a>扫描二维码来登陆即可对我好友的男女比例进行统计</h2><pre><code>`male, female, others = get_male_female_count(friends[1:])
-total = len(friends[1:])
-print(&apos;Male population: {:d}, ratio: {:.4f}&apos;.format(male, male / float(total)))
-print(&apos;Female population: {:d}, ratio: {:.4f}&apos;.format(female, female / float(total)))
-print(&apos;Others: {:d}, ratio: {:.4f}&apos;.format(others, others / float(total)))`
-</code></pre><p><em>函数：</em></p>
-<pre><code>`def get_male_female_count(friends):
-male = 0
-female = 0
-others = 0
-for friend in friends:
-    sex = friend[&apos;Sex&apos;]
-    if sex == 1:
-        male += 1
-    elif sex == 2:
-        female += 1
-    else:
-        others += 1
-return male, female, others`
-</code></pre><p><em>用PIL画图</em></p>
-<pre><code>`# plot male-female-ratio
-index = np.arange(3)
-genders = (male, female, others)
-bar_width = 0.35
-plt.figure(figsize=(14, 7))
-plt.bar(index, genders, bar_width, alpha=0.6, color=&apos;rgb&apos;)
-plt.xlabel(&apos;Gender&apos;, fontsize=16)
-plt.ylabel(&apos;Population&apos;, fontsize=16)
-plt.title(&apos;Male-Female Population&apos;, fontsize=18)
-plt.xticks(index, (&apos;Male&apos;, &apos;Female&apos;, &apos;Others&apos;), fontsize=14, rotation=20)
-plt.ylim(0, 220)
-for idx, gender in zip(index, genders):
-    plt.text(idx, gender + 0.1, &apos;%.0f&apos; % gender, ha=&apos;center&apos;, va=&apos;bottom&apos;, fontsize=14, color=&apos;black&apos;)
-plt.show()`
-</code></pre><p>结果嘛<img src="https://i.imgur.com/P0u9D3M.png" alt=""><br>为什么这么少呢，哦，好像前阵子删除了很多无联系的账号，重点是比例，ozx。</p>
-<h2 id="对好友城市的分布也做了分析"><a href="#对好友城市的分布也做了分析" class="headerlink" title="对好友城市的分布也做了分析"></a>对好友城市的分布也做了分析</h2><pre><code>`# extract the variables: NickName, Sex, City, Province, Signature
-def get_features(friends):
-    features = []
-    for friend in friends:
-        feature = {&apos;NickName&apos;: friend[&apos;NickName&apos;], &apos;Sex&apos;: friend[&apos;Sex&apos;], &apos;City&apos;: friend[&apos;City&apos;],
-                   &apos;Province&apos;: friend[&apos;Province&apos;], &apos;Signature&apos;: friend[&apos;Signature&apos;]}
-        features.append(feature)
-    return pd.DataFrame(features)
-features = get_features(friends[1:])
-
-print(features.columns)
-features.head()
-
-locations = features.loc[:, [&apos;Province&apos;, &apos;City&apos;]]  # get location columns
-locations = locations[locations[&apos;Province&apos;] != &apos;&apos;]  # clean empty city or province records
-data = locations.groupby([&apos;Province&apos;, &apos;City&apos;]).size().unstack()  # group by and count
-count_subset = data.take(data.sum(1).argsort())[-20:]  # obtain the 20 highest data
-
-# plot
-subset_plot = count_subset.plot(kind=&apos;bar&apos;, stacked=True, figsize=(24, 24))`
-</code></pre><p>结果都是广东的多，其他的几乎没有。<br><img src="https://i.imgur.com/1Qy78mL.png" alt=""></p>
-<h2 id="将好友的个性签名用wordcloud生成词云"><a href="#将好友的个性签名用wordcloud生成词云" class="headerlink" title="将好友的个性签名用wordcloud生成词云"></a>将好友的个性签名用wordcloud生成词云</h2><pre><code>` set fonts
-xtick_labels = subset_plot.get_xticklabels()
-for label in xtick_labels:
-    label.set_fontproperties(font)
-legend_labels = subset_plot.legend().texts
-for label in legend_labels:
-    label.set_fontproperties(font)
-    label.set_fontsize(10)
-
-plt.xlabel(&apos;Province&apos;, fontsize=20)
-plt.ylabel(&apos;Number&apos;, fontsize=20)
-plt.show()
-
-sigature_list = []
-for signature in features[&apos;Signature&apos;]:
-    signature = signature.strip().replace(&apos;span&apos;, &apos;&apos;).replace(&apos;class&apos;, &apos;&apos;).replace(&apos;emoji&apos;, &apos;&apos;)
-    # re.compile(ur&apos;[^a-zA-Z0-9\u4e00-\u9fa5 ]&apos;).sub(&apos;&apos;, signature)
-    signature = re.compile(&apos;1f\d+\w*|[&lt;&gt;/=]&apos;).sub(&apos;&apos;, signature)
-    if (len(signature) &gt; 0):
-        sigature_list.append(signature)
-
-text = &apos;&apos;.join(sigature_list)
-# print(text)
-
-word_list = jieba.cut(text, cut_all=True)
-words = &apos; &apos;.join(word_list)
-# print(words)
-
-coloring = np.array(Image.open(&apos;./data/wechat3.png&apos;))
-wc = WordCloud(background_color=&apos;white&apos;, max_words=2000, mask=coloring, max_font_size=60, random_state=42,
-               font_path=&apos;./data/test.ttf&apos;, scale=2).generate(words)
-image_color = ImageColorGenerator(coloring)
-plt.figure(figsize=(32, 16))
-plt.imshow(wc.recolor(color_func=image_color))
-plt.imshow(wc)
-plt.axis(&apos;off&apos;)
-plt.show()`
-</code></pre><p>结果啊<br><img src="https://i.imgur.com/LsebWuU.png" alt=""></p>
-<p><strong>我的好友还是很积极向上的，学习奋斗和努力还是有一定比例的，喜欢也可以理解，但为何生活人生世界这么大比例，ozx，这么多人看破尘世了？还是鸡汤看多了。</strong></p>
-<p>参考</p>
-<p><a href="https://github.com/amueller/word_cloud" target="_blank" rel="noopener">https://github.com/amueller/word_cloud</a></p>
-<p><a href="https://github.com/littlecodersh/ItChat" target="_blank" rel="noopener">https://github.com/littlecodersh/ItChat</a></p>
-<p><a href="http://www.36dsj.com/archives/88199" target="_blank" rel="noopener">http://www.36dsj.com/archives/88199</a></p>
-<p><a href="https://isaacchanghau.github.io/2017/09/10/Python-itchat%E5%8C%85%E5%88%86%E6%9E%90%E5%BE%AE%E4%BF%A1%E6%9C%8B%E5%8F%8B/" target="_blank" rel="noopener">https://isaacchanghau.github.io/2017/09/10/Python-itchat%E5%8C%85%E5%88%86%E6%9E%90%E5%BE%AE%E4%BF%A1%E6%9C%8B%E5%8F%8B/</a></p>
-
-          
+          昨晚了解到Python的itchat包，很强，已经完成了wechat的个人账号API接口，就可以用他来做很多数据分析的有趣事情了。首先引入各个包
+itchat  # itchat documentation -- https:/   itchat.readthedocs.io/zh/latest/a
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/10/index/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -646,7 +561,7 @@ plt.show()`
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -670,9 +585,9 @@ plt.show()`
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-10T01:04:08+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-10T01:04:08+08:00">
                 2017-12-10
               </time>
             
@@ -712,31 +627,22 @@ plt.show()`
       
         
           
-            <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-<script>AV.initialize("", "");</script>热度排行Top：
-<script type="text/javascript">
+          
+AV.initialize("", "");热度排行Top：
+
   var time=0
   var title=""
   var url=""
   var query = new AV.Query('Counter');//表名
-  query.notEqualTo('id',0); //id不为0的结果
-  query.descending('time'); //结果按阅读次数降序排序
-  query.limit(20);  //最终只返回10条结果
-  query.find().then(function (todo) {
-    for (var i=0;i<10;i++){ 
-      var result=todo[i].attributes;
-      time=result.time;  //阅读次数
-      title=result.title; //文章标题
-      url=result.url;     //文章url
-      var content="<p>"+"<font color='#0477ab'>"+"【阅读次数:"+time+"】"+"<a href='"+"http://thief.one"+url+"'>"+title+"</font>"+"</a>"+"</p>";
-      // document.write("<a href='"+"http://thief.one/"+url+"'>"+title+"</a>"+"    Readtimes:"+time+"<br>");
-      document.getElementById("heheda").innerHTML+=content
-    }
-  }, function (error) {
-    console.log("error");
-  });
-</script>
-          
+  query.notEqualTo('id',0); //id不
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/10/page/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -788,7 +694,7 @@ plt.show()`
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -812,9 +718,9 @@ plt.show()`
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-08T09:51:32+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-08T09:51:32+08:00">
                 2017-12-08
               </time>
             
@@ -833,7 +739,7 @@ plt.show()`
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -876,19 +782,15 @@ plt.show()`
       
         
           
-            <p><blockquote class="blockquote-center">优秀的人，不是不合群，而是他们合群的人里面没有你</blockquote><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<p>最近访客</p>
-<div class="ds-recent-visitors" data-num-items="39" data-avatar-size="40" id="ds-recent-visitors"></div>
-
-          
+          优秀的人，不是不合群，而是他们合群的人里面没有你Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/08/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -959,6 +861,10 @@ plt.show()`
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/upload_image/avatar.gif"
+                alt="Kunrong" />
+            
               <p class="site-author-name" itemprop="name">Kunrong</p>
               <p class="site-description motion-element" itemprop="description">share my technology</p>
           </div>
@@ -971,7 +877,7 @@ plt.show()`
                 <a href="/archives/">
               
                   <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">posts</span>
+                  <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
@@ -980,10 +886,10 @@ plt.show()`
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">categories</span>
-                
+                  <span class="site-state-item-name">分类</span>
+                </a>
               </div>
             
 
@@ -991,10 +897,10 @@ plt.show()`
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">2</span>
-                  <span class="site-state-item-name">tags</span>
-                
+                  <span class="site-state-item-name">标签</span>
+                </a>
               </div>
             
 
@@ -1003,6 +909,20 @@ plt.show()`
           
 
           <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/8311431967" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/1967-59-52/activities" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
             
           </div>
 
@@ -1042,7 +962,7 @@ plt.show()`
 <!--
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
 
 
 
@@ -1050,7 +970,7 @@ plt.show()`
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
 -->
 
 
