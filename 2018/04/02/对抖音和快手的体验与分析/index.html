@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="设计模式," />
+  <meta name="keywords" content="杂文," />
 
 
 
@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="Iterator模式刚看完23种设计模式，就先来总结一下Iterator模式。重点是掌握使用抽象类和接口来编程。先来回忆一下这个例子： 定义Aggregate接口（集合）interface Aggregate &amp;#123;12  public abstract Iterator iterator();&amp;#125; 定义Iterator接口（迭代器）interface Iterator &amp;#123;">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="序言虽然以前就听过快手和抖音了，但好似对我的作用不大，就一直没有上手。But，快手和抖音都在2018的春节期间大放异彩，逐步占领市场。还有看到了中央颁布的互联网独角兽公司，我惊奇地发现快手竟然排到了61，而抖音也是有前一百的，被学生党喜闻乐见的知乎排在了110+。果然人民群众相对于.txt,.jpg,更喜欢*.avi啊。所以决定下载抖音和快手，来体验一下，顺便来为我拓宽一下设计思路。 界面和交互设">
+<meta name="keywords" content="杂文">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式之Iterator模式">
-<meta property="og:url" content="http://yoursite.com/2018/04/02/设计模式之Iterator模式/index.html">
+<meta property="og:title" content="对抖音和快手的体验与分析">
+<meta property="og:url" content="http://yoursite.com/2018/04/02/对抖音和快手的体验与分析/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="Iterator模式刚看完23种设计模式，就先来总结一下Iterator模式。重点是掌握使用抽象类和接口来编程。先来回忆一下这个例子： 定义Aggregate接口（集合）interface Aggregate &amp;#123;12  public abstract Iterator iterator();&amp;#125; 定义Iterator接口（迭代器）interface Iterator &amp;#123;">
+<meta property="og:description" content="序言虽然以前就听过快手和抖音了，但好似对我的作用不大，就一直没有上手。But，快手和抖音都在2018的春节期间大放异彩，逐步占领市场。还有看到了中央颁布的互联网独角兽公司，我惊奇地发现快手竟然排到了61，而抖音也是有前一百的，被学生党喜闻乐见的知乎排在了110+。果然人民群众相对于.txt,.jpg,更喜欢*.avi啊。所以决定下载抖音和快手，来体验一下，顺便来为我拓宽一下设计思路。 界面和交互设">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/fRQfzxD.png">
-<meta property="og:updated_time" content="2018-04-02T15:23:36.930Z">
+<meta property="og:updated_time" content="2018-04-02T17:14:24.583Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式之Iterator模式">
-<meta name="twitter:description" content="Iterator模式刚看完23种设计模式，就先来总结一下Iterator模式。重点是掌握使用抽象类和接口来编程。先来回忆一下这个例子： 定义Aggregate接口（集合）interface Aggregate &amp;#123;12  public abstract Iterator iterator();&amp;#125; 定义Iterator接口（迭代器）interface Iterator &amp;#123;">
-<meta name="twitter:image" content="https://i.imgur.com/fRQfzxD.png">
+<meta name="twitter:title" content="对抖音和快手的体验与分析">
+<meta name="twitter:description" content="序言虽然以前就听过快手和抖音了，但好似对我的作用不大，就一直没有上手。But，快手和抖音都在2018的春节期间大放异彩，逐步占领市场。还有看到了中央颁布的互联网独角兽公司，我惊奇地发现快手竟然排到了61，而抖音也是有前一百的，被学生党喜闻乐见的知乎排在了110+。果然人民群众相对于.txt,.jpg,更喜欢*.avi啊。所以决定下载抖音和快手，来体验一下，顺便来为我拓宽一下设计思路。 界面和交互设">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/02/设计模式之Iterator模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/02/对抖音和快手的体验与分析/"/>
 
 
 
 
 
-  <title>设计模式之Iterator模式 | Kunrong-blog</title>
+  <title>对抖音和快手的体验与分析 | Kunrong-blog</title>
   
 
 
@@ -410,7 +408,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/02/设计模式之Iterator模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/02/对抖音和快手的体验与分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -427,7 +425,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">设计模式之Iterator模式</h1>
+          <h1 class="post-title" itemprop="name headline">对抖音和快手的体验与分析</h1>
         
 
         <div class="post-meta">
@@ -439,7 +437,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T21:59:32+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T23:40:10+08:00">
                 2018-04-02
               </time>
             
@@ -462,8 +460,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/杂文/" itemprop="url" rel="index">
+                    <span itemprop="name">杂文</span>
                   </a>
                 </span>
 
@@ -499,20 +497,17 @@
       
 
       
-        <h3 id="Iterator模式"><a href="#Iterator模式" class="headerlink" title="Iterator模式"></a>Iterator模式</h3><p>刚看完23种设计模式，就先来总结一下Iterator模式。重点是<strong>掌握使用抽象类和接口来编程。</strong><br>先来回忆一下这个例子：</p>
-<h4 id="定义Aggregate接口（集合）"><a href="#定义Aggregate接口（集合）" class="headerlink" title="定义Aggregate接口（集合）"></a>定义Aggregate接口（集合）</h4><pre><code><figure class="highlight plain"><figcaption><span>interface Aggregate &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">  public abstract Iterator iterator();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><h4 id="定义Iterator接口（迭代器）"><a href="#定义Iterator接口（迭代器）" class="headerlink" title="定义Iterator接口（迭代器）"></a>定义Iterator接口（迭代器）</h4><pre><code><figure class="highlight plain"><figcaption><span>interface Iterator &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public abstract boolean hasNext();</span><br><span class="line">public abstract Object next();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><h4 id="定义Book类"><a href="#定义Book类" class="headerlink" title="定义Book类"></a>定义Book类</h4><pre><code><figure class="highlight plain"><figcaption><span>class Book &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private String name;</span><br><span class="line">public Book(String name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">&#125;</span><br><span class="line">public String getName() &#123;</span><br><span class="line">    return name;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><h4 id="定义BookSelf类（具体的集合）"><a href="#定义BookSelf类（具体的集合）" class="headerlink" title="定义BookSelf类（具体的集合）"></a>定义BookSelf类（具体的集合）</h4><pre><code><figure class="highlight plain"><figcaption><span>class BookShelf implements Aggregate &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">private ArrayList books;   </span><br><span class="line">public BookShelf(int initialsize) &#123;         </span><br><span class="line">    this.books = new ArrayList(initialsize);   </span><br><span class="line">&#125;                                           </span><br><span class="line">public Book getBookAt(int index) &#123;</span><br><span class="line">    return (Book)books.get(index);          </span><br><span class="line">&#125;</span><br><span class="line">public void appendBook(Book book) &#123;</span><br><span class="line">    books.add(book);                        </span><br><span class="line">&#125;</span><br><span class="line">public int getLength() &#123;</span><br><span class="line">    return books.size();                    </span><br><span class="line">&#125;</span><br><span class="line">public Iterator iterator() &#123;</span><br><span class="line">    return new BookShelfIterator(this);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><p><em>这里用了ArrayList来实现动态数组，避免当书本过多时而受到限制，有时间在分析ArrayList的源码</em></p>
-<h4 id="定义BookShelfIterator（具体的迭代器）"><a href="#定义BookShelfIterator（具体的迭代器）" class="headerlink" title="定义BookShelfIterator（具体的迭代器）"></a>定义BookShelfIterator（具体的迭代器）</h4><pre><code><figure class="highlight plain"><figcaption><span>class BookShelfIterator implements Iterator &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">private BookShelf bookShelf;</span><br><span class="line">private int index;</span><br><span class="line">public BookShelfIterator(BookShelf bookShelf) &#123;</span><br><span class="line">    this.bookShelf = bookShelf;</span><br><span class="line">    this.index = 0;</span><br><span class="line">&#125;</span><br><span class="line">public boolean hasNext() &#123;</span><br><span class="line">    if (index &lt; bookShelf.getLength()) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">public Object next() &#123;</span><br><span class="line">    Book book = bookShelf.getBookAt(index);</span><br><span class="line">    index++;</span><br><span class="line">    return book;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><p><em>因为BookShelfIterator类要发挥Iterator的作用，so实现了Iterator的接口</em></p>
-<p>UML图如下：<br><img src="https://i.imgur.com/fRQfzxD.png" alt=""></p>
-<h2 id="使用Iterator的作用"><a href="#使用Iterator的作用" class="headerlink" title="使用Iterator的作用"></a>使用Iterator的作用</h2><p>引入Iterator模式后把遍历和实现分离开来，如下</p>
-<pre><code><figure class="highlight plain"><figcaption><span>(it.hasNext()) &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">       Book book = (Book)it.next();</span><br><span class="line">       System.out.println(book.getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><p><em>这里只使用了Iterator的next和hasNext，并没有调用Bookshelf的方法，也就是说，这里的while循环并不依赖Bookshelf的实现。</em></p>
-<p><strong>如果Bookshelf的开发人员放弃ArrayList来管理书本，而是用vector来取而代之，不管Bookshelf如何变化，只要Bookshelf的iterator方法能够正确返回Iterator的实例，即使不对while的循环作任何修改，代码都可以正常工作。</strong></p>
-<h3 id="如果只使用具体的类来解决问题，很容易导致类之间的强耦合，这些类也难以作为组件被再次利用。为了弱化类之间的耦合，进而使得类更加容易作为组件被再次利用，我们需要引入抽象类和接口。"><a href="#如果只使用具体的类来解决问题，很容易导致类之间的强耦合，这些类也难以作为组件被再次利用。为了弱化类之间的耦合，进而使得类更加容易作为组件被再次利用，我们需要引入抽象类和接口。" class="headerlink" title="如果只使用具体的类来解决问题，很容易导致类之间的强耦合，这些类也难以作为组件被再次利用。为了弱化类之间的耦合，进而使得类更加容易作为组件被再次利用，我们需要引入抽象类和接口。"></a>如果只使用具体的类来解决问题，很容易导致类之间的强耦合，这些类也难以作为组件被再次利用。为了弱化类之间的耦合，进而使得类更加容易作为组件被再次利用，我们需要引入抽象类和接口。</h3>
+        <h3 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h3><p>虽然以前就听过快手和抖音了，但好似对我的作用不大，就一直没有上手。But，快手和抖音都在2018的春节期间大放异彩，逐步占领市场。还有看到了中央颁布的互联网独角兽公司，我惊奇地发现快手竟然排到了61，而抖音也是有前一百的，被学生党喜闻乐见的知乎排在了110+。果然人民群众相对于<em>.txt,</em>.jpg,更喜欢*.avi啊。所以决定下载抖音和快手，来体验一下，顺便来为我拓宽一下设计思路。</p>
+<h3 id="界面和交互设计"><a href="#界面和交互设计" class="headerlink" title="界面和交互设计"></a>界面和交互设计</h3><p>抖音的界面初始只有一个视频，不用点击就自动播放，双击点赞，上下滑下一个视频，很简单方便，但可选率低。<br>而快手初始界面四张图片，需要点击进去才能播放，下滑可以看更多的缩略图。抖音的设计必须依靠强大的推荐系统，不然滑了几个视频都是不好看的就gg了。</p>
+<h3 id="推荐系统和算法"><a href="#推荐系统和算法" class="headerlink" title="推荐系统和算法"></a>推荐系统和算法</h3><p>毕竟一开始还是要给三无用户作推荐，大概是推荐点赞比较多的和关注度比较高的大v吧。而抖音请了明星入驻，一点开的都是明星的视频，而快手更多的是妹纸的，不过标题真的太太太尴尬了。那么如何给新用户增加曝光机会呢？</p>
+<p><em>在视频推荐中会穿插一些新用户的视频，我的观察大概是10条有1条。这样保证了在用户不会觉得烦的同时，也给了新的创作者一定流量。当新的视频达到一定的赞后，可能会被推送更多用户，而没有达到某个标准的视频可能会“进入冷宫“。这样的设计防止了像微博这类网站的大V把持流量所造成的马太效应，越来越多的平台在采取相同的策略</em></p>
+<p>这样就能吸引新用户，增加优质资源的同时防止大v的流量劫持。</p>
+<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><p>抖音的内容还算是积极向上，明星们都比较接地气，而且配上特定的BGM真的很魔性，还有一些人拍的情景剧，也就十秒左右，后来发现还是续集来的，orz。</p>
+<p>而快手的内容就比较接地气，或者是少部分人说的俗，视频里主要是妹子跳舞，泳装…..还有农村里面的奇人异事，工厂妹的一天之类的。我觉得快手是切入点很准，面向二线三线四线的人，得屌丝者得天下啊。</p>
+<p>不过上一次的十四岁怀孕少女的视频引起了人们的关注，进而对快手的鄙视，我还在live中发现了色情引流，虽然说可以举报，但管理员根本忙不过来啊。 监管这一方面还要加强吧，感觉要变成直播软件了。<br>共青团入驻快手和抖音，我还特意搜了账号看作品，作品量低啊。</p>
+<h3 id="推荐广告"><a href="#推荐广告" class="headerlink" title="推荐广告"></a>推荐广告</h3><p>这种流量软件当然少不了广告的，不然怎生存，穿插于视频中，用户不仔细看可能就已经当成一个普通视频看完了。我刚注册，广告遇见率不高，可能还是杀熟吧。再者听说抖音和快手的广告费是比知乎高几倍的，果然还是学生党比屌丝更穷啊。</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>抖音和快手的界面和交互设计都做得很好，也很快（只是我的辣鸡校园网不给力），智能推荐也很好，但过于沉溺于某个方面就会错过外面精彩的世界。就好像快手现在就只推荐都是妹纸的视频给我了，明明我本意是用快手和抖音记单词的。我觉得俗或不俗都是人民群众说了算，快手和抖音都是一个成功的app，既满足了人民的需求也从中捞到了利益。</p>
+
       
     </div>
     
@@ -529,7 +524,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            <a href="/tags/杂文/" rel="tag"># 杂文</a>
           
         </div>
       
@@ -542,8 +537,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/10/index/" rel="next" title="爬虫分析微信好友">
-                <i class="fa fa-chevron-left"></i> 爬虫分析微信好友
+              <a href="/2018/04/02/设计模式之Iterator模式/" rel="next" title="设计模式之Iterator模式">
+                <i class="fa fa-chevron-left"></i> 设计模式之Iterator模式
               </a>
             
           </div>
@@ -551,10 +546,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/02/对抖音和快手的体验与分析/" rel="prev" title="对抖音和快手的体验与分析">
-                对抖音和快手的体验与分析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -710,7 +701,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Iterator模式"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Iterator&#x6A21;&#x5F0F;" class="headerlink" title="Iterator&#x6A21;&#x5F0F;"></a>Iterator&#x6A21;&#x5F0F;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义Aggregate接口（集合）"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x5B9A;&#x4E49;Aggregate&#x63A5;&#x53E3;&#xFF08;&#x96C6;&#x5408;&#xFF09;" class="headerlink" title="&#x5B9A;&#x4E49;Aggregate&#x63A5;&#x53E3;&#xFF08;&#x96C6;&#x5408;&#xFF09;"></a>&#x5B9A;&#x4E49;Aggregate&#x63A5;&#x53E3;&#xFF08;&#x96C6;&#x5408;&#xFF09;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义Iterator接口（迭代器）"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x5B9A;&#x4E49;Iterator&#x63A5;&#x53E3;&#xFF08;&#x8FED;&#x4EE3;&#x5668;&#xFF09;" class="headerlink" title="&#x5B9A;&#x4E49;Iterator&#x63A5;&#x53E3;&#xFF08;&#x8FED;&#x4EE3;&#x5668;&#xFF09;"></a>&#x5B9A;&#x4E49;Iterator&#x63A5;&#x53E3;&#xFF08;&#x8FED;&#x4EE3;&#x5668;&#xFF09;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义Book类"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x5B9A;&#x4E49;Book&#x7C7B;" class="headerlink" title="&#x5B9A;&#x4E49;Book&#x7C7B;"></a>&#x5B9A;&#x4E49;Book&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义BookSelf类（具体的集合）"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x5B9A;&#x4E49;BookSelf&#x7C7B;&#xFF08;&#x5177;&#x4F53;&#x7684;&#x96C6;&#x5408;&#xFF09;" class="headerlink" title="&#x5B9A;&#x4E49;BookSelf&#x7C7B;&#xFF08;&#x5177;&#x4F53;&#x7684;&#x96C6;&#x5408;&#xFF09;"></a>&#x5B9A;&#x4E49;BookSelf&#x7C7B;&#xFF08;&#x5177;&#x4F53;&#x7684;&#x96C6;&#x5408;&#xFF09;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义BookShelfIterator（具体的迭代器）"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#&#x5B9A;&#x4E49;BookShelfIterator&#xFF08;&#x5177;&#x4F53;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF09;" class="headerlink" title="&#x5B9A;&#x4E49;BookShelfIterator&#xFF08;&#x5177;&#x4F53;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF09;"></a>&#x5B9A;&#x4E49;BookShelfIterator&#xFF08;&#x5177;&#x4F53;&#x7684;&#x8FED;&#x4EE3;&#x5668;&#xFF09;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Iterator的作用"><span class="nav-number"></span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;Iterator&#x7684;&#x4F5C;&#x7528;" class="headerlink" title="&#x4F7F;&#x7528;Iterator&#x7684;&#x4F5C;&#x7528;"></a>&#x4F7F;&#x7528;Iterator&#x7684;&#x4F5C;&#x7528;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如果只使用具体的类来解决问题，很容易导致类之间的强耦合，这些类也难以作为组件被再次利用。为了弱化类之间的耦合，进而使得类更加容易作为组件被再次利用，我们需要引入抽象类和接口。"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5982;&#x679C;&#x53EA;&#x4F7F;&#x7528;&#x5177;&#x4F53;&#x7684;&#x7C7B;&#x6765;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#xFF0C;&#x5F88;&#x5BB9;&#x6613;&#x5BFC;&#x81F4;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x5F3A;&#x8026;&#x5408;&#xFF0C;&#x8FD9;&#x4E9B;&#x7C7B;&#x4E5F;&#x96BE;&#x4EE5;&#x4F5C;&#x4E3A;&#x7EC4;&#x4EF6;&#x88AB;&#x518D;&#x6B21;&#x5229;&#x7528;&#x3002;&#x4E3A;&#x4E86;&#x5F31;&#x5316;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8026;&#x5408;&#xFF0C;&#x8FDB;&#x800C;&#x4F7F;&#x5F97;&#x7C7B;&#x66F4;&#x52A0;&#x5BB9;&#x6613;&#x4F5C;&#x4E3A;&#x7EC4;&#x4EF6;&#x88AB;&#x518D;&#x6B21;&#x5229;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5F15;&#x5165;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;&#x3002;" class="headerlink" title="&#x5982;&#x679C;&#x53EA;&#x4F7F;&#x7528;&#x5177;&#x4F53;&#x7684;&#x7C7B;&#x6765;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#xFF0C;&#x5F88;&#x5BB9;&#x6613;&#x5BFC;&#x81F4;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x5F3A;&#x8026;&#x5408;&#xFF0C;&#x8FD9;&#x4E9B;&#x7C7B;&#x4E5F;&#x96BE;&#x4EE5;&#x4F5C;&#x4E3A;&#x7EC4;&#x4EF6;&#x88AB;&#x518D;&#x6B21;&#x5229;&#x7528;&#x3002;&#x4E3A;&#x4E86;&#x5F31;&#x5316;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8026;&#x5408;&#xFF0C;&#x8FDB;&#x800C;&#x4F7F;&#x5F97;&#x7C7B;&#x66F4;&#x52A0;&#x5BB9;&#x6613;&#x4F5C;&#x4E3A;&#x7EC4;&#x4EF6;&#x88AB;&#x518D;&#x6B21;&#x5229;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5F15;&#x5165;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;&#x3002;"></a>&#x5982;&#x679C;&#x53EA;&#x4F7F;&#x7528;&#x5177;&#x4F53;&#x7684;&#x7C7B;&#x6765;&#x89E3;&#x51B3;&#x95EE;&#x9898;&#xFF0C;&#x5F88;&#x5BB9;&#x6613;&#x5BFC;&#x81F4;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x5F3A;&#x8026;&#x5408;&#xFF0C;&#x8FD9;&#x4E9B;&#x7C7B;&#x4E5F;&#x96BE;&#x4EE5;&#x4F5C;&#x4E3A;&#x7EC4;&#x4EF6;&#x88AB;&#x518D;&#x6B21;&#x5229;&#x7528;&#x3002;&#x4E3A;&#x4E86;&#x5F31;&#x5316;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8026;&#x5408;&#xFF0C;&#x8FDB;&#x800C;&#x4F7F;&#x5F97;&#x7C7B;&#x66F4;&#x52A0;&#x5BB9;&#x6613;&#x4F5C;&#x4E3A;&#x7EC4;&#x4EF6;&#x88AB;&#x518D;&#x6B21;&#x5229;&#x7528;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x5F15;&#x5165;&#x62BD;&#x8C61;&#x7C7B;&#x548C;&#x63A5;&#x53E3;&#x3002;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#序言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5E8F;&#x8A00;" class="headerlink" title="&#x5E8F;&#x8A00;"></a>&#x5E8F;&#x8A00;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#界面和交互设计"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x754C;&#x9762;&#x548C;&#x4EA4;&#x4E92;&#x8BBE;&#x8BA1;" class="headerlink" title="&#x754C;&#x9762;&#x548C;&#x4EA4;&#x4E92;&#x8BBE;&#x8BA1;"></a>&#x754C;&#x9762;&#x548C;&#x4EA4;&#x4E92;&#x8BBE;&#x8BA1;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐系统和算法"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x63A8;&#x8350;&#x7CFB;&#x7EDF;&#x548C;&#x7B97;&#x6CD5;" class="headerlink" title="&#x63A8;&#x8350;&#x7CFB;&#x7EDF;&#x548C;&#x7B97;&#x6CD5;"></a>&#x63A8;&#x8350;&#x7CFB;&#x7EDF;&#x548C;&#x7B97;&#x6CD5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5185;&#x5BB9;" class="headerlink" title="&#x5185;&#x5BB9;"></a>&#x5185;&#x5BB9;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐广告"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x63A8;&#x8350;&#x5E7F;&#x544A;" class="headerlink" title="&#x63A8;&#x8350;&#x5E7F;&#x544A;"></a>&#x63A8;&#x8350;&#x5E7F;&#x544A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x7ED3;&#x8BED;" class="headerlink" title="&#x7ED3;&#x8BED;"></a>&#x7ED3;&#x8BED;</span></a></li></ol></div>
             
 
           </div>
