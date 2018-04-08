@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="设计模式 抽象工厂," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="抽象工厂模式抽象工厂的工作就是将抽象零件组装为抽象产品，也就是我们并不关心零件的具体实现，而是只关心接口（API）。 示例抽象的零件：Item类abstract class Item &amp;#123;123456   protected String caption;   public Item(String caption) &amp;#123;       this.caption = caption;">
+<meta name="keywords" content="设计模式 抽象工厂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式之抽象工厂模式">
+<meta property="og:url" content="http://yoursite.com/2018/04/04/设计模式之抽象工厂模式/index.html">
+<meta property="og:site_name" content="Kunrong-blog">
+<meta property="og:description" content="抽象工厂模式抽象工厂的工作就是将抽象零件组装为抽象产品，也就是我们并不关心零件的具体实现，而是只关心接口（API）。 示例抽象的零件：Item类abstract class Item &amp;#123;123456   protected String caption;   public Item(String caption) &amp;#123;       this.caption = caption;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-08T17:19:46.550Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式之抽象工厂模式">
+<meta name="twitter:description" content="抽象工厂模式抽象工厂的工作就是将抽象零件组装为抽象产品，也就是我们并不关心零件的具体实现，而是只关心接口（API）。 示例抽象的零件：Item类abstract class Item &amp;#123;123456   protected String caption;   public Item(String caption) &amp;#123;       this.caption = caption;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"left"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/04/设计模式之抽象工厂模式/"/>
+
+
+
+
+
+  <title>设计模式之抽象工厂模式 | Kunrong-blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kunrong-blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/04/设计模式之抽象工厂模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kunrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kunrong-blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式之抽象工厂模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-04T00:43:34+08:00">
+                2018-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p><em>抽象工厂的工作就是将抽象零件组装为抽象产品，也就是我们并不关心零件的具体实现，而是只关心接口（API）。</em></p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="抽象的零件：Item类"><a href="#抽象的零件：Item类" class="headerlink" title="抽象的零件：Item类"></a>抽象的零件：Item类</h4><pre><code><figure class="highlight plain"><figcaption><span>abstract class Item &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   protected String caption;</span><br><span class="line">   public Item(String caption) &#123;</span><br><span class="line">       this.caption = caption;</span><br><span class="line">   &#125;</span><br><span class="line">   public abstract String makeHTML();//抽象方法由子类实现</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="抽象的零件：Link类"><a href="#抽象的零件：Link类" class="headerlink" title="抽象的零件：Link类"></a>抽象的零件：Link类</h4><pre><code><figure class="highlight plain"><figcaption><span>abstract class Link extends Item &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   protected String url;</span><br><span class="line">   public Link(String caption, String url) &#123;</span><br><span class="line">       super(caption);</span><br><span class="line">       this.url = url;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="抽象的零件：Tray类"><a href="#抽象的零件：Tray类" class="headerlink" title="抽象的零件：Tray类"></a>抽象的零件：Tray类</h4><pre><code><figure class="highlight plain"><figcaption><span>abstract class Tray extends Item &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   protected ArrayList tray = new ArrayList();</span><br><span class="line">   public Tray(String caption) &#123;</span><br><span class="line">       super(caption);</span><br><span class="line">   &#125;</span><br><span class="line">   public void add(Item item) &#123;</span><br><span class="line">       tray.add(item);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="抽象的产品：Page类"><a href="#抽象的产品：Page类" class="headerlink" title="抽象的产品：Page类"></a>抽象的产品：Page类</h4><pre><code><figure class="highlight plain"><figcaption><span>abstract class Page &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">   protected String title;</span><br><span class="line">   protected String author;</span><br><span class="line">   protected ArrayList content = new ArrayList();</span><br><span class="line">   public Page(String title, String author) &#123;</span><br><span class="line">       this.title = title;</span><br><span class="line">       this.author = author;</span><br><span class="line">   &#125;</span><br><span class="line">   public void add(Item item) &#123;</span><br><span class="line">       content.add(item);</span><br><span class="line">   &#125;</span><br><span class="line">   public void output() &#123;</span><br><span class="line">       try &#123;</span><br><span class="line">           String filename = title + &quot;.html&quot;;</span><br><span class="line">           Writer writer = new FileWriter(filename);</span><br><span class="line">           writer.write(this.makeHTML());</span><br><span class="line">           writer.close();</span><br><span class="line">           System.out.println(filename + &quot; 编写完成。&quot;);</span><br><span class="line">       &#125; catch (IOException e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   public abstract String makeHTML();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="抽象的工厂：Factory类"><a href="#抽象的工厂：Factory类" class="headerlink" title="抽象的工厂：Factory类"></a>抽象的工厂：Factory类</h4><p><strong>getFactory()通过调用Class类的forName方法动态地读取类信息，接着用newInstance方法生成该类的实例，并将其作为返回值返回调用者。</strong></p>
+<p><strong>请注意：虽然getFactory()方法生成的是具体工厂的实例，但是返回值是抽象工厂类型的。</strong></p>
+<pre><code><figure class="highlight plain"><figcaption><span>abstract class Factory &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   public static Factory getFactory(String classname) &#123;</span><br><span class="line">       Factory factory = null;</span><br><span class="line">       try &#123;</span><br><span class="line">           factory = (Factory)Class.forName(classname).newInstance();</span><br><span class="line">       &#125; catch (ClassNotFoundException e) &#123;</span><br><span class="line">           System.err.println(&quot;没有找到 &quot; + classname + &quot;类。&quot;);</span><br><span class="line">       &#125; catch (Exception e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">       return factory;</span><br><span class="line">   &#125;</span><br><span class="line">   public abstract Link createLink(String caption, String url);</span><br><span class="line">   public abstract Tray createTray(String caption);</span><br><span class="line">   public abstract Page createPage(String title, String author);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="具体的工厂：ListFactory类"><a href="#具体的工厂：ListFactory类" class="headerlink" title="具体的工厂：ListFactory类"></a>具体的工厂：ListFactory类</h4><pre><code><figure class="highlight plain"><figcaption><span>class ListFactory extends Factory &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">   public Link createLink(String caption, String url) &#123;</span><br><span class="line">       return new ListLink(caption, url);</span><br><span class="line">   &#125;</span><br><span class="line">   public Tray createTray(String caption) &#123;</span><br><span class="line">       return new ListTray(caption);</span><br><span class="line">   &#125;</span><br><span class="line">   public Page createPage(String title, String author) &#123;</span><br><span class="line">       return new ListPage(title, author);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="具体的零件：ListLink类"><a href="#具体的零件：ListLink类" class="headerlink" title="具体的零件：ListLink类"></a>具体的零件：ListLink类</h4><pre><code><figure class="highlight plain"><figcaption><span>class ListLink extends Link &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   public ListLink(String caption, String url) &#123;</span><br><span class="line">       super(caption, url);</span><br><span class="line">   &#125;</span><br><span class="line">   public String makeHTML() &#123;</span><br><span class="line">       return &quot;  &lt;li&gt;&lt;a href=\&quot;&quot; + url + &quot;\&quot;&gt;&quot; + caption + &quot;&lt;/a&gt;&lt;/li&gt;\n&quot;;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="具体的零件：ListTray类"><a href="#具体的零件：ListTray类" class="headerlink" title="具体的零件：ListTray类"></a>具体的零件：ListTray类</h4><p><strong>划重点：通过使用迭代器，调用Item的makeHTML()，请注意，这里并不关心变量Item中保存的实例究竟是ListLink的实例还是ListTray的实例，只是简单的调用makeHTML(),之后item会帮我们处理，这是面向对象编程的好处。</strong></p>
+<pre><code><figure class="highlight plain"><figcaption><span>class ListTray extends Tray &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">   public ListTray(String caption) &#123;</span><br><span class="line">       super(caption);</span><br><span class="line">   &#125;</span><br><span class="line">   public String makeHTML() &#123;</span><br><span class="line">       StringBuffer buffer = new StringBuffer();</span><br><span class="line">       buffer.append(&quot;&lt;li&gt;\n&quot;);</span><br><span class="line">       buffer.append(caption + &quot;\n&quot;);</span><br><span class="line">       buffer.append(&quot;&lt;ul&gt;\n&quot;);</span><br><span class="line">       Iterator it = tray.iterator();</span><br><span class="line">       while (it.hasNext()) &#123;</span><br><span class="line">           Item item = (Item)it.next();</span><br><span class="line">           buffer.append(item.makeHTML());</span><br><span class="line">       &#125;</span><br><span class="line">       buffer.append(&quot;&lt;/ul&gt;\n&quot;);</span><br><span class="line">       buffer.append(&quot;&lt;/li&gt;\n&quot;);</span><br><span class="line">       return buffer.toString();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="具体的产品：ListPage类"><a href="#具体的产品：ListPage类" class="headerlink" title="具体的产品：ListPage类"></a>具体的产品：ListPage类</h4><pre><code><figure class="highlight plain"><figcaption><span>class ListPage extends Page &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">   public ListPage(String title, String author) &#123;</span><br><span class="line">       super(title, author);</span><br><span class="line">   &#125;</span><br><span class="line">   public String makeHTML() &#123;</span><br><span class="line">       StringBuffer buffer = new StringBuffer();</span><br><span class="line">       buffer.append(&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;&quot; + title + &quot;&lt;/title&gt;&lt;/head&gt;\n&quot;);</span><br><span class="line">       buffer.append(&quot;&lt;body&gt;\n&quot;);</span><br><span class="line">       buffer.append(&quot;&lt;h1&gt;&quot; + title + &quot;&lt;/h1&gt;\n&quot;);</span><br><span class="line">       buffer.append(&quot;&lt;ul&gt;\n&quot;);</span><br><span class="line">       Iterator it = content.iterator();</span><br><span class="line">       while (it.hasNext()) &#123;</span><br><span class="line">           Item item = (Item)it.next();</span><br><span class="line">           buffer.append(item.makeHTML());</span><br><span class="line">       &#125;</span><br><span class="line">       buffer.append(&quot;&lt;/ul&gt;\n&quot;);</span><br><span class="line">       buffer.append(&quot;&lt;hr&gt;&lt;address&gt;&quot; + author + &quot;&lt;/address&gt;&quot;);</span><br><span class="line">       buffer.append(&quot;&lt;/body&gt;&lt;/html&gt;\n&quot;);</span><br><span class="line">       return buffer.toString();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="使用工厂将零件组装成为产品：Main类"><a href="#使用工厂将零件组装成为产品：Main类" class="headerlink" title="使用工厂将零件组装成为产品：Main类"></a>使用工厂将零件组装成为产品：Main类</h4><p><strong>该类只是引入了factory包，并没有使用任何具体的零件，产品和工厂</strong></p>
+<pre><code><figure class="highlight plain"><figcaption><span>class Main &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">       if (args.length != 1) &#123;</span><br><span class="line">           System.out.println(&quot;Usage: java Main class.name.of.ConcreteFactory&quot;);</span><br><span class="line">           System.out.println(&quot;Example 1: java Main listfactory.ListFactory&quot;);</span><br><span class="line">           System.out.println(&quot;Example 2: java Main tablefactory.TableFactory&quot;);</span><br><span class="line">           System.exit(0);</span><br><span class="line">       &#125;</span><br><span class="line">	//        Factory factory = Factory.getFactory(&quot;abstractFactory.listfactory.ListFactory&quot;);</span><br><span class="line"></span><br><span class="line">       Factory factory = Factory.getFactory(args[0]);</span><br><span class="line">       Link people = factory.createLink(&quot;People Daily&quot;, &quot;http://www.people.com.cn/&quot;);</span><br><span class="line">       Link gmw = factory.createLink(&quot;GuangMing Daily&quot;, &quot;http://www.gmw.cn/&quot;);</span><br><span class="line"></span><br><span class="line">       Link us_yahoo = factory.createLink(&quot;Yahoo!&quot;, &quot;http://www.yahoo.com/&quot;);</span><br><span class="line">       Link jp_yahoo = factory.createLink(&quot;Yahoo!Japan&quot;, &quot;http://www.yahoo.co.jp/&quot;);</span><br><span class="line">       Link excite = factory.createLink(&quot;Excite&quot;, &quot;http://www.excite.com/&quot;);</span><br><span class="line">       Link google = factory.createLink(&quot;Google&quot;, &quot;http://www.google.com/&quot;);</span><br><span class="line"></span><br><span class="line">       Tray traynews = factory.createTray(&quot;NewsPaper&quot;);</span><br><span class="line">       traynews.add(people);</span><br><span class="line">       traynews.add(gmw);</span><br><span class="line"></span><br><span class="line">       Tray trayyahoo = factory.createTray(&quot;Yahoo!&quot;);</span><br><span class="line">       trayyahoo.add(us_yahoo);</span><br><span class="line">       trayyahoo.add(jp_yahoo);</span><br><span class="line"></span><br><span class="line">       Tray traysearch = factory.createTray(&quot;searchEngine&quot;);</span><br><span class="line">       traysearch.add(trayyahoo);</span><br><span class="line">       traysearch.add(excite);</span><br><span class="line">       traysearch.add(google);</span><br><span class="line"></span><br><span class="line">       Page page = factory.createPage(&quot;LinkPage&quot;, &quot;kr&quot;);</span><br><span class="line">       page.add(traynews);</span><br><span class="line">       page.add(traysearch);</span><br><span class="line">       page.output();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="抽象工厂的优劣点"><a href="#抽象工厂的优劣点" class="headerlink" title="抽象工厂的优劣点"></a>抽象工厂的优劣点</h3><p>####易于增加具体的工厂</p>
+<p>这里说的容易是指需要编写哪些类和需要实现哪些方法都非常清楚。假设我们要在示例中增加新的具体工厂，那么需要做的就是编写Factory，Link，Tray，Page这四个类的子类，并实现他们定义的抽象方法。这样一来，无论要增加多少个具体工厂（或者是修改具体工厂的BUG），都无需修改抽象工厂。</p>
+<p>####难于增加新的零件</p>
+<p>如果要增加新的零件时，就必须要对所有的具体工厂进行相应的修改。例如要在factory包中增加一个表示图像的Picture零件，就要在listfactory中作如下修改：</p>
+<ol>
+<li>在ListFactory中加入createPicture；</li>
+<li>新增ListPicture类</li>
+</ol>
+<p>而且编写完成的具体工厂越多，修改的工作量越多。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式-抽象工厂/" rel="tag"># 设计模式 抽象工厂</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/02/对抖音和快手的体验与分析/" rel="next" title="对抖音和快手的体验与分析">
+                <i class="fa fa-chevron-left"></i> 对抖音和快手的体验与分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI3Mi84ODM2"></div>
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload_image/avatar.gif"
+                alt="Kunrong" />
+            
+              <p class="site-author-name" itemprop="name">Kunrong</p>
+              <p class="site-description motion-element" itemprop="description">share my technology</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/8311431967" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/1967-59-52/activities" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象工厂模式"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x62BD;&#x8C61;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;" class="headerlink" title="&#x62BD;&#x8C61;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;"></a>&#x62BD;&#x8C61;&#x5DE5;&#x5382;&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x793A;&#x4F8B;" class="headerlink" title="&#x793A;&#x4F8B;"></a>&#x793A;&#x4F8B;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象的零件：Item类"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x62BD;&#x8C61;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;Item&#x7C7B;" class="headerlink" title="&#x62BD;&#x8C61;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;Item&#x7C7B;"></a>&#x62BD;&#x8C61;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;Item&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象的零件：Link类"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x62BD;&#x8C61;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;Link&#x7C7B;" class="headerlink" title="&#x62BD;&#x8C61;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;Link&#x7C7B;"></a>&#x62BD;&#x8C61;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;Link&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象的零件：Tray类"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x62BD;&#x8C61;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;Tray&#x7C7B;" class="headerlink" title="&#x62BD;&#x8C61;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;Tray&#x7C7B;"></a>&#x62BD;&#x8C61;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;Tray&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象的产品：Page类"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x62BD;&#x8C61;&#x7684;&#x4EA7;&#x54C1;&#xFF1A;Page&#x7C7B;" class="headerlink" title="&#x62BD;&#x8C61;&#x7684;&#x4EA7;&#x54C1;&#xFF1A;Page&#x7C7B;"></a>&#x62BD;&#x8C61;&#x7684;&#x4EA7;&#x54C1;&#xFF1A;Page&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象的工厂：Factory类"><span class="nav-number">2.5.</span> <span class="nav-text"><a href="#&#x62BD;&#x8C61;&#x7684;&#x5DE5;&#x5382;&#xFF1A;Factory&#x7C7B;" class="headerlink" title="&#x62BD;&#x8C61;&#x7684;&#x5DE5;&#x5382;&#xFF1A;Factory&#x7C7B;"></a>&#x62BD;&#x8C61;&#x7684;&#x5DE5;&#x5382;&#xFF1A;Factory&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体的工厂：ListFactory类"><span class="nav-number">2.6.</span> <span class="nav-text"><a href="#&#x5177;&#x4F53;&#x7684;&#x5DE5;&#x5382;&#xFF1A;ListFactory&#x7C7B;" class="headerlink" title="&#x5177;&#x4F53;&#x7684;&#x5DE5;&#x5382;&#xFF1A;ListFactory&#x7C7B;"></a>&#x5177;&#x4F53;&#x7684;&#x5DE5;&#x5382;&#xFF1A;ListFactory&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体的零件：ListLink类"><span class="nav-number">2.7.</span> <span class="nav-text"><a href="#&#x5177;&#x4F53;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;ListLink&#x7C7B;" class="headerlink" title="&#x5177;&#x4F53;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;ListLink&#x7C7B;"></a>&#x5177;&#x4F53;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;ListLink&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体的零件：ListTray类"><span class="nav-number">2.8.</span> <span class="nav-text"><a href="#&#x5177;&#x4F53;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;ListTray&#x7C7B;" class="headerlink" title="&#x5177;&#x4F53;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;ListTray&#x7C7B;"></a>&#x5177;&#x4F53;&#x7684;&#x96F6;&#x4EF6;&#xFF1A;ListTray&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具体的产品：ListPage类"><span class="nav-number">2.9.</span> <span class="nav-text"><a href="#&#x5177;&#x4F53;&#x7684;&#x4EA7;&#x54C1;&#xFF1A;ListPage&#x7C7B;" class="headerlink" title="&#x5177;&#x4F53;&#x7684;&#x4EA7;&#x54C1;&#xFF1A;ListPage&#x7C7B;"></a>&#x5177;&#x4F53;&#x7684;&#x4EA7;&#x54C1;&#xFF1A;ListPage&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用工厂将零件组装成为产品：Main类"><span class="nav-number">2.10.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x5DE5;&#x5382;&#x5C06;&#x96F6;&#x4EF6;&#x7EC4;&#x88C5;&#x6210;&#x4E3A;&#x4EA7;&#x54C1;&#xFF1A;Main&#x7C7B;" class="headerlink" title="&#x4F7F;&#x7528;&#x5DE5;&#x5382;&#x5C06;&#x96F6;&#x4EF6;&#x7EC4;&#x88C5;&#x6210;&#x4E3A;&#x4EA7;&#x54C1;&#xFF1A;Main&#x7C7B;"></a>&#x4F7F;&#x7528;&#x5DE5;&#x5382;&#x5C06;&#x96F6;&#x4EF6;&#x7EC4;&#x88C5;&#x6210;&#x4E3A;&#x4EA7;&#x54C1;&#xFF1A;Main&#x7C7B;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象工厂的优劣点"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x62BD;&#x8C61;&#x5DE5;&#x5382;&#x7684;&#x4F18;&#x52A3;&#x70B9;" class="headerlink" title="&#x62BD;&#x8C61;&#x5DE5;&#x5382;&#x7684;&#x4F18;&#x52A3;&#x70B9;"></a>&#x62BD;&#x8C61;&#x5DE5;&#x5382;&#x7684;&#x4F18;&#x52A3;&#x70B9;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kunrong</span>
+
+  
+</div>
+<!--
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
