@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="装饰模式," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言如果把程序中的对象比作蛋糕，然后想不断地向装饰蛋糕一样地不断地对其增加功能，它就变成了使用目的更加明确的对象。像这种不断为对象添加装饰的设计模式称之为decorator模式。 示例UML图 代码在https://github.com/8311431967/practiceCode Display类abstract class Display &amp;#123;123456789   public a">
+<meta name="keywords" content="装饰模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式之decorator模式">
+<meta property="og:url" content="http://yoursite.com/2018/04/10/设计模式之decorator模式/index.html">
+<meta property="og:site_name" content="Kunrong-blog">
+<meta property="og:description" content="前言如果把程序中的对象比作蛋糕，然后想不断地向装饰蛋糕一样地不断地对其增加功能，它就变成了使用目的更加明确的对象。像这种不断为对象添加装饰的设计模式称之为decorator模式。 示例UML图 代码在https://github.com/8311431967/practiceCode Display类abstract class Display &amp;#123;123456789   public a">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/VC6YC8a.png">
+<meta property="og:image" content="https://i.imgur.com/A5jDi3j.png">
+<meta property="og:updated_time" content="2018-04-11T00:34:35.004Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式之decorator模式">
+<meta name="twitter:description" content="前言如果把程序中的对象比作蛋糕，然后想不断地向装饰蛋糕一样地不断地对其增加功能，它就变成了使用目的更加明确的对象。像这种不断为对象添加装饰的设计模式称之为decorator模式。 示例UML图 代码在https://github.com/8311431967/practiceCode Display类abstract class Display &amp;#123;123456789   public a">
+<meta name="twitter:image" content="https://i.imgur.com/VC6YC8a.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"left"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/10/设计模式之decorator模式/"/>
+
+
+
+
+
+  <title>设计模式之decorator模式 | Kunrong-blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kunrong-blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/设计模式之decorator模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kunrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kunrong-blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式之decorator模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T23:44:02+08:00">
+                2018-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>如果把程序中的对象比作蛋糕，然后想不断地向装饰蛋糕一样地不断地对其增加功能，它就变成了使用目的更加明确的对象。像这种不断为对象添加装饰的设计模式称之为decorator模式。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h4 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h4><p><img src="https://i.imgur.com/VC6YC8a.png" alt=""></p>
+<p>代码在<a href="https://github.com/8311431967/practiceCode" title="GitHub" target="_blank" rel="noopener">https://github.com/8311431967/practiceCode</a></p>
+<h4 id="Display类"><a href="#Display类" class="headerlink" title="Display类"></a>Display类</h4><pre><code><figure class="highlight plain"><figcaption><span>abstract class Display &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   public abstract int getColumns();               // 获取横向字符数</span><br><span class="line">   public abstract int getRows();                  // 获取纵向行数</span><br><span class="line">   public abstract String getRowText(int row);     // 获取第row行的字符串</span><br><span class="line">   public void show() &#123;                            // 全部显示</span><br><span class="line">       for (int i = 0; i &lt; getRows(); i++) &#123;</span><br><span class="line">           System.out.println(getRowText(i));</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="StringDisplay类"><a href="#StringDisplay类" class="headerlink" title="StringDisplay类"></a>StringDisplay类</h4><p>用于显示单行字符串的类，肩负着实现Display类中的声明的抽象方法的重任。其相当于生日蛋糕中的核心蛋糕。</p>
+<pre><code><figure class="highlight plain"><figcaption><span>class StringDisplay extends Display &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">   private String string;                          // 要显示的字符串</span><br><span class="line">   public StringDisplay(String string) &#123;           // 通过参数传入要显示的字符串</span><br><span class="line">       this.string = string;</span><br><span class="line">   &#125;</span><br><span class="line">   public int getColumns() &#123;                       // 字符数</span><br><span class="line">       return string.getBytes().length;</span><br><span class="line">   &#125;</span><br><span class="line">   public int getRows() &#123;                          // 行数是1</span><br><span class="line">       return 1;</span><br><span class="line">   &#125;</span><br><span class="line">   public String getRowText(int row) &#123;             // 仅当row为0时返回值</span><br><span class="line">       if (row == 0) &#123;</span><br><span class="line">           return string;</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">           return null;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="Border"><a href="#Border" class="headerlink" title="Border"></a>Border</h4><p>作为装饰边框的抽象类</p>
+<pre><code><figure class="highlight plain"><figcaption><span>abstract class Border extends Display &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   protected Display display;          // 表示被装饰物</span><br><span class="line">   protected Border(Display display) &#123; // 在生成实例时通过参数指定被装饰物</span><br><span class="line">       this.display = display;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="SideBorder类"><a href="#SideBorder类" class="headerlink" title="SideBorder类"></a>SideBorder类</h4><p>在两侧在上”|”</p>
+<pre><code><figure class="highlight plain"><figcaption><span>class SideBorder extends Border &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   private char borderChar;                        // 表示装饰边框的字符</span><br><span class="line">   public SideBorder(Display display, char ch) &#123;   // 通过构造函数指定Display和装饰边框字符 </span><br><span class="line">       super(display);</span><br><span class="line">       this.borderChar = ch;</span><br><span class="line">   &#125;</span><br><span class="line">   public int getColumns() &#123;                       // 字符数为字符串字符数加上两侧边框字符数 </span><br><span class="line">       return 1 + display.getColumns() + 1;</span><br><span class="line">   &#125;</span><br><span class="line">   public int getRows() &#123;                          // 行数即被装饰物的行数</span><br><span class="line">       return display.getRows();</span><br><span class="line">   &#125;</span><br><span class="line">   public String getRowText(int row) &#123;             // 指定的那一行的字符串为被装饰物的字符串加上两侧的边框的字符 </span><br><span class="line">       return borderChar + display.getRowText(row) + borderChar;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="FullBorder类"><a href="#FullBorder类" class="headerlink" title="FullBorder类"></a>FullBorder类</h4><p>添加上下左右边框</p>
+<pre><code><figure class="highlight plain"><figcaption><span>class FullBorder extends Border &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">   public FullBorder(Display display) &#123;</span><br><span class="line">       super(display);</span><br><span class="line">   &#125;</span><br><span class="line">   public int getColumns() &#123;                   // 字符数为被装饰物的字符数加上两侧边框字符数</span><br><span class="line">       return 1 + display.getColumns() + 1;</span><br><span class="line">   &#125;</span><br><span class="line">   public int getRows() &#123;                      // 行数为被装饰物的行数加上上下边框的行数</span><br><span class="line">       return 1 + display.getRows() + 1;</span><br><span class="line">   &#125;</span><br><span class="line">   public String getRowText(int row) &#123;         // 指定的那一行的字符串</span><br><span class="line">       if (row == 0) &#123;                                                 // 上边框</span><br><span class="line">           return &quot;+&quot; + makeLine(&apos;-&apos;, display.getColumns()) + &quot;+&quot;;</span><br><span class="line">       &#125; else if (row == display.getRows() + 1) &#123;                      // 下边框</span><br><span class="line">           return &quot;+&quot; + makeLine(&apos;-&apos;, display.getColumns()) + &quot;+&quot;;</span><br><span class="line">       &#125; else &#123;                                                        // 其他边框</span><br><span class="line">           return &quot;|&quot; + display.getRowText(row - 1) + &quot;|&quot;;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   private String makeLine(char ch, int count) &#123;         // 生成一个重复count次字符ch的字符串 </span><br><span class="line">       StringBuffer buf = new StringBuffer();</span><br><span class="line">       for (int i = 0; i &lt; count; i++) &#123;</span><br><span class="line">           buf.append(ch);</span><br><span class="line">       &#125;</span><br><span class="line">       return buf.toString();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="Main类"><a href="#Main类" class="headerlink" title="Main类"></a>Main类</h4><pre><code><figure class="highlight plain"><figcaption><span>class Main &#123;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">       Display b1 = new StringDisplay(&quot;Hello, world.&quot;);</span><br><span class="line">       Display b2 = new SideBorder(b1, &apos;#&apos;);</span><br><span class="line">       Display b3 = new FullBorder(b2);</span><br><span class="line">       b1.show();</span><br><span class="line">       b2.show();</span><br><span class="line">       b3.show();</span><br><span class="line">       Display b4 = </span><br><span class="line">                   new SideBorder(</span><br><span class="line">                       new FullBorder(</span><br><span class="line">                           new FullBorder(</span><br><span class="line">                               new SideBorder(</span><br><span class="line">                                   new FullBorder(</span><br><span class="line">                                       new StringDisplay(&quot;你好，世界。&quot;)</span><br><span class="line">                                   ),</span><br><span class="line">                                   &apos;*&apos;</span><br><span class="line">                               )</span><br><span class="line">                           )</span><br><span class="line">                       ),</span><br><span class="line">                       &apos;/&apos;</span><br><span class="line">                   );</span><br><span class="line">       b4.show();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre><h4 id="结果如下："><a href="#结果如下：" class="headerlink" title="结果如下："></a>结果如下：</h4><p><img src="https://i.imgur.com/A5jDi3j.png" alt=""></p>
+<h3 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h3><h4 id="接口的透明性"><a href="#接口的透明性" class="headerlink" title="接口的透明性"></a>接口的透明性</h4><p>1.在decorator模式中，装饰边框和装饰物具有一致性，也就是说Border类（及其子类）与表示被装饰物的Display类具有相同的接口。<br>这样即使被装饰物被边框装饰起来，接口API也不会被隐藏起来，其他类依然可以调用getColumn(),getRows(),show()方法，这就是API接口的“透明性”。</p>
+<p>2.得益于接口的透明化，Decorator模式中形成了类似Composite模式中的递归结构，装饰边框里面的被装饰物实际上又是别的物体的“装饰边框”。</p>
+<h4 id="在不改变被装饰物的前提下增加功能"><a href="#在不改变被装饰物的前提下增加功能" class="headerlink" title="在不改变被装饰物的前提下增加功能"></a>在不改变被装饰物的前提下增加功能</h4><p>虽然接口是相同的，但是越装饰，功能则越多，eg，用sideborder装饰display后，在字符串两侧可以加上装饰字符，也可在加上FullBorder。此时，我们完全不需要对被装饰的类做任何修改。</p>
+<p>decorator模式中使用了委托，它使类之间形成弱关联关系，因此不必改变框架代码，就可以生成一个与其他对象具有不同关系的新对象。</p>
+<h3 id="Java-io包与Decorator模式"><a href="#Java-io包与Decorator模式" class="headerlink" title="Java.io包与Decorator模式"></a>Java.io包与Decorator模式</h3><p>首先如读取文件的示例：<br>Reader reader = new FileReader(“datafile.txt”);</p>
+<p>然后我们可以向下面这样在读取文件时将文件内容放入缓冲区中。</p>
+<p>Reader reader = new BufferReader(new FileReader(“data.txt”));</p>
+<p>还可以<br>Reader reader = new LineNumberReader(new BufferReader(new FileReader(“data.txt”)));</p>
+<p>无论是LineNumReader类的构造函数还是BufferedReader类的构造函数，都可以接受Reader类（子类）的实例作为参数，因此我们可以像上面那样自由的进行各种自由组合。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><p>导致程序中增加许多功能类似的很小的类，Java.io包的类我就还没记完，orz。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/装饰模式/" rel="tag"># 装饰模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/04/设计模式之抽象工厂模式/" rel="next" title="设计模式之抽象工厂模式">
+                <i class="fa fa-chevron-left"></i> 设计模式之抽象工厂模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI3Mi84ODM2"></div>
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload_image/avatar.gif"
+                alt="Kunrong" />
+            
+              <p class="site-author-name" itemprop="name">Kunrong</p>
+              <p class="site-description motion-element" itemprop="description">share my technology</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/8311431967" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/1967-59-52/activities" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#示例"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x793A;&#x4F8B;" class="headerlink" title="&#x793A;&#x4F8B;"></a>&#x793A;&#x4F8B;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UML图"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#UML&#x56FE;" class="headerlink" title="UML&#x56FE;"></a>UML&#x56FE;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Display类"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#Display&#x7C7B;" class="headerlink" title="Display&#x7C7B;"></a>Display&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StringDisplay类"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#StringDisplay&#x7C7B;" class="headerlink" title="StringDisplay&#x7C7B;"></a>StringDisplay&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Border"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#Border" class="headerlink" title="Border"></a>Border</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SideBorder类"><span class="nav-number">2.5.</span> <span class="nav-text"><a href="#SideBorder&#x7C7B;" class="headerlink" title="SideBorder&#x7C7B;"></a>SideBorder&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FullBorder类"><span class="nav-number">2.6.</span> <span class="nav-text"><a href="#FullBorder&#x7C7B;" class="headerlink" title="FullBorder&#x7C7B;"></a>FullBorder&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Main类"><span class="nav-number">2.7.</span> <span class="nav-text"><a href="#Main&#x7C7B;" class="headerlink" title="Main&#x7C7B;"></a>Main&#x7C7B;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果如下："><span class="nav-number">2.8.</span> <span class="nav-text"><a href="#&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;" class="headerlink" title="&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;"></a>&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#要点"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x8981;&#x70B9;" class="headerlink" title="&#x8981;&#x70B9;"></a>&#x8981;&#x70B9;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#接口的透明性"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x63A5;&#x53E3;&#x7684;&#x900F;&#x660E;&#x6027;" class="headerlink" title="&#x63A5;&#x53E3;&#x7684;&#x900F;&#x660E;&#x6027;"></a>&#x63A5;&#x53E3;&#x7684;&#x900F;&#x660E;&#x6027;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在不改变被装饰物的前提下增加功能"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x5728;&#x4E0D;&#x6539;&#x53D8;&#x88AB;&#x88C5;&#x9970;&#x7269;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x589E;&#x52A0;&#x529F;&#x80FD;" class="headerlink" title="&#x5728;&#x4E0D;&#x6539;&#x53D8;&#x88AB;&#x88C5;&#x9970;&#x7269;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x589E;&#x52A0;&#x529F;&#x80FD;"></a>&#x5728;&#x4E0D;&#x6539;&#x53D8;&#x88AB;&#x88C5;&#x9970;&#x7269;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#x589E;&#x52A0;&#x529F;&#x80FD;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-io包与Decorator模式"><span class="nav-number">4.</span> <span class="nav-text"><a href="#Java-io&#x5305;&#x4E0E;Decorator&#x6A21;&#x5F0F;" class="headerlink" title="Java.io&#x5305;&#x4E0E;Decorator&#x6A21;&#x5F0F;"></a>Java.io&#x5305;&#x4E0E;Decorator&#x6A21;&#x5F0F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x7F3A;&#x70B9;" class="headerlink" title="&#x7F3A;&#x70B9;"></a>&#x7F3A;&#x70B9;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kunrong</span>
+
+  
+</div>
+<!--
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
