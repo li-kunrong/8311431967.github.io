@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="爬虫," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -81,22 +81,18 @@
 
 
 
-<meta name="description" content="昨晚了解到Python的itchat包，很强，已经完成了wechat的个人账号API接口，就可以用他来做很多数据分析的有趣事情了。首先引入各个包 itchat  # itchat documentation -- https:/   itchat.readthedocs.io/zh/latest/api/1234567891011import matplotlib.pyplot as pltimp">
-<meta name="keywords" content="爬虫">
+<meta name="description" content="share my technology">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="爬虫分析微信好友">
-<meta property="og:url" content="http://yoursite.com/2017/12/10/index/index.html">
+<meta property="og:title" content="Java集合框架总结与分析(二)">
+<meta property="og:url" content="http://yoursite.com/2018/04/25/Java集合框架总结与分析-二/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="昨晚了解到Python的itchat包，很强，已经完成了wechat的个人账号API接口，就可以用他来做很多数据分析的有趣事情了。首先引入各个包 itchat  # itchat documentation -- https:/   itchat.readthedocs.io/zh/latest/api/1234567891011import matplotlib.pyplot as pltimp">
+<meta property="og:description" content="share my technology">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/P0u9D3M.png">
-<meta property="og:image" content="https://i.imgur.com/1Qy78mL.png">
-<meta property="og:image" content="https://i.imgur.com/LsebWuU.png">
-<meta property="og:updated_time" content="2017-12-11T01:41:58.260Z">
+<meta property="og:updated_time" content="2018-04-25T09:14:38.851Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="爬虫分析微信好友">
-<meta name="twitter:description" content="昨晚了解到Python的itchat包，很强，已经完成了wechat的个人账号API接口，就可以用他来做很多数据分析的有趣事情了。首先引入各个包 itchat  # itchat documentation -- https:/   itchat.readthedocs.io/zh/latest/api/1234567891011import matplotlib.pyplot as pltimp">
-<meta name="twitter:image" content="https://i.imgur.com/P0u9D3M.png">
+<meta name="twitter:title" content="Java集合框架总结与分析(二)">
+<meta name="twitter:description" content="share my technology">
 
 
 
@@ -126,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/10/index/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/25/Java集合框架总结与分析-二/"/>
 
 
 
 
 
-  <title>爬虫分析微信好友 | Kunrong-blog</title>
+  <title>Java集合框架总结与分析(二) | Kunrong-blog</title>
   
 
 
@@ -412,7 +408,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/10/index/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/25/Java集合框架总结与分析-二/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -429,7 +425,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">爬虫分析微信好友</h1>
+          <h1 class="post-title" itemprop="name headline">Java集合框架总结与分析(二)</h1>
         
 
         <div class="post-meta">
@@ -441,8 +437,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-10T09:42:53+08:00">
-                2017-12-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T17:13:36+08:00">
+                2018-04-25
               </time>
             
 
@@ -464,8 +460,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/集合框架/" itemprop="url" rel="index">
+                    <span itemprop="name">集合框架</span>
                   </a>
                 </span>
 
@@ -501,121 +497,7 @@
       
 
       
-        <p>昨晚了解到Python的itchat包，很强，已经完成了wechat的个人账号API接口，就可以用他来做很多数据分析的有趣事情了。<br>首先引入各个包</p>
-<pre><code><figure class="highlight plain"><figcaption><span>itchat  # itchat documentation -- https:/   itchat.readthedocs.io/zh/latest/api/</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import seaborn as sns</span><br><span class="line">import numpy as np</span><br><span class="line">import pandas as pd</span><br><span class="line">import re</span><br><span class="line">from wordcloud import WordCloud, ImageColorGenerator</span><br><span class="line">import PIL.Image as Image # pillow</span><br><span class="line">import jieba  # chinese word segementation tool</span><br><span class="line">from matplotlib.font_manager import FontProperties</span><br><span class="line"># since matplotlib and pandas.plot cannot display chinese</span><br><span class="line">font = FontProperties(fname=&apos;./data/test.ttf&apos;, size=14)  # load chinese font</span><br></pre></td></tr></table></figure>
-</code></pre><p><em>引入包时遇到很多麻烦，首先很多包不支持3.7，然后我又下了个3.6的，应该把2.7的也下载，Python的版本啊~~~~ 我一般直接用Pycharm的直接下载，但到了wordcloud却不支持了，经过我不懈的查找，踩了很多坑，在stackOverflow查到了</em></p>
-<ol>
-<li>download wordcloud‑1.3.2‑cp36‑cp36m‑win_amd64.whl from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud" target="_blank" rel="noopener">http://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud</a></li>
-<li>Copy the file to your current working directory</li>
-<li>Open command prompt from Tools</li>
-<li><p>python -m pip install wordcloud-1.3.2-cp36-cp36m-win_amd64.whl</p>
-<h2 id="然后登陆网页版微信获取好友数据"><a href="#然后登陆网页版微信获取好友数据" class="headerlink" title="然后登陆网页版微信获取好友数据"></a>然后登陆网页版微信获取好友数据</h2><p><code>#login, default a QR code will be generated, scan for login
-itchat.login()
-friends = itchat.get_friends(update=True)[0:]  # get all friends
-print(friends[0])  # the first one is yourself</code></p>
-</li>
-</ol>
-<h2 id="扫描二维码来登陆即可对我好友的男女比例进行统计"><a href="#扫描二维码来登陆即可对我好友的男女比例进行统计" class="headerlink" title="扫描二维码来登陆即可对我好友的男女比例进行统计"></a>扫描二维码来登陆即可对我好友的男女比例进行统计</h2><pre><code>`male, female, others = get_male_female_count(friends[1:])
-total = len(friends[1:])
-print(&apos;Male population: {:d}, ratio: {:.4f}&apos;.format(male, male / float(total)))
-print(&apos;Female population: {:d}, ratio: {:.4f}&apos;.format(female, female / float(total)))
-print(&apos;Others: {:d}, ratio: {:.4f}&apos;.format(others, others / float(total)))`
-</code></pre><p><em>函数：</em></p>
-<pre><code>`def get_male_female_count(friends):
-male = 0
-female = 0
-others = 0
-for friend in friends:
-    sex = friend[&apos;Sex&apos;]
-    if sex == 1:
-        male += 1
-    elif sex == 2:
-        female += 1
-    else:
-        others += 1
-return male, female, others`
-</code></pre><p><em>用PIL画图</em></p>
-<pre><code>`# plot male-female-ratio
-index = np.arange(3)
-genders = (male, female, others)
-bar_width = 0.35
-plt.figure(figsize=(14, 7))
-plt.bar(index, genders, bar_width, alpha=0.6, color=&apos;rgb&apos;)
-plt.xlabel(&apos;Gender&apos;, fontsize=16)
-plt.ylabel(&apos;Population&apos;, fontsize=16)
-plt.title(&apos;Male-Female Population&apos;, fontsize=18)
-plt.xticks(index, (&apos;Male&apos;, &apos;Female&apos;, &apos;Others&apos;), fontsize=14, rotation=20)
-plt.ylim(0, 220)
-for idx, gender in zip(index, genders):
-    plt.text(idx, gender + 0.1, &apos;%.0f&apos; % gender, ha=&apos;center&apos;, va=&apos;bottom&apos;, fontsize=14, color=&apos;black&apos;)
-plt.show()`
-</code></pre><p>结果嘛<img src="https://i.imgur.com/P0u9D3M.png" alt=""><br>为什么这么少呢，哦，好像前阵子删除了很多无联系的账号，重点是比例，ozx。</p>
-<h2 id="对好友城市的分布也做了分析"><a href="#对好友城市的分布也做了分析" class="headerlink" title="对好友城市的分布也做了分析"></a>对好友城市的分布也做了分析</h2><pre><code>`# extract the variables: NickName, Sex, City, Province, Signature
-def get_features(friends):
-    features = []
-    for friend in friends:
-        feature = {&apos;NickName&apos;: friend[&apos;NickName&apos;], &apos;Sex&apos;: friend[&apos;Sex&apos;], &apos;City&apos;: friend[&apos;City&apos;],
-                   &apos;Province&apos;: friend[&apos;Province&apos;], &apos;Signature&apos;: friend[&apos;Signature&apos;]}
-        features.append(feature)
-    return pd.DataFrame(features)
-features = get_features(friends[1:])
-
-print(features.columns)
-features.head()
-
-locations = features.loc[:, [&apos;Province&apos;, &apos;City&apos;]]  # get location columns
-locations = locations[locations[&apos;Province&apos;] != &apos;&apos;]  # clean empty city or province records
-data = locations.groupby([&apos;Province&apos;, &apos;City&apos;]).size().unstack()  # group by and count
-count_subset = data.take(data.sum(1).argsort())[-20:]  # obtain the 20 highest data
-
-# plot
-subset_plot = count_subset.plot(kind=&apos;bar&apos;, stacked=True, figsize=(24, 24))`
-</code></pre><p>结果都是广东的多，其他的几乎没有。<br><img src="https://i.imgur.com/1Qy78mL.png" alt=""></p>
-<h2 id="将好友的个性签名用wordcloud生成词云"><a href="#将好友的个性签名用wordcloud生成词云" class="headerlink" title="将好友的个性签名用wordcloud生成词云"></a>将好友的个性签名用wordcloud生成词云</h2><pre><code>` set fonts
-xtick_labels = subset_plot.get_xticklabels()
-for label in xtick_labels:
-    label.set_fontproperties(font)
-legend_labels = subset_plot.legend().texts
-for label in legend_labels:
-    label.set_fontproperties(font)
-    label.set_fontsize(10)
-
-plt.xlabel(&apos;Province&apos;, fontsize=20)
-plt.ylabel(&apos;Number&apos;, fontsize=20)
-plt.show()
-
-sigature_list = []
-for signature in features[&apos;Signature&apos;]:
-    signature = signature.strip().replace(&apos;span&apos;, &apos;&apos;).replace(&apos;class&apos;, &apos;&apos;).replace(&apos;emoji&apos;, &apos;&apos;)
-    # re.compile(ur&apos;[^a-zA-Z0-9\u4e00-\u9fa5 ]&apos;).sub(&apos;&apos;, signature)
-    signature = re.compile(&apos;1f\d+\w*|[&lt;&gt;/=]&apos;).sub(&apos;&apos;, signature)
-    if (len(signature) &gt; 0):
-        sigature_list.append(signature)
-
-text = &apos;&apos;.join(sigature_list)
-# print(text)
-
-word_list = jieba.cut(text, cut_all=True)
-words = &apos; &apos;.join(word_list)
-# print(words)
-
-coloring = np.array(Image.open(&apos;./data/wechat3.png&apos;))
-wc = WordCloud(background_color=&apos;white&apos;, max_words=2000, mask=coloring, max_font_size=60, random_state=42,
-               font_path=&apos;./data/test.ttf&apos;, scale=2).generate(words)
-image_color = ImageColorGenerator(coloring)
-plt.figure(figsize=(32, 16))
-plt.imshow(wc.recolor(color_func=image_color))
-plt.imshow(wc)
-plt.axis(&apos;off&apos;)
-plt.show()`
-</code></pre><p>结果啊<br><img src="https://i.imgur.com/LsebWuU.png" alt=""></p>
-<p><strong>我的好友还是很积极向上的，学习奋斗和努力还是有一定比例的，喜欢也可以理解，但为何生活人生世界这么大比例，ozx，这么多人看破尘世了？还是鸡汤看多了。</strong></p>
-<p>参考</p>
-<p><a href="https://github.com/amueller/word_cloud" target="_blank" rel="noopener">https://github.com/amueller/word_cloud</a></p>
-<p><a href="https://github.com/littlecodersh/ItChat" target="_blank" rel="noopener">https://github.com/littlecodersh/ItChat</a></p>
-<p><a href="http://www.36dsj.com/archives/88199" target="_blank" rel="noopener">http://www.36dsj.com/archives/88199</a></p>
-<p><a href="https://isaacchanghau.github.io/2017/09/10/Python-itchat%E5%8C%85%E5%88%86%E6%9E%90%E5%BE%AE%E4%BF%A1%E6%9C%8B%E5%8F%8B/" target="_blank" rel="noopener">https://isaacchanghau.github.io/2017/09/10/Python-itchat%E5%8C%85%E5%88%86%E6%9E%90%E5%BE%AE%E4%BF%A1%E6%9C%8B%E5%8F%8B/</a></p>
-
+        
       
     </div>
     
@@ -632,7 +514,7 @@ plt.show()`
       
         <div class="post-tags">
           
-            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -645,8 +527,8 @@ plt.show()`
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/10/page/" rel="next" title="热度榜">
-                <i class="fa fa-chevron-left"></i> 热度榜
+              <a href="/2018/04/24/Java集合框架总结与思考/" rel="next" title="Java集合框架总结与思考（一）">
+                <i class="fa fa-chevron-left"></i> Java集合框架总结与思考（一）
               </a>
             
           </div>
@@ -655,8 +537,8 @@ plt.show()`
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/02/设计模式之Iterator模式/" rel="prev" title="设计模式之Iterator模式">
-                设计模式之Iterator模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/04/Arrays-sort和Collections-sort实现原理探究/" rel="prev" title="Arrays.sort和Collections.sort实现原理探究">
+                Arrays.sort和Collections.sort实现原理探究 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -713,17 +595,8 @@ plt.show()`
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -803,22 +676,6 @@ plt.show()`
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#然后登陆网页版微信获取好友数据"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x7136;&#x540E;&#x767B;&#x9646;&#x7F51;&#x9875;&#x7248;&#x5FAE;&#x4FE1;&#x83B7;&#x53D6;&#x597D;&#x53CB;&#x6570;&#x636E;" class="headerlink" title="&#x7136;&#x540E;&#x767B;&#x9646;&#x7F51;&#x9875;&#x7248;&#x5FAE;&#x4FE1;&#x83B7;&#x53D6;&#x597D;&#x53CB;&#x6570;&#x636E;"></a>&#x7136;&#x540E;&#x767B;&#x9646;&#x7F51;&#x9875;&#x7248;&#x5FAE;&#x4FE1;&#x83B7;&#x53D6;&#x597D;&#x53CB;&#x6570;&#x636E;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扫描二维码来登陆即可对我好友的男女比例进行统计"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x626B;&#x63CF;&#x4E8C;&#x7EF4;&#x7801;&#x6765;&#x767B;&#x9646;&#x5373;&#x53EF;&#x5BF9;&#x6211;&#x597D;&#x53CB;&#x7684;&#x7537;&#x5973;&#x6BD4;&#x4F8B;&#x8FDB;&#x884C;&#x7EDF;&#x8BA1;" class="headerlink" title="&#x626B;&#x63CF;&#x4E8C;&#x7EF4;&#x7801;&#x6765;&#x767B;&#x9646;&#x5373;&#x53EF;&#x5BF9;&#x6211;&#x597D;&#x53CB;&#x7684;&#x7537;&#x5973;&#x6BD4;&#x4F8B;&#x8FDB;&#x884C;&#x7EDF;&#x8BA1;"></a>&#x626B;&#x63CF;&#x4E8C;&#x7EF4;&#x7801;&#x6765;&#x767B;&#x9646;&#x5373;&#x53EF;&#x5BF9;&#x6211;&#x597D;&#x53CB;&#x7684;&#x7537;&#x5973;&#x6BD4;&#x4F8B;&#x8FDB;&#x884C;&#x7EDF;&#x8BA1;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对好友城市的分布也做了分析"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5BF9;&#x597D;&#x53CB;&#x57CE;&#x5E02;&#x7684;&#x5206;&#x5E03;&#x4E5F;&#x505A;&#x4E86;&#x5206;&#x6790;" class="headerlink" title="&#x5BF9;&#x597D;&#x53CB;&#x57CE;&#x5E02;&#x7684;&#x5206;&#x5E03;&#x4E5F;&#x505A;&#x4E86;&#x5206;&#x6790;"></a>&#x5BF9;&#x597D;&#x53CB;&#x57CE;&#x5E02;&#x7684;&#x5206;&#x5E03;&#x4E5F;&#x505A;&#x4E86;&#x5206;&#x6790;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将好友的个性签名用wordcloud生成词云"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5C06;&#x597D;&#x53CB;&#x7684;&#x4E2A;&#x6027;&#x7B7E;&#x540D;&#x7528;wordcloud&#x751F;&#x6210;&#x8BCD;&#x4E91;" class="headerlink" title="&#x5C06;&#x597D;&#x53CB;&#x7684;&#x4E2A;&#x6027;&#x7B7E;&#x540D;&#x7528;wordcloud&#x751F;&#x6210;&#x8BCD;&#x4E91;"></a>&#x5C06;&#x597D;&#x53CB;&#x7684;&#x4E2A;&#x6027;&#x7B7E;&#x540D;&#x7528;wordcloud&#x751F;&#x6210;&#x8BCD;&#x4E91;</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
