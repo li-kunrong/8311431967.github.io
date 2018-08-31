@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="servlet," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、WEB应用的发展1.规律 由单机程序向网络程序发展 由CS程序向BS程序发展  2.CS和BS的区别CS Client Server 客户端服务程序，客户端由程序员开发，用户需要安装（安全性高，但  BS Browser Server 浏览器服务程序，不需要单独开发及安装  二、 Servlet介绍1.服务器如何给浏览器返回网页？1）返回静态网页 百度百科、新闻等 内容不变，任何人看都一样 服">
+<meta name="keywords" content="servlet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Servlet 基础学习">
+<meta property="og:url" content="http://yoursite.com/2018/08/31/Servlet-基础学习/index.html">
+<meta property="og:site_name" content="Kunrong-blog">
+<meta property="og:description" content="一、WEB应用的发展1.规律 由单机程序向网络程序发展 由CS程序向BS程序发展  2.CS和BS的区别CS Client Server 客户端服务程序，客户端由程序员开发，用户需要安装（安全性高，但  BS Browser Server 浏览器服务程序，不需要单独开发及安装  二、 Servlet介绍1.服务器如何给浏览器返回网页？1）返回静态网页 百度百科、新闻等 内容不变，任何人看都一样 服">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/1.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/3.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/4.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/5.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/6.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/7.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/8.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/9.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/10.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/11.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/12.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/13.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/14.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/15.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/16.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/17.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/18.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/19.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/20.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/21.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/22.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/23.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/24.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/25.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/26.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/27.png">
+<meta property="og:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/28.png">
+<meta property="og:updated_time" content="2018-08-31T16:00:47.058Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Servlet 基础学习">
+<meta name="twitter:description" content="一、WEB应用的发展1.规律 由单机程序向网络程序发展 由CS程序向BS程序发展  2.CS和BS的区别CS Client Server 客户端服务程序，客户端由程序员开发，用户需要安装（安全性高，但  BS Browser Server 浏览器服务程序，不需要单独开发及安装  二、 Servlet介绍1.服务器如何给浏览器返回网页？1）返回静态网页 百度百科、新闻等 内容不变，任何人看都一样 服">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/31/Servlet-基础学习/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"left"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/31/Servlet-基础学习/"/>
+
+
+
+
+
+  <title>Servlet 基础学习 | Kunrong-blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kunrong-blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-secweb">
+          <a href="/Secweb/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/31/Servlet-基础学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kunrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kunrong-blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Servlet 基础学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-31T19:50:05+08:00">
+                2018-08-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、WEB应用的发展"><a href="#一、WEB应用的发展" class="headerlink" title="一、WEB应用的发展"></a>一、WEB应用的发展</h1><h2 id="1-规律"><a href="#1-规律" class="headerlink" title="1.规律"></a>1.规律</h2><ul>
+<li>由单机程序向网络程序发展</li>
+<li>由CS程序向BS程序发展</li>
+</ul>
+<h2 id="2-CS和BS的区别"><a href="#2-CS和BS的区别" class="headerlink" title="2.CS和BS的区别"></a>2.CS和BS的区别</h2><h3 id="CS"><a href="#CS" class="headerlink" title="CS"></a>CS</h3><ul>
+<li>Client Server</li>
+<li>客户端服务程序，客户端由程序员开发，用户需要安装（安全性高，但</li>
+</ul>
+<h3 id="BS"><a href="#BS" class="headerlink" title="BS"></a>BS</h3><ul>
+<li>Browser Server</li>
+<li>浏览器服务程序，不需要单独开发及安装</li>
+</ul>
+<h1 id="二、-Servlet介绍"><a href="#二、-Servlet介绍" class="headerlink" title="二、 Servlet介绍"></a>二、 Servlet介绍</h1><h2 id="1-服务器如何给浏览器返回网页？"><a href="#1-服务器如何给浏览器返回网页？" class="headerlink" title="1.服务器如何给浏览器返回网页？"></a>1.服务器如何给浏览器返回网页？</h2><h3 id="1）返回静态网页"><a href="#1）返回静态网页" class="headerlink" title="1）返回静态网页"></a>1）返回静态网页</h3><ul>
+<li>百度百科、新闻等</li>
+<li>内容不变，任何人看都一样</li>
+<li>服务器保存的一个HTML，访问时直接返回它</li>
+</ul>
+<h3 id="2）返回动态网页"><a href="#2）返回动态网页" class="headerlink" title="2）返回动态网页"></a>2）返回动态网页</h3><ul>
+<li>微博、淘宝</li>
+<li>每个人看的内容有差别</li>
+<li>服务器保存一个组件，用它来拼一个动态网页</li>
+<li>在Java项目中，这个组件就是Servlet<blockquote>
+<p>组件：就是满足规范的对象</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-Servlet具备的特征"><a href="#2-Servlet具备的特征" class="headerlink" title="2.Servlet具备的特征"></a>2.Servlet具备的特征</h2><ul>
+<li>Servlet是存储在服务器上的</li>
+<li>Servlet满足sun的规范</li>
+<li>它可以拼动态资源（网页、图片等）<blockquote>
+<p>可以处理HTTP协议</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="3-什么是Servlet"><a href="#3-什么是Servlet" class="headerlink" title="3.什么是Servlet"></a>3.什么是Servlet</h2><ul>
+<li>是sun推出的用来在服务器端处理HTTP协议的组件</li>
+</ul>
+<h1 id="三、服务器"><a href="#三、服务器" class="headerlink" title="三、服务器"></a>三、服务器</h1><h2 id="1-名称"><a href="#1-名称" class="headerlink" title="1.名称"></a>1.名称</h2><ul>
+<li>Java服务器</li>
+<li>WEB服务器</li>
+<li>Java WEB服务器</li>
+<li>Servlet容器</li>
+</ul>
+<h2 id="2-本质"><a href="#2-本质" class="headerlink" title="2.本质"></a>2.本质</h2><ul>
+<li>是一个软件：能够运行Java项目的软件</li>
+<li>和浏览器相对应、平级</li>
+</ul>
+<h2 id="3-举例"><a href="#3-举例" class="headerlink" title="3.举例"></a>3.举例</h2><ul>
+<li>Tomcat</li>
+<li>JBoss</li>
+<li>WebLogic</li>
+<li>WebSphere</li>
+</ul>
+<h1 id="四、如何使用tomcat"><a href="#四、如何使用tomcat" class="headerlink" title="四、如何使用tomcat"></a>四、如何使用tomcat</h1><h2 id="1-单独使用"><a href="#1-单独使用" class="headerlink" title="1.单独使用"></a>1.单独使用</h2><h3 id="1-配置JAVA-HOME"><a href="#1-配置JAVA-HOME" class="headerlink" title="1)配置JAVA_HOME"></a>1)配置JAVA_HOME</h3><ul>
+<li>tomcat依赖于Java</li>
+</ul>
+<h3 id="2-下载及安装"><a href="#2-下载及安装" class="headerlink" title="2)下载及安装"></a>2)下载及安装</h3><ul>
+<li>在apache官网下载</li>
+<li>直接解压缩(释放)即可，这是绿色免安装软件</li>
+</ul>
+<h3 id="3-启动tomcat"><a href="#3-启动tomcat" class="headerlink" title="3)启动tomcat"></a>3)启动tomcat</h3><ul>
+<li>Linux：打开/tomcat/bin目录，输入./startup.sh</li>
+<li>window：打开/tomcat/bin目录，双击startup.bat<blockquote>
+<p>给目录加权限：chmod +x *sh</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="4-访问tomcat"><a href="#4-访问tomcat" class="headerlink" title="4)访问tomcat"></a>4)访问tomcat</h3><ul>
+<li>打开浏览器，输入<a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></li>
+</ul>
+<h3 id="5-关闭tomcat"><a href="#5-关闭tomcat" class="headerlink" title="5)关闭tomcat"></a>5)关闭tomcat</h3><ul>
+<li>Linux：打开/tomcat/bin目录，输入./shutdown.sh</li>
+<li>windows：打开/tomcat/bin目录，双击shutdown.bat</li>
+</ul>
+<h2 id="2-用Eclipse管理tomcat-开发时"><a href="#2-用Eclipse管理tomcat-开发时" class="headerlink" title="2.用Eclipse管理tomcat(开发时)"></a>2.用Eclipse管理tomcat(开发时)</h2><ul>
+<li>配置失败需要重来：</li>
+<li>window-&gt;preference-&gt;server-&gt;runtime</li>
+<li>选择tomcat点击remove</li>
+<li>Eclipse左侧点击Servers项目将其删除</li>
+</ul>
+<h1 id="五、Servlet开发步骤"><a href="#五、Servlet开发步骤" class="headerlink" title="五、Servlet开发步骤"></a>五、Servlet开发步骤</h1><h2 id="1-创建WEB项目"><a href="#1-创建WEB项目" class="headerlink" title="1.创建WEB项目"></a>1.创建WEB项目</h2><ul>
+<li>WEB项目有标准的WEB目录：</li>
+<li>webapp/WEB-INF/web.xml</li>
+</ul>
+<h2 id="2-导入jar包"><a href="#2-导入jar包" class="headerlink" title="2.导入jar包"></a>2.导入jar包</h2><h3 id="1-用maven搜javaee"><a href="#1-用maven搜javaee" class="headerlink" title="1)用maven搜javaee"></a>1)用maven搜javaee</h3><ul>
+<li>在搜索结果中选择javaee-api.jar</li>
+</ul>
+<h3 id="2-使用tomcat内置的jar包"><a href="#2-使用tomcat内置的jar包" class="headerlink" title="2)使用tomcat内置的jar包"></a>2)使用tomcat内置的jar包</h3><ul>
+<li>右键项目-&gt;properties-&gt;targeted runtimes-&gt;勾选tomcat-&gt;apply</li>
+</ul>
+<h2 id="3-开发Servlet"><a href="#3-开发Servlet" class="headerlink" title="3.开发Servlet"></a>3.开发Servlet</h2><ul>
+<li>继承于HttpServlet</li>
+<li>间接实现了Servlet接口(sun的规范)</li>
+</ul>
+<h2 id="4-配置Servlet"><a href="#4-配置Servlet" class="headerlink" title="4.配置Servlet"></a>4.配置Servlet</h2><ul>
+<li>在web.xml中加以配置</li>
+</ul>
+<h2 id="5-部署项目"><a href="#5-部署项目" class="headerlink" title="5.部署项目"></a>5.部署项目</h2><ul>
+<li>在Servers下点击tomcat</li>
+<li>右键点击Add and Remove</li>
+<li>弹出框中将项目从左侧移动到右侧</li>
+<li>启动tomcat<blockquote>
+<p>部署：就是拷贝</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="6-访问Servlet"><a href="#6-访问Servlet" class="headerlink" title="6.访问Servlet"></a>6.访问Servlet</h2><ul>
+<li><a href="http://localhost:8080/servlet1/ts" target="_blank" rel="noopener">http://localhost:8080/servlet1/ts</a></li>
+</ul>
+<p><img src="1.png" alt=""></p>
+<p>源代码：<a href="https://github.com/8311431967/practiceCode/tree/master/src/servlet/servlet" target="_blank" rel="noopener"> https://github.com/8311431967/practiceCode/tree/master/src/servlet/servlet</a></p>
+<h1 id="六、代码执行过程及错误"><a href="#六、代码执行过程及错误" class="headerlink" title="六、代码执行过程及错误"></a>六、代码执行过程及错误</h1><p><img src="2.png" alt=""></p>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="一、端口占用错误"><a href="#一、端口占用错误" class="headerlink" title="一、端口占用错误"></a>一、端口占用错误</h2><h3 id="1-出现问题的情况"><a href="#1-出现问题的情况" class="headerlink" title="1.出现问题的情况"></a>1.出现问题的情况</h3><ul>
+<li>报错：Address already in user,JVM_BIND:8080</li>
+</ul>
+<h3 id="2-原因及解决方案"><a href="#2-原因及解决方案" class="headerlink" title="2.原因及解决方案"></a>2.原因及解决方案</h3><h4 id="1-tomcat启动了2次，造成端口冲突"><a href="#1-tomcat启动了2次，造成端口冲突" class="headerlink" title="1)tomcat启动了2次，造成端口冲突"></a>1)tomcat启动了2次，造成端口冲突</h4><ul>
+<li>打开/tomcat/bin目录，执行shutdown命令，强制关闭它</li>
+</ul>
+<h4 id="2-其他软件占用了此端口-Oracle"><a href="#2-其他软件占用了此端口-Oracle" class="headerlink" title="2)其他软件占用了此端口(Oracle)"></a>2)其他软件占用了此端口(Oracle)</h4><ul>
+<li>修改tomcat的端口</li>
+<li>打开tomcat配置文件server.xml</li>
+<li>在65行修改port=”8080”，建议改为8088、8089等</li>
+<li>注意：关闭tomcat时修改，然后重新启动<blockquote>
+<p>在Servers项目下可以找到server.xml配置文件</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="一、HTTP协议"><a href="#一、HTTP协议" class="headerlink" title="一、HTTP协议"></a>一、HTTP协议</h1><h2 id="1-什么是HTTP协议"><a href="#1-什么是HTTP协议" class="headerlink" title="1.什么是HTTP协议"></a>1.什么是HTTP协议</h2><ul>
+<li>就是一个规范(w3c)</li>
+<li>规定了：浏览器和服务器如何通信及数据格式</li>
+</ul>
+<h2 id="2-如何通信"><a href="#2-如何通信" class="headerlink" title="2.如何通信"></a>2.如何通信</h2><ul>
+<li>建立连接</li>
+<li>发送请求</li>
+<li>接收响应</li>
+<li>关闭连接</li>
+</ul>
+<h2 id="3-数据格式"><a href="#3-数据格式" class="headerlink" title="3.数据格式"></a>3.数据格式</h2><h3 id="1-请求数据-浏览器向服务器发送的数据"><a href="#1-请求数据-浏览器向服务器发送的数据" class="headerlink" title="1)请求数据(浏览器向服务器发送的数据)"></a>1)请求数据(浏览器向服务器发送的数据)</h3><ul>
+<li>请求行：请求的基本信息</li>
+<li>消息头：请求数据的描述信息</li>
+<li>实体内容：请求的业务数据</li>
+</ul>
+<h3 id="2-响应数据-服务器向浏览器发送的数据"><a href="#2-响应数据-服务器向浏览器发送的数据" class="headerlink" title="2)响应数据(服务器向浏览器发送的数据)"></a>2)响应数据(服务器向浏览器发送的数据)</h3><ul>
+<li>状态行：响应的基本信息</li>
+<li>消息头：响应数据的描述信息</li>
+<li>实体内容：响应的业务数据</li>
+</ul>
+<h2 id="4-对开发的要求"><a href="#4-对开发的要求" class="headerlink" title="4.对开发的要求"></a>4.对开发的要求</h2><h3 id="1-不需要管的地方"><a href="#1-不需要管的地方" class="headerlink" title="1)不需要管的地方"></a>1)不需要管的地方</h3><ul>
+<li>通信的过程已经由浏览器和服务器实现了</li>
+<li>请求数据的组装由浏览器实现了</li>
+<li>响应数据的组装由服务器实现了</li>
+</ul>
+<h3 id="2-需要处理的地方"><a href="#2-需要处理的地方" class="headerlink" title="2)需要处理的地方"></a>2)需要处理的地方</h3><ul>
+<li>请求的业务数据由开发者提供</li>
+<li>响应的业务数据由开发者提供<blockquote>
+<p>使用request处理请求数据，使用response处理响应数据</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="二、注册案例"><a href="#二、注册案例" class="headerlink" title="二、注册案例"></a>二、注册案例</h1><p><img src="3.png" alt=""><br>源代码： <a href="https://github.com/8311431967/practiceCode/tree/master/src/servlet/servlet2" target="_blank" rel="noopener">https://github.com/8311431967/practiceCode/tree/master/src/servlet/servlet2</a></p>
+<h1 id="三、Servlet运行原理"><a href="#三、Servlet运行原理" class="headerlink" title="三、Servlet运行原理"></a>三、Servlet运行原理</h1><p><img src="4.png" alt=""></p>
+<h1 id="四、请求方式"><a href="#四、请求方式" class="headerlink" title="四、请求方式"></a>四、请求方式</h1><h2 id="1-什么是请求方式"><a href="#1-什么是请求方式" class="headerlink" title="1.什么是请求方式"></a>1.什么是请求方式</h2><ul>
+<li>浏览器向服务器发送数据的方式</li>
+<li>包括很多种方式，需要掌握的是GET和POST</li>
+</ul>
+<h2 id="2-GET和POST方式的区别"><a href="#2-GET和POST方式的区别" class="headerlink" title="2.GET和POST方式的区别"></a>2.GET和POST方式的区别</h2><h3 id="1-GET"><a href="#1-GET" class="headerlink" title="1)GET"></a>1)GET</h3><ul>
+<li>采用路径传参，参数在传递过程中可见(地址栏)</li>
+<li>隐私性差</li>
+<li>传参能力有限，只能传少量参数</li>
+<li>所有的请求默认都是GET请求</li>
+</ul>
+<h3 id="2-POST"><a href="#2-POST" class="headerlink" title="2)POST"></a>2)POST</h3><ul>
+<li>采用实体内容传参，参数在传递过程中不可见</li>
+<li>隐私性好</li>
+<li>实体内容专门用来传参，大小不受限制</li>
+<li>在form上加method=”post”</li>
+</ul>
+<p>a、get是用来从服务器上获取数据，而post是用来向服务器传递数据；</p>
+<p>b、get将表单中数据按照variable=value的形式，添加到action所指向的URL后面，并且两者用”？”连接，变量之间用”&amp;”连接；而post是将表单中的数据放在form的数据体中，按照变量与值对应的方式，传递到action所指定的URL。</p>
+<p>c、get是不安全的，因为在传输过程中，数据是被放在请求的URL中;而post的所有操作对用户来说都是不可见的。</p>
+<p>d、get传输的数据量小，这主要应为受url长度限制;而post可以传输大量的数据，所有上传文件只能用post提交。</p>
+<p>e、get限制form表单的数据集必须为ASCII字符；而post支持整个IS01 0646字符集。</p>
+<p>f、get是form表单的默认方法。</p>
+<h2 id="3-如何选择请求方式"><a href="#3-如何选择请求方式" class="headerlink" title="3.如何选择请求方式"></a>3.如何选择请求方式</h2><ul>
+<li>一般查询时使用GET请求，因为查询条件一般比较少</li>
+<li>一般保存时使用POST请求，因为保存的数据一般较多</li>
+</ul>
+<h1 id="五、乱码解决方案"><a href="#五、乱码解决方案" class="headerlink" title="五、乱码解决方案"></a>五、乱码解决方案</h1><p><img src="5.png" alt=""></p>
+<h1 id="六、案例"><a href="#六、案例" class="headerlink" title="六、案例"></a>六、案例</h1><h2 id="1-查询员工"><a href="#1-查询员工" class="headerlink" title="1.查询员工"></a>1.查询员工</h2><p><img src="6.png" alt=""><br>源代码： <a href="https://github.com/8311431967/practiceCode/tree/master/src/servlet/EmpManager" target="_blank" rel="noopener">https://github.com/8311431967/practiceCode/tree/master/src/servlet/EmpManager</a></p>
+<h2 id="2-增加员工"><a href="#2-增加员工" class="headerlink" title="2.增加员工"></a>2.增加员工</h2><p><img src="7.png" alt=""></p>
+<h1 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h1><h2 id="1-什么是JavaBean"><a href="#1-什么是JavaBean" class="headerlink" title="1.什么是JavaBean"></a>1.什么是JavaBean</h2><ul>
+<li>满足如下规范的类：</li>
+<li>有package</li>
+<li>有默认构造器</li>
+<li>实现序列化接口</li>
+<li>有get/set方法</li>
+</ul>
+<h1 id="一、重定向"><a href="#一、重定向" class="headerlink" title="一、重定向"></a>一、重定向</h1><h2 id="1-重定向在增加员工中的应用"><a href="#1-重定向在增加员工中的应用" class="headerlink" title="1.重定向在增加员工中的应用"></a>1.重定向在增加员工中的应用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(String url);</span><br></pre></td></tr></table></figure>
+<p><img src="8.png" alt=""></p>
+<h2 id="2-重定向的作用及原理"><a href="#2-重定向的作用及原理" class="headerlink" title="2.重定向的作用及原理"></a>2.重定向的作用及原理</h2><p><img src="9.png" alt=""><br>在重定向的过程中，影响浏览器做出动作的关键点即响应中的状态码及Location这个消息头。302状态就像一道命令一样，使得浏览器做出新的一次请求，而请求的地址会从头信息中查找。由于这个新的请求动作是由浏览器发出的，所以浏览器的地址栏上的地址会变成Location消息头中的地址。</p>
+<h1 id="二、路径"><a href="#二、路径" class="headerlink" title="二、路径"></a>二、路径</h1><h2 id="1-路径是什么"><a href="#1-路径是什么" class="headerlink" title="1.路径是什么"></a>1.路径是什么</h2><p><img src="10.png" alt=""></p>
+<h2 id="2-如何获取路径"><a href="#2-如何获取路径" class="headerlink" title="2.如何获取路径"></a>2.如何获取路径</h2><ul>
+<li>项目名：req.getContextPath()</li>
+<li>Servlet路径：req.getServletPath()</li>
+<li>绝对路径：req.getRequestURI()</li>
+<li>完整路径：req.getRequestURL()</li>
+</ul>
+<h2 id="3-URI-Uniform-Resource-Identifier-和URL-Uniform-Resource-Locator-的区别"><a href="#3-URI-Uniform-Resource-Identifier-和URL-Uniform-Resource-Locator-的区别" class="headerlink" title="3.URI(Uniform Resource Identifier)和URL(Uniform Resource Locator)的区别"></a>3.URI(Uniform Resource Identifier)和URL(Uniform Resource Locator)的区别</h2><h3 id="1-狭义的理解-Java项目"><a href="#1-狭义的理解-Java项目" class="headerlink" title="1)狭义的理解(Java项目)"></a>1)狭义的理解(Java项目)</h3><ul>
+<li>URI(统一资源标识符)是绝对路径，而URL是完整路径</li>
+<li>URL(全球资源定位器)包含了URI</li>
+</ul>
+<h3 id="2-广义的理解-Web项目"><a href="#2-广义的理解-Web项目" class="headerlink" title="2)广义的理解(Web项目) *"></a>2)广义的理解(Web项目) *</h3><ul>
+<li>URI是资源的名字</li>
+<li>URL是资源的真名</li>
+<li>URI包含了URL<blockquote>
+<p>真名只有一个，名字可以有多个</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="4-Servlet访问路径的配置方案"><a href="#4-Servlet访问路径的配置方案" class="headerlink" title="4.Servlet访问路径的配置方案"></a>4.Servlet访问路径的配置方案</h2><h3 id="1-精确匹配-hello"><a href="#1-精确匹配-hello" class="headerlink" title="1)精确匹配(/hello)"></a>1)精确匹配(/hello)</h3><ul>
+<li>只有这一个路径可以访问此Servlet</li>
+<li>此Servlet只能处理一个请求</li>
+</ul>
+<h3 id="2-通配符"><a href="#2-通配符" class="headerlink" title="2)通配符(/*)"></a>2)通配符(/*)</h3><ul>
+<li>所有的路径都可以访问此Servlet</li>
+<li>此Servlet能处理所有请求</li>
+</ul>
+<h3 id="3-后缀-abc"><a href="#3-后缀-abc" class="headerlink" title="3)后缀(*.abc)"></a>3)后缀(*.abc)</h3><ul>
+<li>所有以abc为后缀的路径都可以访问此Servlet</li>
+<li>此Serlvet能处理多个请求</li>
+</ul>
+<h3 id="4-用1个Servlet处理多个请求的方案"><a href="#4-用1个Servlet处理多个请求的方案" class="headerlink" title="4)用1个Servlet处理多个请求的方案"></a>4)用1个Servlet处理多个请求的方案</h3><p><img src="11.png" alt=""></p>
+<h3 id="5-通配符和后缀的典型应用场景"><a href="#5-通配符和后缀的典型应用场景" class="headerlink" title="5)通配符和后缀的典型应用场景"></a>5)通配符和后缀的典型应用场景</h3><p><img src="12.png" alt=""></p>
+<p>Servlet容器如何创建Servlet对象、如何为Servlet对象分配、准备资源、如何调用对应的方法来处理请求以及如何销毁Servlet对象的整个过程即Servlet的生命周期。</p>
+<h2 id="1-生命周期相关方法的调用顺序"><a href="#1-生命周期相关方法的调用顺序" class="headerlink" title="1.生命周期相关方法的调用顺序"></a>1.生命周期相关方法的调用顺序</h2><p><img src="13.png" alt=""></p>
+<p>###阶段一、实例化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;someServlet&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;test/SomeServlet&lt;/servlet-class&gt;</span><br><span class="line">        &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt; </span><br><span class="line">    &lt;servlet-name&gt;someServlet&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/*&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure></p>
+<p>配置文件中的<strong>load-on-startup</strong>节点用于设置该Servlet的创建时机。<br>当其中的值<strong>大于等于0</strong>时，表示容器在启动时就会创建实例<br><strong>小于0时或没有指定</strong>时，代表容器在该Servlet被请求时再执行<strong>创建<br>正数的值越小，优先级越高，应用启动时就越先被创建。</strong></p>
+<p>###阶段二、初始化</p>
+<p>在初始化阶段，init（）方法会被调用。这个方法在javax.servlet.Servlet接口中定义。其中，方法以一个ServletConfig类型的对象作为参数。ServletConfig对象由Servlet引擎负责创建，从中可以读取到事先在web.xml文件中通过<init-param>节点配置的多个name-value名值对。ServletConfig对象还可以让Servlet接受一个ServletContext对象。<br>一般情况下，init方法不需要编写，因GenericServlet已经提供了init方法的实现，并且提供了getServletConfig方法来获得ServletConfig对象。<br><strong>注：init方法只被执行一次。</strong></init-param></p>
+<p>###阶段三、就绪</p>
+<p>Servlet被初始化以后就处于能够响应请求的就绪状态。每个对Servlet的请求由一个ServletRequest对象代表，Servlet给客户端的响应由一个ServletResponse对象代表。当客户端有一个请求时，容器就会将请求与响应对象转给Servlet，以参数的形式传给service方法。service方法由javax.servlet.Servlet定义，由具体的Servlet实现。</p>
+<p>###阶段四、销毁</p>
+<p>Servlet容器在销毁Servlet对象时会调用destroy方法来释放资源。通常情况下Servlet容器停止或者重新启动都会引起销毁Servlet对象的动作，但除此之外，Servlet容器也有自身管理Servlet对象的准则，整个生命周期并不需要人为进行干预。</p>
+<h2 id="2-config和context的联系和区别"><a href="#2-config和context的联系和区别" class="headerlink" title="2.config和context的联系和区别"></a>2.config和context的联系和区别</h2><p><img src="14.png" alt=""></p>
+<h2 id="3-ServletConfig"><a href="#3-ServletConfig" class="headerlink" title="3.ServletConfig"></a>3.ServletConfig</h2><p><img src="15.png" alt=""></p>
+<h2 id="4-ServletContext"><a href="#4-ServletContext" class="headerlink" title="4.ServletContext"></a>4.ServletContext</h2><p><img src="16.png" alt=""></p>
+<h1 id="一、context的特殊用法"><a href="#一、context的特殊用法" class="headerlink" title="一、context的特殊用法"></a>一、context的特殊用法</h1><h2 id="1-使用场景"><a href="#1-使用场景" class="headerlink" title="1.使用场景"></a>1.使用场景</h2><ul>
+<li>之前使用config和context读取的都是web.xml中配置的常量</li>
+<li>有时候我们需要存取的可能是变量</li>
+<li>context支持存取变量，给多个Servlet共用</li>
+</ul>
+<h2 id="2-案例"><a href="#2-案例" class="headerlink" title="2.案例"></a>2.案例</h2><ul>
+<li>给软件做一个统计流量(访问量)的功能</li>
+<li>流量是一个变量，无论访问哪个Servlet，流量+1<br><img src="17.png" alt=""></li>
+</ul>
+<h1 id="二、线程安全问题"><a href="#二、线程安全问题" class="headerlink" title="二、线程安全问题"></a>二、线程安全问题</h1><h2 id="1-什么时候会出现线程安全问题"><a href="#1-什么时候会出现线程安全问题" class="headerlink" title="1.什么时候会出现线程安全问题"></a>1.什么时候会出现线程安全问题</h2><ul>
+<li>多人同时修改同一份数据时有此问题</li>
+<li>局部变量存储在栈里，每个线程有自己的栈帧，没有问题</li>
+<li>成员变量存储在堆里，所有线程共享这个数据，可能有问题<blockquote>
+<p>多个人同时修改成员变量</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="2-如何解决线程安全问题"><a href="#2-如何解决线程安全问题" class="headerlink" title="2.如何解决线程安全问题"></a>2.如何解决线程安全问题</h2><ul>
+<li>加锁<br><img src="18.png" alt=""></li>
+</ul>
+<h1 id="三、HttpServlet介绍-了解"><a href="#三、HttpServlet介绍-了解" class="headerlink" title="三、HttpServlet介绍(了解)"></a>三、HttpServlet介绍(了解)</h1><ul>
+<li>sun这样设计是为了让开发者有更多选择的空间</li>
+<li>制定的这种规范在实际使用中发现，并不会扩展为HTTP协议之外，所以有了过度设计的缺陷，也为在编写HTTP协议的Web应用时添加了一些不必要的操作。<br><img src="19.png" alt=""></li>
+</ul>
+<h1 id="四、JSP"><a href="#四、JSP" class="headerlink" title="四、JSP"></a>四、JSP</h1><p>JSP（Java Server Page）是Sun公司制定的一种服务器端动态页面技术的组件规范，以“.jsp”为后缀的文件中既包含HTML静态标记用于表现页面，也包含特殊的代码，用于生成动态内容。<br>JSP作为简化Servlet开发的一种技术，实质上最终依然要转变为Servlet才可能运行，只不过这个转变过程由Servlet容器来完成。所以遵循JSP的编写规范才能使得JSP转变为需要的Servlet。</p>
+<h2 id="JSP页面中的Java代码"><a href="#JSP页面中的Java代码" class="headerlink" title="JSP页面中的Java代码"></a>JSP页面中的Java代码</h2><p>###JSP表达式（方便输出）<br><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%=<span class="number">3</span>+<span class="number">5</span>%&gt;</span><br><span class="line">&lt;%=add()%&gt;</span><br><span class="line">&lt;%=xx.getName()%&gt;</span><br><span class="line">&lt;%=xx.getName()+“abc”%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>这种形式的Java代码在转译成Servlet时，会成为service（）方法中使用out.print语句的输出。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">out.print(<span class="number">3</span>+<span class="number">5</span>);</span><br><span class="line">out.print(add());</span><br><span class="line">out.print(xx.getName());</span><br><span class="line">out.print(xx.getName()+“abc”));</span><br></pre></td></tr></table></figure></p>
+<p>###JSP小脚本（完成相对较长的逻辑运算）<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">table&gt;</span><br><span class="line">&lt;%</span><br><span class="line">List&lt;User&gt;  allUser = (List&lt;User&gt;)request.getAttribute(“users“);</span><br><span class="line"><span class="keyword">for</span>(User u : allUser)&#123;</span><br><span class="line">%&gt;</span><br><span class="line">          &lt;tr&gt;</span><br><span class="line">              &lt;td&gt; &lt;%=u.getId()%&gt;    &lt;/td&gt;</span><br><span class="line">              &lt;td&gt; &lt;%=u.getName()%&gt;  &lt;/td&gt;</span><br><span class="line">          &lt;/tr&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    &#125;</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(…)</span></span>&#123;</span><br><span class="line">out.write(“&lt;table&gt;”);</span><br><span class="line">List&lt;User&gt;  allUser = (List&lt;User&gt;)request.getAttribute(“users“);</span><br><span class="line"><span class="keyword">for</span>(User u : allUser)&#123;</span><br><span class="line">out.write(“&lt;tr&gt; &lt;td&gt;”);</span><br><span class="line">out.print(u.getId());</span><br><span class="line">out.write(“&lt;/td&gt;&lt;td&gt;”);</span><br><span class="line">out.print(u.getName());</span><br><span class="line">out.write(“&lt;/td&gt;&lt;/tr&gt;”);</span><br><span class="line">     &#125;</span><br><span class="line">        out.write(“&lt;/table&gt;”);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###JSP声明（添加属性或方法）<br><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;%!</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//…  方法体</span></span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XXX_JSP</span> <span class="keyword">extends</span> <span class="title">JSPBase</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">   <span class="comment">// … 方法体</span></span><br><span class="line">     &#125;</span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span>  <span class="title">service</span><span class="params">(… …)</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###JSP指令</p>
+<p>####page指令</p>
+<p>#####导包<br><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-- 导包 --%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=“java.util.*“%&gt;</span><br><span class="line">&lt;%@ page <span class="keyword">import</span>=“java.util.*,java.sql.*“%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>#####设置response.setContentType（）方法的参数值<br><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-- 设置response.setConentType方法的参数值 --%&gt;</span><br><span class="line">&lt;%@ page contentType=“text/html;charset=utf-<span class="number">8</span>“%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>#####设置容器读取该文件时的解码方法<br><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%-- 设置容器读取该文件时的解码方式 --%&gt;</span><br><span class="line">&lt;%@ page pageEncoding=“UTF-<span class="number">8</span>“%&gt;</span><br></pre></td></tr></table></figure></p>
+<p>####include指令<br><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ include file=“header.html” %&gt;</span><br></pre></td></tr></table></figure></p>
+<p><img src="20.png" alt=""></p>
+<h2 id="JSP运行原理"><a href="#JSP运行原理" class="headerlink" title="JSP运行原理"></a>JSP运行原理</h2><p><img src="21.png" alt=""></p>
+<h2 id="隐含-内置-对象"><a href="#隐含-内置-对象" class="headerlink" title="隐含(内置)对象"></a>隐含(内置)对象</h2><h3 id="什么是隐含对象"><a href="#什么是隐含对象" class="headerlink" title="什么是隐含对象"></a>什么是隐含对象</h3><ul>
+<li>就是在JSP上可以直接使用的对象</li>
+<li>这些对象是在service方法一开始就声明的<br><img src="22.png" alt=""></li>
+</ul>
+<h3 id="有哪些隐含对象"><a href="#有哪些隐含对象" class="headerlink" title="有哪些隐含对象"></a>有哪些隐含对象</h3><h4 id="1-request"><a href="#1-request" class="headerlink" title="1) request"></a>1) request</h4><ul>
+<li>HttpServletRequest</li>
+</ul>
+<h4 id="2-response"><a href="#2-response" class="headerlink" title="2) response"></a>2) response</h4><ul>
+<li>HttpServletResponse</li>
+</ul>
+<h4 id="3-out"><a href="#3-out" class="headerlink" title="3) out"></a>3) out</h4><ul>
+<li>JSPWriter</li>
+<li>等价于PrintWriter</li>
+</ul>
+<h4 id="4-config"><a href="#4-config" class="headerlink" title="4) config"></a>4) config</h4><ul>
+<li>ServletConfig</li>
+</ul>
+<h4 id="5-application"><a href="#5-application" class="headerlink" title="5) application"></a>5) application</h4><ul>
+<li>ServletContext</li>
+</ul>
+<h4 id="6-exception"><a href="#6-exception" class="headerlink" title="6) exception"></a>6) exception</h4><ul>
+<li>Throwable</li>
+<li>是JSP生成的Servlet所报的错</li>
+</ul>
+<h4 id="7-session"><a href="#7-session" class="headerlink" title="7) session"></a>7) session</h4><ul>
+<li>HttpSession</li>
+</ul>
+<h4 id="8-page"><a href="#8-page" class="headerlink" title="8) page"></a>8) page</h4><ul>
+<li>Object</li>
+<li>相当于this</li>
+</ul>
+<h4 id="9-pageContext"><a href="#9-pageContext" class="headerlink" title="9) pageContext"></a>9) pageContext</h4><ul>
+<li>PageContext</li>
+<li>管理者，引用了其他8个隐含对象</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>上述9个对象的名字是固定的</li>
+<li>它们都可以在JSP上直接使用</li>
+</ul>
+<h3 id="使用的例子"><a href="#使用的例子" class="headerlink" title="使用的例子"></a>使用的例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%String user = request.getParameter(&quot;user&quot;);%&gt;</span><br><span class="line">&lt;%=request.getParameter(&quot;user&quot;)%&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="一、开发模式"><a href="#一、开发模式" class="headerlink" title="一、开发模式"></a>一、开发模式</h1><h2 id="1-Model-1"><a href="#1-Model-1" class="headerlink" title="1. Model 1"></a>1. Model 1</h2><ul>
+<li>使用一个组件(Servlet/JSP)处理请求</li>
+<li>缺点：该组件将java和HTML高度耦合在一起<br><img src="23.png" alt=""></li>
+</ul>
+<h2 id="2-Model-2-MVC"><a href="#2-Model-2-MVC" class="headerlink" title="2. Model 2(MVC)"></a>2. Model 2(MVC)</h2><ul>
+<li>使用2个组件协同处理请求</li>
+<li>优点：将java和HTML代码解耦<br><img src="24.png" alt=""></li>
+</ul>
+<h1 id="二、转发和重定向"><a href="#二、转发和重定向" class="headerlink" title="二、转发和重定向"></a>二、转发和重定向</h1><h2 id="1-它们的相同点"><a href="#1-它们的相同点" class="headerlink" title="1.它们的相同点"></a>1.它们的相同点</h2><ul>
+<li>都是用来解决web组件之间的跳转问题</li>
+<li>web组件：Servlet/JSP</li>
+</ul>
+<h2 id="2-它们的区别"><a href="#2-它们的区别" class="headerlink" title="2.它们的区别"></a>2.它们的区别</h2><p><img src="25.png" alt=""></p>
+<h2 id="3-它们的一般使用场景"><a href="#3-它们的一般使用场景" class="headerlink" title="3.它们的一般使用场景"></a>3.它们的一般使用场景</h2><ul>
+<li>一般查询时从查询Servlet转发到查询JSP</li>
+<li>一般增加、修改、删除(Servlet)后重定向到查询(Servlet)</li>
+</ul>
+<h1 id="三、EL和JSTL"><a href="#三、EL和JSTL" class="headerlink" title="三、EL和JSTL"></a>三、EL和JSTL</h1><h2 id="1-作用"><a href="#1-作用" class="headerlink" title="1.作用"></a>1.作用</h2><p><img src="26.png" alt=""></p>
+<h2 id="2-案例-1"><a href="#2-案例-1" class="headerlink" title="2.案例"></a>2.案例</h2><p><img src="27.png" alt=""></p>
+<h2 id="3-JSTL运行原理"><a href="#3-JSTL运行原理" class="headerlink" title="3.JSTL运行原理"></a>3.JSTL运行原理</h2><p><img src="28.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/servlet/" rel="tag"># servlet</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/04/对婚姻，楼市，资本，文化的一些看法/" rel="next" title="对婚姻，楼市，资本，文化的一些看法">
+                <i class="fa fa-chevron-left"></i> 对婚姻，楼市，资本，文化的一些看法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI3Mi84ODM2"></div>
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload_image/avatar.gif"
+                alt="Kunrong" />
+            
+              <p class="site-author-name" itemprop="name">Kunrong</p>
+              <p class="site-description motion-element" itemprop="description">share my technology</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/8311431967" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/1967-59-52/activities" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、WEB应用的发展"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;WEB&#x5E94;&#x7528;&#x7684;&#x53D1;&#x5C55;" class="headerlink" title="&#x4E00;&#x3001;WEB&#x5E94;&#x7528;&#x7684;&#x53D1;&#x5C55;"></a>&#x4E00;&#x3001;WEB&#x5E94;&#x7528;&#x7684;&#x53D1;&#x5C55;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-规律"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#1-&#x89C4;&#x5F8B;" class="headerlink" title="1.&#x89C4;&#x5F8B;"></a>1.&#x89C4;&#x5F8B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-CS和BS的区别"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#2-CS&#x548C;BS&#x7684;&#x533A;&#x522B;" class="headerlink" title="2.CS&#x548C;BS&#x7684;&#x533A;&#x522B;"></a>2.CS&#x548C;BS&#x7684;&#x533A;&#x522B;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CS"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#CS" class="headerlink" title="CS"></a>CS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BS"><span class="nav-number">1.2.2.</span> <span class="nav-text"><a href="#BS" class="headerlink" title="BS"></a>BS</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-Servlet介绍"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;-Servlet&#x4ECB;&#x7ECD;" class="headerlink" title="&#x4E8C;&#x3001; Servlet&#x4ECB;&#x7ECD;"></a>&#x4E8C;&#x3001; Servlet&#x4ECB;&#x7ECD;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-服务器如何给浏览器返回网页？"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#1-&#x670D;&#x52A1;&#x5668;&#x5982;&#x4F55;&#x7ED9;&#x6D4F;&#x89C8;&#x5668;&#x8FD4;&#x56DE;&#x7F51;&#x9875;&#xFF1F;" class="headerlink" title="1.&#x670D;&#x52A1;&#x5668;&#x5982;&#x4F55;&#x7ED9;&#x6D4F;&#x89C8;&#x5668;&#x8FD4;&#x56DE;&#x7F51;&#x9875;&#xFF1F;"></a>1.&#x670D;&#x52A1;&#x5668;&#x5982;&#x4F55;&#x7ED9;&#x6D4F;&#x89C8;&#x5668;&#x8FD4;&#x56DE;&#x7F51;&#x9875;&#xFF1F;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1）返回静态网页"><span class="nav-number">2.1.1.</span> <span class="nav-text"><a href="#1&#xFF09;&#x8FD4;&#x56DE;&#x9759;&#x6001;&#x7F51;&#x9875;" class="headerlink" title="1&#xFF09;&#x8FD4;&#x56DE;&#x9759;&#x6001;&#x7F51;&#x9875;"></a>1&#xFF09;&#x8FD4;&#x56DE;&#x9759;&#x6001;&#x7F51;&#x9875;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）返回动态网页"><span class="nav-number">2.1.2.</span> <span class="nav-text"><a href="#2&#xFF09;&#x8FD4;&#x56DE;&#x52A8;&#x6001;&#x7F51;&#x9875;" class="headerlink" title="2&#xFF09;&#x8FD4;&#x56DE;&#x52A8;&#x6001;&#x7F51;&#x9875;"></a>2&#xFF09;&#x8FD4;&#x56DE;&#x52A8;&#x6001;&#x7F51;&#x9875;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Servlet具备的特征"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#2-Servlet&#x5177;&#x5907;&#x7684;&#x7279;&#x5F81;" class="headerlink" title="2.Servlet&#x5177;&#x5907;&#x7684;&#x7279;&#x5F81;"></a>2.Servlet&#x5177;&#x5907;&#x7684;&#x7279;&#x5F81;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-什么是Servlet"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#3-&#x4EC0;&#x4E48;&#x662F;Servlet" class="headerlink" title="3.&#x4EC0;&#x4E48;&#x662F;Servlet"></a>3.&#x4EC0;&#x4E48;&#x662F;Servlet</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、服务器"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E09;&#x3001;&#x670D;&#x52A1;&#x5668;" class="headerlink" title="&#x4E09;&#x3001;&#x670D;&#x52A1;&#x5668;"></a>&#x4E09;&#x3001;&#x670D;&#x52A1;&#x5668;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-名称"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#1-&#x540D;&#x79F0;" class="headerlink" title="1.&#x540D;&#x79F0;"></a>1.&#x540D;&#x79F0;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-本质"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#2-&#x672C;&#x8D28;" class="headerlink" title="2.&#x672C;&#x8D28;"></a>2.&#x672C;&#x8D28;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-举例"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#3-&#x4E3E;&#x4F8B;" class="headerlink" title="3.&#x4E3E;&#x4F8B;"></a>3.&#x4E3E;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、如何使用tomcat"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x56DB;&#x3001;&#x5982;&#x4F55;&#x4F7F;&#x7528;tomcat" class="headerlink" title="&#x56DB;&#x3001;&#x5982;&#x4F55;&#x4F7F;&#x7528;tomcat"></a>&#x56DB;&#x3001;&#x5982;&#x4F55;&#x4F7F;&#x7528;tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-单独使用"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#1-&#x5355;&#x72EC;&#x4F7F;&#x7528;" class="headerlink" title="1.&#x5355;&#x72EC;&#x4F7F;&#x7528;"></a>1.&#x5355;&#x72EC;&#x4F7F;&#x7528;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-配置JAVA-HOME"><span class="nav-number">4.1.1.</span> <span class="nav-text"><a href="#1-&#x914D;&#x7F6E;JAVA-HOME" class="headerlink" title="1)&#x914D;&#x7F6E;JAVA_HOME"></a>1)&#x914D;&#x7F6E;JAVA_HOME</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-下载及安装"><span class="nav-number">4.1.2.</span> <span class="nav-text"><a href="#2-&#x4E0B;&#x8F7D;&#x53CA;&#x5B89;&#x88C5;" class="headerlink" title="2)&#x4E0B;&#x8F7D;&#x53CA;&#x5B89;&#x88C5;"></a>2)&#x4E0B;&#x8F7D;&#x53CA;&#x5B89;&#x88C5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-启动tomcat"><span class="nav-number">4.1.3.</span> <span class="nav-text"><a href="#3-&#x542F;&#x52A8;tomcat" class="headerlink" title="3)&#x542F;&#x52A8;tomcat"></a>3)&#x542F;&#x52A8;tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-访问tomcat"><span class="nav-number">4.1.4.</span> <span class="nav-text"><a href="#4-&#x8BBF;&#x95EE;tomcat" class="headerlink" title="4)&#x8BBF;&#x95EE;tomcat"></a>4)&#x8BBF;&#x95EE;tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-关闭tomcat"><span class="nav-number">4.1.5.</span> <span class="nav-text"><a href="#5-&#x5173;&#x95ED;tomcat" class="headerlink" title="5)&#x5173;&#x95ED;tomcat"></a>5)&#x5173;&#x95ED;tomcat</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-用Eclipse管理tomcat-开发时"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#2-&#x7528;Eclipse&#x7BA1;&#x7406;tomcat-&#x5F00;&#x53D1;&#x65F6;" class="headerlink" title="2.&#x7528;Eclipse&#x7BA1;&#x7406;tomcat(&#x5F00;&#x53D1;&#x65F6;)"></a>2.&#x7528;Eclipse&#x7BA1;&#x7406;tomcat(&#x5F00;&#x53D1;&#x65F6;)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、Servlet开发步骤"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x4E94;&#x3001;Servlet&#x5F00;&#x53D1;&#x6B65;&#x9AA4;" class="headerlink" title="&#x4E94;&#x3001;Servlet&#x5F00;&#x53D1;&#x6B65;&#x9AA4;"></a>&#x4E94;&#x3001;Servlet&#x5F00;&#x53D1;&#x6B65;&#x9AA4;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-创建WEB项目"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#1-&#x521B;&#x5EFA;WEB&#x9879;&#x76EE;" class="headerlink" title="1.&#x521B;&#x5EFA;WEB&#x9879;&#x76EE;"></a>1.&#x521B;&#x5EFA;WEB&#x9879;&#x76EE;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-导入jar包"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#2-&#x5BFC;&#x5165;jar&#x5305;" class="headerlink" title="2.&#x5BFC;&#x5165;jar&#x5305;"></a>2.&#x5BFC;&#x5165;jar&#x5305;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-用maven搜javaee"><span class="nav-number">5.2.1.</span> <span class="nav-text"><a href="#1-&#x7528;maven&#x641C;javaee" class="headerlink" title="1)&#x7528;maven&#x641C;javaee"></a>1)&#x7528;maven&#x641C;javaee</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用tomcat内置的jar包"><span class="nav-number">5.2.2.</span> <span class="nav-text"><a href="#2-&#x4F7F;&#x7528;tomcat&#x5185;&#x7F6E;&#x7684;jar&#x5305;" class="headerlink" title="2)&#x4F7F;&#x7528;tomcat&#x5185;&#x7F6E;&#x7684;jar&#x5305;"></a>2)&#x4F7F;&#x7528;tomcat&#x5185;&#x7F6E;&#x7684;jar&#x5305;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-开发Servlet"><span class="nav-number">5.3.</span> <span class="nav-text"><a href="#3-&#x5F00;&#x53D1;Servlet" class="headerlink" title="3.&#x5F00;&#x53D1;Servlet"></a>3.&#x5F00;&#x53D1;Servlet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-配置Servlet"><span class="nav-number">5.4.</span> <span class="nav-text"><a href="#4-&#x914D;&#x7F6E;Servlet" class="headerlink" title="4.&#x914D;&#x7F6E;Servlet"></a>4.&#x914D;&#x7F6E;Servlet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-部署项目"><span class="nav-number">5.5.</span> <span class="nav-text"><a href="#5-&#x90E8;&#x7F72;&#x9879;&#x76EE;" class="headerlink" title="5.&#x90E8;&#x7F72;&#x9879;&#x76EE;"></a>5.&#x90E8;&#x7F72;&#x9879;&#x76EE;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-访问Servlet"><span class="nav-number">5.6.</span> <span class="nav-text"><a href="#6-&#x8BBF;&#x95EE;Servlet" class="headerlink" title="6.&#x8BBF;&#x95EE;Servlet"></a>6.&#x8BBF;&#x95EE;Servlet</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、代码执行过程及错误"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x516D;&#x3001;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x53CA;&#x9519;&#x8BEF;" class="headerlink" title="&#x516D;&#x3001;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x53CA;&#x9519;&#x8BEF;"></a>&#x516D;&#x3001;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x53CA;&#x9519;&#x8BEF;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x8865;&#x5145;" class="headerlink" title="&#x8865;&#x5145;"></a>&#x8865;&#x5145;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、端口占用错误"><span class="nav-number">7.1.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;&#x7AEF;&#x53E3;&#x5360;&#x7528;&#x9519;&#x8BEF;" class="headerlink" title="&#x4E00;&#x3001;&#x7AEF;&#x53E3;&#x5360;&#x7528;&#x9519;&#x8BEF;"></a>&#x4E00;&#x3001;&#x7AEF;&#x53E3;&#x5360;&#x7528;&#x9519;&#x8BEF;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-出现问题的情况"><span class="nav-number">7.1.1.</span> <span class="nav-text"><a href="#1-&#x51FA;&#x73B0;&#x95EE;&#x9898;&#x7684;&#x60C5;&#x51B5;" class="headerlink" title="1.&#x51FA;&#x73B0;&#x95EE;&#x9898;&#x7684;&#x60C5;&#x51B5;"></a>1.&#x51FA;&#x73B0;&#x95EE;&#x9898;&#x7684;&#x60C5;&#x51B5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-原因及解决方案"><span class="nav-number">7.1.2.</span> <span class="nav-text"><a href="#2-&#x539F;&#x56E0;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="headerlink" title="2.&#x539F;&#x56E0;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6848;"></a>2.&#x539F;&#x56E0;&#x53CA;&#x89E3;&#x51B3;&#x65B9;&#x6848;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-tomcat启动了2次，造成端口冲突"><span class="nav-number">7.1.2.1.</span> <span class="nav-text"><a href="#1-tomcat&#x542F;&#x52A8;&#x4E86;2&#x6B21;&#xFF0C;&#x9020;&#x6210;&#x7AEF;&#x53E3;&#x51B2;&#x7A81;" class="headerlink" title="1)tomcat&#x542F;&#x52A8;&#x4E86;2&#x6B21;&#xFF0C;&#x9020;&#x6210;&#x7AEF;&#x53E3;&#x51B2;&#x7A81;"></a>1)tomcat&#x542F;&#x52A8;&#x4E86;2&#x6B21;&#xFF0C;&#x9020;&#x6210;&#x7AEF;&#x53E3;&#x51B2;&#x7A81;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-其他软件占用了此端口-Oracle"><span class="nav-number">7.1.2.2.</span> <span class="nav-text"><a href="#2-&#x5176;&#x4ED6;&#x8F6F;&#x4EF6;&#x5360;&#x7528;&#x4E86;&#x6B64;&#x7AEF;&#x53E3;-Oracle" class="headerlink" title="2)&#x5176;&#x4ED6;&#x8F6F;&#x4EF6;&#x5360;&#x7528;&#x4E86;&#x6B64;&#x7AEF;&#x53E3;(Oracle)"></a>2)&#x5176;&#x4ED6;&#x8F6F;&#x4EF6;&#x5360;&#x7528;&#x4E86;&#x6B64;&#x7AEF;&#x53E3;(Oracle)</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、HTTP协议"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;HTTP&#x534F;&#x8BAE;" class="headerlink" title="&#x4E00;&#x3001;HTTP&#x534F;&#x8BAE;"></a>&#x4E00;&#x3001;HTTP&#x534F;&#x8BAE;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是HTTP协议"><span class="nav-number">8.1.</span> <span class="nav-text"><a href="#1-&#x4EC0;&#x4E48;&#x662F;HTTP&#x534F;&#x8BAE;" class="headerlink" title="1.&#x4EC0;&#x4E48;&#x662F;HTTP&#x534F;&#x8BAE;"></a>1.&#x4EC0;&#x4E48;&#x662F;HTTP&#x534F;&#x8BAE;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-如何通信"><span class="nav-number">8.2.</span> <span class="nav-text"><a href="#2-&#x5982;&#x4F55;&#x901A;&#x4FE1;" class="headerlink" title="2.&#x5982;&#x4F55;&#x901A;&#x4FE1;"></a>2.&#x5982;&#x4F55;&#x901A;&#x4FE1;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-数据格式"><span class="nav-number">8.3.</span> <span class="nav-text"><a href="#3-&#x6570;&#x636E;&#x683C;&#x5F0F;" class="headerlink" title="3.&#x6570;&#x636E;&#x683C;&#x5F0F;"></a>3.&#x6570;&#x636E;&#x683C;&#x5F0F;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-请求数据-浏览器向服务器发送的数据"><span class="nav-number">8.3.1.</span> <span class="nav-text"><a href="#1-&#x8BF7;&#x6C42;&#x6570;&#x636E;-&#x6D4F;&#x89C8;&#x5668;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;" class="headerlink" title="1)&#x8BF7;&#x6C42;&#x6570;&#x636E;(&#x6D4F;&#x89C8;&#x5668;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;)"></a>1)&#x8BF7;&#x6C42;&#x6570;&#x636E;(&#x6D4F;&#x89C8;&#x5668;&#x5411;&#x670D;&#x52A1;&#x5668;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-响应数据-服务器向浏览器发送的数据"><span class="nav-number">8.3.2.</span> <span class="nav-text"><a href="#2-&#x54CD;&#x5E94;&#x6570;&#x636E;-&#x670D;&#x52A1;&#x5668;&#x5411;&#x6D4F;&#x89C8;&#x5668;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;" class="headerlink" title="2)&#x54CD;&#x5E94;&#x6570;&#x636E;(&#x670D;&#x52A1;&#x5668;&#x5411;&#x6D4F;&#x89C8;&#x5668;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;)"></a>2)&#x54CD;&#x5E94;&#x6570;&#x636E;(&#x670D;&#x52A1;&#x5668;&#x5411;&#x6D4F;&#x89C8;&#x5668;&#x53D1;&#x9001;&#x7684;&#x6570;&#x636E;)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-对开发的要求"><span class="nav-number">8.4.</span> <span class="nav-text"><a href="#4-&#x5BF9;&#x5F00;&#x53D1;&#x7684;&#x8981;&#x6C42;" class="headerlink" title="4.&#x5BF9;&#x5F00;&#x53D1;&#x7684;&#x8981;&#x6C42;"></a>4.&#x5BF9;&#x5F00;&#x53D1;&#x7684;&#x8981;&#x6C42;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-不需要管的地方"><span class="nav-number">8.4.1.</span> <span class="nav-text"><a href="#1-&#x4E0D;&#x9700;&#x8981;&#x7BA1;&#x7684;&#x5730;&#x65B9;" class="headerlink" title="1)&#x4E0D;&#x9700;&#x8981;&#x7BA1;&#x7684;&#x5730;&#x65B9;"></a>1)&#x4E0D;&#x9700;&#x8981;&#x7BA1;&#x7684;&#x5730;&#x65B9;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-需要处理的地方"><span class="nav-number">8.4.2.</span> <span class="nav-text"><a href="#2-&#x9700;&#x8981;&#x5904;&#x7406;&#x7684;&#x5730;&#x65B9;" class="headerlink" title="2)&#x9700;&#x8981;&#x5904;&#x7406;&#x7684;&#x5730;&#x65B9;"></a>2)&#x9700;&#x8981;&#x5904;&#x7406;&#x7684;&#x5730;&#x65B9;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、注册案例"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x6CE8;&#x518C;&#x6848;&#x4F8B;" class="headerlink" title="&#x4E8C;&#x3001;&#x6CE8;&#x518C;&#x6848;&#x4F8B;"></a>&#x4E8C;&#x3001;&#x6CE8;&#x518C;&#x6848;&#x4F8B;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、Servlet运行原理"><span class="nav-number">10.</span> <span class="nav-text"><a href="#&#x4E09;&#x3001;Servlet&#x8FD0;&#x884C;&#x539F;&#x7406;" class="headerlink" title="&#x4E09;&#x3001;Servlet&#x8FD0;&#x884C;&#x539F;&#x7406;"></a>&#x4E09;&#x3001;Servlet&#x8FD0;&#x884C;&#x539F;&#x7406;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、请求方式"><span class="nav-number">11.</span> <span class="nav-text"><a href="#&#x56DB;&#x3001;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;" class="headerlink" title="&#x56DB;&#x3001;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;"></a>&#x56DB;&#x3001;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是请求方式"><span class="nav-number">11.1.</span> <span class="nav-text"><a href="#1-&#x4EC0;&#x4E48;&#x662F;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;" class="headerlink" title="1.&#x4EC0;&#x4E48;&#x662F;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;"></a>1.&#x4EC0;&#x4E48;&#x662F;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-GET和POST方式的区别"><span class="nav-number">11.2.</span> <span class="nav-text"><a href="#2-GET&#x548C;POST&#x65B9;&#x5F0F;&#x7684;&#x533A;&#x522B;" class="headerlink" title="2.GET&#x548C;POST&#x65B9;&#x5F0F;&#x7684;&#x533A;&#x522B;"></a>2.GET&#x548C;POST&#x65B9;&#x5F0F;&#x7684;&#x533A;&#x522B;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-GET"><span class="nav-number">11.2.1.</span> <span class="nav-text"><a href="#1-GET" class="headerlink" title="1)GET"></a>1)GET</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-POST"><span class="nav-number">11.2.2.</span> <span class="nav-text"><a href="#2-POST" class="headerlink" title="2)POST"></a>2)POST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-如何选择请求方式"><span class="nav-number">11.3.</span> <span class="nav-text"><a href="#3-&#x5982;&#x4F55;&#x9009;&#x62E9;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;" class="headerlink" title="3.&#x5982;&#x4F55;&#x9009;&#x62E9;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;"></a>3.&#x5982;&#x4F55;&#x9009;&#x62E9;&#x8BF7;&#x6C42;&#x65B9;&#x5F0F;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、乱码解决方案"><span class="nav-number">12.</span> <span class="nav-text"><a href="#&#x4E94;&#x3001;&#x4E71;&#x7801;&#x89E3;&#x51B3;&#x65B9;&#x6848;" class="headerlink" title="&#x4E94;&#x3001;&#x4E71;&#x7801;&#x89E3;&#x51B3;&#x65B9;&#x6848;"></a>&#x4E94;&#x3001;&#x4E71;&#x7801;&#x89E3;&#x51B3;&#x65B9;&#x6848;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、案例"><span class="nav-number">13.</span> <span class="nav-text"><a href="#&#x516D;&#x3001;&#x6848;&#x4F8B;" class="headerlink" title="&#x516D;&#x3001;&#x6848;&#x4F8B;"></a>&#x516D;&#x3001;&#x6848;&#x4F8B;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-查询员工"><span class="nav-number">13.1.</span> <span class="nav-text"><a href="#1-&#x67E5;&#x8BE2;&#x5458;&#x5DE5;" class="headerlink" title="1.&#x67E5;&#x8BE2;&#x5458;&#x5DE5;"></a>1.&#x67E5;&#x8BE2;&#x5458;&#x5DE5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-增加员工"><span class="nav-number">13.2.</span> <span class="nav-text"><a href="#2-&#x589E;&#x52A0;&#x5458;&#x5DE5;" class="headerlink" title="2.&#x589E;&#x52A0;&#x5458;&#x5DE5;"></a>2.&#x589E;&#x52A0;&#x5458;&#x5DE5;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充-1"><span class="nav-number">14.</span> <span class="nav-text"><a href="#&#x8865;&#x5145;-1" class="headerlink" title="&#x8865;&#x5145;"></a>&#x8865;&#x5145;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么是JavaBean"><span class="nav-number">14.1.</span> <span class="nav-text"><a href="#1-&#x4EC0;&#x4E48;&#x662F;JavaBean" class="headerlink" title="1.&#x4EC0;&#x4E48;&#x662F;JavaBean"></a>1.&#x4EC0;&#x4E48;&#x662F;JavaBean</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、重定向"><span class="nav-number">15.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;&#x91CD;&#x5B9A;&#x5411;" class="headerlink" title="&#x4E00;&#x3001;&#x91CD;&#x5B9A;&#x5411;"></a>&#x4E00;&#x3001;&#x91CD;&#x5B9A;&#x5411;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-重定向在增加员工中的应用"><span class="nav-number">15.1.</span> <span class="nav-text"><a href="#1-&#x91CD;&#x5B9A;&#x5411;&#x5728;&#x589E;&#x52A0;&#x5458;&#x5DE5;&#x4E2D;&#x7684;&#x5E94;&#x7528;" class="headerlink" title="1.&#x91CD;&#x5B9A;&#x5411;&#x5728;&#x589E;&#x52A0;&#x5458;&#x5DE5;&#x4E2D;&#x7684;&#x5E94;&#x7528;"></a>1.&#x91CD;&#x5B9A;&#x5411;&#x5728;&#x589E;&#x52A0;&#x5458;&#x5DE5;&#x4E2D;&#x7684;&#x5E94;&#x7528;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-重定向的作用及原理"><span class="nav-number">15.2.</span> <span class="nav-text"><a href="#2-&#x91CD;&#x5B9A;&#x5411;&#x7684;&#x4F5C;&#x7528;&#x53CA;&#x539F;&#x7406;" class="headerlink" title="2.&#x91CD;&#x5B9A;&#x5411;&#x7684;&#x4F5C;&#x7528;&#x53CA;&#x539F;&#x7406;"></a>2.&#x91CD;&#x5B9A;&#x5411;&#x7684;&#x4F5C;&#x7528;&#x53CA;&#x539F;&#x7406;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、路径"><span class="nav-number">16.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x8DEF;&#x5F84;" class="headerlink" title="&#x4E8C;&#x3001;&#x8DEF;&#x5F84;"></a>&#x4E8C;&#x3001;&#x8DEF;&#x5F84;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-路径是什么"><span class="nav-number">16.1.</span> <span class="nav-text"><a href="#1-&#x8DEF;&#x5F84;&#x662F;&#x4EC0;&#x4E48;" class="headerlink" title="1.&#x8DEF;&#x5F84;&#x662F;&#x4EC0;&#x4E48;"></a>1.&#x8DEF;&#x5F84;&#x662F;&#x4EC0;&#x4E48;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-如何获取路径"><span class="nav-number">16.2.</span> <span class="nav-text"><a href="#2-&#x5982;&#x4F55;&#x83B7;&#x53D6;&#x8DEF;&#x5F84;" class="headerlink" title="2.&#x5982;&#x4F55;&#x83B7;&#x53D6;&#x8DEF;&#x5F84;"></a>2.&#x5982;&#x4F55;&#x83B7;&#x53D6;&#x8DEF;&#x5F84;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-URI-Uniform-Resource-Identifier-和URL-Uniform-Resource-Locator-的区别"><span class="nav-number">16.3.</span> <span class="nav-text"><a href="#3-URI-Uniform-Resource-Identifier-&#x548C;URL-Uniform-Resource-Locator-&#x7684;&#x533A;&#x522B;" class="headerlink" title="3.URI(Uniform Resource Identifier)&#x548C;URL(Uniform Resource Locator)&#x7684;&#x533A;&#x522B;"></a>3.URI(Uniform Resource Identifier)&#x548C;URL(Uniform Resource Locator)&#x7684;&#x533A;&#x522B;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-狭义的理解-Java项目"><span class="nav-number">16.3.1.</span> <span class="nav-text"><a href="#1-&#x72ED;&#x4E49;&#x7684;&#x7406;&#x89E3;-Java&#x9879;&#x76EE;" class="headerlink" title="1)&#x72ED;&#x4E49;&#x7684;&#x7406;&#x89E3;(Java&#x9879;&#x76EE;)"></a>1)&#x72ED;&#x4E49;&#x7684;&#x7406;&#x89E3;(Java&#x9879;&#x76EE;)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-广义的理解-Web项目"><span class="nav-number">16.3.2.</span> <span class="nav-text"><a href="#2-&#x5E7F;&#x4E49;&#x7684;&#x7406;&#x89E3;-Web&#x9879;&#x76EE;" class="headerlink" title="2)&#x5E7F;&#x4E49;&#x7684;&#x7406;&#x89E3;(Web&#x9879;&#x76EE;) *"></a>2)&#x5E7F;&#x4E49;&#x7684;&#x7406;&#x89E3;(Web&#x9879;&#x76EE;) *</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Servlet访问路径的配置方案"><span class="nav-number">16.4.</span> <span class="nav-text"><a href="#4-Servlet&#x8BBF;&#x95EE;&#x8DEF;&#x5F84;&#x7684;&#x914D;&#x7F6E;&#x65B9;&#x6848;" class="headerlink" title="4.Servlet&#x8BBF;&#x95EE;&#x8DEF;&#x5F84;&#x7684;&#x914D;&#x7F6E;&#x65B9;&#x6848;"></a>4.Servlet&#x8BBF;&#x95EE;&#x8DEF;&#x5F84;&#x7684;&#x914D;&#x7F6E;&#x65B9;&#x6848;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-精确匹配-hello"><span class="nav-number">16.4.1.</span> <span class="nav-text"><a href="#1-&#x7CBE;&#x786E;&#x5339;&#x914D;-hello" class="headerlink" title="1)&#x7CBE;&#x786E;&#x5339;&#x914D;(/hello)"></a>1)&#x7CBE;&#x786E;&#x5339;&#x914D;(/hello)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-通配符"><span class="nav-number">16.4.2.</span> <span class="nav-text"><a href="#2-&#x901A;&#x914D;&#x7B26;" class="headerlink" title="2)&#x901A;&#x914D;&#x7B26;(/*)"></a>2)&#x901A;&#x914D;&#x7B26;(/*)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-后缀-abc"><span class="nav-number">16.4.3.</span> <span class="nav-text"><a href="#3-&#x540E;&#x7F00;-abc" class="headerlink" title="3)&#x540E;&#x7F00;(*.abc)"></a>3)&#x540E;&#x7F00;(*.abc)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-用1个Servlet处理多个请求的方案"><span class="nav-number">16.4.4.</span> <span class="nav-text"><a href="#4-&#x7528;1&#x4E2A;Servlet&#x5904;&#x7406;&#x591A;&#x4E2A;&#x8BF7;&#x6C42;&#x7684;&#x65B9;&#x6848;" class="headerlink" title="4)&#x7528;1&#x4E2A;Servlet&#x5904;&#x7406;&#x591A;&#x4E2A;&#x8BF7;&#x6C42;&#x7684;&#x65B9;&#x6848;"></a>4)&#x7528;1&#x4E2A;Servlet&#x5904;&#x7406;&#x591A;&#x4E2A;&#x8BF7;&#x6C42;&#x7684;&#x65B9;&#x6848;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-通配符和后缀的典型应用场景"><span class="nav-number">16.4.5.</span> <span class="nav-text"><a href="#5-&#x901A;&#x914D;&#x7B26;&#x548C;&#x540E;&#x7F00;&#x7684;&#x5178;&#x578B;&#x5E94;&#x7528;&#x573A;&#x666F;" class="headerlink" title="5)&#x901A;&#x914D;&#x7B26;&#x548C;&#x540E;&#x7F00;&#x7684;&#x5178;&#x578B;&#x5E94;&#x7528;&#x573A;&#x666F;"></a>5)&#x901A;&#x914D;&#x7B26;&#x548C;&#x540E;&#x7F00;&#x7684;&#x5178;&#x578B;&#x5E94;&#x7528;&#x573A;&#x666F;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-生命周期相关方法的调用顺序"><span class="nav-number">16.5.</span> <span class="nav-text"><a href="#1-&#x751F;&#x547D;&#x5468;&#x671F;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;&#x987A;&#x5E8F;" class="headerlink" title="1.&#x751F;&#x547D;&#x5468;&#x671F;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;&#x987A;&#x5E8F;"></a>1.&#x751F;&#x547D;&#x5468;&#x671F;&#x76F8;&#x5173;&#x65B9;&#x6CD5;&#x7684;&#x8C03;&#x7528;&#x987A;&#x5E8F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-config和context的联系和区别"><span class="nav-number">16.6.</span> <span class="nav-text"><a href="#2-config&#x548C;context&#x7684;&#x8054;&#x7CFB;&#x548C;&#x533A;&#x522B;" class="headerlink" title="2.config&#x548C;context&#x7684;&#x8054;&#x7CFB;&#x548C;&#x533A;&#x522B;"></a>2.config&#x548C;context&#x7684;&#x8054;&#x7CFB;&#x548C;&#x533A;&#x522B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-ServletConfig"><span class="nav-number">16.7.</span> <span class="nav-text"><a href="#3-ServletConfig" class="headerlink" title="3.ServletConfig"></a>3.ServletConfig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-ServletContext"><span class="nav-number">16.8.</span> <span class="nav-text"><a href="#4-ServletContext" class="headerlink" title="4.ServletContext"></a>4.ServletContext</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、context的特殊用法"><span class="nav-number">17.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;context&#x7684;&#x7279;&#x6B8A;&#x7528;&#x6CD5;" class="headerlink" title="&#x4E00;&#x3001;context&#x7684;&#x7279;&#x6B8A;&#x7528;&#x6CD5;"></a>&#x4E00;&#x3001;context&#x7684;&#x7279;&#x6B8A;&#x7528;&#x6CD5;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-使用场景"><span class="nav-number">17.1.</span> <span class="nav-text"><a href="#1-&#x4F7F;&#x7528;&#x573A;&#x666F;" class="headerlink" title="1.&#x4F7F;&#x7528;&#x573A;&#x666F;"></a>1.&#x4F7F;&#x7528;&#x573A;&#x666F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-案例"><span class="nav-number">17.2.</span> <span class="nav-text"><a href="#2-&#x6848;&#x4F8B;" class="headerlink" title="2.&#x6848;&#x4F8B;"></a>2.&#x6848;&#x4F8B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、线程安全问题"><span class="nav-number">18.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;" class="headerlink" title="&#x4E8C;&#x3001;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;"></a>&#x4E8C;&#x3001;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-什么时候会出现线程安全问题"><span class="nav-number">18.1.</span> <span class="nav-text"><a href="#1-&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x4F1A;&#x51FA;&#x73B0;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;" class="headerlink" title="1.&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x4F1A;&#x51FA;&#x73B0;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;"></a>1.&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x4F1A;&#x51FA;&#x73B0;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-如何解决线程安全问题"><span class="nav-number">18.2.</span> <span class="nav-text"><a href="#2-&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;" class="headerlink" title="2.&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;"></a>2.&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、HttpServlet介绍-了解"><span class="nav-number">19.</span> <span class="nav-text"><a href="#&#x4E09;&#x3001;HttpServlet&#x4ECB;&#x7ECD;-&#x4E86;&#x89E3;" class="headerlink" title="&#x4E09;&#x3001;HttpServlet&#x4ECB;&#x7ECD;(&#x4E86;&#x89E3;)"></a>&#x4E09;&#x3001;HttpServlet&#x4ECB;&#x7ECD;(&#x4E86;&#x89E3;)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、JSP"><span class="nav-number">20.</span> <span class="nav-text"><a href="#&#x56DB;&#x3001;JSP" class="headerlink" title="&#x56DB;&#x3001;JSP"></a>&#x56DB;&#x3001;JSP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP页面中的Java代码"><span class="nav-number">20.1.</span> <span class="nav-text"><a href="#JSP&#x9875;&#x9762;&#x4E2D;&#x7684;Java&#x4EE3;&#x7801;" class="headerlink" title="JSP&#x9875;&#x9762;&#x4E2D;&#x7684;Java&#x4EE3;&#x7801;"></a>JSP&#x9875;&#x9762;&#x4E2D;&#x7684;Java&#x4EE3;&#x7801;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP运行原理"><span class="nav-number">20.2.</span> <span class="nav-text"><a href="#JSP&#x8FD0;&#x884C;&#x539F;&#x7406;" class="headerlink" title="JSP&#x8FD0;&#x884C;&#x539F;&#x7406;"></a>JSP&#x8FD0;&#x884C;&#x539F;&#x7406;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐含-内置-对象"><span class="nav-number">20.3.</span> <span class="nav-text"><a href="#&#x9690;&#x542B;-&#x5185;&#x7F6E;-&#x5BF9;&#x8C61;" class="headerlink" title="&#x9690;&#x542B;(&#x5185;&#x7F6E;)&#x5BF9;&#x8C61;"></a>&#x9690;&#x542B;(&#x5185;&#x7F6E;)&#x5BF9;&#x8C61;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是隐含对象"><span class="nav-number">20.3.1.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;&#x9690;&#x542B;&#x5BF9;&#x8C61;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;&#x9690;&#x542B;&#x5BF9;&#x8C61;"></a>&#x4EC0;&#x4E48;&#x662F;&#x9690;&#x542B;&#x5BF9;&#x8C61;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有哪些隐含对象"><span class="nav-number">20.3.2.</span> <span class="nav-text"><a href="#&#x6709;&#x54EA;&#x4E9B;&#x9690;&#x542B;&#x5BF9;&#x8C61;" class="headerlink" title="&#x6709;&#x54EA;&#x4E9B;&#x9690;&#x542B;&#x5BF9;&#x8C61;"></a>&#x6709;&#x54EA;&#x4E9B;&#x9690;&#x542B;&#x5BF9;&#x8C61;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-request"><span class="nav-number">20.3.2.1.</span> <span class="nav-text"><a href="#1-request" class="headerlink" title="1) request"></a>1) request</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-response"><span class="nav-number">20.3.2.2.</span> <span class="nav-text"><a href="#2-response" class="headerlink" title="2) response"></a>2) response</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-out"><span class="nav-number">20.3.2.3.</span> <span class="nav-text"><a href="#3-out" class="headerlink" title="3) out"></a>3) out</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-config"><span class="nav-number">20.3.2.4.</span> <span class="nav-text"><a href="#4-config" class="headerlink" title="4) config"></a>4) config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-application"><span class="nav-number">20.3.2.5.</span> <span class="nav-text"><a href="#5-application" class="headerlink" title="5) application"></a>5) application</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-exception"><span class="nav-number">20.3.2.6.</span> <span class="nav-text"><a href="#6-exception" class="headerlink" title="6) exception"></a>6) exception</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-session"><span class="nav-number">20.3.2.7.</span> <span class="nav-text"><a href="#7-session" class="headerlink" title="7) session"></a>7) session</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-page"><span class="nav-number">20.3.2.8.</span> <span class="nav-text"><a href="#8-page" class="headerlink" title="8) page"></a>8) page</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-pageContext"><span class="nav-number">20.3.2.9.</span> <span class="nav-text"><a href="#9-pageContext" class="headerlink" title="9) pageContext"></a>9) pageContext</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">20.3.3.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用的例子"><span class="nav-number">20.3.4.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x7684;&#x4F8B;&#x5B50;" class="headerlink" title="&#x4F7F;&#x7528;&#x7684;&#x4F8B;&#x5B50;"></a>&#x4F7F;&#x7528;&#x7684;&#x4F8B;&#x5B50;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、开发模式"><span class="nav-number">21.</span> <span class="nav-text"><a href="#&#x4E00;&#x3001;&#x5F00;&#x53D1;&#x6A21;&#x5F0F;" class="headerlink" title="&#x4E00;&#x3001;&#x5F00;&#x53D1;&#x6A21;&#x5F0F;"></a>&#x4E00;&#x3001;&#x5F00;&#x53D1;&#x6A21;&#x5F0F;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Model-1"><span class="nav-number">21.1.</span> <span class="nav-text"><a href="#1-Model-1" class="headerlink" title="1. Model 1"></a>1. Model 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Model-2-MVC"><span class="nav-number">21.2.</span> <span class="nav-text"><a href="#2-Model-2-MVC" class="headerlink" title="2. Model 2(MVC)"></a>2. Model 2(MVC)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、转发和重定向"><span class="nav-number">22.</span> <span class="nav-text"><a href="#&#x4E8C;&#x3001;&#x8F6C;&#x53D1;&#x548C;&#x91CD;&#x5B9A;&#x5411;" class="headerlink" title="&#x4E8C;&#x3001;&#x8F6C;&#x53D1;&#x548C;&#x91CD;&#x5B9A;&#x5411;"></a>&#x4E8C;&#x3001;&#x8F6C;&#x53D1;&#x548C;&#x91CD;&#x5B9A;&#x5411;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-它们的相同点"><span class="nav-number">22.1.</span> <span class="nav-text"><a href="#1-&#x5B83;&#x4EEC;&#x7684;&#x76F8;&#x540C;&#x70B9;" class="headerlink" title="1.&#x5B83;&#x4EEC;&#x7684;&#x76F8;&#x540C;&#x70B9;"></a>1.&#x5B83;&#x4EEC;&#x7684;&#x76F8;&#x540C;&#x70B9;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-它们的区别"><span class="nav-number">22.2.</span> <span class="nav-text"><a href="#2-&#x5B83;&#x4EEC;&#x7684;&#x533A;&#x522B;" class="headerlink" title="2.&#x5B83;&#x4EEC;&#x7684;&#x533A;&#x522B;"></a>2.&#x5B83;&#x4EEC;&#x7684;&#x533A;&#x522B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-它们的一般使用场景"><span class="nav-number">22.3.</span> <span class="nav-text"><a href="#3-&#x5B83;&#x4EEC;&#x7684;&#x4E00;&#x822C;&#x4F7F;&#x7528;&#x573A;&#x666F;" class="headerlink" title="3.&#x5B83;&#x4EEC;&#x7684;&#x4E00;&#x822C;&#x4F7F;&#x7528;&#x573A;&#x666F;"></a>3.&#x5B83;&#x4EEC;&#x7684;&#x4E00;&#x822C;&#x4F7F;&#x7528;&#x573A;&#x666F;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、EL和JSTL"><span class="nav-number">23.</span> <span class="nav-text"><a href="#&#x4E09;&#x3001;EL&#x548C;JSTL" class="headerlink" title="&#x4E09;&#x3001;EL&#x548C;JSTL"></a>&#x4E09;&#x3001;EL&#x548C;JSTL</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-作用"><span class="nav-number">23.1.</span> <span class="nav-text"><a href="#1-&#x4F5C;&#x7528;" class="headerlink" title="1.&#x4F5C;&#x7528;"></a>1.&#x4F5C;&#x7528;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-案例-1"><span class="nav-number">23.2.</span> <span class="nav-text"><a href="#2-&#x6848;&#x4F8B;-1" class="headerlink" title="2.&#x6848;&#x4F8B;"></a>2.&#x6848;&#x4F8B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-JSTL运行原理"><span class="nav-number">23.3.</span> <span class="nav-text"><a href="#3-JSTL&#x8FD0;&#x884C;&#x539F;&#x7406;" class="headerlink" title="3.JSTL&#x8FD0;&#x884C;&#x539F;&#x7406;"></a>3.JSTL&#x8FD0;&#x884C;&#x539F;&#x7406;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kunrong</span>
+
+  
+</div>
+<!--
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
