@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/09/09/mysql%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</loc>
+    
+    <lastmod>2018-09-10T15:20:23.719Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2018/09/04/Java-%E9%9B%86%E5%90%88%E7%B1%BB%E5%92%8C-JUC%E9%9B%86%E5%90%88%E7%B1%BB/</loc>
+    
+    <lastmod>2018-09-04T11:17:32.001Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/08/31/Servlet-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0/</loc>
     
     <lastmod>2018-08-31T16:00:47.058Z</lastmod>

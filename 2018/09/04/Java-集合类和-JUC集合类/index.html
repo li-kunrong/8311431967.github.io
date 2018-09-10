@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="杂文," />
+  <meta name="keywords" content="Java集合," />
 
 
 
@@ -81,18 +81,22 @@
 
 
 
-<meta name="description" content="序言虽然以前就听过快手和抖音了，但好似对我的作用不大，就一直没有上手。But，快手和抖音都在2018的春节期间大放异彩，逐步占领市场。还有看到了中央颁布的互联网独角兽公司，我惊奇地发现快手竟然排到了61，而抖音也是有前一百的，被学生党喜闻乐见的知乎排在了110+。果然人民群众相对于.txt,.jpg,更喜欢*.avi啊。所以决定下载抖音和快手，来体验一下，顺便来为我拓宽一下设计思路。 界面和交互设">
-<meta name="keywords" content="杂文">
+<meta name="description" content="Java集合包LIst的实现类主要有： LInkedList， ArrayList， Vetcor，Stack（Stack继承自Vector） LInkedList是双向链表的实现的双端队列，他不是线程安全的，只适用于单线程。 ArrayList是数组的实现的队列，它是一个动态数组，也不是线程安全的，只适用于单线程。 Vector是数组实现的矢量队列，他也是一个动态数组，不过和ArrayList不">
+<meta name="keywords" content="Java集合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="对抖音和快手的体验与分析">
-<meta property="og:url" content="http://yoursite.com/2018/04/02/对抖音和快手的体验与分析/index.html">
+<meta property="og:title" content=" Java 集合类和 JUC集合类">
+<meta property="og:url" content="http://yoursite.com/2018/09/04/Java-集合类和-JUC集合类/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="序言虽然以前就听过快手和抖音了，但好似对我的作用不大，就一直没有上手。But，快手和抖音都在2018的春节期间大放异彩，逐步占领市场。还有看到了中央颁布的互联网独角兽公司，我惊奇地发现快手竟然排到了61，而抖音也是有前一百的，被学生党喜闻乐见的知乎排在了110+。果然人民群众相对于.txt,.jpg,更喜欢*.avi啊。所以决定下载抖音和快手，来体验一下，顺便来为我拓宽一下设计思路。 界面和交互设">
+<meta property="og:description" content="Java集合包LIst的实现类主要有： LInkedList， ArrayList， Vetcor，Stack（Stack继承自Vector） LInkedList是双向链表的实现的双端队列，他不是线程安全的，只适用于单线程。 ArrayList是数组的实现的队列，它是一个动态数组，也不是线程安全的，只适用于单线程。 Vector是数组实现的矢量队列，他也是一个动态数组，不过和ArrayList不">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-02T17:14:24.584Z">
+<meta property="og:image" content="https://i.imgur.com/ePjYbOY.jpg">
+<meta property="og:image" content="https://i.imgur.com/y942TgW.jpg">
+<meta property="og:image" content="https://i.imgur.com/Zt9DEt1.jpg">
+<meta property="og:updated_time" content="2018-09-04T11:17:32.001Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="对抖音和快手的体验与分析">
-<meta name="twitter:description" content="序言虽然以前就听过快手和抖音了，但好似对我的作用不大，就一直没有上手。But，快手和抖音都在2018的春节期间大放异彩，逐步占领市场。还有看到了中央颁布的互联网独角兽公司，我惊奇地发现快手竟然排到了61，而抖音也是有前一百的，被学生党喜闻乐见的知乎排在了110+。果然人民群众相对于.txt,.jpg,更喜欢*.avi啊。所以决定下载抖音和快手，来体验一下，顺便来为我拓宽一下设计思路。 界面和交互设">
+<meta name="twitter:title" content=" Java 集合类和 JUC集合类">
+<meta name="twitter:description" content="Java集合包LIst的实现类主要有： LInkedList， ArrayList， Vetcor，Stack（Stack继承自Vector） LInkedList是双向链表的实现的双端队列，他不是线程安全的，只适用于单线程。 ArrayList是数组的实现的队列，它是一个动态数组，也不是线程安全的，只适用于单线程。 Vector是数组实现的矢量队列，他也是一个动态数组，不过和ArrayList不">
+<meta name="twitter:image" content="https://i.imgur.com/ePjYbOY.jpg">
 
 
 
@@ -122,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/02/对抖音和快手的体验与分析/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/04/Java-集合类和-JUC集合类/"/>
 
 
 
 
 
-  <title>对抖音和快手的体验与分析 | Kunrong-blog</title>
+  <title> Java 集合类和 JUC集合类 | Kunrong-blog</title>
   
 
 
@@ -418,7 +422,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/02/对抖音和快手的体验与分析/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/Java-集合类和-JUC集合类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -435,7 +439,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">对抖音和快手的体验与分析</h1>
+          <h1 class="post-title" itemprop="name headline"> Java 集合类和 JUC集合类</h1>
         
 
         <div class="post-meta">
@@ -447,8 +451,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-02T23:40:10+08:00">
-                2018-04-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T18:29:10+08:00">
+                2018-09-04
               </time>
             
 
@@ -470,8 +474,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/杂文/" itemprop="url" rel="index">
-                    <span itemprop="name">杂文</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -507,16 +511,48 @@
       
 
       
-        <h3 id="序言"><a href="#序言" class="headerlink" title="序言"></a>序言</h3><p>虽然以前就听过快手和抖音了，但好似对我的作用不大，就一直没有上手。But，快手和抖音都在2018的春节期间大放异彩，逐步占领市场。还有看到了中央颁布的互联网独角兽公司，我惊奇地发现快手竟然排到了61，而抖音也是有前一百的，被学生党喜闻乐见的知乎排在了110+。果然人民群众相对于<em>.txt,</em>.jpg,更喜欢*.avi啊。所以决定下载抖音和快手，来体验一下，顺便来为我拓宽一下设计思路。</p>
-<h3 id="界面和交互设计"><a href="#界面和交互设计" class="headerlink" title="界面和交互设计"></a>界面和交互设计</h3><p>抖音的界面初始只有一个视频，不用点击就自动播放，双击点赞，上下滑下一个视频，很简单方便，但可选率低。<br>而快手初始界面四张图片，需要点击进去才能播放，下滑可以看更多的缩略图。抖音的设计必须依靠强大的推荐系统，不然滑了几个视频都是不好看的就gg了。</p>
-<h3 id="推荐系统和算法"><a href="#推荐系统和算法" class="headerlink" title="推荐系统和算法"></a>推荐系统和算法</h3><p>毕竟一开始还是要给三无用户作推荐，大概是推荐点赞比较多的和关注度比较高的大v吧。而抖音请了明星入驻，一点开的都是明星的视频，而快手更多的是妹纸的，不过标题真的太太太尴尬了。那么如何给新用户增加曝光机会呢？</p>
-<p><em>在视频推荐中会穿插一些新用户的视频，我的观察大概是10条有1条。这样保证了在用户不会觉得烦的同时，也给了新的创作者一定流量。当新的视频达到一定的赞后，可能会被推送更多用户，而没有达到某个标准的视频可能会“进入冷宫“。这样的设计防止了像微博这类网站的大V把持流量所造成的马太效应，越来越多的平台在采取相同的策略</em></p>
-<p>这样就能吸引新用户，增加优质资源的同时防止大v的流量劫持。</p>
-<h3 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h3><p>抖音的内容还算是积极向上，明星们都比较接地气，而且配上特定的BGM真的很魔性，还有一些人拍的情景剧，也就十秒左右，后来发现还是续集来的，orz。</p>
-<p>而快手的内容就比较接地气，或者是少部分人说的俗，视频里主要是妹子跳舞，泳装…..还有农村里面的奇人异事，工厂妹的一天之类的。我觉得快手是切入点很准，面向二线三线四线的人，得屌丝者得天下啊。</p>
-<p>不过上一次的十四岁怀孕少女的视频引起了人们的关注，进而对快手的鄙视，我还在live中发现了色情引流，虽然说可以举报，但管理员根本忙不过来啊。 监管这一方面还要加强吧，感觉要变成直播软件了。<br>共青团入驻快手和抖音，我还特意搜了账号看作品，作品量低啊。</p>
-<h3 id="推荐广告"><a href="#推荐广告" class="headerlink" title="推荐广告"></a>推荐广告</h3><p>这种流量软件当然少不了广告的，不然怎生存，穿插于视频中，用户不仔细看可能就已经当成一个普通视频看完了。我刚注册，广告遇见率不高，可能还是杀熟吧。再者听说抖音和快手的广告费是比知乎高几倍的，果然还是学生党比屌丝更穷啊。</p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>抖音和快手的界面和交互设计都做得很好，也很快（只是我的辣鸡校园网不给力），智能推荐也很好，但过于沉溺于某个方面就会错过外面精彩的世界。就好像快手现在就只推荐都是妹纸的视频给我了，明明我本意是用快手和抖音记单词的。我觉得俗或不俗都是人民群众说了算，快手和抖音都是一个成功的app，既满足了人民的需求也从中捞到了利益。</p>
+        <h1 id="Java集合包"><a href="#Java集合包" class="headerlink" title="Java集合包"></a>Java集合包</h1><h2 id="LIst的实现类主要有：-LInkedList，-ArrayList，-Vetcor，Stack（Stack继承自Vector）"><a href="#LIst的实现类主要有：-LInkedList，-ArrayList，-Vetcor，Stack（Stack继承自Vector）" class="headerlink" title="LIst的实现类主要有： LInkedList， ArrayList， Vetcor，Stack（Stack继承自Vector）"></a>LIst的实现类主要有： LInkedList， ArrayList， Vetcor，Stack（Stack继承自Vector）</h2><ol>
+<li>LInkedList是双向链表的实现的双端队列，他不是线程安全的，只适用于单线程。</li>
+<li>ArrayList是数组的实现的队列，它是一个动态数组，也不是线程安全的，只适用于单线程。</li>
+<li>Vector是数组实现的矢量队列，他也是一个动态数组，不过和ArrayList不同的是，Vector是支持并发的。</li>
+<li>Stack是Vector实现的栈，和Vector一样，他也是线程安全。</li>
+</ol>
+<h2 id="Set实现类：-HashSet和TreeSet。"><a href="#Set实现类：-HashSet和TreeSet。" class="headerlink" title="Set实现类： HashSet和TreeSet。"></a>Set实现类： HashSet和TreeSet。</h2><ol>
+<li>HashSet是一个没有重复元素的集合，它通过HashMap实现的，HashSet不是线程安全的。</li>
+<li>TreeSet也是一个没有重复元素的集合，其中的元素是有序的，她是通过TreeMap实现的，TreeSet也不是线程安全的，只适用于单线程。</li>
+</ol>
+<h2 id="Map的实现类主要有-HashMap，WeakHashMap-Hashtable和TreeMap"><a href="#Map的实现类主要有-HashMap，WeakHashMap-Hashtable和TreeMap" class="headerlink" title="Map的实现类主要有 HashMap，WeakHashMap, Hashtable和TreeMap"></a>Map的实现类主要有 HashMap，WeakHashMap, Hashtable和TreeMap</h2><ol>
+<li>HashMap是存储“键-值对”的哈希表；它不是线程安全的，只适用于单线程。</li>
+<li>WeakHashMap是也是哈希表；和HashMap不同的是，HashMap的“键”是强引用类型，而WeakHashMap的“键”是弱引用类型，也就是说当WeakHashMap 中的某个键不再正常使用时，会被从WeakHashMap中被自动移除。WeakHashMap也不是线程安全的，只适用于单线程。</li>
+<li>Hashtable也是哈希表；和HashMap不同的是，Hashtable是线程安全的，支持并发。</li>
+<li>TreeMap也是哈希表，不过TreeMap中的“键-值对”是有序的，它是通过R-B Tree(红黑树)实现的；TreeMap不是线程安全的，只适用于单线程。</li>
+</ol>
+<blockquote>
+<p>为了方便，我们将前面介绍集合类统称为”java集合包“。java集合包大多是“非线程安全的”，虽然可以通过Collections工具类中的方法获取java集合包对应的同步类，但是这些同步类的并发效率并不是很高。为了更好的支持高并发任务，并发大师Doug Lea在JUC(java.util.concurrent)包中添加了java集合包中单线程类的对应的支持高并发的类。例如，ArrayList对应的高并发类是CopyOnWriteArrayList，HashMap对应的高并发类是ConcurrentHashMap，等等。</p>
+<p>JUC包在添加”java集合包“对应的高并发类时，为了保持API接口的一致性，使用了”Java集合包“中的框架。例如，CopyOnWriteArrayList实现了“Java集合包”中的List接口，HashMap继承了“java集合包”中的AbstractMap类，等等。得益于“JUC包使用了Java集合包中的类”，如果我们了解了Java集合包中的类的思想之后，理解JUC包中的类也相对容易；理解时，最大的难点是，对JUC包是如何添加对“高并发”的支持的！</p>
+</blockquote>
+<h1 id="JUC的集合类"><a href="#JUC的集合类" class="headerlink" title="JUC的集合类"></a>JUC的集合类</h1><h2 id="List和Set"><a href="#List和Set" class="headerlink" title="List和Set"></a>List和Set</h2><p>JUC集合包中的List和Set实现类包括: CopyOnWriteArrayList, CopyOnWriteArraySet和ConcurrentSkipListSet。ConcurrentSkipListSet稍后在说明Map时再说明，CopyOnWriteArrayList 和 CopyOnWriteArraySet的框架如下图所示：</p>
+<p><img src="https://i.imgur.com/ePjYbOY.jpg" alt=""></p>
+<ol>
+<li>CopyOrWriteArrayList相当于线程安全的ArrayList，它实现了List接口，CopyOnWriteArrayList是支持高并发的。</li>
+<li>CopyOnWriteArraySet相当于线程安全的HashSet，它继承于AbstractSet类。CopyOnWriteArraySet内部包含一个CopyOnWriteArrayList对象，它是通过CopyOnWriteArrayList实现的。</li>
+</ol>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>JUC集合包中Map的实现类包括: ConcurrentHashMap和ConcurrentSkipListMap。它们的框架如下图所示：</p>
+<p><img src="https://i.imgur.com/y942TgW.jpg" alt=""></p>
+<ol>
+<li>ConcurrentHashMap是线程安全的哈希表(相当于线程安全的HashMap)；它继承于AbstractMap类，并且实现ConcurrentMap接口。（jdk7以前用锁分段实现，jdk8用CAS无锁算法实现）</li>
+<li>ConcurrentSkipListMap是线程安全的有序的哈希表(相当于线程安全的TreeMap); 它继承于AbstractMap类，并且实现ConcurrentNavigableMap接口。ConcurrentSkipListMap是通过“跳表”来实现的，它支持并发。</li>
+<li>ConcurrentSkipListSet是线程安全的有序的集合(相当于线程安全的TreeSet)；它继承于AbstractSet，并实现了NavigableSet接口。ConcurrentSkipListSet是通过ConcurrentSkipListMap实现的，它也支持并发。</li>
+</ol>
+<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><p>JUC集合包中Queue的实现类包括: ArrayBlockingQueue， LinkedBlockQueue，LinkedBlockDeque，ConcurrentQueue和ConcurrentDeque。</p>
+<p><img src="https://i.imgur.com/Zt9DEt1.jpg" alt=""></p>
+<ol>
+<li>ArrayBlockingQueue是数组实现线程安全的有节的阻塞队列；</li>
+<li>LinkedBLockingQueue是单向链表实现的（指定大小）阻塞对列，该队列按FIFO排序元素</li>
+<li>LinkedBlockingDeque是双向链表实现的(指定大小)双向并发阻塞队列，该阻塞队列同时支持FIFO和FILO两种操作方式。</li>
+<li>ConcurrentLinkedQueue是单向链表实现的无界队列，该队列按 FIFO（先进先出）排序元素。</li>
+<li>ConcurrentLinkedDeque是双向链表实现的无界队列，该队列同时支持FIFO和FILO两种操作方式。</li>
+</ol>
 
       
     </div>
@@ -534,7 +570,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/杂文/" rel="tag"># 杂文</a>
+            <a href="/tags/Java集合/" rel="tag"># Java集合</a>
           
         </div>
       
@@ -547,8 +583,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/02/设计模式之Iterator模式/" rel="next" title="设计模式之Iterator模式">
-                <i class="fa fa-chevron-left"></i> 设计模式之Iterator模式
+              <a href="/2018/08/31/Servlet-基础学习/" rel="next" title="Servlet 基础学习">
+                <i class="fa fa-chevron-left"></i> Servlet 基础学习
               </a>
             
           </div>
@@ -557,8 +593,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/04/设计模式之抽象工厂模式/" rel="prev" title="设计模式之抽象工厂模式">
-                设计模式之抽象工厂模式 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/09/mysql基本操作/" rel="prev" title="mysql基本知识">
+                mysql基本知识 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -715,7 +751,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#序言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x5E8F;&#x8A00;" class="headerlink" title="&#x5E8F;&#x8A00;"></a>&#x5E8F;&#x8A00;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#界面和交互设计"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x754C;&#x9762;&#x548C;&#x4EA4;&#x4E92;&#x8BBE;&#x8BA1;" class="headerlink" title="&#x754C;&#x9762;&#x548C;&#x4EA4;&#x4E92;&#x8BBE;&#x8BA1;"></a>&#x754C;&#x9762;&#x548C;&#x4EA4;&#x4E92;&#x8BBE;&#x8BA1;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐系统和算法"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x63A8;&#x8350;&#x7CFB;&#x7EDF;&#x548C;&#x7B97;&#x6CD5;" class="headerlink" title="&#x63A8;&#x8350;&#x7CFB;&#x7EDF;&#x548C;&#x7B97;&#x6CD5;"></a>&#x63A8;&#x8350;&#x7CFB;&#x7EDF;&#x548C;&#x7B97;&#x6CD5;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5185;&#x5BB9;" class="headerlink" title="&#x5185;&#x5BB9;"></a>&#x5185;&#x5BB9;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐广告"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x63A8;&#x8350;&#x5E7F;&#x544A;" class="headerlink" title="&#x63A8;&#x8350;&#x5E7F;&#x544A;"></a>&#x63A8;&#x8350;&#x5E7F;&#x544A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x7ED3;&#x8BED;" class="headerlink" title="&#x7ED3;&#x8BED;"></a>&#x7ED3;&#x8BED;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java集合包"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Java&#x96C6;&#x5408;&#x5305;" class="headerlink" title="Java&#x96C6;&#x5408;&#x5305;"></a>Java&#x96C6;&#x5408;&#x5305;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LIst的实现类主要有：-LInkedList，-ArrayList，-Vetcor，Stack（Stack继承自Vector）"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#LIst&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709;&#xFF1A;-LInkedList&#xFF0C;-ArrayList&#xFF0C;-Vetcor&#xFF0C;Stack&#xFF08;Stack&#x7EE7;&#x627F;&#x81EA;Vector&#xFF09;" class="headerlink" title="LIst&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709;&#xFF1A; LInkedList&#xFF0C; ArrayList&#xFF0C; Vetcor&#xFF0C;Stack&#xFF08;Stack&#x7EE7;&#x627F;&#x81EA;Vector&#xFF09;"></a>LIst&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709;&#xFF1A; LInkedList&#xFF0C; ArrayList&#xFF0C; Vetcor&#xFF0C;Stack&#xFF08;Stack&#x7EE7;&#x627F;&#x81EA;Vector&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set实现类：-HashSet和TreeSet。"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#Set&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A;-HashSet&#x548C;TreeSet&#x3002;" class="headerlink" title="Set&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A; HashSet&#x548C;TreeSet&#x3002;"></a>Set&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A; HashSet&#x548C;TreeSet&#x3002;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map的实现类主要有-HashMap，WeakHashMap-Hashtable和TreeMap"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#Map&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709;-HashMap&#xFF0C;WeakHashMap-Hashtable&#x548C;TreeMap" class="headerlink" title="Map&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709; HashMap&#xFF0C;WeakHashMap, Hashtable&#x548C;TreeMap"></a>Map&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709; HashMap&#xFF0C;WeakHashMap, Hashtable&#x548C;TreeMap</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JUC的集合类"><span class="nav-number">2.</span> <span class="nav-text"><a href="#JUC&#x7684;&#x96C6;&#x5408;&#x7C7B;" class="headerlink" title="JUC&#x7684;&#x96C6;&#x5408;&#x7C7B;"></a>JUC&#x7684;&#x96C6;&#x5408;&#x7C7B;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#List和Set"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#List&#x548C;Set" class="headerlink" title="List&#x548C;Set"></a>List&#x548C;Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">2.1.1.</span> <span class="nav-text"><a href="#Map" class="headerlink" title="Map"></a>Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue"><span class="nav-number">2.1.2.</span> <span class="nav-text"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

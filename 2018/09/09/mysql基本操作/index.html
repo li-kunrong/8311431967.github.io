@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mysql," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言复习常用的sql命令，记录常用常考的。 基本命令进入mysql的方法mysql -hlocalhost -uroot -p 然后输入数据库密码就行。 数据库的基本操作use [database]; 进入该数据库show databases; 展示所有的数据库show tables; 展示该数据库下的所有tableshow columns from customers; 展示所有的列show s">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql基本知识">
+<meta property="og:url" content="http://yoursite.com/2018/09/09/mysql基本操作/index.html">
+<meta property="og:site_name" content="Kunrong-blog">
+<meta property="og:description" content="前言复习常用的sql命令，记录常用常考的。 基本命令进入mysql的方法mysql -hlocalhost -uroot -p 然后输入数据库密码就行。 数据库的基本操作use [database]; 进入该数据库show databases; 展示所有的数据库show tables; 展示该数据库下的所有tableshow columns from customers; 展示所有的列show s">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/tKUnUxU.png">
+<meta property="og:updated_time" content="2018-09-10T15:20:23.719Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mysql基本知识">
+<meta name="twitter:description" content="前言复习常用的sql命令，记录常用常考的。 基本命令进入mysql的方法mysql -hlocalhost -uroot -p 然后输入数据库密码就行。 数据库的基本操作use [database]; 进入该数据库show databases; 展示所有的数据库show tables; 展示该数据库下的所有tableshow columns from customers; 展示所有的列show s">
+<meta name="twitter:image" content="https://i.imgur.com/tKUnUxU.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"left"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/09/mysql基本操作/"/>
+
+
+
+
+
+  <title>mysql基本知识 | Kunrong-blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kunrong-blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-secweb">
+          <a href="/Secweb/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/09/mysql基本操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kunrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kunrong-blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mysql基本知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-09T21:46:08+08:00">
+                2018-09-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/sql/" itemprop="url" rel="index">
+                    <span itemprop="name">sql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>复习常用的sql命令，记录常用常考的。</p>
+<h3 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h3><h4 id="进入mysql的方法"><a href="#进入mysql的方法" class="headerlink" title="进入mysql的方法"></a>进入mysql的方法</h4><p>mysql -hlocalhost -uroot -p</p>
+<p>然后输入数据库密码就行。</p>
+<h4 id="数据库的基本操作"><a href="#数据库的基本操作" class="headerlink" title="数据库的基本操作"></a>数据库的基本操作</h4><p>use [database]; 进入该数据库<br>show databases; 展示所有的数据库<br>show tables; 展示该数据库下的所有table<br>show columns from customers; 展示所有的列<br>show status; 显示广泛的服务器状态信息；<br>show grants; 显示授予用户的安全权限。<br>show error; show warnings; 显示服务器错误或警告<br>help show 查看更多功能</p>
+<h4 id="select的基本操作"><a href="#select的基本操作" class="headerlink" title="select的基本操作"></a>select的基本操作</h4><p>检查单列<br>select prod_name from products;</p>
+<p>检查多列<br>select prod_id，prod_name, prod_price from products;</p>
+<p>检查所有列<br>select *from products</p>
+<p>返回不同的值  <strong>distinct关键字</strong><br>select distinct vend_id from products；</p>
+<p>限制返回结果 <strong> limit关键字</strong><br>select prod_name from products limit 5;</p>
+<p>使用完全限定的表名<br>select products.prod_name from products;<br>select products.prod_name from cracourse.products;</p>
+<h4 id="排序检索数据"><a href="#排序检索数据" class="headerlink" title="排序检索数据"></a>排序检索数据</h4><p>按单个列排序<br>select prod_name from products order by prod_name;</p>
+<p>按多个列<br>select prod_id, prod_price, prod_name from products order by prod_price,prod_name;</p>
+<p>指定方向排序（降序）<br>select prod_id, prod_price, prod_name from products order by prod_price desc;</p>
+<p>多个列排序<br>select prod_id, prod_price ,prod_name from products order by prod_price desc, prod_name desc;</p>
+<p>与dsec相反的关键字asc，但默认是升序，没什么卵用。</p>
+<blockquote>
+<p>在mysql中大小写不分</p>
+</blockquote>
+<h4 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h4><p>where搜索过滤<br>select prod_name,prod_price from products where prod_price=2.50;<br>= &gt; &lt; != &lt;= &gt;= between 都可以</p>
+<p>不匹配检查<br>select vend_id, prod_name from products where vend_id &lt;&gt;1003;</p>
+<p>范围检查<br>select prod_name,prod_price from products where prod_price between 5 and 10;</p>
+<p>空值检查<br>select prod_name,prod_price from products where prod_price is null;</p>
+<p>AND操作符<br>select prod_id,prod_price,prod_name from products where vend_id = 1003 and prod_price &lt;=10;</p>
+<p>OR 操作符<br>select prod_name,prod_price from products where vend_id =1002 or vend_id =1003;</p>
+<p>IN操作符<br>select prod_name,prod_price from products where vend_id IN(1002,1003) order by prod_name;</p>
+<p>Not 操作符<br>select prod_name,prod_price from products where vend_id NOT IN(1002,1003) order by prod_name;</p>
+<h5 id="用通配符过滤"><a href="#用通配符过滤" class="headerlink" title="用通配符过滤"></a>用通配符过滤</h5><p>like操作符<br>%通配符，表示任何字符出现的任意次数<br>select prod_id,prod_name from products where prod_name like ‘jet%’;</p>
+<p>下划线通配符<br>select prod_id,prod_name from products where prod<em>name like ‘</em> ton anvil’;</p>
+<h5 id="正则表达式匹配"><a href="#正则表达式匹配" class="headerlink" title="正则表达式匹配"></a>正则表达式匹配</h5><p>select prod_id,prod_name from products where prod_name regexp ‘1000’ order by prod_name;</p>
+<h3 id="拼接"><a href="#拼接" class="headerlink" title="拼接"></a>拼接</h3><p>select Concat(vend_name,’(‘,vend_country,’)’) from vendors order by vend_name;<br>返回结果：<br>| Concat(vend_name,’(‘,vend_country,’)’) |<br>+—————————————-+<br>| ACME(USA)                              |<br>| Anvils R Us(USA)                       |<br>| Furball Inc.(USA)                      |<br>| Jet Set(England)                       |<br>| Jouets Et Ours(France)                 |<br>| LT Supplies(USA)</p>
+<p>RTrim(去除空格<br>select Concat(RTrim(vend_name),’(‘,RTrim(vend_country),’)’) from vendors order by vend_name;</p>
+<p>使用别名<br>select Concat(RTrim(vend_name),’(‘,RTrim(vend_country),’)’) as vend_title from vendors order by vend_name;</p>
+<h4 id="执行算数计算"><a href="#执行算数计算" class="headerlink" title="执行算数计算"></a>执行算数计算</h4><p>Select prod_id,quantity,item_price from orderitems where order_num = 20005;</p>
+<p>Select prod_id,quantity,item_price,quantity*item_price AS expanded_price from orderitems where order_num = 20005;</p>
+<h3 id="使用函数"><a href="#使用函数" class="headerlink" title="使用函数"></a>使用函数</h3><p>Upper()<br>select vend_name,Upper(vend_name) as vend_name_upcase from vendors order by vend_name;</p>
+<p>日期类函数Date()<br>select cust_id,order_num from orders where Date(order_date) Between ‘2005-09-01’ and ‘2005-09-30’;</p>
+<p>数值类函数<br><img src="https://i.imgur.com/tKUnUxU.png" alt=""></p>
+<h3 id="汇总数据"><a href="#汇总数据" class="headerlink" title="汇总数据"></a>汇总数据</h3><p>avg()平均值<br>select avg(prod_price) as avg_price from products;<br>select avg(prod_price) as avg_price from products where vend_id = 1003;</p>
+<p>count()计数<br>select count(*) as num_cust from customers;<br>select count(cust_email) as num_cust from customers;</p>
+<p>Max()最大值,MIN()最小值<br>select Max(prod_price) as max_price from products;</p>
+<p>sum()总计<br>select sum(quantity) as items_ordered from orderitems where order_num =20005;</p>
+<h3 id="分组数据"><a href="#分组数据" class="headerlink" title="分组数据"></a>分组数据</h3><p>select vend_id, count(*) as num_prods from products group by vend_id;</p>
+<h4 id="过滤分组"><a href="#过滤分组" class="headerlink" title="过滤分组"></a>过滤分组</h4><p>having关键字<br>select cust_id,count(<em>) as orders from orders group by cust_id having count(</em>) &gt;=2;</p>
+<p>select order_num, sum(quantity<em>item_price) as ordertotal from orderitems group by order_num having sum(quantity</em>item_price)&gt;=50;</p>
+<p>与order by组合<br>select order_num, sum(quantity<em>item_price) as ordertotal from orderitems group by order_num having sum(quantity</em>item_price)&gt;=50 order by ordertotal;</p>
+<h4 id="使用子查询"><a href="#使用子查询" class="headerlink" title="使用子查询"></a>使用子查询</h4><p>select cust_id from orders where order_num in (select order_num from orderitems where prod_id = ‘TNT2’);</p>
+<h2 id="连结表"><a href="#连结表" class="headerlink" title="连结表"></a>连结表</h2><p>联结join<br>创建联结，规定要联结的所有表以及它们如何关联即可。<br>select vend_name,prod_name,prod_price from vendors,products where vendors.vend_id = products.vend_id order by vend_name,prod_name;</p>
+<p>没有联结条件的表关系返回的结果为笛卡尔积。<br>select vend_name,prod_name,prod_price from vendors,products  order by vend_name,prod_name;</p>
+<h4 id="联结多个表-联结越多，性能下降得越厉害）"><a href="#联结多个表-联结越多，性能下降得越厉害）" class="headerlink" title="联结多个表(联结越多，性能下降得越厉害）"></a>联结多个表(联结越多，性能下降得越厉害）</h4><p>select prod_name,vend_name,prod_price,quantity from orderitems,products,vendors where products.vend_id = vendors.vend_id and orderitems.prod_id = products.prod_id and order_num = 20005;</p>
+<h4 id="高级联结"><a href="#高级联结" class="headerlink" title="高级联结"></a>高级联结</h4><p>使用别名<br>select cust_name,cust_contact from customers as c,orders as o,orderitems as oi where c.cust_id = o.order_num and prod_id = ‘TNT2’;</p>
+<h4 id="自联结"><a href="#自联结" class="headerlink" title="自联结"></a>自联结</h4><p>(使用了子查询）<br>select prod_id,prod_name from products where vend_id = (select vend_id from products where prod_id = ‘DTNTR’);</p>
+<p>select p1.prod_id,p1.prod_name from products as p1, products as p2 where p1.vend_id = p2.vend_id and p2.prod_id = ‘DINTR’;</p>
+<h4 id="外部联结"><a href="#外部联结" class="headerlink" title="外部联结"></a>外部联结</h4><p>select customers.cust_id,orders.order_num from customers left outer join orders on customers.cust_id = orders.cust_id;</p>
+<p>select customers.cust_id,orders.order_num from customers right outer join orders on customers.cust_id = orders.cust_id;</p>
+<p>带聚集函数的联结</p>
+<p>select customers.cust_name,customers.cust_id,count(orders,order_num)As num_ord from customers inner join orders on customers.cust_id = orders.cust_id group by customers.cust_id;</p>
+<h3 id="组合查询"><a href="#组合查询" class="headerlink" title="组合查询"></a>组合查询</h3><p>union</p>
+<h3 id="全文本搜索"><a href="#全文本搜索" class="headerlink" title="全文本搜索"></a>全文本搜索</h3><p>ENGINE=MYISAM;</p>
+<h3 id="更新删除数据"><a href="#更新删除数据" class="headerlink" title="更新删除数据"></a>更新删除数据</h3><p>update customers set cust_email = ‘elmer@fudd.com’ where cust_id = 10005;</p>
+<p>delete from customers where cust_id = 10006;</p>
+<p>删除所有行<br>truncate table</p>
+<p>添加列<br>alter table vendors add vend_phone char(20)</p>
+<p>删除刚刚添加的列<br>alter table vendors drop column vend_phone;</p>
+<p>重命名表<br>rename table customers2 to customers;</p>
+<h3 id="使用存储过程"><a href="#使用存储过程" class="headerlink" title="使用存储过程"></a>使用存储过程</h3><p>DELIMITER//<br>CREATE PROCEDURE productpricing()<br>BEGIN<br>    select Avg(prod_price) as priceaverage from products</p>
+<p>END//<br>DELIMITER;</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mysql/" rel="tag"># Mysql</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/04/Java-集合类和-JUC集合类/" rel="next" title=" Java 集合类和 JUC集合类">
+                <i class="fa fa-chevron-left"></i>  Java 集合类和 JUC集合类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI3Mi84ODM2"></div>
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload_image/avatar.gif"
+                alt="Kunrong" />
+            
+              <p class="site-author-name" itemprop="name">Kunrong</p>
+              <p class="site-description motion-element" itemprop="description">share my technology</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/8311431967" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/1967-59-52/activities" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本命令"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x57FA;&#x672C;&#x547D;&#x4EE4;" class="headerlink" title="&#x57FA;&#x672C;&#x547D;&#x4EE4;"></a>&#x57FA;&#x672C;&#x547D;&#x4EE4;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#进入mysql的方法"><span class="nav-number">1.1.1.</span> <span class="nav-text"><a href="#&#x8FDB;&#x5165;mysql&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x8FDB;&#x5165;mysql&#x7684;&#x65B9;&#x6CD5;"></a>&#x8FDB;&#x5165;mysql&#x7684;&#x65B9;&#x6CD5;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据库的基本操作"><span class="nav-number">1.1.2.</span> <span class="nav-text"><a href="#&#x6570;&#x636E;&#x5E93;&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;"></a>&#x6570;&#x636E;&#x5E93;&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#select的基本操作"><span class="nav-number">1.1.3.</span> <span class="nav-text"><a href="#select&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;" class="headerlink" title="select&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;"></a>select&#x7684;&#x57FA;&#x672C;&#x64CD;&#x4F5C;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序检索数据"><span class="nav-number">1.1.4.</span> <span class="nav-text"><a href="#&#x6392;&#x5E8F;&#x68C0;&#x7D22;&#x6570;&#x636E;" class="headerlink" title="&#x6392;&#x5E8F;&#x68C0;&#x7D22;&#x6570;&#x636E;"></a>&#x6392;&#x5E8F;&#x68C0;&#x7D22;&#x6570;&#x636E;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#过滤数据"><span class="nav-number">1.1.5.</span> <span class="nav-text"><a href="#&#x8FC7;&#x6EE4;&#x6570;&#x636E;" class="headerlink" title="&#x8FC7;&#x6EE4;&#x6570;&#x636E;"></a>&#x8FC7;&#x6EE4;&#x6570;&#x636E;</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#用通配符过滤"><span class="nav-number">1.1.5.1.</span> <span class="nav-text"><a href="#&#x7528;&#x901A;&#x914D;&#x7B26;&#x8FC7;&#x6EE4;" class="headerlink" title="&#x7528;&#x901A;&#x914D;&#x7B26;&#x8FC7;&#x6EE4;"></a>&#x7528;&#x901A;&#x914D;&#x7B26;&#x8FC7;&#x6EE4;</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正则表达式匹配"><span class="nav-number">1.1.5.2.</span> <span class="nav-text"><a href="#&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5339;&#x914D;" class="headerlink" title="&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5339;&#x914D;"></a>&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;&#x5339;&#x914D;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拼接"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x62FC;&#x63A5;" class="headerlink" title="&#x62FC;&#x63A5;"></a>&#x62FC;&#x63A5;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#执行算数计算"><span class="nav-number">1.2.1.</span> <span class="nav-text"><a href="#&#x6267;&#x884C;&#x7B97;&#x6570;&#x8BA1;&#x7B97;" class="headerlink" title="&#x6267;&#x884C;&#x7B97;&#x6570;&#x8BA1;&#x7B97;"></a>&#x6267;&#x884C;&#x7B97;&#x6570;&#x8BA1;&#x7B97;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用函数"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x51FD;&#x6570;" class="headerlink" title="&#x4F7F;&#x7528;&#x51FD;&#x6570;"></a>&#x4F7F;&#x7528;&#x51FD;&#x6570;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#汇总数据"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#&#x6C47;&#x603B;&#x6570;&#x636E;" class="headerlink" title="&#x6C47;&#x603B;&#x6570;&#x636E;"></a>&#x6C47;&#x603B;&#x6570;&#x636E;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组数据"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#&#x5206;&#x7EC4;&#x6570;&#x636E;" class="headerlink" title="&#x5206;&#x7EC4;&#x6570;&#x636E;"></a>&#x5206;&#x7EC4;&#x6570;&#x636E;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#过滤分组"><span class="nav-number">1.5.1.</span> <span class="nav-text"><a href="#&#x8FC7;&#x6EE4;&#x5206;&#x7EC4;" class="headerlink" title="&#x8FC7;&#x6EE4;&#x5206;&#x7EC4;"></a>&#x8FC7;&#x6EE4;&#x5206;&#x7EC4;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用子查询"><span class="nav-number">1.5.2.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x5B50;&#x67E5;&#x8BE2;" class="headerlink" title="&#x4F7F;&#x7528;&#x5B50;&#x67E5;&#x8BE2;"></a>&#x4F7F;&#x7528;&#x5B50;&#x67E5;&#x8BE2;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连结表"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x8FDE;&#x7ED3;&#x8868;" class="headerlink" title="&#x8FDE;&#x7ED3;&#x8868;"></a>&#x8FDE;&#x7ED3;&#x8868;</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#联结多个表-联结越多，性能下降得越厉害）"><span class="nav-number">2.0.1.</span> <span class="nav-text"><a href="#&#x8054;&#x7ED3;&#x591A;&#x4E2A;&#x8868;-&#x8054;&#x7ED3;&#x8D8A;&#x591A;&#xFF0C;&#x6027;&#x80FD;&#x4E0B;&#x964D;&#x5F97;&#x8D8A;&#x5389;&#x5BB3;&#xFF09;" class="headerlink" title="&#x8054;&#x7ED3;&#x591A;&#x4E2A;&#x8868;(&#x8054;&#x7ED3;&#x8D8A;&#x591A;&#xFF0C;&#x6027;&#x80FD;&#x4E0B;&#x964D;&#x5F97;&#x8D8A;&#x5389;&#x5BB3;&#xFF09;"></a>&#x8054;&#x7ED3;&#x591A;&#x4E2A;&#x8868;(&#x8054;&#x7ED3;&#x8D8A;&#x591A;&#xFF0C;&#x6027;&#x80FD;&#x4E0B;&#x964D;&#x5F97;&#x8D8A;&#x5389;&#x5BB3;&#xFF09;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级联结"><span class="nav-number">2.0.2.</span> <span class="nav-text"><a href="#&#x9AD8;&#x7EA7;&#x8054;&#x7ED3;" class="headerlink" title="&#x9AD8;&#x7EA7;&#x8054;&#x7ED3;"></a>&#x9AD8;&#x7EA7;&#x8054;&#x7ED3;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自联结"><span class="nav-number">2.0.3.</span> <span class="nav-text"><a href="#&#x81EA;&#x8054;&#x7ED3;" class="headerlink" title="&#x81EA;&#x8054;&#x7ED3;"></a>&#x81EA;&#x8054;&#x7ED3;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外部联结"><span class="nav-number">2.0.4.</span> <span class="nav-text"><a href="#&#x5916;&#x90E8;&#x8054;&#x7ED3;" class="headerlink" title="&#x5916;&#x90E8;&#x8054;&#x7ED3;"></a>&#x5916;&#x90E8;&#x8054;&#x7ED3;</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合查询"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x7EC4;&#x5408;&#x67E5;&#x8BE2;" class="headerlink" title="&#x7EC4;&#x5408;&#x67E5;&#x8BE2;"></a>&#x7EC4;&#x5408;&#x67E5;&#x8BE2;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全文本搜索"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x5168;&#x6587;&#x672C;&#x641C;&#x7D22;" class="headerlink" title="&#x5168;&#x6587;&#x672C;&#x641C;&#x7D22;"></a>&#x5168;&#x6587;&#x672C;&#x641C;&#x7D22;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新删除数据"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x66F4;&#x65B0;&#x5220;&#x9664;&#x6570;&#x636E;" class="headerlink" title="&#x66F4;&#x65B0;&#x5220;&#x9664;&#x6570;&#x636E;"></a>&#x66F4;&#x65B0;&#x5220;&#x9664;&#x6570;&#x636E;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用存储过程"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;" class="headerlink" title="&#x4F7F;&#x7528;&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;"></a>&#x4F7F;&#x7528;&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kunrong</span>
+
+  
+</div>
+<!--
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
