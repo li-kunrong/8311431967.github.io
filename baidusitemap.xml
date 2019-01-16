@@ -4,14 +4,14 @@
 
     
   <url>
-    <loc>http://yoursite.com/2018/11/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</loc>
-    <lastmod>2019-01-07T07:20:29.242Z</lastmod>
+    <loc>http://yoursite.com/2019/01/16/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2019-01-16T09:39:29.901Z</lastmod>
     <data>
         <display>
-        <title>多线程读写文件</title>
-        <pubTime>2018-11-08T16:21:31.000Z</pubTime>
+        <title>单例模式</title>
+        <pubTime>2019-01-16T08:46:32.000Z</pubTime>
         
-        <tag>多线程</tag>
+        <tag>设计模式</tag>
          
          
            
@@ -25,13 +25,33 @@
     
   <url>
     <loc>http://yoursite.com/2019/01/06/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E9%9D%A2%E8%AF%95/</loc>
-    <lastmod>2019-01-07T07:13:52.527Z</lastmod>
+    <lastmod>2019-01-16T06:47:28.842Z</lastmod>
     <data>
         <display>
         <title>记录一次面试</title>
         <pubTime>2019-01-06T10:31:50.000Z</pubTime>
         
         <tag>面试</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://yoursite.com/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/11/09/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AF%BB%E5%86%99%E6%96%87%E4%BB%B6/</loc>
+    <lastmod>2019-01-07T07:20:29.242Z</lastmod>
+    <data>
+        <display>
+        <title>多线程读写文件</title>
+        <pubTime>2018-11-08T16:21:31.000Z</pubTime>
+        
+        <tag>多线程</tag>
          
          
            

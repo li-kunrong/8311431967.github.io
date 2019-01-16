@@ -89,10 +89,12 @@
 <meta property="og:site_name" content="Kunrong-blog">
 <meta property="og:description" content="前言一次没有准备的面试，刚考完试，想放松几天，没想到昨天投的简历这么快就有面试。凉凉。 Java基础1.1 == 和 equals的区别在基本数据类型中== 比较的是值，在对象中比较的是内存地址equals有两种情况1）是没有重写equals方法，相当于==2）重写了equals方法，通常比较两个对象的内容，若想等返回true。 延申：hashCode() 和equals的关系  如果两个对象相等">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-07T07:13:52.527Z">
+<meta property="og:image" content="c:/Users/61400/Pictures/学习/博客数据1.png">
+<meta property="og:updated_time" content="2019-01-16T06:47:28.842Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次面试">
 <meta name="twitter:description" content="前言一次没有准备的面试，刚考完试，想放松几天，没想到昨天投的简历这么快就有面试。凉凉。 Java基础1.1 == 和 equals的区别在基本数据类型中== 比较的是值，在对象中比较的是内存地址equals有两种情况1）是没有重写equals方法，相当于==2）重写了equals方法，通常比较两个对象的内容，若想等返回true。 延申：hashCode() 和equals的关系  如果两个对象相等">
+<meta name="twitter:image" content="c:/Users/61400/Pictures/学习/博客数据1.png">
 
 
 
@@ -520,6 +522,12 @@
 <p>以“HashSet 如何检查重复”为例子来说明为什么要有 hashCode：</p>
 <p>当你把对象加入 HashSet 时，HashSet 会先计算对象的 hashcode 值来判断对象加入的位置，同时也会与其他已经加入的对象的 hashcode 值作比较，如果没有相符的hashcode，HashSet会假设对象没有重复出现。但是如果发现有相同 hashcode 值的对象，这时会调用 equals（）方法来检查 hashcode 相等的对象是否真的相同。如果两者相同，HashSet 就不会让其加入操作成功。如果不同的话，就会重新散列到其他位置。（摘自我的Java启蒙书《Head fist java》第二版）。这样我们就大大减少了 equals 的次数，相应就大大提高了执行速度。</p>
 <p>1.2 HashMap怎么实现<br><a href="https://github.com/Snailclimb/JavaGuide/blob/master/Java%E7%9B%B8%E5%85%B3/HashMap.md" target="_blank" rel="noopener">https://github.com/Snailclimb/JavaGuide/blob/master/Java%E7%9B%B8%E5%85%B3/HashMap.md</a><br>HashSet怎么实现<br>CourrentHashMap 怎么实现线程安全</p>
+<p>Jdk的内存模型</p>
+<p>程序计数器：较小的内存空间，他的作用看作是当前线程所执行的字节码的行号指示器，字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个程序计数器。线程私有。</p>
+<p>虚拟机栈：线程私有。描述的是Java方法执行的内存模型：每个方法被执行时都会创建一个栈帧用于存储局部变量表，操作栈、动态连接、方法出口等信息，每一个方法被调用直至到执行完成的过程，就对应着一个栈帧在虚拟机中从入栈到出栈的过程。会抛出StackOverflowError和OutOfMemoryError异常。</p>
+<p>本地方法栈：为虚拟机使用到的Native方法服务。</p>
+<p>Java堆：被所有线程共享的一块内存区域，在虚拟机启动时创建。唯一目的是存放对象实例，几乎所有的对象实例都在这里分配内存。垃圾收集器管理的主要区域，被叫做GC堆，分为新生代和老年代</p>
+<p>方法区：线程共享，存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码。别名：nonHeap。<br>    运行时常量池时方法区的一部分</p>
 <h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>两个引擎的区别<br>MyISAM：默认的MySQL插件式存储引擎，它是在Web、数据仓储和其他应用环境下最常使用的存储引擎之一。注意，通过更改STORAGE_ENGINE配置变量，能够方便地更改MySQL服务器的默认存储引擎。</p>
 <p>InnoDB：用于事务处理应用程序，具有众多特性，包括ACID事务支持。(提供行级锁)<br>一般来说不使用事务的话，请使用MyISAM引擎，使用事务的话，一般使用InnoDB</p>
 <p>怎么优化数据库</p>
@@ -533,7 +541,15 @@
 </ol>
 <h3 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h3><p>TCP的四次挥手</p>
 <h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><p>系统态和用户态的区别</p>
-<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>Hibernate和MyBatics的区别</p>
+<h3 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h3><p>Hibernate和MyBatics的区别<br>Mybatis：小巧、方便、高效、简单、直接、半自动化</p>
+<p>Hibernate：强大、方便、高效、复杂、间接、全自动化</p>
+<p> 两者对比总结<br>两者相同点<br>Hibernate与MyBatis都可以是通过SessionFactoryBuider由XML配置文件生成SessionFactory，然后由SessionFactory 生成Session，最后由Session来开启执行事务和SQL语句。其中SessionFactoryBuider，SessionFactory，Session的生命周期都是差不多的。如下图所示：<br><img src="C:\Users\61400\Pictures\学习\博客数据1.png" alt="图片"></p>
+<p>Hibernate优势<br>Hibernate的DAO层开发比MyBatis简单，Mybatis需要维护SQL和结果映射。</p>
+<p>Hibernate对对象的维护和缓存要比MyBatis好，对增删改查的对象的维护要方便。</p>
+<p>Hibernate数据库移植性很好，MyBatis的数据库移植性不好，不同的数据库需要写不同SQL。</p>
+<p>Hibernate有更好的二级缓存机制，可以使用第三方缓存。MyBatis本身提供的缓存机制不佳。</p>
+<p>Mybatis优势<br>MyBatis可以进行更为细致的SQL优化，可以减少查询字段。</p>
+<p>MyBatis容易掌握，而Hibernate门槛较高。</p>
 <h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>怎么识别一个链表有环<br>top k问题怎么实现<br>排序，最小堆，还有快速排序的方法<br>eg：有1亿个浮点数，如果找出期中最大的10000个？</p>
 <p>1）直接排序<br>最快复杂度为O(nlogn),在32位的机器上，每个float类型占4个字节，1亿个浮点数就要占用400MB的存储空间，对于一些可用内存小于400M的计算机而言，很显然是不能一次将全部数据读入内存进行排序的。其实即使内存能够满足要求（我机器内存都是8GB），该方法也并不高效，因为题目的目的是寻找出最大的10000个数即可，而排序却是将所有的元素都排序了，做了很多的无用功。</p>
 <p>2) 局部淘汰法<br>用一个容器保存前10000个数，先让10000个数进容器排序，后续的数在一一与最小的数比较，大于就删去最小的，把新的元素插进去排序，最后得到结果，时间复杂度O(n+m^2)。</p>
@@ -579,6 +595,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/16/单例模式/" rel="prev" title="单例模式">
+                单例模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -663,7 +683,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
