@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[非阻塞同步和非阻塞异步的区别]]></title>
+    <url>%2F2019%2F01%2F20%2F%E9%9D%9E%E9%98%BB%E5%A1%9E%E5%90%8C%E6%AD%A5%E5%92%8C%E9%9D%9E%E9%98%BB%E5%A1%9E%E5%BC%82%E6%AD%A5%E7%9A%84%E5%8C%BA%E5%88%AB%2F</url>
+    <content type="text"><![CDATA[这两篇文章分析了Linux下的5种IO模型 http://blog.csdn.net/historyasamirror/article/details/5778378 http://blog.csdn.net/hguisu/article/details/7453390 很多人对阻塞 / 非阻塞， 同步 / 异步 的概念理解的不深入，搞不清楚非阻塞和异步IO的区别，笼统的认为非阻塞IO就是异步IO。其实区别很大，编程模型完全不同。 阻塞 / 非阻塞描述的是函数，指访问某个函数时是否会阻塞线程(block，线程进入阻塞状态)。 同步 / 异步描述的是执行IO操作的主体是谁，同步是由用户进程自己去执行最终的IO操作。异步是用户进程自己不关系实际IO操作的过程，只需要由内核在IO完成后通知它既可，由内核进程来执行最终的IO操作。 这两组概念交集在一起参生的非阻塞同步IO和非阻塞异步IO的概念就不难理解。 非阻塞同步IO指的是用户调用读写方法是不阻塞的，立刻返回的，而且需要用户线程来检查IO状态。需要注意的是，如果发现有可以操作的IO，那么实际用户进程还是会阻塞等待内核复制数据到用户进程，它与同步阻塞IO的区别是后者全程等待。 非阻塞异步IO指的是用户调用读写方法是不阻塞的，立刻返回，而且用户不需要关注读写，只需要提供回调操作，内核线程在完成读写后回调用户提供的callback。 这两个概念的不同造成了编程模型的不同。 非阻塞同步IO由于读写方法非阻塞，并且需要用户自己来进行读写，所以每次调用读写方法实际读写的字节数是不确定的，所以需要一个Buffer来保存每次读写的字节状态。更重要的是用户不知道什么时候完成了读写，一般需要用while循环判断Buffer的状态来跟踪读写。 非阻塞异步IO由于是内核线程进行读写，并且在IO完成后会回调用户提供的callback，编程模型就比较简单，用户只需要调用读写，提供回调就可以了，比如 read(filename, callback) select / poll / epoll 从本质上说都是非阻塞同步IO，select会收到IO就绪的状态，然后通知用户去处理IO，实际的IO操作还需要用户等待内核复制操作。 要理解IO就绪和完成的区别。就绪指的是还需要用户自己去处理，完成指的是内核帮助完成了，用户不用关心IO过程，只需要提供回调函数。 理解了非阻塞同步IO和非阻塞异步IO的区别之后，就不难理解Java NIO的设计了。NIO是围绕ByteBuffer来进行读写的，ByteBuffer是一个缓冲区，用来记录读写的状态，通过多次检查ByteBuffer的状态来确定IO是否完成。 Java 1.7的NIO2.0 引入了非阻塞异步IO的概念，编程模型大大简化了。用户只需要关注回调函数即可。]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Java IO&NIO]]></title>
+    <url>%2F2019%2F01%2F20%2FJava-IO-NIO%2F</url>
+    <content type="text"><![CDATA[图解 分类IO流的分类： ·按照流的流向分，可以分为输入流和输出流； ·按照操作单元划分，可以划分为字节流和字符流； ·按照流的角色划分为节点流和处理流。 常见面试题 什么是IO流？ 它是一种数据的流从源头流到目的地。比如文件拷贝，输入流和输出流都包括了。输入流从文件中读取数据存储到进程(process)中，输出流从进程中读取数据然后写入到目标文件。 字节流和字符流的区别。 字节流在JDK1.0中就被引进了，用于操作包含ASCII字符的文件。JAVA也支持其他的字符如Unicode，为了读取包含Unicode字符的文件，JAVA语言设计者在JDK1.1中引入了字符流。ASCII作为Unicode的子集，对于英语字符的文件，可以可以使用字节流也可以使用字符流。 Java中流类的超类主要由那些？ java.io.InputStreamjava.io.OutputStreamjava.io.Readerjava.io.Writer FileInputStream和FileOutputStream是什么？ 这是在拷贝文件操作的时候，经常用到的两个类。在处理小文件的时候，它们性能表现还不错，在大文件的时候，最好使用BufferedInputStream (或 BufferedReader) 和 BufferedOutputStream (或 BufferedWriter) 字节流和字符流，你更喜欢使用拿一个？ 个人来说，更喜欢使用字符流，因为他们更新一些。许多在字符流中存在的特性，字节流中不存在。比如使用BufferedReader而不是BufferedInputStreams或DataInputStream，使用newLine()方法来读取下一行，但是在字节流中我们需要做额外的操作。 System.out.println()是什么？ println是PrintStream的一个方法。out是一个静态PrintStream类型的成员变量，System是一个java.lang包中的类，用于和底层的操作系统进行交互。 什么是Filter流？ Filter Stream是一种IO流主要作用是用来对存在的流增加一些额外的功能，像给目标文件增加源文件中不存在的行数，或者增加拷贝的性能。 有哪些可用的Filter流？ 在java.io包中主要由4个可用的filter Stream。两个字节filter stream，两个字符filter stream. 分别是FilterInputStream, FilterOutputStream, FilterReader and FilterWriter.这些类是抽象类，不能被实例化的。 有些Filter流的子类: LineNumberInputStream 给目标文件增加行号 DataInputStream 有些特殊的方法如readInt(), readDouble()和readLine() 等可以读取一个 int, double和一个string一次性的, BufferedInputStream 增加性能 PushbackInputStream 推送要求的字节到系统中 SequenceInputStream的作用？ 这个类的作用是将多个输入流合并成一个输入流，通过SequenceInputStream类包装后形成新的一个总的输入流。在拷贝多个文件到一个目标文件的时候是非常有用的。可用使用很少的代码实现 说说PrintStream和PrintWriter 他们两个的功能相同，但是属于不同的分类。字节流和字符流。他们都有println()方法。 在文件拷贝的时候，那一种流可用提升更多的性能？在字节流的时候，使用BufferedInputStream和BufferedOutputStream。在字符流的时候，使用BufferedReader 和 BufferedWriter 说说管道流(Piped Stream) 有四种管道流， PipedInputStream, PipedOutputStream, PipedReader 和 PipedWriter.在多个线程或进程中传递数据的时候管道流非常有用。 说说File类它不属于 IO流，也不是用于文件操作的，它主要用于知道一个文件的属性，读写权限，大小等信息。注意：Java7中文件IO发生了很大的变化，专门引入了很多新的类来取代原来的基于java.io.File的文件IO操作方式。 说说RandomAccessFile? 它在java.io包中是一个特殊的类，既不是输入流也不是输出流，它两者都可以做到。他是Object的直接子类。通常来说，一个流只有一个功能，要么读，要么写。但是RandomAccessFile既可以读文件，也可以写文件。 DataInputStream 和 DataOutStream有的方法，在RandomAccessFile中都存在。 NIO与AIO学习总结 简介Java NIO 是 java 1.4 之后新出的一套IO接口，这里的的新是相对于原有标准的Java IO和Java Networking接口。NIO提供了一种完全不同的操作方式。 NIO中的N可以理解为Non-blocking，不单纯是New。 它支持面向缓冲的，基于通道的I/O操作方法。 随着JDK 7的推出，NIO系统得到了扩展，为文件系统功能和文件处理提供了增强的支持。 由于NIO文件类支持的这些新的功能，NIO被广泛应用于文件处理。 NIO的特性/NIO与IO区别: 1)IO是面向流的，NIO是面向缓冲区的；2)IO流是阻塞的，NIO流是不阻塞的;3)NIO有选择器，而IO没有。 读数据和写数据方式: 从通道进行数据读取 ：创建一个缓冲区，然后请求通道读取数据。 从通道进行数据写入 ：创建一个缓冲区，填充数据，并要求通道写入数据。 NIO核心组件简单介绍 ChannelsBuffersSelectors 在理解了NIO的基础上，看AIO，区别在于AIO是等读写过程完成后再去调用回调函数。 NIO是同步非阻塞的 AIO是异步非阻塞的 由于NIO的读写过程依然在应用线程里完成，所以对于那些读写过程时间长的，NIO就不太适合。 而AIO的读写过程完成后才被通知，所以AIO能够胜任那些重量级，读写过程长的任务。 小型网络服务器 http://www.importnew.com/21341.html]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[java jvm 相关命令]]></title>
     <url>%2F2019%2F01%2F20%2Fjava-jvm-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4%2F</url>
     <content type="text"><![CDATA[概述程序运行中经常会遇到各种问题，定位问题时通常需要综合各种信息，如系统日志、堆dump文件、线程dump文件、GC日志等。通过虚拟机监控和诊断工具可以帮忙我们快速获取、分析需要的数据，进而提高问题解决速度。 本文将介绍虚拟机常用监控和问题诊断命令工具的使用方法，主要包含以下工具: jps: 显示系统中所有Hotspot虚拟机进程jstack：显示虚拟机的线程栈信息jstat：收集hotspot虚拟机各方面运行的数据jmap：用于生成虚拟机内存快照信息jinfo：显示虚拟机的配置信息jconsole：一个java GUI监视工具，可以以图表化的形式显示各种数据jvisualvm：一个基于图形化界面的、可以查看本地及远程的JAVA GUI监控工具jhat：用于对JAVA heap进行离线分析的工具Jdb：对core文件和正在运行的Java进程进行实时地调试 jps 命令格式 jps [ options ] [ hostid ] 和Linux的ps类似 常用参数说明 -q 忽略输出的类名、Jar名以及传递给main方法的参数，只输出pid。 -m 输出传递给main方法的参数，如果是内嵌的JVM则输出为null。 -l 输出应用程序主类的完整包名，或者是应用程序JAR文件的完整路径。 -v 输出传给JVM的参数。 -V 输出通过标记的文件传递给JVM的参数（.hotspotrc文件，或者是通过参数-XX:Flags=&lt;filename&gt;指定的文件）。 -J 用于传递jvm选项到由javac调用的java加载器中，例如，“-J-Xms48m”将把启动内存设置为48M，使用-J选项可以非常方便的向基于Java的开发的底层虚拟机应用程序传递参数。 jstack命令(Java Stack Trace)https://bijian1013.iteye.com/blog/2221340 jstathttps://bijian1013.iteye.com/blog/2221351 jmaphttps://bijian1013.iteye.com/blog/2221386 其他https://bijian1013.iteye.com/blog/2221334]]></content>

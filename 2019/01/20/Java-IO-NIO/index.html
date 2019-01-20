@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="杂文," />
+  <meta name="keywords" content="Java基础," />
 
 
 
@@ -81,18 +81,21 @@
 
 
 
-<meta name="description" content="优秀的人，不是不合群，而是他们合群的人里面没有你Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can">
-<meta name="keywords" content="杂文">
+<meta name="description" content="图解 分类IO流的分类：    ·按照流的流向分，可以分为输入流和输出流；    ·按照操作单元划分，可以划分为字节流和字符流；    ·按照流的角色划分为节点流和处理流。 常见面试题 什么是IO流？  它是一种数据的流从源头流到目的地。比如文件拷贝，输入流和输出流都包括了。输入流从文件中读取数据存储到进程(process)中，输出流从进程中读取数据然后写入到目标文件。  字节流和字符流的区别。">
+<meta name="keywords" content="Java基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2017/12/08/hello-world/index.html">
+<meta property="og:title" content="Java IO&amp;NIO">
+<meta property="og:url" content="http://yoursite.com/2019/01/20/Java-IO-NIO/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="优秀的人，不是不合群，而是他们合群的人里面没有你Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can">
+<meta property="og:description" content="图解 分类IO流的分类：    ·按照流的流向分，可以分为输入流和输出流；    ·按照操作单元划分，可以划分为字节流和字符流；    ·按照流的角色划分为节点流和处理流。 常见面试题 什么是IO流？  它是一种数据的流从源头流到目的地。比如文件拷贝，输入流和输出流都包括了。输入流从文件中读取数据存储到进程(process)中，输出流从进程中读取数据然后写入到目标文件。  字节流和字符流的区别。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-02T14:01:23.195Z">
+<meta property="og:image" content="https://i.imgur.com/KmZBZZk.jpg">
+<meta property="og:image" content="https://i.imgur.com/3cHY2bM.png">
+<meta property="og:updated_time" content="2019-01-20T13:39:09.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="优秀的人，不是不合群，而是他们合群的人里面没有你Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can">
+<meta name="twitter:title" content="Java IO&amp;NIO">
+<meta name="twitter:description" content="图解 分类IO流的分类：    ·按照流的流向分，可以分为输入流和输出流；    ·按照操作单元划分，可以划分为字节流和字符流；    ·按照流的角色划分为节点流和处理流。 常见面试题 什么是IO流？  它是一种数据的流从源头流到目的地。比如文件拷贝，输入流和输出流都包括了。输入流从文件中读取数据存储到进程(process)中，输出流从进程中读取数据然后写入到目标文件。  字节流和字符流的区别。">
+<meta name="twitter:image" content="https://i.imgur.com/KmZBZZk.jpg">
 
 
 
@@ -122,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/12/08/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/20/Java-IO-NIO/"/>
 
 
 
 
 
-  <title>Hello World | Kunrong-blog</title>
+  <title>Java IO&NIO | Kunrong-blog</title>
   
 
 
@@ -418,7 +421,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/08/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/20/Java-IO-NIO/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -435,7 +438,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">Java IO&NIO</h1>
         
 
         <div class="post-meta">
@@ -447,8 +450,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-08T09:51:32+08:00">
-                2017-12-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-20T19:27:41+08:00">
+                2019-01-20
               </time>
             
 
@@ -470,8 +473,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -507,17 +510,91 @@
       
 
       
-        <p><blockquote class="blockquote-center">优秀的人，不是不合群，而是他们合群的人里面没有你</blockquote><br>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-<p>最近访客</p>
-<div class="ds-recent-visitors" data-num-items="39" data-avatar-size="40" id="ds-recent-visitors"></div>
+        <h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p><img src="https://i.imgur.com/KmZBZZk.jpg" alt=""></p>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>IO流的分类：<br>    ·按照流的流向分，可以分为输入流和输出流；<br>    ·按照操作单元划分，可以划分为字节流和字符流；<br>    ·按照流的角色划分为节点流和处理流。</p>
+<h2 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h2><ol>
+<li>什么是IO流？</li>
+</ol>
+<p>它是一种数据的流从源头流到目的地。比如文件拷贝，输入流和输出流都包括了。输入流从文件中读取数据存储到进程(process)中，输出流从进程中读取数据然后写入到目标文件。</p>
+<ol>
+<li>字节流和字符流的区别。</li>
+</ol>
+<p>字节流在JDK1.0中就被引进了，用于操作包含ASCII字符的文件。JAVA也支持其他的字符如Unicode，为了读取包含Unicode字符的文件，JAVA语言设计者在JDK1.1中引入了字符流。ASCII作为Unicode的子集，对于英语字符的文件，可以可以使用字节流也可以使用字符流。</p>
+<ol>
+<li>Java中流类的超类主要由那些？</li>
+</ol>
+<p>java.io.InputStream<br>java.io.OutputStream<br>java.io.Reader<br>java.io.Writer</p>
+<ol>
+<li>FileInputStream和FileOutputStream是什么？</li>
+</ol>
+<p>这是在拷贝文件操作的时候，经常用到的两个类。在处理小文件的时候，它们性能表现还不错，在大文件的时候，最好使用BufferedInputStream (或 BufferedReader) 和 BufferedOutputStream (或 BufferedWriter)</p>
+<ol>
+<li>字节流和字符流，你更喜欢使用拿一个？</li>
+</ol>
+<p>个人来说，更喜欢使用字符流，因为他们更新一些。许多在字符流中存在的特性，字节流中不存在。比如使用BufferedReader而不是BufferedInputStreams或DataInputStream，使用newLine()方法来读取下一行，但是在字节流中我们需要做额外的操作。</p>
+<ol>
+<li>System.out.println()是什么？</li>
+</ol>
+<p>println是PrintStream的一个方法。out是一个静态PrintStream类型的成员变量，System是一个java.lang包中的类，用于和底层的操作系统进行交互。</p>
+<ol>
+<li>什么是Filter流？</li>
+</ol>
+<p>Filter Stream是一种IO流主要作用是用来对存在的流增加一些额外的功能，像给目标文件增加源文件中不存在的行数，或者增加拷贝的性能。</p>
+<ol>
+<li>有哪些可用的Filter流？</li>
+</ol>
+<p>在java.io包中主要由4个可用的filter Stream。两个字节filter stream，两个字符filter stream. 分别是FilterInputStream, FilterOutputStream, FilterReader and FilterWriter.这些类是抽象类，不能被实例化的。</p>
+<p>有些Filter流的子类:</p>
+<p>LineNumberInputStream 给目标文件增加行号</p>
+<p>DataInputStream 有些特殊的方法如readInt(), readDouble()和readLine() 等可以读取一个 int, double和一个string一次性的,</p>
+<p>BufferedInputStream 增加性能</p>
+<p>PushbackInputStream 推送要求的字节到系统中</p>
+<ol>
+<li>SequenceInputStream的作用？</li>
+</ol>
+<p>这个类的作用是将多个输入流合并成一个输入流，通过SequenceInputStream类包装后形成新的一个总的输入流。在拷贝多个文件到一个目标文件的时候是非常有用的。可用使用很少的代码实现</p>
+<ol>
+<li>说说PrintStream和PrintWriter</li>
+</ol>
+<p>他们两个的功能相同，但是属于不同的分类。字节流和字符流。他们都有println()方法。</p>
+<ol>
+<li><p>在文件拷贝的时候，那一种流可用提升更多的性能？<br>在字节流的时候，使用BufferedInputStream和BufferedOutputStream。<br>在字符流的时候，使用BufferedReader 和 BufferedWriter</p>
+</li>
+<li><p>说说管道流(Piped Stream)</p>
+</li>
+</ol>
+<p>有四种管道流， PipedInputStream, PipedOutputStream, PipedReader 和 PipedWriter.在多个线程或进程中传递数据的时候管道流非常有用。</p>
+<ol>
+<li><p>说说File类<br>它不属于 IO流，也不是用于文件操作的，它主要用于知道一个文件的属性，读写权限，大小等信息。注意：Java7中文件IO发生了很大的变化，专门引入了很多新的类来取代原来的基于java.io.File的文件IO操作方式。</p>
+</li>
+<li><p>说说RandomAccessFile?</p>
+</li>
+</ol>
+<p>它在java.io包中是一个特殊的类，既不是输入流也不是输出流，它两者都可以做到。他是Object的直接子类。通常来说，一个流只有一个功能，要么读，要么写。但是RandomAccessFile既可以读文件，也可以写文件。 DataInputStream 和 DataOutStream有的方法，在RandomAccessFile中都存在。</p>
+<h2 id="NIO与AIO学习总结"><a href="#NIO与AIO学习总结" class="headerlink" title="NIO与AIO学习总结"></a>NIO与AIO学习总结</h2><ol>
+<li>简介<br>Java NIO 是 java 1.4 之后新出的一套IO接口，这里的的新是相对于原有标准的Java IO和Java Networking接口。NIO提供了一种完全不同的操作方式。<br><img src="https://i.imgur.com/3cHY2bM.png" alt=""></li>
+</ol>
+<p>NIO中的N可以理解为Non-blocking，不单纯是New。</p>
+<p>它支持面向缓冲的，基于通道的I/O操作方法。 随着JDK 7的推出，NIO系统得到了扩展，为文件系统功能和文件处理提供了增强的支持。 由于NIO文件类支持的这些新的功能，NIO被广泛应用于文件处理。</p>
+<ol>
+<li>NIO的特性/NIO与IO区别:</li>
+</ol>
+<p>1)IO是面向流的，NIO是面向缓冲区的；<br>2)IO流是阻塞的，NIO流是不阻塞的;<br>3)NIO有选择器，而IO没有。</p>
+<ol>
+<li>读数据和写数据方式:</li>
+</ol>
+<p>从通道进行数据读取 ：创建一个缓冲区，然后请求通道读取数据。</p>
+<p>从通道进行数据写入 ：创建一个缓冲区，填充数据，并要求通道写入数据。</p>
+<ol>
+<li>NIO核心组件简单介绍</li>
+</ol>
+<p>Channels<br>Buffers<br>Selectors</p>
+<p>在理解了NIO的基础上，看AIO，区别在于AIO是等读写过程完成后再去调用回调函数。</p>
+<p>NIO是同步非阻塞的</p>
+<p>AIO是异步非阻塞的</p>
+<p>由于NIO的读写过程依然在应用线程里完成，所以对于那些读写过程时间长的，NIO就不太适合。</p>
+<p>而AIO的读写过程完成后才被通知，所以AIO能够胜任那些重量级，读写过程长的任务。</p>
+<p>小型网络服务器 <a href="http://www.importnew.com/21341.html" target="_blank" rel="noopener">http://www.importnew.com/21341.html</a></p>
 
       
     </div>
@@ -535,7 +612,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/杂文/" rel="tag"># 杂文</a>
+            <a href="/tags/Java基础/" rel="tag"># Java基础</a>
           
         </div>
       
@@ -548,14 +625,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/01/20/java-jvm-相关命令/" rel="next" title="java jvm 相关命令">
+                <i class="fa fa-chevron-left"></i> java jvm 相关命令
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/10/page/" rel="prev" title="热度榜">
-                热度榜 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/20/非阻塞同步和非阻塞异步的区别/" rel="prev" title="非阻塞同步和非阻塞异步的区别">
+                非阻塞同步和非阻塞异步的区别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -712,7 +793,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图解"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x56FE;&#x89E3;" class="headerlink" title="&#x56FE;&#x89E3;"></a>&#x56FE;&#x89E3;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5206;&#x7C7B;" class="headerlink" title="&#x5206;&#x7C7B;"></a>&#x5206;&#x7C7B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见面试题"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;" class="headerlink" title="&#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;"></a>&#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NIO与AIO学习总结"><span class="nav-number">4.</span> <span class="nav-text"><a href="#NIO&#x4E0E;AIO&#x5B66;&#x4E60;&#x603B;&#x7ED3;" class="headerlink" title="NIO&#x4E0E;AIO&#x5B66;&#x4E60;&#x603B;&#x7ED3;"></a>NIO&#x4E0E;AIO&#x5B66;&#x4E60;&#x603B;&#x7ED3;</span></a></li></ol></div>
             
 
           </div>
