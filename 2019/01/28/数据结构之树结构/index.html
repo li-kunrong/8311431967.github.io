@@ -89,10 +89,15 @@
 <meta property="og:site_name" content="Kunrong-blog">
 <meta property="og:description" content="二叉树 完全二叉树若高度为h，除h层，其他各层（1-h-1）的结点数都达到最大个数，第h层有叶子结点，并且叶子结点都是从左到右依次排布，这就是完全二叉树。  满二叉树除叶子节点外，每一个左右节点都有左右子树，且叶子节点都在底层  平衡二叉树又被称作ALV树，也是二叉排序树（BST）性质：空树或者他的左右两个子树的高度差绝对值不超过1，并且左右两个子树都时一颗平衡二叉树。   堆堆是具有以下性质的完">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-29T01:08:05.920Z">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/524341/201604/524341-20160414100804004-506796201.jpg">
+<meta property="og:image" content="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2014/7af22798.jpg">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/524341/201604/524341-20160414101039660-287121250.jpg">
+<meta property="og:image" content="https://img-blog.csdn.net/20130508094524405">
+<meta property="og:updated_time" content="2019-01-29T03:43:02.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构之树结构">
 <meta name="twitter:description" content="二叉树 完全二叉树若高度为h，除h层，其他各层（1-h-1）的结点数都达到最大个数，第h层有叶子结点，并且叶子结点都是从左到右依次排布，这就是完全二叉树。  满二叉树除叶子节点外，每一个左右节点都有左右子树，且叶子节点都在底层  平衡二叉树又被称作ALV树，也是二叉排序树（BST）性质：空树或者他的左右两个子树的高度差绝对值不超过1，并且左右两个子树都时一颗平衡二叉树。   堆堆是具有以下性质的完">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/524341/201604/524341-20160414100804004-506796201.jpg">
 
 
 
@@ -536,9 +541,19 @@
 <p>为什么用红黑树<br>简单来说红黑树就是为了解决二叉查找树的缺陷，因为二叉查找树在某些情况下会退化成一个线性结构。详细了解可以查看<br><a href="https://juejin.im/post/5a27c6946fb9a04509096248#comment" target="_blank" rel="noopener">看漫画理解</a></p>
 <h2 id="B-B-B-树"><a href="#B-B-B-树" class="headerlink" title="B- B+ B*树"></a>B- B+ B*树</h2><ol>
 <li>B- 即B树是一种平衡的多路查找树，在文件系统中有所应用，主要用作文件的索引。</li>
-<li>B+树的叶子节点链表结构相比B树便于扫库和范围检索。B+树支持区间查询，非常方便，而B树不支持，这是数据库选用B+树的最主要原因</li>
-<li>B<em>/树是B+树的变体， B</em>/树分配新节点的概率比B+树低，空间使用率更高。</li>
 </ol>
+<p><img src="http://images2015.cnblogs.com/blog/524341/201604/524341-20160414100804004-506796201.jpg" alt=""></p>
+<ol>
+<li><p>B+树的叶子节点链表结构相比B树便于扫库和范围检索。B+树支持区间查询，非常方便，而B树不支持，这是数据库选用B+树的最主要原因<br><img src="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2014/7af22798.jpg" alt=""></p>
+</li>
+<li><p>B<em>/树是B+树的变体， B</em>/树分配新节点的概率比B+树低，空间使用率更高。</p>
+</li>
+</ol>
+<p><img src="http://images2015.cnblogs.com/blog/524341/201604/524341-20160414101039660-287121250.jpg" alt=""></p>
+<h2 id="LSM树-Log-Structured-Merge-Trees"><a href="#LSM树-Log-Structured-Merge-Trees" class="headerlink" title="LSM树(Log-Structured Merge-Trees)"></a>LSM树(Log-Structured Merge-Trees)</h2><p>B+树的弱点<br>B+树最大的性能问题是会产生大量的随机IO，随着新数据的插入，叶子节点会慢慢分裂，逻辑上连续的叶子节点在物理上往往不连续，甚至分离的很远，但做范围查询时，会产生大量读随机IO。</p>
+<p>对于大量的随机写也一样，举一个插入key跨度很大的例子，如7-&gt;1000-&gt;3-&gt;2000 … 新插入的数据存储在磁盘上相隔很远，会产生大量的随机写IO.</p>
+<p>从上面可以看出，低下的磁盘寻道速度严重影响性能（近些年来，磁盘寻道速度的发展几乎处于停滞的状态）.</p>
+<p>它的原理是把一颗大树拆分成N棵小树， 它首先写入到内存中（内存没有寻道速度的问题，随机写的性能得到大幅提升），在内存中构建一颗有序小树，随着小树越来越大，内存的小树会flush到磁盘上。当读时，由于不知道数据在哪棵小树上，因此必须遍历所有的小树，但在每颗小树内部数据是有序的。<br><img src="https://img-blog.csdn.net/20130508094524405" alt=""></p>
 
       
     </div>
@@ -666,7 +681,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -677,7 +692,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -688,7 +703,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -737,7 +752,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E8C;&#x53C9;&#x6811;" class="headerlink" title="&#x4E8C;&#x53C9;&#x6811;"></a>&#x4E8C;&#x53C9;&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5806;" class="headerlink" title="&#x5806;"></a>&#x5806;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉查找树（BST）"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#xFF08;BST&#xFF09;" class="headerlink" title="&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#xFF08;BST&#xFF09;"></a>&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#xFF08;BST&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;" class="headerlink" title="&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;"></a>&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x7EA2;&#x9ED1;&#x6811;" class="headerlink" title="&#x7EA2;&#x9ED1;&#x6811;"></a>&#x7EA2;&#x9ED1;&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-B-B-树"><span class="nav-number">6.</span> <span class="nav-text"><a href="#B-B-B-&#x6811;" class="headerlink" title="B- B+ B*&#x6811;"></a>B- B+ B*&#x6811;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E8C;&#x53C9;&#x6811;" class="headerlink" title="&#x4E8C;&#x53C9;&#x6811;"></a>&#x4E8C;&#x53C9;&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5806;" class="headerlink" title="&#x5806;"></a>&#x5806;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉查找树（BST）"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#xFF08;BST&#xFF09;" class="headerlink" title="&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#xFF08;BST&#xFF09;"></a>&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#xFF08;BST&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;" class="headerlink" title="&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;"></a>&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x7EA2;&#x9ED1;&#x6811;" class="headerlink" title="&#x7EA2;&#x9ED1;&#x6811;"></a>&#x7EA2;&#x9ED1;&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-B-B-树"><span class="nav-number">6.</span> <span class="nav-text"><a href="#B-B-B-&#x6811;" class="headerlink" title="B- B+ B*&#x6811;"></a>B- B+ B*&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSM树-Log-Structured-Merge-Trees"><span class="nav-number">7.</span> <span class="nav-text"><a href="#LSM&#x6811;-Log-Structured-Merge-Trees" class="headerlink" title="LSM&#x6811;(Log-Structured Merge-Trees)"></a>LSM&#x6811;(Log-Structured Merge-Trees)</span></a></li></ol></div>
             
 
           </div>
