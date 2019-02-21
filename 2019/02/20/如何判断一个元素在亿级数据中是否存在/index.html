@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="面试知识," />
 
 
 
@@ -81,16 +81,20 @@
 
 
 
-<meta name="description" content="share my technology">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kunrong-blog">
-<meta property="og:url" content="http://yoursite.com/tags/DP/index.html">
+<meta name="description" content="前言看到的一道面试题  现在有一个非常庞大的数据，假设全是 int 类型。现在我给你一个数，你需要告诉我它是否存在其中(尽量高效)。  常规实现用hashMap来存放数据，他的写效率都非常高 单测用HashSet，底层也是Hashmap 12345678910111213@Testpublic void hashMapTest() &amp;#123;    long start = System.cur">
+<meta name="keywords" content="面试知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何判断一个元素在亿级数据中是否存在">
+<meta property="og:url" content="http://yoursite.com/2019/02/20/如何判断一个元素在亿级数据中是否存在/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="share my technology">
+<meta property="og:description" content="前言看到的一道面试题  现在有一个非常庞大的数据，假设全是 int 类型。现在我给你一个数，你需要告诉我它是否存在其中(尽量高效)。  常规实现用hashMap来存放数据，他的写效率都非常高 单测用HashSet，底层也是Hashmap 12345678910111213@Testpublic void hashMapTest() &amp;#123;    long start = System.cur">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/qORg8ow.png">
+<meta property="og:updated_time" content="2019-02-20T11:00:24.086Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kunrong-blog">
-<meta name="twitter:description" content="share my technology">
+<meta name="twitter:title" content="如何判断一个元素在亿级数据中是否存在">
+<meta name="twitter:description" content="前言看到的一道面试题  现在有一个非常庞大的数据，假设全是 int 类型。现在我给你一个数，你需要告诉我它是否存在其中(尽量高效)。  常规实现用hashMap来存放数据，他的写效率都非常高 单测用HashSet，底层也是Hashmap 12345678910111213@Testpublic void hashMapTest() &amp;#123;    long start = System.cur">
+<meta name="twitter:image" content="https://i.imgur.com/qORg8ow.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/DP/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/20/如何判断一个元素在亿级数据中是否存在/"/>
 
 
 
 
 
-  <title>标签: DP | Kunrong-blog</title>
+  <title>如何判断一个元素在亿级数据中是否存在 | Kunrong-blog</title>
   
 
 
@@ -150,7 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -402,54 +406,211 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>DP<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/如何判断一个元素在亿级数据中是否存在/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kunrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kunrong-blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/12/08/kmp详解/" itemprop="url">
-              
-                <span itemprop="name">kmp详解</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">如何判断一个元素在亿级数据中是否存在</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-12-08T19:56:11+08:00"
-              content="2018-12-08" >
-          12-08
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-20T17:21:00+08:00">
+                2019-02-20
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>看到的一道面试题</p>
+<blockquote>
+<p>现在有一个非常庞大的数据，假设全是 int 类型。现在我给你一个数，你需要告诉我它是否存在其中(尽量高效)。</p>
+</blockquote>
+<h1 id="常规实现"><a href="#常规实现" class="headerlink" title="常规实现"></a>常规实现</h1><p>用hashMap来存放数据，他的写效率都非常高</p>
+<p>单测用HashSet，底层也是Hashmap</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">@Test</span><br><span class="line">public void hashMapTest() &#123;</span><br><span class="line">    long start = System.currentTimeMillis();</span><br><span class="line">    Set&lt;Integer&gt; hashSet = new HashSet&lt;&gt;();</span><br><span class="line">    for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">        hashSet.add(i);</span><br><span class="line">    &#125;</span><br><span class="line">    Assert.assertTrue(hashSet.contains(67));</span><br><span class="line">    Assert.assertTrue(hashSet.contains(670));</span><br><span class="line">    long end = System.currentTimeMillis();</span><br><span class="line">    System.out.println(end-start);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>100没有问题<br>尝试1千万，就内存溢出了</p>
+<p>可见在内存有限的情况下我们不能使用这种方式。</p>
+<p>实际情况也是如此；既然要判断一个数据是否存在于集合中，考虑的算法的效率以及准确性肯定是要把数据全部 load 到内存中的。</p>
+<h1 id="BloomFilter"><a href="#BloomFilter" class="headerlink" title="BloomFilter"></a>BloomFilter</h1><p>基于上面分析的条件，要实现这个需求最需要解决的是 如何将庞大的数据load到内存中。</p>
+<p>而我们是否可以换种思路，因为只是需要判断数据是否存在，也不是需要把数据查询出来，所以完全没有必要将真正的数据存放进去。</p>
+<p>伟大的科学家们已经帮我们想到了这样的需求。</p>
+<p>BurtonHowardBloom 在 1970 年提出了一个叫做 BloomFilter（中文翻译：布隆过滤）的算法。</p>
+<p>它主要就是用于解决判断一个元素是否在一个集合中，但它的优势是只需要占用很小的内存空间以及有着高效的查询效率。</p>
+<p>所以在这个场景下在合适不过了。</p>
+<p>Bloom Filter 原理<br>下面来分析下它的实现原理</p>
+<blockquote>
+<p>官方的说法是：它是一个保存了很长的二级制向量，同时结合 Hash 函数实现的。</p>
+</blockquote>
+<p><img src="https://i.imgur.com/qORg8ow.png" alt=""></p>
+<p>如图所示：</p>
+<p>首先需要初始化一个二进制的数组，长度设为 L（图中为 8），同时初始值全为 0 。</p>
+<p>当写入一个 A1=1000 的数据时，需要进行 H 次 hash 函数的运算（这里为 2 次）；与 HashMap 有点类似，通过算出的 HashCode 与 L 取模后定位到 0、2 处，将该处的值设为 1。</p>
+<p>A2=2000 也是同理计算后将 4、7 位置设为 1。</p>
+<p>当有一个 B1=1000 需要判断是否存在时，也是做两次 Hash 运算，定位到 0、2 处，此时他们的值都为 1 ，所以认为 B1=1000 存在于集合中。</p>
+<p>当有一个 B2=3000 时，也是同理。第一次 Hash 定位到 index=4 时，数组中的值为 1，所以再进行第二次 Hash 运算，结果定位到 index=5 的值为 0，所以认为 B2=3000 不存在于集合中。</p>
+<p>整个的写入、查询的流程就是这样，汇总起来就是：</p>
+<p>对写入的数据做 H 次 hash 运算定位到数组中的位置，同时将数据改为 1 。当有数据查询时也是同样的方式定位到数组中。<br>一旦其中的有一位为 0 则认为数据肯定不存在于集合，否则数据可能存在于集合中。</p>
+<p>所以布隆过滤有以下几个特点：</p>
+<p>只要返回数据不存在，则肯定不存在。</p>
+<p>返回数据存在，但只能是大概率存在。</p>
+<p>同时不能清除其中的数据。</p>
+<p>第一点应该都能理解，重点解释下 2、3 点。</p>
+<p>为什么返回存在的数据却是可能存在呢，这其实也和 HashMap 类似。</p>
+<p>在有限的数组长度中存放大量的数据，即便是再完美的 Hash 算法也会有冲突，所以有可能两个完全不同的 A、B 两个数据最后定位到的位置是一模一样的。</p>
+<p>这时拿 B 进行查询时那自然就是误报了。</p>
+<p>删除数据也是同理，当我把 B 的数据删除时，其实也相当于是把 A 的数据删掉了，这样也会造成后续的误报。</p>
+<p>基于以上的 Hash 冲突的前提，所以 BloomFilter 有一定的误报率，这个误报率和 Hash 算法的次数 H，以及数组长度 L 都是有关的。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试知识/" rel="tag"># 面试知识</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/16/总结排序算法/" rel="next" title="总结排序算法">
+                <i class="fa fa-chevron-left"></i> 总结排序算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/20/sql的q执行顺序/" rel="prev" title="sql的执行顺序">
+                sql的执行顺序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -457,7 +618,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
       <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI3Mi84ODM2"></div>
+    </div>
+
+  
 
 
         </div>
@@ -479,8 +646,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -560,6 +736,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常规实现"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5E38;&#x89C4;&#x5B9E;&#x73B0;" class="headerlink" title="&#x5E38;&#x89C4;&#x5B9E;&#x73B0;"></a>&#x5E38;&#x89C4;&#x5B9E;&#x73B0;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BloomFilter"><span class="nav-number">3.</span> <span class="nav-text"><a href="#BloomFilter" class="headerlink" title="BloomFilter"></a>BloomFilter</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -695,6 +887,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -723,6 +919,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

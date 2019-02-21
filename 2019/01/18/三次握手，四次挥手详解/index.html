@@ -90,7 +90,7 @@
 <meta property="og:description" content="介绍TCP是一种面向连接的单播协议，在发送数据前，通信双方必须在彼此间建立一条连接。所谓的“连接”，其实是客户端和服务器的内存里保存的一份关于对方的信息，如ip地址、端口号等。 TCP可以看成是一种字节流，它会处理IP层或以下的层的丢包、重复以及错误问题。在连接的建立过程中，双方需要交换一些连接的参数。这些参数可以放在TCP头部。 TCP提供了一种可靠、面向连接、字节流、传输层的服务，采用三次握手">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/5BTXHlw.jpg">
-<meta property="og:updated_time" content="2019-01-18T15:51:04.585Z">
+<meta property="og:updated_time" content="2019-02-20T07:42:51.161Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="三次握手，四次挥手详解">
 <meta name="twitter:description" content="介绍TCP是一种面向连接的单播协议，在发送数据前，通信双方必须在彼此间建立一条连接。所谓的“连接”，其实是客户端和服务器的内存里保存的一份关于对方的信息，如ip地址、端口号等。 TCP可以看成是一种字节流，它会处理IP层或以下的层的丢包、重复以及错误问题。在连接的建立过程中，双方需要交换一些连接的参数。这些参数可以放在TCP头部。 TCP提供了一种可靠、面向连接、字节流、传输层的服务，采用三次握手">
@@ -566,6 +566,8 @@
 <p>当外部连接请求到来时，TCP模块会首先查看max_syn_backlog，如果处于SYN_RCVD状态的连接数目超过这一阈值，进入的连接会被拒绝。根据tcp_abort_on_overflow字段来决定是直接丢弃，还是直接reset.</p>
 <p>从服务端来说，三次握手中，第一步server接受到client的syn后，把相关信息放到半连接队列中，同时回复syn+ack给client. 第三步当收到客户端的ack, 将连接加入到全连接队列。</p>
 <p>一般，全连接队列比较小，会先满，此时半连接队列还没满。如果这时收到syn报文，则会进入半连接队列，没有问题。但是如果收到了三次握手中的第3步(ACK)，则会根据tcp_abort_on_overflow字段来决定是直接丢弃，还是直接reset.此时，客户端发送了ACK, 那么客户端认为三次握手完成，它认为服务端已经准备好了接收数据的准备。但此时服务端可能因为全连接队列满了而无法将连接放入，会重新发送第2步的syn+ack, 如果这时有数据到来，服务器TCP模块会将数据存入队列中。一段时间后，client端没收到回复，超时，连接异常，client会主动关闭连接。</p>
+<p>参考资料：<br>简单的理解：<br><a href="https://juejin.im/post/5c078058f265da611c26c235" title="tcp" target="_blank" rel="noopener">https://juejin.im/post/5c078058f265da611c26c235</a></p>
+<p><a href="http://blog.51cto.com/changxy/751958" title="网络攻击" target="_blank" rel="noopener">http://blog.51cto.com/changxy/751958</a></p>
 
       
     </div>
@@ -693,7 +695,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -715,7 +717,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
