@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试知识," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言面试之路漫漫其修远兮，吾将上下而求索 优化查询的方法使用索引应该尽量避免全表扫描，首先应考虑再where以及order by，group by涉及的列上建立索引 优化SQL语句 通过explain（查询优化神器）用来查看sql语句的执行效果，可以帮助选择更好的索引和优化查询语句；eg：explain select * from news; 任何地方都不要使用select  from t,用具体">
+<meta name="keywords" content="面试知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库专题">
+<meta property="og:url" content="http://yoursite.com/2019/02/21/数据库专题/index.html">
+<meta property="og:site_name" content="Kunrong-blog">
+<meta property="og:description" content="前言面试之路漫漫其修远兮，吾将上下而求索 优化查询的方法使用索引应该尽量避免全表扫描，首先应考虑再where以及order by，group by涉及的列上建立索引 优化SQL语句 通过explain（查询优化神器）用来查看sql语句的执行效果，可以帮助选择更好的索引和优化查询语句；eg：explain select * from news; 任何地方都不要使用select  from t,用具体">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-23T14:59:07.804Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库专题">
+<meta name="twitter:description" content="前言面试之路漫漫其修远兮，吾将上下而求索 优化查询的方法使用索引应该尽量避免全表扫描，首先应考虑再where以及order by，group by涉及的列上建立索引 优化SQL语句 通过explain（查询优化神器）用来查看sql语句的执行效果，可以帮助选择更好的索引和优化查询语句；eg：explain select * from news; 任何地方都不要使用select  from t,用具体">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"left"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/21/数据库专题/"/>
+
+
+
+
+
+  <title>数据库专题 | Kunrong-blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kunrong-blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-secweb">
+          <a href="/Secweb/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/数据库专题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kunrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kunrong-blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">数据库专题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-21T10:03:49+08:00">
+                2019-02-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>面试之路漫漫其修远兮，吾将上下而求索</p>
+<h1 id="优化查询的方法"><a href="#优化查询的方法" class="headerlink" title="优化查询的方法"></a>优化查询的方法</h1><h2 id="使用索引"><a href="#使用索引" class="headerlink" title="使用索引"></a>使用索引</h2><p>应该尽量避免全表扫描，首先应考虑再where以及order by，group by涉及的列上建立索引</p>
+<h2 id="优化SQL语句"><a href="#优化SQL语句" class="headerlink" title="优化SQL语句"></a>优化SQL语句</h2><ol>
+<li>通过explain（查询优化神器）用来查看sql语句的执行效果，可以帮助选择更好的索引和优化查询语句；eg：explain select * from news;</li>
+<li>任何地方都不要使用select <em> from t,用具体字段列表代替“</em>”，不要返回用不到的任何字段。</li>
+<li>不在索引类做运算或者使用函数</li>
+<li>查询尽可能使用limit减少返回的行数，减少数据传送传输时间和带宽浪费</li>
+</ol>
+<h2 id="优化数据库对象"><a href="#优化数据库对象" class="headerlink" title="优化数据库对象"></a>优化数据库对象</h2><h3 id="优化表的数据类型"><a href="#优化表的数据类型" class="headerlink" title="优化表的数据类型"></a>优化表的数据类型</h3><p>使用 procedure analyse()函数对表进行分析， 该函数可以对表中列的数据类型提出优化建议。 能小就用小。 表数据类型第一个原则是： 使用能正确的表示和存储数据的最短类型。 这样可以减少对磁盘空间、 内存、 cpu 缓存的使用<br>使用方法：select * from 表名 procedure analyse();</p>
+<h3 id="对表进行拆分"><a href="#对表进行拆分" class="headerlink" title="对表进行拆分"></a>对表进行拆分</h3><ol>
+<li>垂直拆分</li>
+</ol>
+<p>把主键和一些列放在一个表中， 然后把主键和另外的列放在另一个表中。 如果一个表中某些列常用， 而另外一些不常用， 则可以采用垂直拆分</p>
+<ol>
+<li>水平拆分</li>
+</ol>
+<p>根据一列或者多列数据的值把数据行放到两个独立的表中</p>
+<h3 id="使用中间表来提高查询速度"><a href="#使用中间表来提高查询速度" class="headerlink" title="使用中间表来提高查询速度"></a>使用中间表来提高查询速度</h3><p>创建中间表， 表结构和源表结构完全相同， 转移要统计的数据到中间表， 然后在中间表上进行统计， 得出想要的结果。</p>
+<h2 id="硬件优化"><a href="#硬件优化" class="headerlink" title="硬件优化"></a>硬件优化</h2><ol>
+<li>cpu优化，选择多核和主频高的cpu</li>
+<li>内存的优化，使用更大的内存，将尽量多的内存分配给mysql做缓存</li>
+<li>磁盘I/O的优化<ol>
+<li>使用磁盘阵列<br>RAID 0 没有数据冗余， 没有数据校验的磁盘陈列。 实现 RAID 0至少需要两块以上的硬盘， 它将两块以上的硬盘合并成一块， 数据连续地分割在每块盘上。RAID1 是将一个两块硬盘所构成 RAID 磁盘阵列， 其容量仅等于一块硬盘的容量， 因为另一块只是当作数据“镜像”。使用 RAID-0+1 磁盘阵列。 RAID 0+1 是 RAID 0 和 RAID 1 的组合形式。 它在提供与 RAID 1 一样的数据安全保障的同时， 也提供了与 RAID 0 近似的存储性能</li>
+<li>调整磁盘调度算法<br>选择合适的磁盘调度算法，可以减少磁盘的寻道时间<h2 id="Mysql的自身优化"><a href="#Mysql的自身优化" class="headerlink" title="Mysql的自身优化"></a>Mysql的自身优化</h2>对 MySQL 自身的优化主要是对其配置文件 my.cnf 中的各项参数进行优化调整。 如指定 MySQL 查询缓冲区的大小， 指定 MySQL 允许的最大连接进程数等</li>
+</ol>
+</li>
+</ol>
+<h2 id="应用优化"><a href="#应用优化" class="headerlink" title="应用优化"></a>应用优化</h2><ol>
+<li>使用数据库连接池</li>
+<li>使用查询缓存<br> 它的作用是存储 select 查询的文本及其相应结果。 如果随后收到一个相同的查询， 服务器会从查询缓存中直接得到查询结果。 查询缓存适用的对象是更新不频繁的表， 当表中数据更改后， 查询缓存中的相关条目就会被清空。</li>
+</ol>
+<h1 id="如果有一个特别大的访问量到数据库上，-怎么做优化？"><a href="#如果有一个特别大的访问量到数据库上，-怎么做优化？" class="headerlink" title="如果有一个特别大的访问量到数据库上， 怎么做优化？"></a>如果有一个特别大的访问量到数据库上， 怎么做优化？</h1><ol>
+<li>使用优化查询的方法（上述）</li>
+<li>主从复制，读写分离，负载均衡</li>
+</ol>
+<p>目前，大部分的主流关系型数据库都提供了主从复制的功能，通过配置两台（或多台）数据库的主从关系，可以将一台数据库服务器的数据更新同步到另一台服务器上。网站可以利用数据库的这一功能，实现数据库的读写分离，从而改善数据库的负载压力。一个系统的读操作远远多于写操作，因此写操作发向 master，读操作发向 slaves 进行操作（简单的轮循算法来决定使用哪个 slave）。<br>利用数据库的读写分离，Web 服务器在写数据的时候，访问主数据库（Master），主数据库通过主从复制机制将数据更新同步到从数据库（Slave），这样当 Web 服务器读数据的时候，就可以通过从数据库获得数据。这一方案使得在大量读操作的 Web 应用可以轻松地读取数据，而主数据库也只会承受少量的写入操作，还可以实现数据热备份，可谓是一举两得的方案</p>
+<ol>
+<li>数据库的分表，分区，分库<br>分表见上面描述。<br>分区就是把一张表的数据分成多个区块，这些区块可以在一个磁盘上，也可以在不同的磁盘上，分区后，表面上还是一张表，但数据散列在多个位置，这样一来，多块硬盘同时处理不同的请求，从而提高磁盘 I/O 读写性能，实现比较简单。 包括水平分区和垂直分区。<br>分库是根据业务不同把相关的表切分到不同的数据库中，比如 web、bbs、blog 等库</li>
+</ol>
+<h2 id="sql的注入问题"><a href="#sql的注入问题" class="headerlink" title="sql的注入问题"></a>sql的注入问题</h2><ol>
+<li><p>sql语句的安全考虑</p>
+<p> 1.防止 sql 注入， 对特殊字符进行过滤、 转义或者使用预编译的 sql 语句绑定变量。<br> 2.当 sql 语句运行出错时， 不要把数据库返回的错误信息全部显示给用户，以防止泄漏服务器和数据库相关信息。<br>解决方法：</p>
+</li>
+<li>参数绑定。为了防范这样” SQL 注入安全“可以用预编译解决（不要用拼接 SQL 字符串,可以用 prepareStatement,参数用 set 方法进行填装 ）</li>
+<li>检查变量的数据类型和格式</li>
+</ol>
+<p>如果你的 SQL 语句是类似 where id={$id}这种形式， 数据库里所有的 id 都是数字， 那么就应该在 SQL 被执行前， 检查确保变量 id 是 int 类型； 如果是接受邮箱， 那就应该检查并严格确保变量一定是邮箱的格式， 其他的类型比如日期、时间等也是一个道理。 总结起来： 只要是有固定格式的变量， 在 SQL 语句执行前， 应该严格按照固定格式去检查， 确保变量是我们预想的格式， 这样很大程度上可以避免 SQL 注入攻击</p>
+<ol>
+<li>所有的sql语句都封装在存储过程中</li>
+</ol>
+<h2 id="连接问题"><a href="#连接问题" class="headerlink" title="连接问题"></a>连接问题</h2><ol>
+<li>内连接只会返回符合连接条件的纪录</li>
+<li>左外连接（LEFT JOIN 或 LEFT OUTER JOIN ）</li>
+</ol>
+<p>即以左表为基准，到右表找匹配的数据，找不到匹配的用 NULL 补齐。<br>显示左表的全部记录及右表符合连接条件的记录</p>
+<ol>
+<li>右外连接（RIGHT JOIN 或 RIGHT OUTER JOIN ）</li>
+</ol>
+<p>即以右表为基准，到左表找匹配的数据，找不到匹配的用 NULL 补齐。<br>显示右表的全部记录及左表符合连接条件的记录。</p>
+<ol>
+<li>全外连接<br>除了显示符合连接条件的记录外，在 2 个表中的其他记录也显示出来</li>
+</ol>
+<h2 id="数据库中两个表求交集，并集，差集"><a href="#数据库中两个表求交集，并集，差集" class="headerlink" title="数据库中两个表求交集，并集，差集"></a>数据库中两个表求交集，并集，差集</h2><ol>
+<li>求交集</li>
+</ol>
+<p>select A.* from A inner join B using(name,addr,age);</p>
+<ol>
+<li><p>求差集<br>在A中出现但B没有的<br>select A.* from A left join B using(name,addr,age) where B.name is NULL;</p>
+</li>
+<li><p>求并集（用union)</p>
+</li>
+</ol>
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>存储过程：<br>就是一些编译好的sql语句，这些sql语句代码像一个方法一样实现一些功能（对单表或多表的增删查改），然后给代码取一个名字，在用到这个功能的时候就调用他就行。</p>
+<p>优点：</p>
+<ol>
+<li>预编译过了，速度快。</li>
+<li>在服务器运行，减少客户端压力</li>
+<li>允许模块化程序设计，就是只需创建一次过程，以后再程序中就可以调用过程任意次，类似方法的复用。</li>
+<li>减少网络流量</li>
+<li>增强了使用的安全性</li>
+</ol>
+<p>缺点：<br>调试麻烦，可移植性不灵活</p>
+<h1 id="涉及范式的问题"><a href="#涉及范式的问题" class="headerlink" title="涉及范式的问题"></a>涉及范式的问题</h1><p>1NF:字段不可再分，原子性。<br>2NF：满足第二范式（ 2NF ）必须先满足第一范式（ 1NF ）。一个表只能说明一个事物。非主键属性必须完全依赖于主键属性。<br>3NF:满足第三范式（ 3NF ） 必须先满足第二范式（ 2NF ） 。每列都与主键有直接关系，不存在传递依赖。任何非主属性不依赖于其它非主属性<br>BCNF：BCNF是比第三范式更严格一个范式。它要求关系模型中所有的属性（包括主属性和非主属性）都不传递依赖于任何候选关键字。也就是说，当关系型表中功能上互相依赖的那些列的每一列都是一个候选关键字时候，该满足BCNF。</p>
+<p>BCNF实际上是在第三范式的基础上，进一步消除了主属性的传递依赖。</p>
+<p>不符合第一范式的例子(关系数据库中 create 不出这样的表)：<br>表:字段 1, 字段 2(字段 2.1, 字段 2.2), 字段 3 ……<br>不符合第二范式的例子:<br>表:学号, 姓名, 年龄, 课程名称, 成绩, 学分;<br>这个表明显说明了两个事物:学生信息, 课程信息。<br>不符合第三范式的例子:<br>学号, 姓名, 年龄, 所在学院, 学院地点，学院联系电话，主键为”学号”；<br>存在依赖传递: (学号) → (所在学院) → (学院地点, 学院电话)</p>
+<p><a href="https://blog.csdn.net/a327736051/article/details/51419136" title="对BC范式的更深一层理解" target="_blank" rel="noopener">https://blog.csdn.net/a327736051/article/details/51419136</a><br>举例</p>
+<p>有这样一个配件管理表WPE(WNO,PNO,ENO,QNT),其中WNO表示仓库号，PNO表示配件号，ENO表示职工号，QNT表示数量。</p>
+<p>有以下约束要求：</p>
+<p>（1）       一个仓库有多名职工；</p>
+<p>（2）       一个职工仅在一个仓库工作；</p>
+<p>（3）       每个仓库里一种型号的配件由专人负责，但一个人可以管理几种配件；</p>
+<p>（4）       同一种型号的配件可以分放在几个仓库中。</p>
+<p>分析表中的函数依赖关系，可以得到：</p>
+<p>（1）       ENO-&gt;WNO;</p>
+<p>（2）       （WNO，PNO）-&gt;QNT</p>
+<p>（3）       （WNO，PNO）-&gt;ENO</p>
+<p>（4）       （ENO，PNO）-&gt;QNT</p>
+<p>可以看到，候选键有：（ENO,PNO）;(WNO,PNO)。所以，ENO,PNO,WNO均为主属性，QNT为非主属性。显然，非主属性是直接依赖于候选键的。所以此表满足第三范式。</p>
+<p>而我们观察一下主属性：（WNO,PNO）-&gt;ENO;ENO-&gt;WNO。显然WNO对于候选键（WNO,PNO）存在传递依赖，所以不符合BCNF.</p>
+<p>解决这个问题的办法是分拆为两个表：管理表EP（ENO，PNO，QNT）；工作表EW（ENO，WNO）。但这样做会导致函数依赖（WNO,PNO）-&gt;ENO丢失。</p>
+<h1 id="涉及事务的问题"><a href="#涉及事务的问题" class="headerlink" title="涉及事务的问题"></a>涉及事务的问题</h1><p>事务是由一组sql语句组成的逻辑处理单元<br>ACID</p>
+<ol>
+<li>原子性：一个事务中的所有操作，要么全部完成，要么全部不完成，不会结束再中间某个环节，事务在执行过程中发生错误，会被回滚到事务开始前的状态。就像这个事务从来没有执行过一样。</li>
+<li>一致性：在事务开始和完成时，数据库中的数据都保持一致的状态，数据的完整性约束没有被破坏，具体来说就是， 比如表与表之间存在外键约束关系， 那么你对数据库进行的修改操作就必需要满足约束条件， 即如果你修改了一张表中的数据， 那你还需要修改与之存在外键约束关系<br>的其他表中对应的数据， 以达到一致性。</li>
+<li>隔离性：一个事务的执行不能被其他事务干扰，为了防止事务操作间的混淆，必须串行化或者序列化执行请求，使得在同一时间仅有一个请求用于同一数据。（在事务正确提交之前，不允许把该事务对数据的任何改变提供给任何其他事务）（事务处理过程中的中间状态对外部时不可见的）。隔离性通过锁就可以实现。</li>
+<li>持久性：一个事务一旦提交，它对数据库中数据的改变就应该时永久性的。并不会被回滚。</li>
+</ol>
+<h2 id="并发事务带来的问题"><a href="#并发事务带来的问题" class="headerlink" title="并发事务带来的问题"></a>并发事务带来的问题</h2><ol>
+<li>更新丢失<br>两个事务T1和T2 读入同一数据并修改，T2提交的结果覆盖了T1提交的结果，导致T1的修改被丢失。</li>
+<li><p>脏读<br>事务T1修改某一数据，并且将其写回磁盘，事务T2读取同一数据后，T1由于某种原因被撤销，这时T1已修改过的数据恢复原值，T2读到的数据就与数据库中的数据不一致，T2读到的数据就与数据库中的数据不一致，则T2读到的数据为“脏数据”<br>例如：<br>张三的工资为 5000,事务 A 中把他的工资改为 8000,但事务 A 尚未提交。与此同时， 事务 B 正在读取张三的工资， 读取到张三的工资为 8000。 随后，事务 A 发生异常， 而回滚了事务。 张三的工资又回滚为 5000。 最后， 事务 B 读取到的张三工资为 8000 的数据即为脏数据， 事务 B 做了一次脏读。</p>
+</li>
+<li><p>不可重复读</p>
+</li>
+</ol>
+<p>是指在一个事务内， 多次读同一数据。 在这个事务还没有结束时， 另外一个事务也访问该同一数据。 那么， 在第一个事务中的两次读数据之间， 由于第二个事务的修改， 那么第一个事务两次读到的的数据可能是不一样的。 这样就发生了在一个事务内两次相同的查询读到的数据是不一样的， 因此称为是不可重复读。</p>
+<p>例如：<br>在事务 A 中， 读取到张三的工资为 5000， 操作没有完成， 事务还没提交。与此同时， 事务 B 把张三的工资改为 8000， 并提交了事务。 随后， 在事务 A 中，再次读取张三的工资， 此时工资变为 8000。 在一个事务中前后两次读取的结果并不致， 导致了不可重复读</p>
+<ol>
+<li>幻读</li>
+</ol>
+<p>目前工资为 5000 的员工有 10 人， 事务 A 读取所有工资为 5000 的人数为<br>10 人。 此时， 事务 B 插入一条工资也为 5000 的记录。 这是， 事务 A 再次读取<br>工资为 5000 的员工， 记录为 11 人。 此时产生了幻读</p>
+<p>不可重复读的重点是修改：<br>同样的条件， 你读取过的数据， 再次读取出来发现值不一样了。<br>幻读的重点在于新增或者删除：<br>同样的条件， 第 1 次和第 2 次读出来的记录数不一样。<br>避免不一致性的方法和技术就是并发控制。 最常用的技术是封锁技术</p>
+<h2 id="并发控制的方式"><a href="#并发控制的方式" class="headerlink" title="并发控制的方式"></a>并发控制的方式</h2><p>加锁，如乐观锁，悲观锁</p>
+<h2 id="数据库事务的隔离级别"><a href="#数据库事务的隔离级别" class="headerlink" title="数据库事务的隔离级别"></a>数据库事务的隔离级别</h2><p>数据库提供了 4 种隔离级别（由低到高）：<br>这 4 个级别可逐个解决脏读， 不可重复读和幻读这几个问题。</p>
+<ol>
+<li>读未提交数据</li>
+</ol>
+<p>允许事务读取未被其他事务提交的变更，可能由脏读，不可重复读和幻读的问题<br>比如： 某时刻会话 a 修改了一个数据， 但还未提交， 此时会话 b 读取了该数据， 这是，<br>会话 a 回滚了事务， 这就导致数据出现了不一致状态， 这就是脏读</p>
+<ol>
+<li>读以提交数据</li>
+</ol>
+<p>允许事务读取已经被其他事务提交的变更， 可以避免脏读， 可能有不可重复读和幻读<br>的问题<br>例如： 某时刻会话 a 的一个事务里查询一个数据， 得到的数据是 1， 这时会话 b 修改了该数据的值为 2， 并提交了， 此时会话 a 的事务又要读取该数据， 这时的数据是 2， 就样就出现了同一个事务内， 读的结果不一样， 这就是不可重复读</p>
+<ol>
+<li>可重复读（mysql的默认隔离级别）<br>确保事务可以多次从一个字段中读取相同的值， 在这个事务持续期间， 禁止其他事务对这个字段进行更新， 可以避免脏读和不可重复读， 可能会有幻读</li>
+</ol>
+<p>4.可串行化<br>所有事务都一个接一个地串行执行。 可以避免脏读， 不可重复读， 幻读。</p>
+<h2 id="MySQL事务的控制语句"><a href="#MySQL事务的控制语句" class="headerlink" title="MySQL事务的控制语句"></a>MySQL事务的控制语句</h2><p>BEGIN 或 START TRANSACTION： 显示地开启一个事务；<br>COMMIT： 提交事务， 并使已对数据库进行的所有修改称为永久性的；<br>ROLLBACK： 回滚会结束用户的事务， 并撤销正在进行的所有未提交的修改；</p>
+<h1 id="涉及锁的问题"><a href="#涉及锁的问题" class="headerlink" title="涉及锁的问题"></a>涉及锁的问题</h1><h2 id="说下数据库的锁机制，-数据库中都有哪些锁"><a href="#说下数据库的锁机制，-数据库中都有哪些锁" class="headerlink" title="说下数据库的锁机制， 数据库中都有哪些锁"></a>说下数据库的锁机制， 数据库中都有哪些锁</h2><ol>
+<li>共享锁： 可共享读，不可共享修改</li>
+<li>排他锁： 任何事务必须等到X锁被释放后才能对该页进行访问</li>
+</ol>
+<p>产生死锁的四个必要条件：</p>
+<ol>
+<li>互斥条件：一个资源每次只能被一个进程使用</li>
+<li>请求和保持条件：一个进程因请求资源而阻塞时，对已获得的资源保持不放</li>
+<li>不可剥夺条件： 进程已获得的资源，在未使用之前，不能强行剥夺</li>
+<li>环路等待条件： 若干进程之间形成一种首尾相连的循环等待资源关系</li>
+</ol>
+<p>只要系统发生了死锁， 这些条件必然成立， 而只要上述条件之一不满足， 就不会发生死锁</p>
+<ol>
+<li><p>预防死锁</p>
+<ol>
+<li>破坏互斥条件</li>
+<li>破环不可剥夺条件</li>
+<li>破环请求和保持条件</li>
+<li>破坏环路等待条件</li>
+</ol>
+</li>
+<li><p>避免死锁<br>银行家算法</p>
+</li>
+<li>检测死锁</li>
+<li>解除死锁</li>
+</ol>
+<h2 id="mysql锁的粒度（即锁的级别）"><a href="#mysql锁的粒度（即锁的级别）" class="headerlink" title="mysql锁的粒度（即锁的级别）"></a>mysql锁的粒度（即锁的级别）</h2><p>MySQL 各存储引擎使用了三种类型（级别） 的锁定机制： 行级锁定， 页级锁定和表级锁定。</p>
+<ol>
+<li>表级锁</li>
+</ol>
+<p>直接锁定整张表， 在你锁定期间， 其它进程无法对该表进行写操作。 如果你是写锁， 则其它进程则读也不允许。 特点： 开销小， 加锁快； 不会出现死锁； 锁定粒度最大， 发生锁冲突的概率最高， 并发度最低<br>MyISAM 存储引擎采用的是表级锁。<br>有 2 种模式： 表共享读锁和表独占写锁。 加读锁的命令:lock table 表名 read;去掉锁的命令： unlock tables。<br>支持并发插入： 支持查询和插入操作并发进行（在表尾并发插入） 。<br>锁调度机制： 写锁优先。 一个进程请求某个 MyISAM 表的读锁， 同时另一个进程也请求同一表的写锁， MySQL 如何处理呢？ 答案是写进程先获得锁。</p>
+<ol>
+<li>行级锁<br>仅对指定的记录进行加锁， 这样其它进程还是可以对同一个表中的其它记录进行操作。 特点： 开销大， 加锁慢； 会出现死锁； 锁定粒度最小， 发生锁冲突的概率最低， 并发度也最高。</li>
+</ol>
+<p>InnoDB 存储引擎既支持行级锁， 也支持表级锁， 但默认情况下是采用行级锁</p>
+<ol>
+<li>页级锁</li>
+</ol>
+<p>一次锁定相邻的一组记录。 开销和加锁时间界于表锁和行锁之间； 会出现<br>死锁； 锁定粒度界于表锁和行锁之间， 并发度一般。</p>
+<p>最常用的处理多用户并发访问的方法是加锁。 当一个用户锁住数据库中的某个对象时， 其他用户就不能再访问该对象。 加锁对并发访问的影响体现在锁的粒度上。 比如， (表锁)放在一个表上的锁限制对整个表的并发访问； （页锁）放在数据页上的锁限制了对整个数据页的访问； （行锁） 放在行上的锁只限制对该行的并发访问</p>
+<h2 id="乐观锁和悲观所的概念，实现方式和使用场景"><a href="#乐观锁和悲观所的概念，实现方式和使用场景" class="headerlink" title="乐观锁和悲观所的概念，实现方式和使用场景"></a>乐观锁和悲观所的概念，实现方式和使用场景</h2><ol>
+<li>悲观锁：<br>锁如其名， 他对世界是悲观的， 他认为别人访问正在改变的数据的概率是很高的， 所以从数据开始更改时就将数据锁住， 直到更改完成才释放</li>
+</ol>
+<p>悲观锁可能会造成加锁的时间很长， 并发性不好， 特别是长事务， 影响系统的整体性能。<br>悲观锁的实现方式：<br>悲观锁， 也是基于数据库的锁机制实现。 传统的关系型数据库里边就用到了很多这种锁机制， 比如行锁， 表锁等， 读锁， 写锁等， 都是在做操作之前先上锁。</p>
+<ol>
+<li>乐观锁：<br>对世界比较乐观， 认为别人访问正在改变的数据的概率是很低的， 所以直到修改完成准备提交所做的修改到数据库的时候才会将数据锁住，当你读取以及改变该对象时并不加锁， 完成更改后释放。 乐观锁不能解决脏读的问题</li>
+</ol>
+<p>乐观锁加锁的时间要比悲观锁短， 大大提升了大并发量下的系统整体性能表现。</p>
+<p>乐观锁的实现方式：</p>
+<ol>
+<li>大多是基于数据版本（Version） 记录机制实现， 需要为每一行数据增加一个版本标识（也就是每一行数据多一个字段 version） ， 每次更新数据都要更新对应的版本号+1。</li>
+</ol>
+<p>工作原理：读出数据时， 将此版本号一同读出， 之后更新时， 对此版本号加一。 此时， 将提交数据的版本信息与数据库表对应记录的当前版本信息进行比对， 如果提交的数据版本号大于数据库表当前版本号， 则予以更新， 否则认为是过期数据， 不得不重新读取该对象并作出更改</p>
+<h1 id="涉及索引问题"><a href="#涉及索引问题" class="headerlink" title="涉及索引问题"></a>涉及索引问题</h1><h2 id="索引的优点"><a href="#索引的优点" class="headerlink" title="索引的优点"></a>索引的优点</h2><ol>
+<li>加快数据的检索速度</li>
+<li>创建唯一性索引，保证数据库表中每一行数据的唯一性</li>
+<li>加速表和表之间的连接</li>
+<li>在使用分组和排序字句进行数据检索时，可以显著减少查询中分组和排序的时间</li>
+</ol>
+<h2 id="索引的缺点"><a href="#索引的缺点" class="headerlink" title="索引的缺点"></a>索引的缺点</h2><ol>
+<li>占用物理空间</li>
+<li>当对表中的数据进行增加、增加和修改的时候，索引也要动态维护，降低了数据的维护速度。</li>
+</ol>
+<p>性别字段为什么不适合加索引？ 从 B+树原理解释。<br>尽量选择区分度高的字段作为索引,区分度的公式是 count(distinct col)/count(*)， 表示<br>字段不重复的比例， 比例越大我们扫描的记录数越少， 唯一键的区分度是 1， 而一些状态、性别字段可能在大数据面前区分度就是 0。 在性别字段上增加索引， 并不能明显加快检索速度。</p>
+<h2 id="有哪些索引"><a href="#有哪些索引" class="headerlink" title="有哪些索引"></a>有哪些索引</h2><p>唯一索引<br>主键索引<br>聚集索引<br>组合索引</p>
+<h2 id="Mysql-的-B-树索引的优点？为什么不用二叉树？B-树和-B-树为什么比红黑树更合适？"><a href="#Mysql-的-B-树索引的优点？为什么不用二叉树？B-树和-B-树为什么比红黑树更合适？" class="headerlink" title="Mysql 的 B+树索引的优点？为什么不用二叉树？B-树和 B+树为什么比红黑树更合适？"></a>Mysql 的 B+树索引的优点？为什么不用二叉树？B-树和 B+树为什么比红黑树更合适？</h2><p>数据库文件很大，需要存储到磁盘上，索引的结构组织要尽量减少查找过程中磁盘<br>I/O 的存取次数。</p>
+<ol>
+<li>高度原因<br>B+树中的每个结点可以包含大量的关键字，这样树的深度降低了，所以任何关键字的查找必须走一条从根结点到叶子结点的路，所有关键字查询的路径长度相同，导致每一个数据的查询效率相当，这就意味着查找一个元素只要很少结点从外存磁盘中读入内存，很快访问到要查找的数据，减少了磁盘 I/O 的存取次数。</li>
+<li>磁盘预读原理和局部性原理<br>将一个节点的大小设为等于一个页，这样每个节点只需要一次 I/O 就可以完全载入。</li>
+</ol>
+<h2 id="建立索引的几大原则"><a href="#建立索引的几大原则" class="headerlink" title="建立索引的几大原则"></a>建立索引的几大原则</h2><ol>
+<li>最左前缀匹配原则，mysql会一直向右匹配直到范围查询（&gt;, &lt; , between,like)就停止匹配，范围查询会导致组合索引半生效。</li>
+<li>尽量选择区分度高的字段作为索引，某字段的区分度的公式count（distinctcol)/count(*), 表示字段不重复的比例，比例越大，我们扫描的记录数越少，查找匹配的时候可以过滤更多的行，唯一的索引的区分度是1，而一些状态，性别字段可能在大数据面前区分度就是0.</li>
+<li>不在索引列做运算或者使用函数</li>
+<li>尽量使用扩展索引，不要新建索引</li>
+<li>where字句中经常使用的字段应该创建索引，分组字段或者排序字段应该创建字段，两个表的连接字段应该创建索引</li>
+<li>like模糊查询中，右模糊查询（eg:321%)会使用索引，而%321和%322%会放弃索引而使用全局扫描。</li>
+</ol>
+<h1 id="涉及存储引擎的问题"><a href="#涉及存储引擎的问题" class="headerlink" title="涉及存储引擎的问题"></a>涉及存储引擎的问题</h1><h2 id="mysql中的MyIsam与InnoDB的区别"><a href="#mysql中的MyIsam与InnoDB的区别" class="headerlink" title="mysql中的MyIsam与InnoDB的区别"></a>mysql中的MyIsam与InnoDB的区别</h2><p>InnoDB是mysql的默认引擎</p>
+<ol>
+<li>事务处理方面</li>
+</ol>
+<p>MyISAM强调的是性能，查询的速度比InnoDB类型更快，但是不提供事务支持，InnoDB提供事务支持</p>
+<ol>
+<li>外键</li>
+</ol>
+<p>MyISAM不支持外键，InnoDB支持外键</p>
+<ol>
+<li>锁</li>
+</ol>
+<p>MyISAM只支持表级锁，InnoDB支持行级锁和表级锁，默认是行级锁，行锁大幅度提高了多用户并发操作的性能，InnoDB比较适合插入和更新操作比较多的情况，而MyISAM则适合用于频繁查询的情况，另外，InnoDB表的行锁不是绝对的，如果在执行一个sql语句时，Mysql不能确定哟啊扫描的范围，InnoDB表同样会锁全表</p>
+<ol>
+<li>全文索引</li>
+</ol>
+<p>全文索引(也称全文检索)是目前搜索引擎使用的一种关键技术。它能够利用「分词技术「等多种算法智能分析出文本文字中关键字词的频率及重要性，然后按照一定的算法规则智能地筛选出我们想要的搜索结果<br>MyISAM 支持全文索引， InnoDB 不支持全文索引。innodb 从 mysql5.6 版本开始提供对全文索引的支持</p>
+<ol>
+<li>表主键</li>
+</ol>
+<p>MyISAM：允许没有主键的表存在。<br>InnoDB：如果没有设定主键，就会自动生成一个 6 字节的主键(用户不可见)。</p>
+<ol>
+<li>表的具体行数</li>
+</ol>
+<p>MyIsam : select count(<em>) from table , 只需独处保存好的行数，因为MyISAM内置了一个计数器，count(</em>)时直接从计数器中读。</p>
+<p>InnoDB: 不保存表的具体行数，也就是说count(*)要扫描一遍整个表来计算有多少行。</p>
+<h3 id="一张表-里面有-ID-自增主键-当-insert-了-17-条记录之后-删除了第-15-16-17-条记录-再把-Mysql-重启-再-insert-一条记录-这条记录的-ID-是-18-还是-15-？"><a href="#一张表-里面有-ID-自增主键-当-insert-了-17-条记录之后-删除了第-15-16-17-条记录-再把-Mysql-重启-再-insert-一条记录-这条记录的-ID-是-18-还是-15-？" class="headerlink" title="一张表,里面有 ID 自增主键,当 insert 了 17 条记录之后,删除了第 15,16,17 条记录,再把 Mysql 重启,再 insert 一条记录,这条记录的 ID 是 18 还是 15 ？"></a>一张表,里面有 ID 自增主键,当 insert 了 17 条记录之后,删除了第 15,16,17 条记录,再把 Mysql 重启,再 insert 一条记录,这条记录的 ID 是 18 还是 15 ？</h3><p>如果表的类型是 MyISAM， 那么是 18。<br>因为 MyISAM 表会把自增主键的最大 ID 记录到数据文件里， 重启MySQL 自增主键的最大 ID 也不会丢失。<br>如果表的类型是 InnoDB， 那么是 15。<br>InnoDB 表只是把自增主键的最大 ID 记录到内存中， 所以重启数据库会导致最大 ID 丢失</p>
+<h2 id="关系型数据库和非关系型数据库的区别。"><a href="#关系型数据库和非关系型数据库的区别。" class="headerlink" title="关系型数据库和非关系型数据库的区别。"></a>关系型数据库和非关系型数据库的区别。</h2><p>非关系型数据库的优势：</p>
+<ol>
+<li>性能<br>NOSQL 是基于键值对的， 可以想象成表中的主键和值的对应关系， 而且不需要经过 SQL 层的解析， 所以性能非常高。</li>
+<li>可扩展性<br>同样也是因为基于键值对， 数据之间没有耦合性， 所以非常容易水平扩展。</li>
+</ol>
+<p>关系型数据库的优势：</p>
+<ol>
+<li>复杂查询<br>可以用 SQL 语句方便的在一个表以及多个表之间做非常复杂的数据查询。</li>
+<li>事务支持<br>使得对于安全性能很高的数据访问要求得以实现</li>
+</ol>
+<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="数据库索引失效的集中情况。"><a href="#数据库索引失效的集中情况。" class="headerlink" title="数据库索引失效的集中情况。"></a>数据库索引失效的集中情况。</h2><p>1.对于组合索引， 不是使用的第一部分， 则不会使用索引 。<br>2.or 语句前后没有同时使用索引。 要想使用 or， 又想让索引生效， 只能将 or 条件中的每个列都加上索引<br>3.如果列类型是字符串， 那一定要在条件中使用引号引起来， 否则不会使用索引 。<br>4.如果 mysql 估计使用全表描述比使用索引快， 则不使用索引。<br>5.在索引列上做运算或者使用函数。<br>6.以“%”开头的 LIKE 查询， 模糊匹配。</p>
+<h2 id="数据库表里有-100-万条数据，-想要删除-80-万条数据，-但是因为锁的原因，-删除很慢，-现在想要快速删除怎么办-？"><a href="#数据库表里有-100-万条数据，-想要删除-80-万条数据，-但是因为锁的原因，-删除很慢，-现在想要快速删除怎么办-？" class="headerlink" title="数据库表里有 100 万条数据， 想要删除 80 万条数据， 但是因为锁的原因， 删除很慢， 现在想要快速删除怎么办 ？"></a>数据库表里有 100 万条数据， 想要删除 80 万条数据， 但是因为锁的原因， 删除很慢， 现在想要快速删除怎么办 ？</h2><p>如果需要保留的数据不多， 需要删除的数据很多， 那么可以考虑把需要保留的数据复制到临时表， 然后删除所有数据， 最后复制回去。<br>具体做法是： 先把要保留的数据用 insert into … select <em> from … where …移到另外的表中， truncate table 旧表， 然后再 insert into … select </em> from … ， 这个不存在锁， 比 delete效率高。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试知识/" rel="tag"># 面试知识</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/21/硬币阶梯/" rel="next" title="硬币阶梯">
+                <i class="fa fa-chevron-left"></i> 硬币阶梯
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI3Mi84ODM2"></div>
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload_image/avatar.gif"
+                alt="Kunrong" />
+            
+              <p class="site-author-name" itemprop="name">Kunrong</p>
+              <p class="site-description motion-element" itemprop="description">share my technology</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/8311431967" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/1967-59-52/activities" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优化查询的方法"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4F18;&#x5316;&#x67E5;&#x8BE2;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x4F18;&#x5316;&#x67E5;&#x8BE2;&#x7684;&#x65B9;&#x6CD5;"></a>&#x4F18;&#x5316;&#x67E5;&#x8BE2;&#x7684;&#x65B9;&#x6CD5;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用索引"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x7D22;&#x5F15;" class="headerlink" title="&#x4F7F;&#x7528;&#x7D22;&#x5F15;"></a>&#x4F7F;&#x7528;&#x7D22;&#x5F15;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化SQL语句"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x4F18;&#x5316;SQL&#x8BED;&#x53E5;" class="headerlink" title="&#x4F18;&#x5316;SQL&#x8BED;&#x53E5;"></a>&#x4F18;&#x5316;SQL&#x8BED;&#x53E5;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化数据库对象"><span class="nav-number">2.3.</span> <span class="nav-text"><a href="#&#x4F18;&#x5316;&#x6570;&#x636E;&#x5E93;&#x5BF9;&#x8C61;" class="headerlink" title="&#x4F18;&#x5316;&#x6570;&#x636E;&#x5E93;&#x5BF9;&#x8C61;"></a>&#x4F18;&#x5316;&#x6570;&#x636E;&#x5E93;&#x5BF9;&#x8C61;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化表的数据类型"><span class="nav-number">2.3.1.</span> <span class="nav-text"><a href="#&#x4F18;&#x5316;&#x8868;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;" class="headerlink" title="&#x4F18;&#x5316;&#x8868;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;"></a>&#x4F18;&#x5316;&#x8868;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对表进行拆分"><span class="nav-number">2.3.2.</span> <span class="nav-text"><a href="#&#x5BF9;&#x8868;&#x8FDB;&#x884C;&#x62C6;&#x5206;" class="headerlink" title="&#x5BF9;&#x8868;&#x8FDB;&#x884C;&#x62C6;&#x5206;"></a>&#x5BF9;&#x8868;&#x8FDB;&#x884C;&#x62C6;&#x5206;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用中间表来提高查询速度"><span class="nav-number">2.3.3.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x4E2D;&#x95F4;&#x8868;&#x6765;&#x63D0;&#x9AD8;&#x67E5;&#x8BE2;&#x901F;&#x5EA6;" class="headerlink" title="&#x4F7F;&#x7528;&#x4E2D;&#x95F4;&#x8868;&#x6765;&#x63D0;&#x9AD8;&#x67E5;&#x8BE2;&#x901F;&#x5EA6;"></a>&#x4F7F;&#x7528;&#x4E2D;&#x95F4;&#x8868;&#x6765;&#x63D0;&#x9AD8;&#x67E5;&#x8BE2;&#x901F;&#x5EA6;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件优化"><span class="nav-number">2.4.</span> <span class="nav-text"><a href="#&#x786C;&#x4EF6;&#x4F18;&#x5316;" class="headerlink" title="&#x786C;&#x4EF6;&#x4F18;&#x5316;"></a>&#x786C;&#x4EF6;&#x4F18;&#x5316;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql的自身优化"><span class="nav-number">2.5.</span> <span class="nav-text"><a href="#Mysql&#x7684;&#x81EA;&#x8EAB;&#x4F18;&#x5316;" class="headerlink" title="Mysql&#x7684;&#x81EA;&#x8EAB;&#x4F18;&#x5316;"></a>Mysql&#x7684;&#x81EA;&#x8EAB;&#x4F18;&#x5316;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用优化"><span class="nav-number">2.6.</span> <span class="nav-text"><a href="#&#x5E94;&#x7528;&#x4F18;&#x5316;" class="headerlink" title="&#x5E94;&#x7528;&#x4F18;&#x5316;"></a>&#x5E94;&#x7528;&#x4F18;&#x5316;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如果有一个特别大的访问量到数据库上，-怎么做优化？"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5982;&#x679C;&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x522B;&#x5927;&#x7684;&#x8BBF;&#x95EE;&#x91CF;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#xFF0C;-&#x600E;&#x4E48;&#x505A;&#x4F18;&#x5316;&#xFF1F;" class="headerlink" title="&#x5982;&#x679C;&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x522B;&#x5927;&#x7684;&#x8BBF;&#x95EE;&#x91CF;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#xFF0C; &#x600E;&#x4E48;&#x505A;&#x4F18;&#x5316;&#xFF1F;"></a>&#x5982;&#x679C;&#x6709;&#x4E00;&#x4E2A;&#x7279;&#x522B;&#x5927;&#x7684;&#x8BBF;&#x95EE;&#x91CF;&#x5230;&#x6570;&#x636E;&#x5E93;&#x4E0A;&#xFF0C; &#x600E;&#x4E48;&#x505A;&#x4F18;&#x5316;&#xFF1F;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sql的注入问题"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#sql&#x7684;&#x6CE8;&#x5165;&#x95EE;&#x9898;" class="headerlink" title="sql&#x7684;&#x6CE8;&#x5165;&#x95EE;&#x9898;"></a>sql&#x7684;&#x6CE8;&#x5165;&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接问题"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x8FDE;&#x63A5;&#x95EE;&#x9898;" class="headerlink" title="&#x8FDE;&#x63A5;&#x95EE;&#x9898;"></a>&#x8FDE;&#x63A5;&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库中两个表求交集，并集，差集"><span class="nav-number">3.3.</span> <span class="nav-text"><a href="#&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x4E24;&#x4E2A;&#x8868;&#x6C42;&#x4EA4;&#x96C6;&#xFF0C;&#x5E76;&#x96C6;&#xFF0C;&#x5DEE;&#x96C6;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x4E24;&#x4E2A;&#x8868;&#x6C42;&#x4EA4;&#x96C6;&#xFF0C;&#x5E76;&#x96C6;&#xFF0C;&#x5DEE;&#x96C6;"></a>&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x4E24;&#x4E2A;&#x8868;&#x6C42;&#x4EA4;&#x96C6;&#xFF0C;&#x5E76;&#x96C6;&#xFF0C;&#x5DEE;&#x96C6;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储过程"><span class="nav-number">3.4.</span> <span class="nav-text"><a href="#&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;" class="headerlink" title="&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;"></a>&#x5B58;&#x50A8;&#x8FC7;&#x7A0B;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#涉及范式的问题"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x6D89;&#x53CA;&#x8303;&#x5F0F;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x6D89;&#x53CA;&#x8303;&#x5F0F;&#x7684;&#x95EE;&#x9898;"></a>&#x6D89;&#x53CA;&#x8303;&#x5F0F;&#x7684;&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#涉及事务的问题"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x6D89;&#x53CA;&#x4E8B;&#x52A1;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x6D89;&#x53CA;&#x4E8B;&#x52A1;&#x7684;&#x95EE;&#x9898;"></a>&#x6D89;&#x53CA;&#x4E8B;&#x52A1;&#x7684;&#x95EE;&#x9898;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#并发事务带来的问题"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#&#x5E76;&#x53D1;&#x4E8B;&#x52A1;&#x5E26;&#x6765;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x5E76;&#x53D1;&#x4E8B;&#x52A1;&#x5E26;&#x6765;&#x7684;&#x95EE;&#x9898;"></a>&#x5E76;&#x53D1;&#x4E8B;&#x52A1;&#x5E26;&#x6765;&#x7684;&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并发控制的方式"><span class="nav-number">5.2.</span> <span class="nav-text"><a href="#&#x5E76;&#x53D1;&#x63A7;&#x5236;&#x7684;&#x65B9;&#x5F0F;" class="headerlink" title="&#x5E76;&#x53D1;&#x63A7;&#x5236;&#x7684;&#x65B9;&#x5F0F;"></a>&#x5E76;&#x53D1;&#x63A7;&#x5236;&#x7684;&#x65B9;&#x5F0F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库事务的隔离级别"><span class="nav-number">5.3.</span> <span class="nav-text"><a href="#&#x6570;&#x636E;&#x5E93;&#x4E8B;&#x52A1;&#x7684;&#x9694;&#x79BB;&#x7EA7;&#x522B;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;&#x4E8B;&#x52A1;&#x7684;&#x9694;&#x79BB;&#x7EA7;&#x522B;"></a>&#x6570;&#x636E;&#x5E93;&#x4E8B;&#x52A1;&#x7684;&#x9694;&#x79BB;&#x7EA7;&#x522B;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL事务的控制语句"><span class="nav-number">5.4.</span> <span class="nav-text"><a href="#MySQL&#x4E8B;&#x52A1;&#x7684;&#x63A7;&#x5236;&#x8BED;&#x53E5;" class="headerlink" title="MySQL&#x4E8B;&#x52A1;&#x7684;&#x63A7;&#x5236;&#x8BED;&#x53E5;"></a>MySQL&#x4E8B;&#x52A1;&#x7684;&#x63A7;&#x5236;&#x8BED;&#x53E5;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#涉及锁的问题"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x6D89;&#x53CA;&#x9501;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x6D89;&#x53CA;&#x9501;&#x7684;&#x95EE;&#x9898;"></a>&#x6D89;&#x53CA;&#x9501;&#x7684;&#x95EE;&#x9898;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说下数据库的锁机制，-数据库中都有哪些锁"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#&#x8BF4;&#x4E0B;&#x6570;&#x636E;&#x5E93;&#x7684;&#x9501;&#x673A;&#x5236;&#xFF0C;-&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x90FD;&#x6709;&#x54EA;&#x4E9B;&#x9501;" class="headerlink" title="&#x8BF4;&#x4E0B;&#x6570;&#x636E;&#x5E93;&#x7684;&#x9501;&#x673A;&#x5236;&#xFF0C; &#x6570;&#x636E;&#x5E93;&#x4E2D;&#x90FD;&#x6709;&#x54EA;&#x4E9B;&#x9501;"></a>&#x8BF4;&#x4E0B;&#x6570;&#x636E;&#x5E93;&#x7684;&#x9501;&#x673A;&#x5236;&#xFF0C; &#x6570;&#x636E;&#x5E93;&#x4E2D;&#x90FD;&#x6709;&#x54EA;&#x4E9B;&#x9501;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql锁的粒度（即锁的级别）"><span class="nav-number">6.2.</span> <span class="nav-text"><a href="#mysql&#x9501;&#x7684;&#x7C92;&#x5EA6;&#xFF08;&#x5373;&#x9501;&#x7684;&#x7EA7;&#x522B;&#xFF09;" class="headerlink" title="mysql&#x9501;&#x7684;&#x7C92;&#x5EA6;&#xFF08;&#x5373;&#x9501;&#x7684;&#x7EA7;&#x522B;&#xFF09;"></a>mysql&#x9501;&#x7684;&#x7C92;&#x5EA6;&#xFF08;&#x5373;&#x9501;&#x7684;&#x7EA7;&#x522B;&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乐观锁和悲观所的概念，实现方式和使用场景"><span class="nav-number">6.3.</span> <span class="nav-text"><a href="#&#x4E50;&#x89C2;&#x9501;&#x548C;&#x60B2;&#x89C2;&#x6240;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x548C;&#x4F7F;&#x7528;&#x573A;&#x666F;" class="headerlink" title="&#x4E50;&#x89C2;&#x9501;&#x548C;&#x60B2;&#x89C2;&#x6240;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x548C;&#x4F7F;&#x7528;&#x573A;&#x666F;"></a>&#x4E50;&#x89C2;&#x9501;&#x548C;&#x60B2;&#x89C2;&#x6240;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5B9E;&#x73B0;&#x65B9;&#x5F0F;&#x548C;&#x4F7F;&#x7528;&#x573A;&#x666F;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#涉及索引问题"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x6D89;&#x53CA;&#x7D22;&#x5F15;&#x95EE;&#x9898;" class="headerlink" title="&#x6D89;&#x53CA;&#x7D22;&#x5F15;&#x95EE;&#x9898;"></a>&#x6D89;&#x53CA;&#x7D22;&#x5F15;&#x95EE;&#x9898;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的优点"><span class="nav-number">7.1.</span> <span class="nav-text"><a href="#&#x7D22;&#x5F15;&#x7684;&#x4F18;&#x70B9;" class="headerlink" title="&#x7D22;&#x5F15;&#x7684;&#x4F18;&#x70B9;"></a>&#x7D22;&#x5F15;&#x7684;&#x4F18;&#x70B9;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的缺点"><span class="nav-number">7.2.</span> <span class="nav-text"><a href="#&#x7D22;&#x5F15;&#x7684;&#x7F3A;&#x70B9;" class="headerlink" title="&#x7D22;&#x5F15;&#x7684;&#x7F3A;&#x70B9;"></a>&#x7D22;&#x5F15;&#x7684;&#x7F3A;&#x70B9;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些索引"><span class="nav-number">7.3.</span> <span class="nav-text"><a href="#&#x6709;&#x54EA;&#x4E9B;&#x7D22;&#x5F15;" class="headerlink" title="&#x6709;&#x54EA;&#x4E9B;&#x7D22;&#x5F15;"></a>&#x6709;&#x54EA;&#x4E9B;&#x7D22;&#x5F15;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql-的-B-树索引的优点？为什么不用二叉树？B-树和-B-树为什么比红黑树更合适？"><span class="nav-number">7.4.</span> <span class="nav-text"><a href="#Mysql-&#x7684;-B-&#x6811;&#x7D22;&#x5F15;&#x7684;&#x4F18;&#x70B9;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x7528;&#x4E8C;&#x53C9;&#x6811;&#xFF1F;B-&#x6811;&#x548C;-B-&#x6811;&#x4E3A;&#x4EC0;&#x4E48;&#x6BD4;&#x7EA2;&#x9ED1;&#x6811;&#x66F4;&#x5408;&#x9002;&#xFF1F;" class="headerlink" title="Mysql &#x7684; B+&#x6811;&#x7D22;&#x5F15;&#x7684;&#x4F18;&#x70B9;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x7528;&#x4E8C;&#x53C9;&#x6811;&#xFF1F;B-&#x6811;&#x548C; B+&#x6811;&#x4E3A;&#x4EC0;&#x4E48;&#x6BD4;&#x7EA2;&#x9ED1;&#x6811;&#x66F4;&#x5408;&#x9002;&#xFF1F;"></a>Mysql &#x7684; B+&#x6811;&#x7D22;&#x5F15;&#x7684;&#x4F18;&#x70B9;&#xFF1F;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x7528;&#x4E8C;&#x53C9;&#x6811;&#xFF1F;B-&#x6811;&#x548C; B+&#x6811;&#x4E3A;&#x4EC0;&#x4E48;&#x6BD4;&#x7EA2;&#x9ED1;&#x6811;&#x66F4;&#x5408;&#x9002;&#xFF1F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建立索引的几大原则"><span class="nav-number">7.5.</span> <span class="nav-text"><a href="#&#x5EFA;&#x7ACB;&#x7D22;&#x5F15;&#x7684;&#x51E0;&#x5927;&#x539F;&#x5219;" class="headerlink" title="&#x5EFA;&#x7ACB;&#x7D22;&#x5F15;&#x7684;&#x51E0;&#x5927;&#x539F;&#x5219;"></a>&#x5EFA;&#x7ACB;&#x7D22;&#x5F15;&#x7684;&#x51E0;&#x5927;&#x539F;&#x5219;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#涉及存储引擎的问题"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x6D89;&#x53CA;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x6D89;&#x53CA;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x7684;&#x95EE;&#x9898;"></a>&#x6D89;&#x53CA;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x7684;&#x95EE;&#x9898;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql中的MyIsam与InnoDB的区别"><span class="nav-number">8.1.</span> <span class="nav-text"><a href="#mysql&#x4E2D;&#x7684;MyIsam&#x4E0E;InnoDB&#x7684;&#x533A;&#x522B;" class="headerlink" title="mysql&#x4E2D;&#x7684;MyIsam&#x4E0E;InnoDB&#x7684;&#x533A;&#x522B;"></a>mysql&#x4E2D;&#x7684;MyIsam&#x4E0E;InnoDB&#x7684;&#x533A;&#x522B;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一张表-里面有-ID-自增主键-当-insert-了-17-条记录之后-删除了第-15-16-17-条记录-再把-Mysql-重启-再-insert-一条记录-这条记录的-ID-是-18-还是-15-？"><span class="nav-number">8.1.1.</span> <span class="nav-text"><a href="#&#x4E00;&#x5F20;&#x8868;-&#x91CC;&#x9762;&#x6709;-ID-&#x81EA;&#x589E;&#x4E3B;&#x952E;-&#x5F53;-insert-&#x4E86;-17-&#x6761;&#x8BB0;&#x5F55;&#x4E4B;&#x540E;-&#x5220;&#x9664;&#x4E86;&#x7B2C;-15-16-17-&#x6761;&#x8BB0;&#x5F55;-&#x518D;&#x628A;-Mysql-&#x91CD;&#x542F;-&#x518D;-insert-&#x4E00;&#x6761;&#x8BB0;&#x5F55;-&#x8FD9;&#x6761;&#x8BB0;&#x5F55;&#x7684;-ID-&#x662F;-18-&#x8FD8;&#x662F;-15-&#xFF1F;" class="headerlink" title="&#x4E00;&#x5F20;&#x8868;,&#x91CC;&#x9762;&#x6709; ID &#x81EA;&#x589E;&#x4E3B;&#x952E;,&#x5F53; insert &#x4E86; 17 &#x6761;&#x8BB0;&#x5F55;&#x4E4B;&#x540E;,&#x5220;&#x9664;&#x4E86;&#x7B2C; 15,16,17 &#x6761;&#x8BB0;&#x5F55;,&#x518D;&#x628A; Mysql &#x91CD;&#x542F;,&#x518D; insert &#x4E00;&#x6761;&#x8BB0;&#x5F55;,&#x8FD9;&#x6761;&#x8BB0;&#x5F55;&#x7684; ID &#x662F; 18 &#x8FD8;&#x662F; 15 &#xFF1F;"></a>&#x4E00;&#x5F20;&#x8868;,&#x91CC;&#x9762;&#x6709; ID &#x81EA;&#x589E;&#x4E3B;&#x952E;,&#x5F53; insert &#x4E86; 17 &#x6761;&#x8BB0;&#x5F55;&#x4E4B;&#x540E;,&#x5220;&#x9664;&#x4E86;&#x7B2C; 15,16,17 &#x6761;&#x8BB0;&#x5F55;,&#x518D;&#x628A; Mysql &#x91CD;&#x542F;,&#x518D; insert &#x4E00;&#x6761;&#x8BB0;&#x5F55;,&#x8FD9;&#x6761;&#x8BB0;&#x5F55;&#x7684; ID &#x662F; 18 &#x8FD8;&#x662F; 15 &#xFF1F;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系型数据库和非关系型数据库的区别。"><span class="nav-number">8.2.</span> <span class="nav-text"><a href="#&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x548C;&#x975E;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x7684;&#x533A;&#x522B;&#x3002;" class="headerlink" title="&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x548C;&#x975E;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x7684;&#x533A;&#x522B;&#x3002;"></a>&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x548C;&#x975E;&#x5173;&#x7CFB;&#x578B;&#x6570;&#x636E;&#x5E93;&#x7684;&#x533A;&#x522B;&#x3002;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x8865;&#x5145;" class="headerlink" title="&#x8865;&#x5145;"></a>&#x8865;&#x5145;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库索引失效的集中情况。"><span class="nav-number">9.1.</span> <span class="nav-text"><a href="#&#x6570;&#x636E;&#x5E93;&#x7D22;&#x5F15;&#x5931;&#x6548;&#x7684;&#x96C6;&#x4E2D;&#x60C5;&#x51B5;&#x3002;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;&#x7D22;&#x5F15;&#x5931;&#x6548;&#x7684;&#x96C6;&#x4E2D;&#x60C5;&#x51B5;&#x3002;"></a>&#x6570;&#x636E;&#x5E93;&#x7D22;&#x5F15;&#x5931;&#x6548;&#x7684;&#x96C6;&#x4E2D;&#x60C5;&#x51B5;&#x3002;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库表里有-100-万条数据，-想要删除-80-万条数据，-但是因为锁的原因，-删除很慢，-现在想要快速删除怎么办-？"><span class="nav-number">9.2.</span> <span class="nav-text"><a href="#&#x6570;&#x636E;&#x5E93;&#x8868;&#x91CC;&#x6709;-100-&#x4E07;&#x6761;&#x6570;&#x636E;&#xFF0C;-&#x60F3;&#x8981;&#x5220;&#x9664;-80-&#x4E07;&#x6761;&#x6570;&#x636E;&#xFF0C;-&#x4F46;&#x662F;&#x56E0;&#x4E3A;&#x9501;&#x7684;&#x539F;&#x56E0;&#xFF0C;-&#x5220;&#x9664;&#x5F88;&#x6162;&#xFF0C;-&#x73B0;&#x5728;&#x60F3;&#x8981;&#x5FEB;&#x901F;&#x5220;&#x9664;&#x600E;&#x4E48;&#x529E;-&#xFF1F;" class="headerlink" title="&#x6570;&#x636E;&#x5E93;&#x8868;&#x91CC;&#x6709; 100 &#x4E07;&#x6761;&#x6570;&#x636E;&#xFF0C; &#x60F3;&#x8981;&#x5220;&#x9664; 80 &#x4E07;&#x6761;&#x6570;&#x636E;&#xFF0C; &#x4F46;&#x662F;&#x56E0;&#x4E3A;&#x9501;&#x7684;&#x539F;&#x56E0;&#xFF0C; &#x5220;&#x9664;&#x5F88;&#x6162;&#xFF0C; &#x73B0;&#x5728;&#x60F3;&#x8981;&#x5FEB;&#x901F;&#x5220;&#x9664;&#x600E;&#x4E48;&#x529E; &#xFF1F;"></a>&#x6570;&#x636E;&#x5E93;&#x8868;&#x91CC;&#x6709; 100 &#x4E07;&#x6761;&#x6570;&#x636E;&#xFF0C; &#x60F3;&#x8981;&#x5220;&#x9664; 80 &#x4E07;&#x6761;&#x6570;&#x636E;&#xFF0C; &#x4F46;&#x662F;&#x56E0;&#x4E3A;&#x9501;&#x7684;&#x539F;&#x56E0;&#xFF0C; &#x5220;&#x9664;&#x5F88;&#x6162;&#xFF0C; &#x73B0;&#x5728;&#x60F3;&#x8981;&#x5FEB;&#x901F;&#x5220;&#x9664;&#x600E;&#x4E48;&#x529E; &#xFF1F;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kunrong</span>
+
+  
+</div>
+<!--
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
