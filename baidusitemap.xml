@@ -4,8 +4,28 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/02/26/redis%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2019-02-26T08:42:09.441Z</lastmod>
+    <data>
+        <display>
+        <title>redis详解</title>
+        <pubTime>2019-02-26T06:01:56.000Z</pubTime>
+        
+        <tag>面试知识</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据库" url="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2019/02/21/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%93%E9%A2%98/</loc>
-    <lastmod>2019-02-23T14:59:07.804Z</lastmod>
+    <lastmod>2019-02-26T06:12:52.688Z</lastmod>
     <data>
         <display>
         <title>数据库专题</title>
@@ -16,12 +36,13 @@
          
            
              
-              <breadCrumb title="算法" url="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+              <breadCrumb title="数据库" url="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
           
         </display>
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://yoursite.com/2019/02/21/%E7%A1%AC%E5%B8%81%E9%98%B6%E6%A2%AF/</loc>
@@ -678,7 +699,6 @@
     </data>
     </url>
 
-    
     
     
     
