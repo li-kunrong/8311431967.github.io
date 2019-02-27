@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Jdk源码分析," />
+  <meta name="keywords" content="面试知识," />
 
 
 
@@ -81,24 +81,18 @@
 
 
 
-<meta name="description" content="前言一直对Arrays.sort()和Collections.sort()的有什么区别好奇，有时间就对源码分析一下。 Arrays.sort()先看Arrays.sort()，一进去是这样的。果然没有那么简单，DualPivotQuicksort翻译过来就是双轴快速排序，关于双轴排序可以去这里http://www.cnblogs.com/nullzx/p/5880191.html 看看。那再次点进">
-<meta name="keywords" content="Jdk源码分析">
+<meta name="description" content="前言算法面试不仅仅是正确回答问题，大多数问题，更需要一个合理的思考路径，展示给面试官你思考问题的方式。 例子 我们需要对一组数据进行排序   设计排序接口，标准库的设计，业务中的排序算法 排序是基础操作，很重要  解决  快速排序 O(nlogn)   忽略了算法的使用的基础环境，要动态选择   向面试官提问，这组数据有什么样的特征   有没有大量重复的元素 如果有，三路快排是更好的选择 普通数据">
+<meta name="keywords" content="面试知识">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Arrays.sort和Collections.sort实现原理探究">
-<meta property="og:url" content="http://yoursite.com/2018/05/04/Arrays-sort和Collections-sort实现原理探究/index.html">
+<meta property="og:title" content="应对算法面试">
+<meta property="og:url" content="http://yoursite.com/2019/02/27/应对算法面试/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="前言一直对Arrays.sort()和Collections.sort()的有什么区别好奇，有时间就对源码分析一下。 Arrays.sort()先看Arrays.sort()，一进去是这样的。果然没有那么简单，DualPivotQuicksort翻译过来就是双轴快速排序，关于双轴排序可以去这里http://www.cnblogs.com/nullzx/p/5880191.html 看看。那再次点进">
+<meta property="og:description" content="前言算法面试不仅仅是正确回答问题，大多数问题，更需要一个合理的思考路径，展示给面试官你思考问题的方式。 例子 我们需要对一组数据进行排序   设计排序接口，标准库的设计，业务中的排序算法 排序是基础操作，很重要  解决  快速排序 O(nlogn)   忽略了算法的使用的基础环境，要动态选择   向面试官提问，这组数据有什么样的特征   有没有大量重复的元素 如果有，三路快排是更好的选择 普通数据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/cqbkqjV.png">
-<meta property="og:image" content="https://i.imgur.com/M9jjezh.png">
-<meta property="og:image" content="https://i.imgur.com/Hc5oUcR.png">
-<meta property="og:image" content="https://i.imgur.com/2HLenpc.png">
-<meta property="og:image" content="https://i.imgur.com/jlEHL3a.png">
-<meta property="og:updated_time" content="2018-05-04T12:57:45.217Z">
+<meta property="og:updated_time" content="2019-02-27T05:35:11.801Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Arrays.sort和Collections.sort实现原理探究">
-<meta name="twitter:description" content="前言一直对Arrays.sort()和Collections.sort()的有什么区别好奇，有时间就对源码分析一下。 Arrays.sort()先看Arrays.sort()，一进去是这样的。果然没有那么简单，DualPivotQuicksort翻译过来就是双轴快速排序，关于双轴排序可以去这里http://www.cnblogs.com/nullzx/p/5880191.html 看看。那再次点进">
-<meta name="twitter:image" content="https://i.imgur.com/cqbkqjV.png">
+<meta name="twitter:title" content="应对算法面试">
+<meta name="twitter:description" content="前言算法面试不仅仅是正确回答问题，大多数问题，更需要一个合理的思考路径，展示给面试官你思考问题的方式。 例子 我们需要对一组数据进行排序   设计排序接口，标准库的设计，业务中的排序算法 排序是基础操作，很重要  解决  快速排序 O(nlogn)   忽略了算法的使用的基础环境，要动态选择   向面试官提问，这组数据有什么样的特征   有没有大量重复的元素 如果有，三路快排是更好的选择 普通数据">
 
 
 
@@ -128,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/04/Arrays-sort和Collections-sort实现原理探究/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/27/应对算法面试/"/>
 
 
 
 
 
-  <title>Arrays.sort和Collections.sort实现原理探究 | Kunrong-blog</title>
+  <title>应对算法面试 | Kunrong-blog</title>
   
 
 
@@ -424,7 +418,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/04/Arrays-sort和Collections-sort实现原理探究/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/27/应对算法面试/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -441,7 +435,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Arrays.sort和Collections.sort实现原理探究</h1>
+          <h1 class="post-title" itemprop="name headline">应对算法面试</h1>
         
 
         <div class="post-meta">
@@ -453,8 +447,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T20:10:40+08:00">
-                2018-05-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-27T11:59:41+08:00">
+                2019-02-27
               </time>
             
 
@@ -476,8 +470,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -513,41 +507,128 @@
       
 
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一直对Arrays.sort()和Collections.sort()的有什么区别好奇，有时间就对源码分析一下。</p>
-<h3 id="Arrays-sort"><a href="#Arrays-sort" class="headerlink" title="Arrays.sort()"></a>Arrays.sort()</h3><p>先看Arrays.sort()，一进去是这样的。<br><img src="https://i.imgur.com/cqbkqjV.png" alt=""><br>果然没有那么简单，DualPivotQuicksort翻译过来就是双轴快速排序，关于双轴排序可以去这里<a href="http://www.cnblogs.com/nullzx/p/5880191.html" target="_blank" rel="noopener">http://www.cnblogs.com/nullzx/p/5880191.html</a> 看看。那再次点进去，可以发现有这么一段代码</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if (right - left &lt; QUICKSORT_THRESHOLD) &#123;</span><br><span class="line">   sort(a, left, right, true);</span><br><span class="line">   return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><p>可以发现如果数组的长度小于QUICKSORT_THRESHOLD的话就会使用这个双轴快速排序，而这个值是286。</p>
-<p>那如果大于286呢，它就会坚持数组的连续升序和连续降序性好不好，如果好的话就用归并排序，不好的话就用快速排序，看下面这段注释就可以看出</p>
-<p><em>The array is not highly structured,<br> use Quicksort instead of merge sort.</em></p>
-<p>那现在再回到上面的决定用双轴快速排序的方法上，再点进去，发现又会多一条判断</p>
-<p><em>// Use insertion sort on tiny arrays<br>if (length &lt; INSERTION_SORT_THRESHOLD)</em></p>
-<p>所以总结一下Arrays.sort()方法，如果数组长度大于等于286且连续性好的话，就用归并排序，如果大于等于286且连续性不好的话就用双轴快速排序。如果长度小于286且大于等于47的话就用双轴快速排序，如果长度小于47的话就用插入排序。</p>
-<h3 id="Collections-sort"><a href="#Collections-sort" class="headerlink" title="Collections.sort()"></a>Collections.sort()</h3><ol>
-<li>Collections.sort()底层调用的是array.sort().</li>
-<li>写个demo跟踪下</li>
-</ol>
-<p>**</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class TestSort &#123;</span><br><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">       List&lt;String&gt; strings = Arrays.asList(&quot;6&quot;, &quot;1&quot;, &quot;3&quot;, &quot;1&quot;,&quot;2&quot;);</span><br><span class="line"></span><br><span class="line">       Collections.sort(strings);//sort方法在这里</span><br><span class="line"></span><br><span class="line">       for (String string : strings) &#123;</span><br><span class="line"></span><br><span class="line">           System.out.println(string);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</code></pre><ol>
-<li>然后发现Collections.sort()调用的是list.sort()</li>
-</ol>
-<p><img src="https://i.imgur.com/M9jjezh.png" alt=""></p>
-<ol>
-<li>而在list.sort()中调用了Arrays.sort()</li>
-</ol>
-<p><img src="https://i.imgur.com/Hc5oUcR.png" alt=""></p>
-<ol>
-<li>然后发现里面调用的Arrays.sort(a, c); a是list,c是一个比较器，我们来看一下这个方法 </li>
-</ol>
-<p><img src="https://i.imgur.com/2HLenpc.png" alt=""></p>
-<p>由网上查得，LegacyMergeSort是一个老的归并排序，不过不用管了现在默认是关的。</p>
-<ol>
-<li>我们走的是sort(a)这个方法，接着进入这个 </li>
-</ol>
-<p><img src="https://i.imgur.com/jlEHL3a.png" alt=""></p>
-<p>5.最后就是TimSort()的源码了</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">static void sort(Object[] a, int lo, int hi, Object[] work, int workBase, int workLen) &#123;</span><br><span class="line">                assert a != null &amp;&amp; lo &gt;= 0 &amp;&amp; lo &lt;= hi &amp;&amp; hi &lt;= a.length;</span><br><span class="line"></span><br><span class="line">                int nRemaining  = hi - lo;</span><br><span class="line">                if (nRemaining &lt; 2)</span><br><span class="line">                    return;  // array的大小为0或者1就不用排了</span><br><span class="line"></span><br><span class="line">                // 当数组大小小于MIN_MERGE(32)的时候，就用一个&quot;mini-TimSort&quot;的方法排序，jdk1.7新加</span><br><span class="line">                if (nRemaining &lt; MIN_MERGE) &#123;</span><br><span class="line">                   //这个方法比较有意思，其实就是将我们最长的递减序列，找出来，然后倒过来</span><br><span class="line">                    int initRunLen = countRunAndMakeAscending(a, lo, hi);</span><br><span class="line">                    //长度小于32的时候，是使用binarySort的</span><br><span class="line">                    binarySort(a, lo, hi, lo + initRunLen);</span><br><span class="line">                    return;</span><br><span class="line">                &#125;</span><br><span class="line">               //先扫描一次array，找到已经排好的序列，然后再用刚才的mini-TimSort，然后合并，这就是TimSort的核心思想</span><br><span class="line">                ComparableTimSort ts = new ComparableTimSort(a, work, workBase, workLen);</span><br><span class="line">                int minRun = minRunLength(nRemaining);</span><br><span class="line">                do &#123;</span><br><span class="line">                    // Identify next run</span><br><span class="line">                    int runLen = countRunAndMakeAscending(a, lo, hi);</span><br><span class="line"></span><br><span class="line">                    // If run is short, extend to min(minRun, nRemaining)</span><br><span class="line">                    if (runLen &lt; minRun) &#123;</span><br><span class="line">                        int force = nRemaining &lt;= minRun ? nRemaining : minRun;</span><br><span class="line">                        binarySort(a, lo, lo + force, lo + runLen);</span><br><span class="line">                        runLen = force;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    // Push run onto pending-run stack, and maybe merge</span><br><span class="line">                    ts.pushRun(lo, runLen);</span><br><span class="line">                    ts.mergeCollapse();</span><br><span class="line"></span><br><span class="line">                    // Advance to find next run</span><br><span class="line">                    lo += runLen;</span><br><span class="line">                    nRemaining -= runLen;</span><br><span class="line">                &#125; while (nRemaining != 0);</span><br><span class="line"></span><br><span class="line">                // Merge all remaining runs to complete sort</span><br><span class="line">                assert lo == hi;</span><br><span class="line">                ts.mergeForceCollapse();</span><br><span class="line">                assert ts.stackSize == 1;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-</code></pre><p>TimSort的算法性能分析详见：<br><a href="https://blog.csdn.net/yangzhongblog/article/details/8184707" target="_blank" rel="noopener">https://blog.csdn.net/yangzhongblog/article/details/8184707</a></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>算法面试不仅仅是正确回答问题，大多数问题，更需要一个合理的思考路径，展示给面试官你思考问题的方式。</p>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><blockquote>
+<p>我们需要对一组数据进行排序</p>
+</blockquote>
+<ul>
+<li>设计排序接口，标准库的设计，业务中的排序算法</li>
+<li>排序是基础操作，很重要</li>
+</ul>
+<p><strong>解决</strong></p>
+<blockquote>
+<p>快速排序 O(nlogn)</p>
+</blockquote>
+<ul>
+<li>忽略了算法的使用的基础环境，要动态选择</li>
+</ul>
+<blockquote>
+<p>向面试官提问，这组数据有什么样的特征</p>
+</blockquote>
+<ul>
+<li>有没有大量重复的元素</li>
+<li>如果有，三路快排是更好的选择</li>
+<li>普通数据： 普通快速排序就好</li>
+<li>是否大部分数据距离它正确的位置很近，是否近乎有序</li>
+<li>如果是，插入排序更好<ul>
+<li>按照业务发生顺序，先发生先完成，几乎有序，插入排序更好</li>
+</ul>
+</li>
+<li>是否数据的取值范围非常有限？比如对学生成绩排序<ul>
+<li>如果是这样，计数排序是更好的选择，高考成绩取值范围有限：计数排序更好</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>对排序有什么额外的要求</p>
+</blockquote>
+<ul>
+<li>是否需要稳定？<ul>
+<li>如果是，归并排序是更好的选择<blockquote>
+<p>是否是使用链表存储的？</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>如果是，归并排序是更好的选择</li>
+<li>快排依赖于数组的随机存储</li>
+</ul>
+<blockquote>
+<p>数据的存储情况是怎样的？</p>
+</blockquote>
+<ul>
+<li>数据的大小是否可以装载在内存中<ul>
+<li>数据量大，或者内存很小，不足以装在内存里，需要使用外排序算法</li>
+</ul>
+</li>
+</ul>
+<p>(外部排序指的是大文件的排序，即待排序的记录存储在外存储器上，待排序的文件无法一次装入内存，需要在内存和外部存储器之间进行多次数据交换，以达到排序 整个文件的目的。外部排序最常用的算法是多路归并排序，即将原文件分解成多个能够一次性装入内存的部分，分别把每一部分调入内存完成排序。然后，对已经排 序的子文件进行多路归并排序。)</p>
+<p>对一组数据进行排序小结</p>
+<p>有没有可能包含有大量重复的元素？<br>是否大部分数据距离它正确的位置很近？是否近乎有序？<br>是否数据的取值范围非常有限？比如对学生成绩排序。<br>是否需要稳定排序？<br>是否是使用链表存储的？<br>数据的大小是否可以装载在内存里？</p>
+<h1 id="什么算是正确地回答一个算法问题"><a href="#什么算是正确地回答一个算法问题" class="headerlink" title="什么算是正确地回答一个算法问题"></a>什么算是正确地回答一个算法问题</h1><ul>
+<li>正确除了你能把代码编出来运行正确的结果，还包含对问题的独到见解；优化；代码规范；容错性</li>
+<li>关键在于你所表达的解决问题的思路</li>
+<li>甚至通过表达解题思路的方向，得出结论：这个问题的解决方案，应该在哪一个领域，可以通过查阅或者进一步学习解决问题</li>
+</ul>
+<blockquote>
+<p>面试前梳理自己简历上所写到的项目：整理一下可能会问到的。</p>
+</blockquote>
+<ul>
+<li>你遇到的印象最深的bug是什么？</li>
+<li>面向对象</li>
+<li>设计模式</li>
+<li>网络相关；安全相关；内存相关；并发相关；…</li>
+<li>系统设计；scalability（大规模）</li>
+</ul>
+<h1 id="行为类问题"><a href="#行为类问题" class="headerlink" title="行为类问题"></a>行为类问题</h1><ul>
+<li>遇到的最大的挑战？</li>
+<li>犯过的错误？</li>
+<li>遭遇的失败？</li>
+<li>最享受的工作内容？</li>
+<li>遇到冲突的处理方式？</li>
+<li>做的最与众不同的事儿？</li>
+</ul>
+<blockquote>
+<p>具体阐述：我在某某项目中遇到一个怎样的算法问题：这个问题是怎样的。它是我遇到的最大的挑战,我是如何克服解决的</p>
+</blockquote>
+<h1 id="准备好合适的问题问面试官"><a href="#准备好合适的问题问面试官" class="headerlink" title="准备好合适的问题问面试官"></a>准备好合适的问题问面试官</h1><ul>
+<li>整个小组的大概运行模式是怎样的？</li>
+<li>整个项目的后续规划是如何的？</li>
+<li>这个产品中的某个问题是如何解决的？</li>
+<li>为什么会选择某些技术？标准？</li>
+<li>我对某个技术很感兴趣，在你的小组中我会有怎样的机会深入这种技术？</li>
+</ul>
+<h1 id="算法面试的准备范围"><a href="#算法面试的准备范围" class="headerlink" title="算法面试的准备范围"></a>算法面试的准备范围</h1><ul>
+<li>不要轻视基础算法和数据结构，而只关注“有意思”的题目</li>
+<li>各种排序算法</li>
+<li>基础数据结构和算法的实现：如堆、二叉树、图…</li>
+<li>基础数据结构的使用：如链表、栈、队列、哈希表、图、Trie、并查集…</li>
+<li>基础算法：深度优先、广度优先、二分查找、递归…</li>
+<li>基本算法思想：递归、分治、回溯搜索、贪心、动态规划…</li>
+</ul>
+<h1 id="适合的OJ"><a href="#适合的OJ" class="headerlink" title="适合的OJ"></a>适合的OJ</h1><ul>
+<li>Online Portal for IT Interview</li>
+<li>真实的面试问题</li>
+<li>www.leetcode.com</li>
+<li>HankeRank </li>
+</ul>
+<h1 id="如何回答算法面试的问题"><a href="#如何回答算法面试的问题" class="headerlink" title="如何回答算法面试的问题"></a>如何回答算法面试的问题</h1><ul>
+<li>注意题目中的条件<ul>
+<li>给定一个有序数组（二分法）</li>
+</ul>
+</li>
+<li>有一些题目中的条件本质是暗示<ul>
+<li>设计一个O(nlogn)的算法（分治法：在一棵搜索树中完成任务，对于数据排序）</li>
+<li>无需考虑额外的空间（用空间换时间）</li>
+<li>数据规模大概是10000（用O（n^2)就可以)</li>
+</ul>
+</li>
+</ul>
+<p>当没有思路时</p>
+<ul>
+<li>自己给自己几个简单的测试用例，实验一下</li>
+<li>不要忽视暴力解决，暴力解法通常时思考的起点。</li>
+</ul>
 
       
     </div>
@@ -565,7 +646,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Jdk源码分析/" rel="tag"># Jdk源码分析</a>
+            <a href="/tags/面试知识/" rel="tag"># 面试知识</a>
           
         </div>
       
@@ -578,8 +659,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/25/Java集合框架总结与分析-二/" rel="next" title="Java集合框架总结与分析(二)">
-                <i class="fa fa-chevron-left"></i> Java集合框架总结与分析(二)
+              <a href="/2019/02/26/redis详解/" rel="next" title="redis详解">
+                <i class="fa fa-chevron-left"></i> redis详解
               </a>
             
           </div>
@@ -587,10 +668,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/11/数据库的四大特性以及隔离级别/" rel="prev" title="数据库的四大特性以及隔离级别">
-                数据库的四大特性以及隔离级别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -746,7 +823,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays-sort"><span class="nav-number">2.</span> <span class="nav-text"><a href="#Arrays-sort" class="headerlink" title="Arrays.sort()"></a>Arrays.sort()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collections-sort"><span class="nav-number">3.</span> <span class="nav-text"><a href="#Collections-sort" class="headerlink" title="Collections.sort()"></a>Collections.sort()</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例子"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4F8B;&#x5B50;" class="headerlink" title="&#x4F8B;&#x5B50;"></a>&#x4F8B;&#x5B50;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么算是正确地回答一个算法问题"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x7B97;&#x662F;&#x6B63;&#x786E;&#x5730;&#x56DE;&#x7B54;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x95EE;&#x9898;" class="headerlink" title="&#x4EC0;&#x4E48;&#x7B97;&#x662F;&#x6B63;&#x786E;&#x5730;&#x56DE;&#x7B54;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x95EE;&#x9898;"></a>&#x4EC0;&#x4E48;&#x7B97;&#x662F;&#x6B63;&#x786E;&#x5730;&#x56DE;&#x7B54;&#x4E00;&#x4E2A;&#x7B97;&#x6CD5;&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#行为类问题"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x884C;&#x4E3A;&#x7C7B;&#x95EE;&#x9898;" class="headerlink" title="&#x884C;&#x4E3A;&#x7C7B;&#x95EE;&#x9898;"></a>&#x884C;&#x4E3A;&#x7C7B;&#x95EE;&#x9898;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准备好合适的问题问面试官"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x51C6;&#x5907;&#x597D;&#x5408;&#x9002;&#x7684;&#x95EE;&#x9898;&#x95EE;&#x9762;&#x8BD5;&#x5B98;" class="headerlink" title="&#x51C6;&#x5907;&#x597D;&#x5408;&#x9002;&#x7684;&#x95EE;&#x9898;&#x95EE;&#x9762;&#x8BD5;&#x5B98;"></a>&#x51C6;&#x5907;&#x597D;&#x5408;&#x9002;&#x7684;&#x95EE;&#x9898;&#x95EE;&#x9762;&#x8BD5;&#x5B98;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法面试的准备范围"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x7B97;&#x6CD5;&#x9762;&#x8BD5;&#x7684;&#x51C6;&#x5907;&#x8303;&#x56F4;" class="headerlink" title="&#x7B97;&#x6CD5;&#x9762;&#x8BD5;&#x7684;&#x51C6;&#x5907;&#x8303;&#x56F4;"></a>&#x7B97;&#x6CD5;&#x9762;&#x8BD5;&#x7684;&#x51C6;&#x5907;&#x8303;&#x56F4;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#适合的OJ"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x9002;&#x5408;&#x7684;OJ" class="headerlink" title="&#x9002;&#x5408;&#x7684;OJ"></a>&#x9002;&#x5408;&#x7684;OJ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何回答算法面试的问题"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x56DE;&#x7B54;&#x7B97;&#x6CD5;&#x9762;&#x8BD5;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x5982;&#x4F55;&#x56DE;&#x7B54;&#x7B97;&#x6CD5;&#x9762;&#x8BD5;&#x7684;&#x95EE;&#x9898;"></a>&#x5982;&#x4F55;&#x56DE;&#x7B54;&#x7B97;&#x6CD5;&#x9762;&#x8BD5;&#x7684;&#x95EE;&#x9898;</span></a></li></ol></div>
             
 
           </div>
