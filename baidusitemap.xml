@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://yoursite.com/2019/03/03/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2019-03-03T14:05:09.276Z</lastmod>
+    <data>
+        <display>
+        <title>观察者模式</title>
+        <pubTime>2019-03-03T05:27:21.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="Java" url="http://yoursite.com/categories/Java/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2019/02/27/%E5%BA%94%E5%AF%B9%E7%AE%97%E6%B3%95%E9%9D%A2%E8%AF%95/</loc>
     <lastmod>2019-02-27T05:35:11.801Z</lastmod>
     <data>
