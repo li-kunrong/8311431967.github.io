@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="sql," />
+  <meta name="keywords" content="设计模式," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="SQL语言不同于其他编程语言的最明显特征是处理代码的顺序。在大多数据库语言中，代码按编码顺序被处理。但在SQL语句中，第一个被处理的子句式FROM，而不是第一出现的SELECT。SQL查询处理的步骤序号： sql 的select语句的完整执行顺序  from字句组装来自不同的数据源的数据  join  table连接 on  where 字句基于指定条件对纪录进行筛选 group by字句将数据分">
-<meta name="keywords" content="sql">
+<meta name="description" content="前言这是设计模式系列开篇的第一篇文章。也是我学习设计模式过程中的总结。这篇文章主要讲的是面向对象设计中，我们应该遵循的六大原则。只有掌握了这些原则，我们才能更好的理解设计模式。 我们接下来要介绍以下6个内容。  单一职责原则——SRP 开闭原则——OCP 里式替换原则——LSP 依赖倒置原则——DIP 接口隔离原则——ISP 迪米特原则——LOD  单一职责原则单一职责原则的定义是就一个类而言，应">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql的执行顺序">
-<meta property="og:url" content="http://yoursite.com/2019/02/20/sql的q执行顺序/index.html">
+<meta property="og:title" content="Java面向对象s设计的六大原则">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/Java面向对象s设计的六大原则/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="SQL语言不同于其他编程语言的最明显特征是处理代码的顺序。在大多数据库语言中，代码按编码顺序被处理。但在SQL语句中，第一个被处理的子句式FROM，而不是第一出现的SELECT。SQL查询处理的步骤序号： sql 的select语句的完整执行顺序  from字句组装来自不同的数据源的数据  join  table连接 on  where 字句基于指定条件对纪录进行筛选 group by字句将数据分">
+<meta property="og:description" content="前言这是设计模式系列开篇的第一篇文章。也是我学习设计模式过程中的总结。这篇文章主要讲的是面向对象设计中，我们应该遵循的六大原则。只有掌握了这些原则，我们才能更好的理解设计模式。 我们接下来要介绍以下6个内容。  单一职责原则——SRP 开闭原则——OCP 里式替换原则——LSP 依赖倒置原则——DIP 接口隔离原则——ISP 迪米特原则——LOD  单一职责原则单一职责原则的定义是就一个类而言，应">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-20T14:51:30.930Z">
+<meta property="og:updated_time" content="2019-03-09T10:07:27.489Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sql的执行顺序">
-<meta name="twitter:description" content="SQL语言不同于其他编程语言的最明显特征是处理代码的顺序。在大多数据库语言中，代码按编码顺序被处理。但在SQL语句中，第一个被处理的子句式FROM，而不是第一出现的SELECT。SQL查询处理的步骤序号： sql 的select语句的完整执行顺序  from字句组装来自不同的数据源的数据  join  table连接 on  where 字句基于指定条件对纪录进行筛选 group by字句将数据分">
+<meta name="twitter:title" content="Java面向对象s设计的六大原则">
+<meta name="twitter:description" content="前言这是设计模式系列开篇的第一篇文章。也是我学习设计模式过程中的总结。这篇文章主要讲的是面向对象设计中，我们应该遵循的六大原则。只有掌握了这些原则，我们才能更好的理解设计模式。 我们接下来要介绍以下6个内容。  单一职责原则——SRP 开闭原则——OCP 里式替换原则——LSP 依赖倒置原则——DIP 接口隔离原则——ISP 迪米特原则——LOD  单一职责原则单一职责原则的定义是就一个类而言，应">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/20/sql的q执行顺序/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/09/Java面向对象s设计的六大原则/"/>
 
 
 
 
 
-  <title>sql的执行顺序 | Kunrong-blog</title>
+  <title>Java面向对象s设计的六大原则 | Kunrong-blog</title>
   
 
 
@@ -418,7 +418,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/sql的q执行顺序/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/Java面向对象s设计的六大原则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -435,7 +435,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">sql的执行顺序</h1>
+          <h1 class="post-title" itemprop="name headline">Java面向对象s设计的六大原则</h1>
         
 
         <div class="post-meta">
@@ -447,8 +447,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-20T22:23:54+08:00">
-                2019-02-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-09T16:13:05+08:00">
+                2019-03-09
               </time>
             
 
@@ -470,8 +470,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -507,64 +507,66 @@
       
 
       
-        <p>SQL语言不同于其他编程语言的最明显特征是处理代码的顺序。在大多数据库语言中，代码按编码顺序被处理。但在SQL语句中，第一个被处理的子句式FROM，而不是第一出现的SELECT。SQL查询处理的步骤序号：</p>
-<p>sql 的select语句的完整执行顺序</p>
-<ol>
-<li>from字句组装来自不同的数据源的数据</li>
-<li><join_type> join <right_table> table连接</right_table></join_type></li>
-<li>on <join_condition></join_condition></li>
-<li>where 字句基于指定条件对纪录进行筛选</li>
-<li>group by字句将数据分为多个分组</li>
-<li>使用聚集函数进行计算</li>
-<li>with{cube|rollup}</li>
-<li>having <having_condition></having_condition></li>
-<li>计算所有表达式</li>
-<li>select</li>
-<li>distinct</li>
-<li>order by <order_by_list></order_by_list></li>
-<li><top_specification> <select_list></select_list></top_specification></li>
-</ol>
-<p>以上每个步骤都会产生一个虚拟表，该虚拟表被用作下一个步骤的输入。这些虚拟表对调用者(客户端应用程序或者外部查询)不可用。只有最后一步生成的表才会会给调用者。如果没有在查询中指定某一个子句，将跳过相应的步骤。</p>
-<p>逻辑查询处理阶段简介：</p>
-<p>　　1、 FROM：对FROM子句中的前两个表执行笛卡尔积(交叉联接)，生成虚拟表VT1。</p>
-<p>　　2、 ON：对VT1应用ON筛选器，只有那些使为真才被插入到TV2。</p>
-<p>　　3、 OUTER (JOIN):如果指定了OUTER JOIN(相对于CROSS JOIN或INNER JOIN)，保留表中未找到匹配的行将作为外部行添加到VT2，生成TV3。如果FROM子句包含两个以上的表，则对上一个联接生成的结果表和下一个表重复执行步骤1到步骤3，直到处理完所有的表位置。</p>
-<p>　　4、 WHERE：对TV3应用WHERE筛选器，只有使为true的行才插入TV4。</p>
-<p>　　5、 GROUP BY：按GROUP BY子句中的列列表对TV4中的行进行分组，生成TV5。</p>
-<p>　　6、 CUTE|ROLLUP：把超组插入VT5，生成VT6。</p>
-<p>　　7、 HAVING：对VT6应用HAVING筛选器，只有使为true的组插入到VT7。</p>
-<p>　　8、 SELECT：处理SELECT列表，产生VT8。</p>
-<p>　　9、 DISTINCT：将重复的行从VT8中删除，产品VT9。</p>
-<p>　　10、ORDER BY：将VT9中的行按ORDER BY子句中的列列表顺序，生成一个游标(VC10)。</p>
-<p>11、TOP：从VC10的开始处选择指定数量或比例的行，生成表TV11，并返回给调用</p>
-<hr>
-<p>联合查询时过滤条件放在ON之后和放在WHERE之后的区别</p>
-<p>有两个表，A表和B表，我们经常会通过一些关键字段来联合查询两张表里的数据，如:</p>
-<p>select * </p>
-<p>from A </p>
-<p>left join B</p>
-<p>on A.bizNo = B.bizNo</p>
-<p>如果我们想要在上述条件上再增加一些过滤条件，比如B.name = ‘XXX’。</p>
-<p>那么我们有两种写法:</p>
-<p>写法1:</p>
-<p>select * </p>
-<p>from A </p>
-<p>left join B</p>
-<p>on A.bizNo = B.bizNo and B.name = ‘XXX’</p>
-<p>写法2:</p>
-<p>select * </p>
-<p>from A </p>
-<p>left join B</p>
-<p>on A.bizNo = B.bizNo </p>
-<p>where  B.name = ‘XXX’</p>
-<p>这两种写法的区别在于，过滤条件放在ON的后面是在联合之前就进行过滤，放在WHERE后面是在联合之后的结果集上进行过滤。</p>
-<p>如果A的记录在B中都能够查到数据的话，那么两种写法的结果是一样的。</p>
-<p>否则会有差别，假如A中有两条记录a1,a2，其中a1可以在B中查到记录，a2无法查到记录。</p>
-<p>那么在写法1的情况下，最终的结果集会有两条记录如下:</p>
-<p>a1 b1</p>
-<p>a2 null</p>
-<p>在写法2的情况下，最终的结果集只有一条记录:</p>
-<p>a1 b1</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是设计模式系列开篇的第一篇文章。也是我学习设计模式过程中的总结。这篇文章主要讲的是面向对象设计中，我们应该遵循的六大原则。只有掌握了这些原则，我们才能更好的理解设计模式。 我们接下来要介绍以下6个内容。</p>
+<ul>
+<li>单一职责原则——SRP</li>
+<li>开闭原则——OCP</li>
+<li>里式替换原则——LSP</li>
+<li>依赖倒置原则——DIP</li>
+<li>接口隔离原则——ISP</li>
+<li>迪米特原则——LOD</li>
+</ul>
+<h1 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h1><p>单一职责原则的定义是就一个类而言，应该仅有一个引起他变化的原因。也就是说一个类应该只负责一件事情。如果一个类负责了方法M1,方法M2两个不同的事情，当M1方法发生变化的时候，我们需要修改这个类的M1方法，但是这个时候就有可能导致M2方法不能工作。这个不是我们期待的，但是由于这种设计却很有可能发生。所以这个时候，我们需要把M1方法，M2方法单独分离成两个类。让每个类只专心处理自己的方法。</p>
+<p>单一职责原则的好处如下：</p>
+<blockquote>
+<p>可以降低类的复杂度，一个类只负责一项职责，这样逻辑也简单很多 提高类的可读性，和系统的维护性，因为不会有其他奇怪的方法来干扰我们理解这个类的含义 当发生变化的时候，能将变化的影响降到最小，因为只会在这个类中做出修改。</p>
+</blockquote>
+<p>个人觉得有待商榷。</p>
+<h1 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h1><p>开闭原则和单一职责原则一样，是非常基础而且一般是常识的原则。开闭原则的定义是软件中的对象(类，模块，函数等)应该对于扩展是开放的，但是对于修改是关闭的。</p>
+<p>当需求发生改变的时候，我们需要对代码进行修改，这个时候我们应该尽量去扩展原来的代码，而不是去修改原来的代码，因为这样可能会引起更多的问题。</p>
+<p>这个准则和单一职责原则一样，是一个大家都这样去认为但是又没规定具体该如何去做的一种原则。</p>
+<p>开闭原则我们可以用一种方式来确保他，我们用抽象去构建框架，用实现扩展细节。这样当发生修改的时候，我们就直接用抽象了派生一个具体类去实现修改。</p>
+<p>个人认为这个原则十分重要，拓展比修改更加容易，而且修改会出现很多未知的bug。</p>
+<h1 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h1><p>里氏替换原则是一个非常有用的概念：</p>
+<blockquote>
+<p>如果对每一个类型为T1的对象o1,都有类型为T2的对象o2,使得以T1定义的所有程序P在所有对象o1都替换成o2的时候，程序P的行为都没有发生变化，那么类型T2是类型T1的子类型。</p>
+</blockquote>
+<p>这样说有点复杂，其实有一个简单的定义</p>
+<blockquote>
+<p>所有引用基类的地方必须能够透明地使用其子类的对象。</p>
+</blockquote>
+<p>里氏替换原则通俗的去讲就是：子类可以去扩展父类的功能，但是不能改变父类原有的功能。他包含以下几层意思：</p>
+<ul>
+<li>子类可以实现父类的抽象方法，但是不能覆盖父类的非抽象方法。</li>
+<li>子类可以增加自己独有的方法。</li>
+<li>当子类的方法重载父类的方法时候，方法的形参要比父类的方法的输入参数更加宽松。</li>
+<li>当子类的方法实现父类的抽象方法时，方法的返回值要比父类更严格。</li>
+</ul>
+<p>里氏替换原则之所以这样要求是因为继承有很多缺点，他虽然是复用代码的一种方法，但同时继承在一定程度上违反了封装。父类的属性和方法对子类都是透明的，子类可以随意修改父类的成员。这也导致了，如果需求变更，子类对父类的方法进行一些复写的时候，其他的子类无法正常工作。所以里氏替换法则被提出来。</p>
+<p>确保程序遵循里氏替换原则可以要求我们的程序建立抽象，通过抽象去建立规范，然后用实现去扩展细节，这个是不是很耳熟，对，里氏替换原则和开闭原则往往是相互依存的。</p>
+<h1 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h1><p>依赖倒置原则指的是一种特殊的解耦方式，使得高层次的模块不应该依赖于低层次的模块的实现细节的目的，依赖模块被颠倒了。 这也是一个让人难懂的定义，他可以简单来说就是</p>
+<blockquote>
+<p>高层模块不应该依赖底层模块，两者都应该依赖其抽象 抽象不应该依赖细节 细节应该依赖抽象</p>
+</blockquote>
+<p>在Java 中抽象指的是接口或者抽象类，两者皆不能实例化。而细节就是实现类，也就是实现了接口或者继承了抽象类的类。他是可以被实例化的。高层模块指的是调用端，底层模块是具体的实现类。在Java中，依赖倒置原则是指模块间的依赖是通过抽象来发生的，实现类之间不发生直接的依赖关系，其依赖关系是通过接口是来实现的。这就是俗称的面向接口编程。</p>
+<p>通过面向接口编程，我们的代码就有了很高的扩展性，降低了代码之间的耦合度，提高了系统的稳定性。</p>
+<h1 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h1><p>接口隔离原则的定义是</p>
+<blockquote>
+<p>客户端不应该依赖他不需要的接口</p>
+</blockquote>
+<p>换一种说法就是类间的依赖关系应该建立在最小的接口上。这样说好像更难懂。我们通过一个例子来说明。我们知道在Java中一个具体类实现了一个接口，那必然就要实现接口中的所有方法。如果我们有一个类A和类B通过接口I来依赖，类B是对类A依赖的实现，这个接口I有5个方法。但是类A与类B只通过方法1,2,3依赖，然后类C与类D通过接口I来依赖，类D是对类C依赖的实现但是他们却是通过方法1,4,5依赖。那么是必在实现接口的时候，类B就要有实现他不需要的方法4和方法5 而类D就要实现他不需要的方法2，和方法3。这简直就是一个灾难的设计。</p>
+<p>所以我们需要对接口进行拆分，就是把接口分成满足依赖关系的最小接口，类B与类D不需要去实现与他们无关接口方法。比如在这个例子中，我们可以把接口拆成3个，第一个是仅仅由方法1的接口，第二个接口是包含2,3方法的，第三个接口是包含4,5方法的。 这样，我们的设计就满足了接口隔离原则。</p>
+<p>以上这些设计思想用英文的第一个字母可以组成SOLID ，满足这个5个原则的程序也被称为满足了SOLID准则。</p>
+<h1 id="迪米特原则"><a href="#迪米特原则" class="headerlink" title="迪米特原则"></a>迪米特原则</h1><p>迪米特原则也被称为最小知识原则，他的定义</p>
+<blockquote>
+<p>一个对象应该对其他对象保持最小的了解。</p>
+</blockquote>
+<p>因为类与类之间的关系越密切，耦合度越大，当一个类发生改变时，对另一个类的影响也越大，所以这也是我们提倡的软件编程的总的原则：低耦合，高内聚。 迪米特法则还有一个更简单的定义</p>
+<blockquote>
+<p>只与直接的朋友通信。首先来解释一下什么是直接的朋友：每个对象都会与其他对象有耦合关系，只要两个对象之间有耦合关系，我们就说这两个对象之间是朋友关系。耦合的方式很多，依赖、关联、组合、聚合等。其中，我们称出现成员变量、方法参数、方法返回值中的类为直接的朋友，而出现在局部变量中的类则不是直接的朋友。也就是说，陌生的类最好不要作为局部变量的形式出现在类的内部。</p>
+</blockquote>
+<p>这里我们可以用一个现实生活中的例子来讲解一下。比如我们需要一张CD,我们可能去音像店去问老板有没有我们需要的那张CD，老板说现在没有，等有的时候你们来拿就行了。在这里我们不需要关心老板是从哪里，怎么获得的那张CD，我们只和老板（直接朋友）沟通，至于老板从他的朋友那里通过何种条件得到的CD，我们不关心，我们不和老板的朋友（陌生人）进行通信，这个就是迪米特的一个应用。说白了，就是一种中介的方式。我们通过老板这个中介来和真正提供CD的人发生联系。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>到这里，面向对象的六大原则，就写完了。我们看出来，这些原则其实都是应对不断改变的需求。每当需求变化的时候，我们利用这些原则来使我们的代码改动量最小，而且所造成的影响也是最小的。但是我们在看这些原则的时候，我们会发现很多原则并没有提供一种公式化的结论，而即使提供了公式化的结论的原则也只是建议去这样做。这是因为，这些设计原则本来就是从很多实际的代码中提取出来的，他是一个经验化的结论。怎么去用它，用好他，就要依靠设计者的经验。否则一味者去使用设计原则可能会使代码出现过度设计的情况。大多数的原则都是通过提取出抽象和接口来实现，如果发生过度的设计，就会出现很多抽象类和接口，增加了系统的复杂度。让本来很小的项目变得很庞大，当然这也是Java的特性（任何的小项目都会做成中型的项目）。</p>
 
       
     </div>
@@ -582,7 +584,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/sql/" rel="tag"># sql</a>
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
           
         </div>
       
@@ -595,8 +597,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/20/如何判断一个元素在亿级数据中是否存在/" rel="next" title="如何判断一个元素在亿级数据中是否存在">
-                <i class="fa fa-chevron-left"></i> 如何判断一个元素在亿级数据中是否存在
+              <a href="/2019/03/03/观察者模式/" rel="next" title="观察者模式">
+                <i class="fa fa-chevron-left"></i> 观察者模式
               </a>
             
           </div>
@@ -604,10 +606,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/21/硬币阶梯/" rel="prev" title="硬币阶梯">
-                硬币阶梯 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -663,8 +661,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -744,6 +751,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单一职责原则"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;" class="headerlink" title="&#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;"></a>&#x5355;&#x4E00;&#x804C;&#x8D23;&#x539F;&#x5219;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开闭原则"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5F00;&#x95ED;&#x539F;&#x5219;" class="headerlink" title="&#x5F00;&#x95ED;&#x539F;&#x5219;"></a>&#x5F00;&#x95ED;&#x539F;&#x5219;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#里氏替换原则"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x91CC;&#x6C0F;&#x66FF;&#x6362;&#x539F;&#x5219;" class="headerlink" title="&#x91CC;&#x6C0F;&#x66FF;&#x6362;&#x539F;&#x5219;"></a>&#x91CC;&#x6C0F;&#x66FF;&#x6362;&#x539F;&#x5219;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x4F9D;&#x8D56;&#x5012;&#x7F6E;&#x539F;&#x5219;" class="headerlink" title="&#x4F9D;&#x8D56;&#x5012;&#x7F6E;&#x539F;&#x5219;"></a>&#x4F9D;&#x8D56;&#x5012;&#x7F6E;&#x539F;&#x5219;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x63A5;&#x53E3;&#x9694;&#x79BB;&#x539F;&#x5219;" class="headerlink" title="&#x63A5;&#x53E3;&#x9694;&#x79BB;&#x539F;&#x5219;"></a>&#x63A5;&#x53E3;&#x9694;&#x79BB;&#x539F;&#x5219;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#迪米特原则"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x8FEA;&#x7C73;&#x7279;&#x539F;&#x5219;" class="headerlink" title="&#x8FEA;&#x7C73;&#x7279;&#x539F;&#x5219;"></a>&#x8FEA;&#x7C73;&#x7279;&#x539F;&#x5219;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x603B;&#x7ED3;" class="headerlink" title="&#x603B;&#x7ED3;"></a>&#x603B;&#x7ED3;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
