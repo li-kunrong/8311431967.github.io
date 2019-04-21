@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JVM常用参数配置和GC调优]]></title>
+    <url>%2F2019%2F04%2F21%2FJVM%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%92%8CGC%E8%B0%83%E4%BC%98%2F</url>
+    <content type="text"><![CDATA[JVM配置常用参数堆参数-Xms 初始化堆内存-Xmx 堆内存最大值-Xmn 年轻代大小，剩下为老年代-XX：permGen 永久代大小-XX: maxPermGen 永久代最大值-XX:NewRatio 老年代和年轻代的比例 默认是2 回收器参数-XX:+UseSerialGC Young和old区都是用串行，复制算法-XX:-UseParallelGC 并行，young区： 使用Parallel scavenge回收， old：单线程-XX:+UseParallelOldGc 并行，young和old都是多线程-XX:+UseConcMarkSweepGC: 并发，短暂停顿的并发，young区：可以使用普通的或者parallel垃圾回收算法，old区：使用Concurrent mark sweep-XX:+UseG1GC 并行的并发的和由增量式短暂压缩的垃圾收集器，不区分young和old，划分为多个相等大小的区域， 项目中的常用配置-Xms4800m-xmx4800m-Xmn1800m-xss512k 线程栈空间大小-verbose:gc 输出虚拟机GC详情-XX:+printGCDetails 打印GC详情-XX:+printGCDateStamps 打印GC耗时-XX:+printTenuringDistribution 打印Tenuring年龄信息-XX：heapDumpPath=/home/admin/logs 指定heapdump的文件路径或目录 常用GC调优策略GC调优原则多数的 Java 应用不需要在服务器上进行 GC 优化； 多数导致 GC 问题的 Java 应用，都不是因为我们参数设置错误，而是代码问题； 在应用上线之前，先考虑将机器的 JVM 参数设置到最优（最适合）； 减少创建对象的数量； 减少使用全局变量和大对象； GC 优化是到最后不得已才采用的手段； 在实际使用中，分析 GC 情况优化代码比优化 GC 参数要多得多。 GC调优目的将转移到老年代的对象数量降低到最小减少GC的执行时间 策略 将新对象预留在新生代，fullGC比minorGC慢十倍，通过-Xmn调节新生代大小，最大限度降低新对象直接进入老年代的情况 大对象直接进入老年代因此，对于大对象，可以设置直接进入老年代（当然短命的大对象对于垃圾回收老说简直就是噩梦）。-XX:PretenureSizeThreshold 可以设置直接进入老年代的对象大小 合理设置进入老年代的年龄，-XX:MaxTenuringThreshold 设置对象进入老年代的年龄大小，减少老年代的内存占用，降低 full gc 发生的频率 设置稳定的堆大小，堆大小设置有两个参数：-Xms初始化堆大小，-Xmx最大堆大小 ：注意：如果满足下面的指标，则一般不需要进行 GC 优化： MinorGC 执行时间不到50ms； Minor GC 执行不频繁，约10秒一次； Full GC 执行时间不到1s； Full GC 执行频率不算频繁，不低于10分钟1次。]]></content>
+      <categories>
+        <category>JVM</category>
+      </categories>
+      <tags>
+        <tag>JVM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[记一次网页嵌入自定义代码]]></title>
     <url>%2F2019%2F03%2F11%2F%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%BD%91%E9%A1%B5%E5%B5%8C%E5%85%A5%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BB%A3%E7%A0%81%2F</url>
     <content type="text"><![CDATA[前言腾讯体育的界面设计太猥琐啦，用了ad block 也不能屏蔽广告，而且内容都不是我需要的，我只看我想看的，而不是由被别人推荐的。这些视频还会加重网络负担，还是删除了吧。 如图： 行动先定位到元素位置，找到该元素的id或者class 很明显的id，直接获取id得到的元素，得到父节点，删除子节点。 12345var ad = document.getElementById(&apos;J_arcarousel&apos;); if (ad != null)&#123; ad.parentNode.removeChild(ad); &#125; 但这样会在很多网站生效所有要根据title判断一下 12345678var title = document.title; if (title.indexOf(&apos;腾讯体育&apos;) != -1)&#123; var ad = document.getElementById(&apos;J_arcarousel&apos;); if (ad != null)&#123; ad.parentNode.removeChild(ad); &#125;&#125; 拖进chrome不的拓展里不生效，谷歌发现我的版本高，不支持了。于是我想做成拓展，做成后发现没有发布在chrome商店，不能用。 最终还是用油猴实现了 结果清爽的界面，而且网络请求也正常了。]]></content>

@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JVM," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JVM配置常用参数堆参数-Xms  初始化堆内存-Xmx 堆内存最大值-Xmn 年轻代大小，剩下为老年代-XX：permGen 永久代大小-XX: maxPermGen 永久代最大值-XX:NewRatio 老年代和年轻代的比例 默认是2 回收器参数-XX:+UseSerialGC  Young和old区都是用串行，复制算法-XX:-UseParallelGC 并行，young区： 使用Paral">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM常用参数配置和GC调优">
+<meta property="og:url" content="http://yoursite.com/2019/04/21/JVM常用参数配置和GC调优/index.html">
+<meta property="og:site_name" content="Kunrong-blog">
+<meta property="og:description" content="JVM配置常用参数堆参数-Xms  初始化堆内存-Xmx 堆内存最大值-Xmn 年轻代大小，剩下为老年代-XX：permGen 永久代大小-XX: maxPermGen 永久代最大值-XX:NewRatio 老年代和年轻代的比例 默认是2 回收器参数-XX:+UseSerialGC  Young和old区都是用串行，复制算法-XX:-UseParallelGC 并行，young区： 使用Paral">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-21T05:27:20.435Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM常用参数配置和GC调优">
+<meta name="twitter:description" content="JVM配置常用参数堆参数-Xms  初始化堆内存-Xmx 堆内存最大值-Xmn 年轻代大小，剩下为老年代-XX：permGen 永久代大小-XX: maxPermGen 永久代最大值-XX:NewRatio 老年代和年轻代的比例 默认是2 回收器参数-XX:+UseSerialGC  Young和old区都是用串行，复制算法-XX:-UseParallelGC 并行，young区： 使用Paral">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"left"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/21/JVM常用参数配置和GC调优/"/>
+
+
+
+
+
+  <title>JVM常用参数配置和GC调优 | Kunrong-blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kunrong-blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-secweb">
+          <a href="/Secweb/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '></a> </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/21/JVM常用参数配置和GC调优/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kunrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kunrong-blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JVM常用参数配置和GC调优</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-21T12:41:01+08:00">
+                2019-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="JVM配置常用参数"><a href="#JVM配置常用参数" class="headerlink" title="JVM配置常用参数"></a>JVM配置常用参数</h2><h3 id="堆参数"><a href="#堆参数" class="headerlink" title="堆参数"></a>堆参数</h3><p>-Xms  初始化堆内存<br>-Xmx 堆内存最大值<br>-Xmn 年轻代大小，剩下为老年代<br>-XX：permGen 永久代大小<br>-XX: maxPermGen 永久代最大值<br>-XX:NewRatio 老年代和年轻代的比例 默认是2</p>
+<h3 id="回收器参数"><a href="#回收器参数" class="headerlink" title="回收器参数"></a>回收器参数</h3><p>-XX:+UseSerialGC  Young和old区都是用串行，复制算法<br>-XX:-UseParallelGC 并行，young区： 使用Parallel scavenge回收， old：单线程<br>-XX:+UseParallelOldGc 并行，young和old都是多线程<br>-XX:+UseConcMarkSweepGC: 并发，短暂停顿的并发，young区：可以使用普通的或者parallel垃圾回收算法，old区：使用Concurrent mark sweep<br>-XX:+UseG1GC 并行的并发的和由增量式短暂压缩的垃圾收集器，不区分young和old，划分为多个相等大小的区域，</p>
+<h2 id="项目中的常用配置"><a href="#项目中的常用配置" class="headerlink" title="项目中的常用配置"></a>项目中的常用配置</h2><p>-Xms4800m<br>-xmx4800m<br>-Xmn1800m<br>-xss512k 线程栈空间大小<br>-verbose:gc 输出虚拟机GC详情<br>-XX:+printGCDetails 打印GC详情<br>-XX:+printGCDateStamps 打印GC耗时<br>-XX:+printTenuringDistribution 打印Tenuring年龄信息<br>-XX：heapDumpPath=/home/admin/logs 指定heapdump的文件路径或目录</p>
+<h2 id="常用GC调优策略"><a href="#常用GC调优策略" class="headerlink" title="常用GC调优策略"></a>常用GC调优策略</h2><h3 id="GC调优原则"><a href="#GC调优原则" class="headerlink" title="GC调优原则"></a>GC调优原则</h3><pre><code>多数的 Java 应用不需要在服务器上进行 GC 优化；
+多数导致 GC 问题的 Java 应用，都不是因为我们参数设置错误，而是代码问题；
+在应用上线之前，先考虑将机器的 JVM 参数设置到最优（最适合）；
+减少创建对象的数量；
+减少使用全局变量和大对象；
+GC 优化是到最后不得已才采用的手段；
+在实际使用中，分析 GC 情况优化代码比优化 GC 参数要多得多。
+</code></pre><h2 id="GC调优目的"><a href="#GC调优目的" class="headerlink" title="GC调优目的"></a>GC调优目的</h2><p>将转移到老年代的对象数量降低到最小<br>减少GC的执行时间</p>
+<h2 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h2><ol>
+<li>将新对象预留在新生代，fullGC比minorGC慢十倍，通过-Xmn调节新生代大小，最大限度降低新对象直接进入老年代的情况</li>
+<li>大对象直接进入老年代因此，对于大对象，可以设置直接进入老年代（当然短命的大对象对于垃圾回收老说简直就是噩梦）。-XX:PretenureSizeThreshold 可以设置直接进入老年代的对象大小</li>
+<li>合理设置进入老年代的年龄，-XX:MaxTenuringThreshold 设置对象进入老年代的年龄大小，减少老年代的内存占用，降低 full gc 发生的频率</li>
+<li>设置稳定的堆大小，堆大小设置有两个参数：-Xms初始化堆大小，-Xmx最大堆大小</li>
+<li>：注意：如果满足下面的指标，则一般不需要进行 GC 优化：<br> MinorGC 执行时间不到50ms；<br> Minor GC 执行不频繁，约10秒一次；<br> Full GC 执行时间不到1s；<br> Full GC 执行频率不算频繁，不低于10分钟1次。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/11/记一次网页嵌入自定义代码/" rel="next" title="记一次网页嵌入自定义代码">
+                <i class="fa fa-chevron-left"></i> 记一次网页嵌入自定义代码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI3Mi84ODM2"></div>
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload_image/avatar.gif"
+                alt="Kunrong" />
+            
+              <p class="site-author-name" itemprop="name">Kunrong</p>
+              <p class="site-description motion-element" itemprop="description">share my technology</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/8311431967" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/1967-59-52/activities" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM配置常用参数"><span class="nav-number">1.</span> <span class="nav-text"><a href="#JVM&#x914D;&#x7F6E;&#x5E38;&#x7528;&#x53C2;&#x6570;" class="headerlink" title="JVM&#x914D;&#x7F6E;&#x5E38;&#x7528;&#x53C2;&#x6570;"></a>JVM&#x914D;&#x7F6E;&#x5E38;&#x7528;&#x53C2;&#x6570;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#堆参数"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x5806;&#x53C2;&#x6570;" class="headerlink" title="&#x5806;&#x53C2;&#x6570;"></a>&#x5806;&#x53C2;&#x6570;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回收器参数"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#&#x56DE;&#x6536;&#x5668;&#x53C2;&#x6570;" class="headerlink" title="&#x56DE;&#x6536;&#x5668;&#x53C2;&#x6570;"></a>&#x56DE;&#x6536;&#x5668;&#x53C2;&#x6570;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目中的常用配置"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x9879;&#x76EE;&#x4E2D;&#x7684;&#x5E38;&#x7528;&#x914D;&#x7F6E;" class="headerlink" title="&#x9879;&#x76EE;&#x4E2D;&#x7684;&#x5E38;&#x7528;&#x914D;&#x7F6E;"></a>&#x9879;&#x76EE;&#x4E2D;&#x7684;&#x5E38;&#x7528;&#x914D;&#x7F6E;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用GC调优策略"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5E38;&#x7528;GC&#x8C03;&#x4F18;&#x7B56;&#x7565;" class="headerlink" title="&#x5E38;&#x7528;GC&#x8C03;&#x4F18;&#x7B56;&#x7565;"></a>&#x5E38;&#x7528;GC&#x8C03;&#x4F18;&#x7B56;&#x7565;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GC调优原则"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#GC&#x8C03;&#x4F18;&#x539F;&#x5219;" class="headerlink" title="GC&#x8C03;&#x4F18;&#x539F;&#x5219;"></a>GC&#x8C03;&#x4F18;&#x539F;&#x5219;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GC调优目的"><span class="nav-number">4.</span> <span class="nav-text"><a href="#GC&#x8C03;&#x4F18;&#x76EE;&#x7684;" class="headerlink" title="GC&#x8C03;&#x4F18;&#x76EE;&#x7684;"></a>GC&#x8C03;&#x4F18;&#x76EE;&#x7684;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x7B56;&#x7565;" class="headerlink" title="&#x7B56;&#x7565;"></a>&#x7B56;&#x7565;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kunrong</span>
+
+  
+</div>
+<!--
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
