@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hibernate," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="核心配置核心apiConfiguration 构造方法：默认加载 hibernate.propertiesconfigure() 方法：默认加载 hibernate.cfg.xmlconfigure(String) 方法：加载指定配置文件 sessionFactory SessionFactory 相当于java web连接池，用于管理所有session 获得方式：config.buildSess">
+<meta name="keywords" content="Hibernate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hibernate配置">
+<meta property="og:url" content="http://yoursite.com/2019/05/16/hibernate配置/index.html">
+<meta property="og:site_name" content="Kunrong-blog">
+<meta property="og:description" content="核心配置核心apiConfiguration 构造方法：默认加载 hibernate.propertiesconfigure() 方法：默认加载 hibernate.cfg.xmlconfigure(String) 方法：加载指定配置文件 sessionFactory SessionFactory 相当于java web连接池，用于管理所有session 获得方式：config.buildSess">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/2036280-cc31a15ffc1e6f0f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/631/format/webp">
+<meta property="og:updated_time" content="2019-05-16T12:43:59.990Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hibernate配置">
+<meta name="twitter:description" content="核心配置核心apiConfiguration 构造方法：默认加载 hibernate.propertiesconfigure() 方法：默认加载 hibernate.cfg.xmlconfigure(String) 方法：加载指定配置文件 sessionFactory SessionFactory 相当于java web连接池，用于管理所有session 获得方式：config.buildSess">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/2036280-cc31a15ffc1e6f0f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/631/format/webp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"left"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/16/hibernate配置/"/>
+
+
+
+
+
+  <title>hibernate配置 | Kunrong-blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kunrong-blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-secweb">
+          <a href="/Secweb/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '></a> </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/16/hibernate配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kunrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kunrong-blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hibernate配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-16T18:45:34+08:00">
+                2019-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="核心配置"><a href="#核心配置" class="headerlink" title="核心配置"></a>核心配置</h2><p>核心api<br>Configuration</p>
+<p>构造方法：默认加载 hibernate.properties<br>configure() 方法：默认加载 hibernate.cfg.xml<br>configure(String) 方法：加载指定配置文件</p>
+<h3 id="sessionFactory"><a href="#sessionFactory" class="headerlink" title="sessionFactory"></a>sessionFactory</h3><ul>
+<li>SessionFactory 相当于java web连接池，用于管理所有session</li>
+<li>获得方式：config.buildSessionFactory();</li>
+<li>sessionFactory hibernate缓存配置信息 （数据库配置信息、映射文件，预定义HQL语句 等）</li>
+<li>SessionFactory线程安全，可以是成员变量，多个线程同时访问时，不会出现线程并发访问问题</li>
+<li><p>开启一个 session：factory.openSession();</p>
+</li>
+<li><p>获取和当前线程绑定的会话（需要配置）：factory.getCurrentSession();</p>
+  <property name="hibernate.current_session_context_class">thread</property>
+
+</li>
+</ul>
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><ul>
+<li>Session 相当于 JDBC的 Connection – 会话</li>
+<li>通过session操作PO对象 –增删改查</li>
+<li>session单线程，线程不安全，不能编写成成员变量。</li>
+<li><p>Api:</p>
+<p>  save 保存<br>  update 更新<br>  delete 删除<br>  get 通过id查询，如果没有 null<br>  load 通过id查询，如果没有抛异常<br>  createQuery(“hql”)  获得Query对象<br>  createCriteria(Class) 获得Criteria对象</p>
+</li>
+</ul>
+<h3 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h3><p>开启事务 beginTransaction()<br>获得事务 getTransaction()</p>
+<p>提交事务：commit()<br>回滚事务：rollback()</p>
+<p>和 spring 整合后，无需手动管理</p>
+<h3 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h3><ul>
+<li>hibernate执行hql语句</li>
+<li>hql语句：hibernate提供面向对象查询语句，使用对象和属性进行查询，区分大小写</li>
+<li>获得session.createQuery(“hql”);</li>
+<li><p>方法：<br>  list()  查询所有<br>  uniqueResult() 获得一个结果。如果没有查询到返回null，如果查询多条抛异常。</p>
+<p>  setFirstResult(int) 分页，开始索引数startIndex<br>  setMaxResults(int) 分页，每页显示个数 pageSize</p>
+</li>
+</ul>
+<h3 id="Criteria"><a href="#Criteria" class="headerlink" title="Criteria"></a>Criteria</h3><ul>
+<li>QBC（query by criteria），hibernate提供纯面向对象查询语言，提供直接使用PO对象进行操作。</li>
+<li>获得方式：Criteria criteria = session.createCriteria(User.class);</li>
+<li><p>条件</p>
+<p>  criteria.add(Restrictions.eq(“username”, “tom”));<br>  Restrictions.gt(propertyName, value)        大于<br>  Restrictions.ge(propertyName, value)    大于等于<br>  Restrictions.lt(propertyName, value)    小于<br>  Restrictions.le(propertyName, value)    小于等于<br>  Restrictions.like(propertyName, value)  模糊查询，注意：模糊查询值需要使用 % _</p>
+</li>
+</ul>
+<h3 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class HibernateUtils &#123;</span><br><span class="line">   private static SessionFactory sessionFactory;</span><br><span class="line">   static &#123;</span><br><span class="line">       Configuration configuration = new Configuration().configure();</span><br><span class="line">       sessionFactory = configuration.buildSessionFactory();</span><br><span class="line"></span><br><span class="line">       Runtime.getRuntime().addShutdownHook(new Thread()&#123;</span><br><span class="line">           @Override</span><br><span class="line">           public void run() &#123;</span><br><span class="line">               sessionFactory.close();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public static Session openSession() &#123;</span><br><span class="line">       return sessionFactory.openSession();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public static Session getCurrentSession() &#123;</span><br><span class="line">       return sessionFactory.getCurrentSession();</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public static void main(String[] args) &#123;</span><br><span class="line">       Session session = openSession();</span><br><span class="line">       System.out.println(session);</span><br><span class="line">       session.close();</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">	&lt;!-- SessionFactory，相当于之前学习连接池配置 --&gt;</span><br><span class="line">&lt;session-factory&gt;</span><br><span class="line">   &lt;!-- 1 基本4项 --&gt;</span><br><span class="line">   &lt;property name=&quot;hibernate.connection.driver_class&quot;&gt;com.mysql.jdbc.Driver&lt;/property&gt;</span><br><span class="line">   &lt;property name=&quot;hibernate.connection.url&quot;&gt;jdbc:mysql:///h_day01_db&lt;/property&gt;</span><br><span class="line">   &lt;property name=&quot;hibernate.connection.username&quot;&gt;root&lt;/property&gt;</span><br><span class="line">   &lt;property name=&quot;hibernate.connection.password&quot;&gt;1234&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">   &lt;!-- 2 与本地线程绑定 --&gt;</span><br><span class="line">   &lt;property name=&quot;hibernate.current_session_context_class&quot;&gt;thread&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">       &lt;!-- 3 方言：为不同的数据库，不同的版本，生成sql语句（DQL查询语句）提供依据 </span><br><span class="line">           * mysql 字符串 varchar</span><br><span class="line">           * orcale 字符串 varchar2</span><br><span class="line">       --&gt;</span><br><span class="line">       &lt;property name=&quot;hibernate.dialect&quot;&gt;org.hibernate.dialect.MySQL5Dialect&lt;/property&gt;</span><br><span class="line">   </span><br><span class="line">   &lt;!-- 4 sql语句 --&gt;</span><br><span class="line">   &lt;!-- 显示sql语句 --&gt;</span><br><span class="line">   &lt;property name=&quot;hibernate.show_sql&quot;&gt;true&lt;/property&gt;</span><br><span class="line">   &lt;property name=&quot;hibernate.format_sql&quot;&gt;true&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">   &lt;!-- 5 自动创建表（了解） ，学习中使用，开发不使用的。</span><br><span class="line">       * 开发中DBA 先创建表，之后根据表生产 PO类</span><br><span class="line">       * 取值：</span><br><span class="line">       update：【】</span><br><span class="line">           如果表不存在，将创建表。</span><br><span class="line">           如果表已经存在，通过hbm映射文件更新表（添加）。（映射文件必须是数据库对应）</span><br><span class="line">               表中的列可以多，不负责删除。</span><br><span class="line">       create ：如果表存在，先删除，再创建。程序结束时，之前创建的表不删除。【】</span><br><span class="line">       create-drop：与create几乎一样。如果factory.close()执行，将在JVM关闭同时，将创建的表删除了。(测试)</span><br><span class="line">       validate：校验 hbm映射文件 和 表的列是否对应，如果对应正常执行，如果不对应抛出异常。(测试)</span><br><span class="line">   --&gt;</span><br><span class="line">   &lt;property name=&quot;hibernate.hbm2ddl.auto&quot;&gt;create&lt;/property&gt;</span><br><span class="line">   </span><br><span class="line">   &lt;!-- 6 java web 6.0 存放一个问题</span><br><span class="line">       * BeanFactory 空指针异常</span><br><span class="line">           异常提示：org.hibernate.HibernateException: Unable to get the default Bean Validation factory</span><br><span class="line">       * 解决方案：取消bean校验</span><br><span class="line">   --&gt;</span><br><span class="line">   &lt;property name=&quot;javax.persistence.validation.mode&quot;&gt;none&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">   &lt;!-- 添加映射文件 </span><br><span class="line">       &lt;mapping &gt;添加映射文件</span><br><span class="line">           resource 设置 xml配置文件 （addResource(xml)）</span><br><span class="line">           class 配置类 (addClass(User.class)) 配置的是全限定类名</span><br><span class="line">   --&gt;</span><br><span class="line">   &lt;mapping  resource=&quot;com/ittianyu/a_hello/User.hbm.xml&quot;/&gt;</span><br><span class="line">&lt;/session-factory&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="主键种类"><a href="#主键种类" class="headerlink" title="主键种类"></a>主键种类</h3><ul>
+<li>自然主键: 在业务中,某个属性符合主键的三个要求.那么该属性可以作为主键列.</li>
+<li>代理主键: 在业务中,不存符合以上3个条件的属性,那么就增加一个没有意义的列.作为主键.</li>
+</ul>
+<h2 id="一级缓存"><a href="#一级缓存" class="headerlink" title="一级缓存"></a>一级缓存</h2><p>对象状态<br>三种状态<br>瞬时态：transient，session没有缓存对象，数据库也没有对应记录。<br>OID特点：没有值<br>持久态：persistent，session缓存对象，数据库最终会有记录。（事务没有提交）<br>OID特点：有值<br>脱管态：detached，session没有缓存对象，数据库有记录。<br>OID特点：有值</p>
+<p>转换状态：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2036280-cc31a15ffc1e6f0f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/631/format/webp" alt=""></p>
+<h3 id="一级缓存-1"><a href="#一级缓存-1" class="headerlink" title="一级缓存"></a>一级缓存</h3><p>一级缓存：又称为session级别的缓存。当获得一次会话（session），hibernate在session中创建多个集合（map），用于存放操作数据（PO对象），为程序优化服务，如果之后需要相应的数据，hibernate优先从session缓存中获取，如果有就使用；如果没有再查询数据库。当session关闭时，一级缓存销毁。</p>
+<p>可以调用方法清除一级缓存<br>    //清除<br>    //session.clear();<br>    session.evict(user);</p>
+<h3 id="快照"><a href="#快照" class="headerlink" title="快照"></a>快照</h3><p>与一级缓存一样的存放位置，对一级缓存数据备份。保证数据库的数据与 一级缓存的数据必须一致。如果一级缓存修改了，在执行commit提交时，将自动刷新一级缓存，执行update语句，将一级缓存的数据更新到数据库。<br>当缓存和数据库数据不一样且在提交之前，可以调用 refresh 强制刷新缓存。<br><a id="5"> </a></p>
+<h2 id="关系映射"><a href="#关系映射" class="headerlink" title="关系映射"></a>关系映射</h2><h3 id="一对一关系"><a href="#一对一关系" class="headerlink" title="一对一关系"></a>一对一关系</h3><p>一般是可以整合成一张表，也可以分成两张表。<br>维护两张表的关系可以选择外键也可以选择让主键同步。</p>
+<p>实体类<br>Address.java</p>
+<pre><code>public class Address {
+    private Integer id;
+    private String name;
+
+    private Company company;
+    // 省略 get set
+}
+</code></pre><p>Company.java</p>
+<pre><code>public class Company {
+    private Integer id;
+    private String name;
+
+    private Address address;
+    // 省略 get set
+}
+</code></pre><p>外键维护关系<br>Address.hbm.xml</p>
+<pre><code>&lt;!--
+dynamic-insert 和 dynamic-update 为 true 时，sql语句中只有值变化或者不为空的属性才会加上，用于更新部分属性
+--&gt;
+&lt;class name=&quot;Address&quot; table=&quot;t_address_sync&quot; dynamic-insert=&quot;true&quot; dynamic-update=&quot;true&quot;&gt;
+    &lt;id name=&quot;id&quot; column=&quot;id&quot;&gt;
+        &lt;!--
+        主键与外键表的主键同步
+        --&gt;
+        &lt;generator class=&quot;foreign&quot;&gt;
+            &lt;param name=&quot;property&quot;&gt;company&lt;/param&gt;
+        &lt;/generator&gt;
+    &lt;/id&gt;
+    &lt;property name=&quot;name&quot; column=&quot;name&quot;/&gt;
+
+    &lt;!--
+        需要在同步主键的一方加上 constrained=&quot;true&quot; 使用给主键加上外键约束
+    --&gt;
+    &lt;one-to-one name=&quot;company&quot; class=&quot;Company&quot; constrained=&quot;true&quot; /&gt;
+&lt;/class&gt;
+</code></pre><p>Company.hbm.xml</p>
+<pre><code>&lt;!--
+dynamic-insert 和 dynamic-update 为 true 时，sql语句中只有值变化或者不为空的属性才会加上，用于更新部分属性
+
+&lt;class name=&quot;Company&quot; table=&quot;t_company_ref&quot; dynamic-insert=&quot;true&quot; dynamic-update=&quot;true&quot;&gt;
+    &lt;id name=&quot;id&quot; column=&quot;id&quot;&gt;
+        &lt;generator class=&quot;native&quot;/&gt;
+    &lt;/id&gt;
+    &lt;property name=&quot;name&quot; column=&quot;name&quot;/&gt;
+
+    &lt;!--
+        one-to-one 中使用了 property-ref ：当前类哪个属性是引用外键
+        放弃维护外键
+    --&gt;
+    &lt;one-to-one name=&quot;address&quot; class=&quot;Address&quot; property-ref=&quot;company&quot; /&gt;
+&lt;/class&gt;
+</code></pre><h3 id="一对多"><a href="#一对多" class="headerlink" title="一对多"></a>一对多</h3><p>实体类</p>
+<pre><code>Customer.java
+public class Customer {
+    private Integer id;
+    private String name;
+
+    private Set&lt;Order&gt; orders = new HashSet&lt;&gt;();
+    // 省略 get set
+}
+
+Order.java
+public class Order {
+    private Integer id;
+    private String name;
+
+    private Customer customer;
+    // 省略 get set
+}
+</code></pre><p>映射文件<br>Customer.hbm.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC
+        &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+        &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;
+&lt;hibernate-mapping package=&quot;com.ittianyu.hibernate.onetomany&quot;&gt;
+    &lt;!--
+    dynamic-insert 和 dynamic-update 为 true 时，sql语句中只有值变化或者不为空的属性才会加上，用于更新部分属性
+    --&gt;
+    &lt;class name=&quot;Customer&quot; table=&quot;t_customer&quot; dynamic-insert=&quot;true&quot; dynamic-update=&quot;true&quot;&gt;
+        &lt;id name=&quot;id&quot; column=&quot;id&quot;&gt;
+            &lt;generator class=&quot;native&quot;/&gt;
+        &lt;/id&gt;
+        &lt;property name=&quot;name&quot; column=&quot;name&quot;/&gt;
+        &lt;!--
+        inverse 为 true 表示放弃维护关系，留给对方来维护，
+        一般是一对多中 一的一方放弃，由多的一放维护，
+        这个时候删除对象时，需要手动将关联的对象外键引用移除
+        --&gt;
+        &lt;set name=&quot;orders&quot; inverse=&quot;true&quot;&gt;
+            &lt;key column=&quot;cid&quot;&gt;&lt;/key&gt;
+            &lt;one-to-many class=&quot;Order&quot; /&gt;
+        &lt;/set&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</code></pre><p>Order.hbm.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC
+        &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+        &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;
+&lt;hibernate-mapping package=&quot;com.ittianyu.hibernate.onetomany&quot;&gt;
+    &lt;!--
+    dynamic-insert 和 dynamic-update 为 true 时，sql语句中只有值变化或者不为空的属性才会加上，用于更新部分属性
+    --&gt;
+    &lt;class name=&quot;Order&quot; table=&quot;t_order&quot; dynamic-insert=&quot;true&quot; dynamic-update=&quot;true&quot;&gt;
+        &lt;id name=&quot;id&quot; column=&quot;id&quot;&gt;
+            &lt;generator class=&quot;native&quot;/&gt;
+        &lt;/id&gt;
+        &lt;property name=&quot;name&quot; column=&quot;name&quot;/&gt;
+        &lt;many-to-one name=&quot;customer&quot; column=&quot;cid&quot; class=&quot;Customer&quot; /&gt;
+    &lt;/class&gt;
+</code></pre><h3 id="多对多"><a href="#多对多" class="headerlink" title="多对多"></a>多对多</h3><p>实体类<br>Course.java</p>
+<pre><code>public class Course {
+    private Integer id;
+    private String name;
+    private Set&lt;Student&gt; students = new HashSet&lt;&gt;();
+    // 省略 get set
+}
+</code></pre><p>Student.java</p>
+<pre><code>public class Student {
+    private Integer id;
+    private String name;
+    private Set&lt;Course&gt; courses = new HashSet&lt;&gt;();
+    // 省略 get set
+}
+</code></pre><p>映射文件<br>Course.hbm.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC
+        &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+        &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;
+&lt;hibernate-mapping package=&quot;com.ittianyu.hibernate.manytomany&quot;&gt;
+    &lt;!--
+    dynamic-insert 和 dynamic-update 为 true 时，sql语句中只有值变化或者不为空的属性才会加上，用于更新部分属性
+    --&gt;
+    &lt;class name=&quot;Course&quot; table=&quot;t_course&quot; dynamic-insert=&quot;true&quot; dynamic-update=&quot;true&quot;&gt;
+        &lt;id name=&quot;id&quot; column=&quot;id&quot;&gt;
+            &lt;generator class=&quot;native&quot;/&gt;
+        &lt;/id&gt;
+        &lt;property name=&quot;name&quot; column=&quot;name&quot;/&gt;
+
+        &lt;!--
+            many to many 中，需要给 set 加上 table 名
+            放弃维护外键
+        --&gt;
+        &lt;set name=&quot;students&quot; table=&quot;t_student_course&quot; inverse=&quot;true&quot;&gt;
+            &lt;key column=&quot;cid&quot;&gt;&lt;/key&gt;
+            &lt;many-to-many class=&quot;Student&quot; column=&quot;sid&quot; /&gt;
+        &lt;/set&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</code></pre><p>Student.hbm.xml</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC
+        &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+        &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;
+&lt;hibernate-mapping package=&quot;com.ittianyu.hibernate.manytomany&quot;&gt;
+    &lt;!--
+    dynamic-insert 和 dynamic-update 为 true 时，sql语句中只有值变化或者不为空的属性才会加上，用于更新部分属性
+    --&gt;
+    &lt;class name=&quot;Student&quot; table=&quot;t_studennt&quot; dynamic-insert=&quot;true&quot; dynamic-update=&quot;true&quot;&gt;
+        &lt;id name=&quot;id&quot; column=&quot;id&quot;&gt;
+            &lt;generator class=&quot;native&quot;/&gt;
+        &lt;/id&gt;
+        &lt;property name=&quot;name&quot; column=&quot;name&quot;/&gt;
+        &lt;!--
+            many to many 中，需要给 set 加上 table 名
+            外键表由 student 维护，并启用级联，所以 course 中要放弃维护
+        --&gt;
+        &lt;set name=&quot;courses&quot; table=&quot;t_student_course&quot; cascade=&quot;save-update&quot;&gt;
+            &lt;key column=&quot;sid&quot;&gt;&lt;/key&gt;
+            &lt;many-to-many class=&quot;Course&quot; column=&quot;cid&quot; /&gt;
+        &lt;/set&gt;
+    &lt;/class&gt;
+&lt;/hibernate-mapping&gt;
+</code></pre><h2 id="级联"><a href="#级联" class="headerlink" title="级联"></a>级联</h2><ul>
+<li><p>cascade 表示指定级联操作的类型。</p>
+</li>
+<li><p>save-update : 增加或更新 A 时，自动增加或更新 B。</p>
+</li>
+<li>delete : 删除 A 时，自动删除 B</li>
+<li>all : 上面两项效果叠加</li>
+<li>delete-orphan (孤儿删除) : 删除所有和当前对象解除关联关系的对象</li>
+<li><p>all-delete-orphan : all + delete-orphan 效果叠加</p>
+  <set name="courses" table="t_student_course" cascade="save-update"><br>      <key column="sid"></key><br>      <many-to-many class="Course" column="cid"><br>  </many-to-many></set>
+
+
+
+</li>
+</ul>
+<h2 id="抓取策略"><a href="#抓取策略" class="headerlink" title="抓取策略"></a>抓取策略</h2><p>检索方式<br>立即检索：立即查询，在执行查询语句时，立即查询所有的数据。<br>延迟检索：延迟查询，在执行查询语句之后，在需要时在查询。（懒加载）</p>
+<p>检索策略<br>类级别检索：当前的类的属性获取是否需要延迟。<br>关联级别的检索：当前类关联另一个类是否需要延迟。</p>
+<p>类级别检索<br>get：立即检索。get方法一执行，立即查询所有字段的数据。<br>load：延迟检索。默认情况，load方法执行后，如果只使用OID的值不进行查询，如果要使用其他属性值将查询。可以配置是否延迟检索；</p>
+<p>关联级别检索<br>容器<set> 提供两个属性：fetch、lazy，用于控制关联检索。</set></p>
+<p>fetch：确定使用sql格式</p>
+<p>join：底层使用迫切左外连接<br>select：使用多个select语句（默认值）<br>subselect：使用子查询</p>
+<p>lazy：关联对象是否延迟。</p>
+<p>false：立即<br>true：延迟（默认值）<br>extra：极其懒惰，调用 size 时，sql 查询 count。（用于只需要获取个数的时候）</p>
+<p>批量查询<br>一次加载多行数据，用于减少 sql 语句数量</p>
+<set batch-size="5">
+
+<p>比如： 当客户关联查询订单时，默认给每一个客户生产一个select语句查询订单。开启批量查询后，使用in语句减少查询订单语句个数。</p>
+<p>根本区别说明<br>如果你使用load方法，hibernate认为该id对应的对象（数据库记录）在数据库中是一定存在的，所以它可以放心的使用，它可以放心的使用代理来 延迟加载该对象。在用到对象中的其他属性数据时才查询数据库，但是万一数据库中不存在该记录，那没办法，只能抛异常。所说的load方法抛异常是指在使用 该对象的数据时，数据库中不存在该数据时抛异常，而不是在创建这个对象时(注意：这就是由于“延迟加载”在作怪)。</p>
+<p>由于session中的缓存对于hibernate来说是个相当廉价的资源，所以在load时会先查一下session缓存看看该id对应的对象是否存在，不存在则创建代理。所以如果你知道该id在数据库中一定有对应记录存在就可以使用load方法来实现延迟加载。</p>
+<p>对于get方法，hibernate会确认一下该id对应的数据是否存在，首先在session缓存中查找，然后在二级缓存中查找，还没有就查数据库，数据库中没有就返回null。</p>
+<p>对于load和get方法返回类型：虽然好多书中都这么说：“get()永远只返回实体类”，但实际上这是不正确的，get方法如果在 session缓存中找到了该id对应的对象，如果刚好该对象前面是被代理过的，如被load方法使用过，或者被其他关联对象延迟加载过，那么返回的还是 原先的代理对象，而不是实体类对象，如果该代理对象还没有加载实体数据（就是id以外的其他属性数据），那么它会查询二级缓存或者数据库来加载数据，但是 返回的还是代理对象，只不过已经加载了实体数据。</p>
+<p>get方法首先查询session缓存，没有的话查询二级缓存，最后查询数据库；反而load方法创建时首先查询session缓存，没有就创建代理，实际使用数据时才查询二级缓存和数据库。</p>
+<h3 id="HQL"><a href="#HQL" class="headerlink" title="HQL"></a>HQL</h3><p>查询所有</p>
+<pre><code>//1  使用简单类名 ， 存在自动导包
+// * Customer.hbm.xml &lt;hibernate-mapping auto-import=&quot;true&quot;&gt;
+//  Query query = session.createQuery(&quot;from Customer&quot;);
+//2 使用全限定类名
+Query query = session.createQuery(&quot;from com.ittianyu.bean.Customer&quot;);
+// 获取结果
+List&lt;Customer&gt; allCustomer = query.list();
+</code></pre><p>条件查询</p>
+<pre><code>//1 指定数据，cid OID名称
+//  Query query = session.createQuery(&quot;from Customer where cid = 1&quot;);
+//2 如果使用id，也可以（了解）
+//  Query query = session.createQuery(&quot;from Customer where id = 1&quot;);
+//3 对象别名 ,格式： 类 [as] 别名
+//  Query query = session.createQuery(&quot;from Customer as c where c.cid = 1&quot;);
+//4 查询所有项，mysql--&gt; select * from...
+Query query = session.createQuery(&quot;select c from Customer as c where c.cid = 1&quot;);
+
+Customer customer = (Customer) query.uniqueResult();
+</code></pre><p>投影查询</p>
+<pre><code>//1 默认
+//如果单列 ，select c.cname from，需要List&lt;Object&gt;
+//如果多列，select c.cid,c.cname from ，需要List&lt;Object[]&gt;  ,list存放每行，Object[]多列
+//  Query query = session.createQuery(&quot;select c.cid,c.cname from Customer c&quot;);
+//2 将查询部分数据，设置Customer对象中
+// * 格式：new Customer(c.cid,c.cname)
+// * 注意：Customer必须提供相应的构造方法。
+// * 如果投影使用oid，结果脱管态对象。
+Query query = session.createQuery(&quot;select new Customer(c.cid,c.cname) from Customer c&quot;);
+
+List&lt;Customer&gt; allCustomer = query.list();
+</code></pre><p>排序</p>
+<pre><code>Query query = session.createQuery(&quot;from Customer order by cid desc&quot;);
+List&lt;Customer&gt; allCustomer = query.list();
+</code></pre><p>分页</p>
+<pre><code>Query query = session.createQuery(&quot;from Customer&quot;);
+// * 开始索引 , startIndex 算法： startIndex = (pageNum - 1) * pageSize;
+// *** pageNum 当前页（之前的 pageCode）
+query.setFirstResult(0);
+// * 每页显示个数 ， pageSize
+query.setMaxResults(2);
+
+List&lt;Customer&gt; allCustomer = query.list();
+</code></pre><p>绑定参数</p>
+<pre><code>Integer cid = 1;
+
+//方式1 索引 从 0 开始
+//  Query query = session.createQuery(&quot;from Customer where cid = ?&quot;);
+//  query.setInteger(0, cid);
+//方式2 别名引用 (:别名)
+Query query = session.createQuery(&quot;from Customer where cid = :xxx&quot;);
+//  query.setInteger(&quot;xxx&quot;, cid);
+query.setParameter(&quot;xxx&quot;, cid);
+
+Customer customer = (Customer) query.uniqueResult();
+</code></pre><p>聚合函数和分组</p>
+<pre><code>//1 
+//  Query query = session.createQuery(&quot;select count(*) from Customer&quot;);
+//2 别名
+//  Query query = session.createQuery(&quot;select count(c) from Customer c&quot;);
+//3 oid
+Query query = session.createQuery(&quot;select count(cid) from Customer&quot;);
+
+Long numLong = (Long) query.uniqueResult();
+</code></pre><p>连接查询</p>
+<pre><code>/左外连接
+//  List list = session.createQuery(&quot;from Customer c left outer join c.orderSet &quot;).list();
+//迫切左外链接 (默认数据重复)
+//  List list = session.createQuery(&quot;from Customer c left outer join fetch c.orderSet &quot;).list();
+//迫切左外链接 (去重复)
+List list = session.createQuery(&quot;select distinct c from Customer c left outer join fetch c.orderSet &quot;).list();
+</code></pre><p>命名查询</p>
+<p>Custom.hbm.xml</p>
+<pre><code>...
+    &lt;!--局部 命名查询--&gt;
+    &lt;query name=&quot;findAll&quot;&gt;&lt;![CDATA[from Customer ]]&gt;&lt;/query&gt;
+&lt;/class&gt;
+&lt;!--全局 命名查询--&gt;
+&lt;query name=&quot;findAll&quot;&gt;&lt;![CDATA[from Customer ]]&gt;&lt;/query&gt;
+</code></pre><p>测试</p>
+<pre><code>//全局
+//List list = session.getNamedQuery(&quot;findAll&quot;).list();
+//局部
+List list = session.getNamedQuery(&quot;com.ittianyu.a_init.Customer.findAll&quot;).list();
+</code></pre><h2 id="QBC"><a href="#QBC" class="headerlink" title="QBC"></a>QBC</h2><p>查询所有</p>
+<pre><code>List&lt;Customer&gt; list = session.createCriteria(Customer.class).list();
+</code></pre><p>分页查询</p>
+<pre><code>Criteria criteria = session.createCriteria(Order.class);
+criteria.setFirstResult(10);
+criteria.setMaxResults(10);
+List&lt;Order&gt; list = criteria.list();
+</code></pre><p>排序</p>
+<pre><code>Criteria criteria = session.createCriteria(Customer.class);
+//      criteria.addOrder(org.hibernate.criterion.Order.asc(&quot;age&quot;));
+criteria.addOrder(org.hibernate.criterion.Order.desc(&quot;age&quot;));
+List&lt;Customer&gt; list = criteria.list();
+</code></pre><p>条件查询</p>
+<pre><code>// 按名称查询:
+/*Criteria criteria = session.createCriteria(Customer.class);
+criteria.add(Restrictions.eq(&quot;cname&quot;, &quot;tom&quot;));
+List&lt;Customer&gt; list = criteria.list();*/
+
+// 模糊查询;
+/*Criteria criteria = session.createCriteria(Customer.class);
+criteria.add(Restrictions.like(&quot;cname&quot;, &quot;t%&quot;));
+List&lt;Customer&gt; list = criteria.list();*/
+
+// 条件并列查询
+Criteria criteria = session.createCriteria(Customer.class);
+criteria.add(Restrictions.like(&quot;cname&quot;, &quot;t%&quot;));
+criteria.add(Restrictions.ge(&quot;age&quot;, 35));
+List&lt;Customer&gt; list = criteria.list();
+</code></pre><p>离线查询</p>
+<pre><code>// service 层 封装与 session 无关的 criteria
+DetachedCriteria detachedCriteria = DetachedCriteria.forClass(Customer.class);
+detachedCriteria.add(Restrictions.eq(&quot;id&quot;, 4));
+
+// dao 层
+Session session = HibernateUtils.openSession();
+Criteria criteria = detachedCriteria.getExecutableCriteria(session);
+List list = criteria.list();
+</code></pre><h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>隔离级别<br>read uncommittd，读未提交。存在3个问题。<br>read committed，读已提交。解决：脏读。存在2个问题。<br>repeatable read ，可重复读。解决：脏读、不可重复读。存在1个问题。<br>serializable，串行化。单事务。没有问题。</p>
+<p>hibernate 中配置</p>
+<pre><code>&lt;property name=&quot;hibernate.connection.isolation&quot;&gt;4&lt;/property&gt;
+</code></pre><p>对照上面的分别是 1 2 4 8，0表示没有事务级别</p>
+<h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><p>悲观锁<br>采用数据库锁机制。丢失更新肯定会发生。</p>
+<p>读锁：共享锁。<br>select …. from  … lock in share mode;</p>
+<p>写锁：排他锁。（独占）<br>select … from  ….  for update</p>
+<p>Hibernate 中使用<br>Customer customer = (Customer) session.get(Customer.class, 1 ,LockMode.UPGRADE);</p>
+<p>乐观锁<br>在表中提供一个字段（版本字段），用于标识记录。如果版本不一致，不允许操作。丢失更新肯定不会发生<br>Hibernate 中使用</p>
+<p>在PO对象（javabean）提供字段，表示版本字段。</p>
+<pre><code>...
+private Integer version;
+...
+</code></pre><p>在配置文件中增加 version</p>
+<pre><code>&lt;class ...&gt;
+   ...
+   &lt;version name=&quot;version&quot; /&gt;
+   ...
+</code></pre><h2 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a>二级缓存</h2><p>sessionFactory 级别缓存，整个应用程序共享一个会话工厂，共享一个二级缓存。</p>
+<p>由4部分构成：</p>
+<ul>
+<li>类级别缓存</li>
+<li>集合级别缓存</li>
+<li>时间戳缓存</li>
+<li>查询缓存(二级缓存的第2大部分,三级缓存)</li>
+</ul>
+<p>并发访问策略</p>
+<p>transactional| 可以防止脏读和不可重复读，性能低<br>read-write| 可以防止脏读，更新缓存时锁定缓存数据<br>nonstrict-read-write| 不保证缓存和数据库一致，为缓存设置短暂的过期时间，减少脏读<br>read-only| 适用于不会被修改的数据，并发性能高</p>
+<p>应用场景<br>适合放入二级缓存中的数据:<br>很少被修改<br>不是很重要的数据, 允许出现偶尔的并发问题<br>不适合放入二级缓存中的数据:<br>经常被修改<br>财务数据, 绝对不允许出现并发问题<br>与其他应用数据共享的数据</p>
+<p>二级缓存提供商</p>
+<p>EHCache: 可作为进程（单机）范围内的缓存, 存放数据的物理介质可以是内存或硬盘, 对 Hibernate 的查询缓存提供了支持。–支持集群。<br>OpenSymphony `:可作为进程范围内的缓存, 存放数据的物理介质可以是内存或硬盘, 提供了丰富的缓存数据过期策略, 对 Hibernate 的查询缓存提供了支持<br>SwarmCache: 可作为集群范围内的缓存, 但不支持 Hibernate 的查询缓存<br>JBossCache:可作为集群范围内的缓存, 支持 Hibernate 的查询缓存</p>
+<h3 id="开启二级缓存"><a href="#开启二级缓存" class="headerlink" title="开启二级缓存"></a>开启二级缓存</h3><p>导包 hibernate-ehcache-5.2.8.Final.jar<br>配置<br>    &lt;!–二级缓存</p>
+<pre><code>#hibernate.cache.region.factory_class org.hibernate.cache.internal.EhCacheRegionFactory
+--&gt;
+&lt;property name=&quot;hibernate.cache.use_second_level_cache&quot;&gt;true&lt;/property&gt;
+&lt;property name=&quot;hibernate.cache.region.factory_class&quot;&gt;org.hibernate.cache.ehcache.EhCacheRegionFactory&lt;/property&gt;
+</code></pre><h3 id="使用二级缓存"><a href="#使用二级缓存" class="headerlink" title="使用二级缓存"></a>使用二级缓存</h3><p>类缓存</p>
+<pre><code>&lt;!--
+类缓存
+--&gt;
+&lt;class-cache class=&quot;com.ittianyu.hibernate.onetomany.Order&quot; usage=&quot;read-only&quot;/&gt;
+&lt;class-cache class=&quot;com.ittianyu.hibernate.onetomany.Customer&quot; usage=&quot;read-only&quot;/&gt;
+</code></pre><p>集合缓存</p>
+<pre><code>&lt;collection-cache collection=&quot;com.ittianyu.hibernate.onetomany.Customer.orders&quot; usage=&quot;read-only&quot; /&gt;
+</code></pre><p>查询缓存<br>将HQL语句 与 查询结果进行绑定。通过HQL相同语句可以缓存内容。</p>
+<p>配置</p>
+<pre><code>#hibernate.cache.use_query_cache true 启用 HQL查询缓存
+&lt;property name=&quot;hibernate.cache.use_query_cache&quot;&gt;true&lt;/property&gt;
+</code></pre><p>使用</p>
+<pre><code>Query query = session.createQuery(&quot;from Customer&quot;);
+query.setCacheable(true);// 标记为缓存
+</code></pre></set>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hibernate/" rel="tag"># Hibernate</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/21/JVM常用参数配置和GC调优/" rel="next" title="JVM常用参数配置和GC调优">
+                <i class="fa fa-chevron-left"></i> JVM常用参数配置和GC调优
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI3Mi84ODM2"></div>
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload_image/avatar.gif"
+                alt="Kunrong" />
+            
+              <p class="site-author-name" itemprop="name">Kunrong</p>
+              <p class="site-description motion-element" itemprop="description">share my technology</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/8311431967" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/1967-59-52/activities" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#核心配置"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x6838;&#x5FC3;&#x914D;&#x7F6E;" class="headerlink" title="&#x6838;&#x5FC3;&#x914D;&#x7F6E;"></a>&#x6838;&#x5FC3;&#x914D;&#x7F6E;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sessionFactory"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#sessionFactory" class="headerlink" title="sessionFactory"></a>sessionFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#Session" class="headerlink" title="Session"></a>Session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transaction"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Query"><span class="nav-number">1.4.</span> <span class="nav-text"><a href="#Query" class="headerlink" title="Query"></a>Query</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Criteria"><span class="nav-number">1.5.</span> <span class="nav-text"><a href="#Criteria" class="headerlink" title="Criteria"></a>Criteria</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工具类"><span class="nav-number">1.6.</span> <span class="nav-text"><a href="#&#x5DE5;&#x5177;&#x7C7B;" class="headerlink" title="&#x5DE5;&#x5177;&#x7C7B;"></a>&#x5DE5;&#x5177;&#x7C7B;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本配置"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x57FA;&#x672C;&#x914D;&#x7F6E;" class="headerlink" title="&#x57FA;&#x672C;&#x914D;&#x7F6E;"></a>&#x57FA;&#x672C;&#x914D;&#x7F6E;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主键种类"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x4E3B;&#x952E;&#x79CD;&#x7C7B;" class="headerlink" title="&#x4E3B;&#x952E;&#x79CD;&#x7C7B;"></a>&#x4E3B;&#x952E;&#x79CD;&#x7C7B;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一级缓存"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E00;&#x7EA7;&#x7F13;&#x5B58;" class="headerlink" title="&#x4E00;&#x7EA7;&#x7F13;&#x5B58;"></a>&#x4E00;&#x7EA7;&#x7F13;&#x5B58;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一级缓存-1"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x4E00;&#x7EA7;&#x7F13;&#x5B58;-1" class="headerlink" title="&#x4E00;&#x7EA7;&#x7F13;&#x5B58;"></a>&#x4E00;&#x7EA7;&#x7F13;&#x5B58;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快照"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x5FEB;&#x7167;" class="headerlink" title="&#x5FEB;&#x7167;"></a>&#x5FEB;&#x7167;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系映射"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5173;&#x7CFB;&#x6620;&#x5C04;" class="headerlink" title="&#x5173;&#x7CFB;&#x6620;&#x5C04;"></a>&#x5173;&#x7CFB;&#x6620;&#x5C04;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一对一关系"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x4E00;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;" class="headerlink" title="&#x4E00;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;"></a>&#x4E00;&#x5BF9;&#x4E00;&#x5173;&#x7CFB;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一对多"><span class="nav-number">4.2.</span> <span class="nav-text"><a href="#&#x4E00;&#x5BF9;&#x591A;" class="headerlink" title="&#x4E00;&#x5BF9;&#x591A;"></a>&#x4E00;&#x5BF9;&#x591A;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多对多"><span class="nav-number">4.3.</span> <span class="nav-text"><a href="#&#x591A;&#x5BF9;&#x591A;" class="headerlink" title="&#x591A;&#x5BF9;&#x591A;"></a>&#x591A;&#x5BF9;&#x591A;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#级联"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x7EA7;&#x8054;" class="headerlink" title="&#x7EA7;&#x8054;"></a>&#x7EA7;&#x8054;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抓取策略"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x6293;&#x53D6;&#x7B56;&#x7565;" class="headerlink" title="&#x6293;&#x53D6;&#x7B56;&#x7565;"></a>&#x6293;&#x53D6;&#x7B56;&#x7565;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HQL"><span class="nav-number">6.1.</span> <span class="nav-text"><a href="#HQL" class="headerlink" title="HQL"></a>HQL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QBC"><span class="nav-number">7.</span> <span class="nav-text"><a href="#QBC" class="headerlink" title="QBC"></a>QBC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x4E8B;&#x52A1;" class="headerlink" title="&#x4E8B;&#x52A1;"></a>&#x4E8B;&#x52A1;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#锁"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x9501;" class="headerlink" title="&#x9501;"></a>&#x9501;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二级缓存"><span class="nav-number">10.</span> <span class="nav-text"><a href="#&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;" class="headerlink" title="&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;"></a>&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启二级缓存"><span class="nav-number">10.1.</span> <span class="nav-text"><a href="#&#x5F00;&#x542F;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;" class="headerlink" title="&#x5F00;&#x542F;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;"></a>&#x5F00;&#x542F;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用二级缓存"><span class="nav-number">10.2.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;" class="headerlink" title="&#x4F7F;&#x7528;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;"></a>&#x4F7F;&#x7528;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kunrong</span>
+
+  
+</div>
+<!--
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
