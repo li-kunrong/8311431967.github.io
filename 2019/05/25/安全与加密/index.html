@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="数据结构," />
+  <meta name="keywords" content="网络安全," />
 
 
 
@@ -81,23 +81,20 @@
 
 
 
-<meta name="description" content="二叉树 完全二叉树若高度为h，除h层，其他各层（1-h-1）的结点数都达到最大个数，第h层有叶子结点，并且叶子结点都是从左到右依次排布，这就是完全二叉树。  满二叉树除叶子节点外，每一个左右节点都有左右子树，且叶子节点都在底层  平衡二叉树又被称作ALV树，也是二叉排序树（BST）性质：空树或者他的左右两个子树的高度差绝对值不超过1，并且左右两个子树都时一颗平衡二叉树。   堆堆是具有以下性质的完">
-<meta name="keywords" content="数据结构">
+<meta name="description" content="预防CSRF攻击什么是CSRFCSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。 那么CSRF到底能够干嘛呢？你可以这样简单的理解：攻击者可以盗用你的登陆信息，以你的身份模拟发送各种请求。攻击者只要借助少许的社会工程学的诡计，例如通过QQ等聊天软件发送的链接">
+<meta name="keywords" content="网络安全">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构之树结构">
-<meta property="og:url" content="http://yoursite.com/2019/01/28/数据结构之树结构/index.html">
+<meta property="og:title" content="安全与加密">
+<meta property="og:url" content="http://yoursite.com/2019/05/25/安全与加密/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="二叉树 完全二叉树若高度为h，除h层，其他各层（1-h-1）的结点数都达到最大个数，第h层有叶子结点，并且叶子结点都是从左到右依次排布，这就是完全二叉树。  满二叉树除叶子节点外，每一个左右节点都有左右子树，且叶子节点都在底层  平衡二叉树又被称作ALV树，也是二叉排序树（BST）性质：空树或者他的左右两个子树的高度差绝对值不超过1，并且左右两个子树都时一颗平衡二叉树。   堆堆是具有以下性质的完">
+<meta property="og:description" content="预防CSRF攻击什么是CSRFCSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。 那么CSRF到底能够干嘛呢？你可以这样简单的理解：攻击者可以盗用你的登陆信息，以你的身份模拟发送各种请求。攻击者只要借助少许的社会工程学的诡计，例如通过QQ等聊天软件发送的链接">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/524341/201604/524341-20160414100804004-506796201.jpg">
-<meta property="og:image" content="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2014/7af22798.jpg">
-<meta property="og:image" content="http://images2015.cnblogs.com/blog/524341/201604/524341-20160414101039660-287121250.jpg">
-<meta property="og:image" content="https://img-blog.csdn.net/20130508094524405">
-<meta property="og:updated_time" content="2019-01-29T03:43:02.135Z">
+<meta property="og:image" content="https://github.com/astaxie/build-web-application-with-golang/raw/master/zh/images/9.1.csrf.png?raw=true">
+<meta property="og:updated_time" content="2019-05-25T04:54:14.482Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据结构之树结构">
-<meta name="twitter:description" content="二叉树 完全二叉树若高度为h，除h层，其他各层（1-h-1）的结点数都达到最大个数，第h层有叶子结点，并且叶子结点都是从左到右依次排布，这就是完全二叉树。  满二叉树除叶子节点外，每一个左右节点都有左右子树，且叶子节点都在底层  平衡二叉树又被称作ALV树，也是二叉排序树（BST）性质：空树或者他的左右两个子树的高度差绝对值不超过1，并且左右两个子树都时一颗平衡二叉树。   堆堆是具有以下性质的完">
-<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/524341/201604/524341-20160414100804004-506796201.jpg">
+<meta name="twitter:title" content="安全与加密">
+<meta name="twitter:description" content="预防CSRF攻击什么是CSRFCSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。 那么CSRF到底能够干嘛呢？你可以这样简单的理解：攻击者可以盗用你的登陆信息，以你的身份模拟发送各种请求。攻击者只要借助少许的社会工程学的诡计，例如通过QQ等聊天软件发送的链接">
+<meta name="twitter:image" content="https://github.com/astaxie/build-web-application-with-golang/raw/master/zh/images/9.1.csrf.png?raw=true">
 
 
 
@@ -127,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/28/数据结构之树结构/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/05/25/安全与加密/"/>
 
 
 
 
 
-  <title>数据结构之树结构 | Kunrong-blog</title>
+  <title>安全与加密 | Kunrong-blog</title>
   
 
 
@@ -423,7 +420,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/28/数据结构之树结构/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/25/安全与加密/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -440,7 +437,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据结构之树结构</h1>
+          <h1 class="post-title" itemprop="name headline">安全与加密</h1>
         
 
         <div class="post-meta">
@@ -452,8 +449,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-28T23:01:29+08:00">
-                2019-01-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-25T12:30:38+08:00">
+                2019-05-25
               </time>
             
 
@@ -475,8 +472,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/网络/" itemprop="url" rel="index">
+                    <span itemprop="name">网络</span>
                   </a>
                 </span>
 
@@ -512,48 +509,68 @@
       
 
       
-        <h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><ol>
-<li><p>完全二叉树<br>若高度为h，除h层，其他各层（1-h-1）的结点数都达到最大个数，第h层有叶子结点，并且叶子结点都是从左到右依次排布，这就是完全二叉树。</p>
-</li>
-<li><p>满二叉树<br>除叶子节点外，每一个左右节点都有左右子树，且叶子节点都在底层</p>
-</li>
-<li><p>平衡二叉树<br>又被称作ALV树，也是二叉排序树（BST）<br>性质：<br>空树或者他的左右两个子树的高度差绝对值不超过1，并且左右两个子树都时一颗平衡二叉树。</p>
-</li>
-</ol>
-<h2 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h2><p>堆是具有以下性质的完全二叉树：每个结点的值都大于或等于其左右孩子结点的值，称为大顶堆；或者每个结点的值都小于或等于其左右孩子结点的值，称为小顶堆</p>
-<h2 id="二叉查找树（BST）"><a href="#二叉查找树（BST）" class="headerlink" title="二叉查找树（BST）"></a>二叉查找树（BST）</h2><p>二叉查找树的特点：</p>
-<ol>
-<li>若任意节点的左子树不空，则左子树上所有结点的 值均小于它的根结点的值；</li>
-<li>若任意节点的右子树不空，则右子树上所有结点的值均大于它的根结点的值；</li>
-<li>任意节点的左、右子树也分别为二叉查找树。</li>
-<li>没有键值相等的节点（no duplicate nodes）。</li>
-</ol>
-<h2 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h2><p><a href="https://baike.baidu.com/item/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91" target="_blank" rel="noopener">平衡二叉树</a><br>实现方法有红黑树、AVL、替罪羊树、Treap、伸展树等</p>
-<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>特点：</p>
-<ol>
-<li>每个节点非红即黑</li>
-<li>根是黑的</li>
-<li>每个叶子节点都是黑色的空节点</li>
-<li>如果节点是红色的，则他的子节点必须是黑色的（反之不一定</li>
-<li>从根节点到叶节点的每条路径必须包含相同数目的黑色节点</li>
-</ol>
-<p>应用：<br>TreeMap TreeSet 以及JDK1.8之后的HashMap底层都用到了红黑树</p>
-<p>为什么用红黑树<br>简单来说红黑树就是为了解决二叉查找树的缺陷，因为二叉查找树在某些情况下会退化成一个线性结构。详细了解可以查看<br><a href="https://juejin.im/post/5a27c6946fb9a04509096248#comment" target="_blank" rel="noopener">看漫画理解</a></p>
-<h2 id="B-B-B-树"><a href="#B-B-B-树" class="headerlink" title="B- B+ B*树"></a>B- B+ B*树</h2><ol>
-<li>B- 即B树是一种平衡的多路查找树，在文件系统中有所应用，主要用作文件的索引。</li>
-</ol>
-<p><img src="http://images2015.cnblogs.com/blog/524341/201604/524341-20160414100804004-506796201.jpg" alt=""></p>
-<ol>
-<li><p>B+树的叶子节点链表结构相比B树便于扫库和范围检索。B+树支持区间查询，非常方便，而B树不支持，这是数据库选用B+树的最主要原因<br><img src="https://awps-assets.meituan.net/mit-x/blog-images-bundle-2014/7af22798.jpg" alt=""></p>
-</li>
-<li><p>B<em>/树是B+树的变体， B</em>/树分配新节点的概率比B+树低，空间使用率更高。</p>
-</li>
-</ol>
-<p><img src="http://images2015.cnblogs.com/blog/524341/201604/524341-20160414101039660-287121250.jpg" alt=""></p>
-<h2 id="LSM树-Log-Structured-Merge-Trees"><a href="#LSM树-Log-Structured-Merge-Trees" class="headerlink" title="LSM树(Log-Structured Merge-Trees)"></a>LSM树(Log-Structured Merge-Trees)</h2><p>B+树的弱点<br>B+树最大的性能问题是会产生大量的随机IO，随着新数据的插入，叶子节点会慢慢分裂，逻辑上连续的叶子节点在物理上往往不连续，甚至分离的很远，但做范围查询时，会产生大量读随机IO。</p>
-<p>对于大量的随机写也一样，举一个插入key跨度很大的例子，如7-&gt;1000-&gt;3-&gt;2000 … 新插入的数据存储在磁盘上相隔很远，会产生大量的随机写IO.</p>
-<p>从上面可以看出，低下的磁盘寻道速度严重影响性能（近些年来，磁盘寻道速度的发展几乎处于停滞的状态）.</p>
-<p>它的原理是把一颗大树拆分成N棵小树， 它首先写入到内存中（内存没有寻道速度的问题，随机写的性能得到大幅提升），在内存中构建一颗有序小树，随着小树越来越大，内存的小树会flush到磁盘上。当读时，由于不知道数据在哪棵小树上，因此必须遍历所有的小树，但在每颗小树内部数据是有序的。<br><img src="https://img-blog.csdn.net/20130508094524405" alt=""></p>
+        <h1 id="预防CSRF攻击"><a href="#预防CSRF攻击" class="headerlink" title="预防CSRF攻击"></a>预防CSRF攻击</h1><h2 id="什么是CSRF"><a href="#什么是CSRF" class="headerlink" title="什么是CSRF"></a>什么是CSRF</h2><p>CSRF（Cross-site request forgery），中文名称：跨站请求伪造，也被称为：one click attack/session riding，缩写为：CSRF/XSRF。</p>
+<p>那么CSRF到底能够干嘛呢？你可以这样简单的理解：攻击者可以盗用你的登陆信息，以你的身份模拟发送各种请求。攻击者只要借助少许的社会工程学的诡计，例如通过QQ等聊天软件发送的链接(有些还伪装成短域名，用户无法分辨)，攻击者就能迫使Web应用的用户去执行攻击者预设的操作。例如，当用户登录网络银行去查看其存款余额，在他没有退出时，就点击了一个QQ好友发来的链接，那么该用户银行帐户中的资金就有可能被转移到攻击者指定的帐户中。</p>
+<p>所以遇到CSRF攻击时，将对终端用户的数据和操作指令构成严重的威胁；当受攻击的终端用户具有管理员帐户的时候，CSRF攻击将危及整个Web应用程序。</p>
+<h2 id="CSRF的原理"><a href="#CSRF的原理" class="headerlink" title="CSRF的原理"></a>CSRF的原理</h2><p><img src="https://github.com/astaxie/build-web-application-with-golang/raw/master/zh/images/9.1.csrf.png?raw=true" alt=""></p>
+<p>从上图可以看出，要完成一次CSRF攻击，受害者必须依次完成两个步骤 ：</p>
+<p>1.登录受信任网站A，并在本地生成Cookie 。</p>
+<p>2.在不退出A的情况下，访问危险网站B。</p>
+<h2 id="如何预防CSRF"><a href="#如何预防CSRF" class="headerlink" title="如何预防CSRF"></a>如何预防CSRF</h2><p>CSRF的防御可以从服务端和客户端两方面着手，防御效果是从服务端着手效果比较好，现在一般的CSRF防御也都在服务端进行。</p>
+<p>服务端的预防CSRF攻击的方式方法有多种，但思想上都是差不多的，主要从以下2个方面入手：</p>
+<p>1、正确使用GET,POST和Cookie；<br>2、在非GET请求中增加伪随机数；</p>
+<p>一般而言，普通的Web应用都是以GET、POST为主，还有一种请求是Cookie方式。我们一般都是按照如下方式设计应用：</p>
+<p>1、GET常用在查看，列举，展示等不需要改变资源属性的时候；</p>
+<p>2、POST常用在下达订单，改变一个资源的属性或者做其他一些事情；</p>
+<p>接下来我就以Go语言来举例说明，如何限制对资源的访问方法：</p>
+<pre><code>mux.Get(&quot;/user/:uid&quot;, getuser)
+mux.Post(&quot;/user/:uid&quot;, modifyuser)
+</code></pre><p>这样处理后，因为我们限定了修改只能使用POST，当GET方式请求时就拒绝响应，所以上面图示中GET方式的CSRF攻击就可以防止了，但这样就能全部解决问题了吗？当然不是，因为POST也是可以模拟的。</p>
+<p>因此我们需要实施第二步，在非GET方式的请求中增加随机数，这个大概有三种方式来进行：</p>
+<ul>
+<li>为每个用户生成一个唯一的cookie token，所有表单都包含同一个伪随机值，这种方案最简单，因为攻击者不能获得第三方的Cookie(理论上)，所以表单中的数据也就构造失败，但是由于用户的Cookie很容易由于网站的XSS漏洞而被盗取，所以这个方案必须要在没有XSS的情况下才安全。</li>
+<li>每个请求使用验证码，这个方案是完美的，因为要多次输入验证码，所以用户友好性很差，所以不适合实际运用。</li>
+<li>不同的表单包含一个不同的伪随机值，我们在4.4小节介绍“如何防止表单多次递交”时介绍过此方案，复用相关代码，实现如下：</li>
+</ul>
+<p>生成随机数token</p>
+<pre><code>h := md5.New()
+io.WriteString(h, strconv.FormatInt(crutime, 10))
+io.WriteString(h, &quot;ganraomaxxxxxxxxx&quot;)
+token := fmt.Sprintf(&quot;%x&quot;, h.Sum(nil))
+
+t, _ := template.ParseFiles(&quot;login.gtpl&quot;)
+t.Execute(w, token)
+</code></pre><p>输出token</p>
+<pre><code>&lt;input type=&quot;hidden&quot; name=&quot;token&quot; value=&quot;{{.}}&quot;&gt;
+</code></pre><p>验证token</p>
+<pre><code>r.ParseForm()
+token := r.Form.Get(&quot;token&quot;)
+if token != &quot;&quot; {
+    //验证token的合法性
+} else {
+    //不存在token报错
+}
+</code></pre><p>这样基本就实现了安全的POST，但是也许你会说如果破解了token的算法呢，按照理论上是，但是实际上破解是基本不可能的，因为有人曾计算过，暴力破解该串大概需要2的11次方时间。</p>
+<h1 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h1><p>数据过滤在Web安全中起到一个基石的作用，大多数的安全问题都是由于没有过滤数据和验证数据引起的，例如前面小节的CSRF攻击，以及接下来将要介绍的XSS攻击、SQL注入等都是没有认真地过滤数据引起的，因此我们需要特别重视这部分的内容。</p>
+<h1 id="避免XSS攻击"><a href="#避免XSS攻击" class="headerlink" title="避免XSS攻击"></a>避免XSS攻击</h1><p>随着互联网技术的发展，现在的Web应用都含有大量的动态内容以提高用户体验。所谓动态内容，就是应用程序能够根据用户环境和用户请求，输出相应的内容。动态站点会受到一种名为“跨站脚本攻击”（Cross Site Scripting, 安全专家们通常将其缩写成 XSS）的威胁，而静态站点则完全不受其影响。</p>
+<h2 id="什么是XSS"><a href="#什么是XSS" class="headerlink" title="什么是XSS"></a>什么是XSS</h2><p>XSS攻击：跨站脚本攻击(Cross-Site Scripting)，为了不和层叠样式表(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为XSS。XSS是一种常见的web安全漏洞，它允许攻击者将恶意代码植入到提供给其它用户使用的页面中。不同于大多数攻击(一般只涉及攻击者和受害者)，XSS涉及到三方，即攻击者、客户端与Web应用。XSS的攻击目标是为了盗取存储在客户端的cookie或者其他网站用于识别客户端身份的敏感信息。一旦获取到合法用户的信息后，攻击者甚至可以假冒合法用户与网站进行交互。</p>
+<p>XSS通常可以分为两大类：一类是存储型XSS，主要出现在让用户输入数据，供其他浏览此页的用户进行查看的地方，包括留言、评论、博客日志和各类表单等。应用程序从数据库中查询数据，在页面中显示出来，攻击者在相关页面输入恶意的脚本数据后，用户浏览此类页面时就可能受到攻击。这个流程简单可以描述为:恶意用户的Html输入Web程序-&gt;进入数据库-&gt;Web程序-&gt;用户浏览器。另一类是反射型XSS，主要做法是将脚本代码加入URL地址的请求参数里，请求参数进入程序后在页面直接输出，用户点击类似的恶意链接就可能受到攻击。</p>
+<p>XSS目前主要的手段和目的如下：</p>
+<p>盗用cookie，获取敏感信息。<br>利用植入Flash，通过crossdomain权限设置进一步获取更高权限；或者利用Java等得到类似的操作。<br>利用iframe、frame、XMLHttpRequest或上述Flash等方式，以（被攻击者）用户的身份执行一些管理动作，或执行一些如:发微博、加好友、发私信等常规操作，前段时间新浪微博就遭遇过一次XSS。<br>利用可被攻击的域受到其他域信任的特点，以受信任来源的身份请求一些平时不允许的操作，如进行不当的投票活动。<br>在访问量极大的一些页面上的XSS可以攻击一些小型网站，实现DDoS攻击的效果</p>
+<h2 id="如何预防XSS"><a href="#如何预防XSS" class="headerlink" title="如何预防XSS"></a>如何预防XSS</h2><p>答案很简单，坚决不要相信用户的任何输入，并过滤掉输入中的所有特殊字符。这样就能消灭绝大部分的XSS攻击。</p>
+<p>目前防御XSS主要有如下几种方式：</p>
+<p>过滤特殊字符</p>
+<p>避免XSS的方法之一主要是将用户所提供的内容进行过滤，Go语言提供了HTML的过滤函数：</p>
+<p>text/template包下面的HTMLEscapeString、JSEscapeString等函数</p>
+<p>使用HTTP头指定类型</p>
+<pre><code>`w.Header().Set(&quot;Content-Type&quot;,&quot;text/javascript&quot;)`
+</code></pre><p>这样就可以让浏览器解析javascript代码，而不会是html输出。</p>
+<h1 id="避免SQL注入"><a href="#避免SQL注入" class="headerlink" title="避免SQL注入"></a>避免SQL注入</h1><p>SQL注入攻击（SQL Injection），简称注入攻击，是Web开发中最常见的一种安全漏洞。可以用它来从数据库获取敏感信息，或者利用数据库的特性执行添加用户，导出文件等一系列恶意操作，甚至有可能获取数据库乃至系统用户最高权限。</p>
+<p>而造成SQL注入的原因是因为程序没有有效过滤用户的输入，使攻击者成功的向服务器提交恶意的SQL查询代码，程序在接收后错误的将攻击者的输入作为查询语句的一部分执行，导致原始的查询逻辑被改变，额外的执行了攻击者精心构造的恶意代码。</p>
+<h2 id="如何预防SQL注入"><a href="#如何预防SQL注入" class="headerlink" title="如何预防SQL注入"></a>如何预防SQL注入</h2><p>也许你会说攻击者要知道数据库结构的信息才能实施SQL注入攻击。确实如此，但没人能保证攻击者一定拿不到这些信息，一旦他们拿到了，数据库就存在泄露的危险。如果你在用开放源代码的软件包来访问数据库，比如论坛程序，攻击者就很容易得到相关的代码。如果这些代码设计不良的话，风险就更大了。目前Discuz、phpwind、phpcms等这些流行的开源程序都有被SQL注入攻击的先例。</p>
+<p>这些攻击总是发生在安全性不高的代码上。所以，永远不要信任外界输入的数据，特别是来自于用户的数据，包括选择框、表单隐藏域和 cookie。就如上面的第一个例子那样，就算是正常的查询也有可能造成灾难。</p>
+<p>SQL注入攻击的危害这么大，那么该如何来防治呢?下面这些建议或许对防治SQL注入有一定的帮助。</p>
+<p>严格限制Web应用的数据库的操作权限，给此用户提供仅仅能够满足其工作的最低权限，从而最大限度的减少注入攻击对数据库的危害。<br>检查输入的数据是否具有所期望的数据格式，严格限制变量的类型，例如使用regexp包进行一些匹配处理，或者使用strconv包对字符串转化成其他基本类型的数据进行判断。<br>对进入数据库的特殊字符（’”\尖括号&amp;*;等）进行转义处理，或编码转换。Go 的text/template包里面的HTMLEscapeString函数可以对字符串进行转义处理。<br>所有的查询语句建议使用数据库提供的参数化查询接口，参数化的语句使用参数而不是将用户输入变量嵌入到SQL语句中，即不要直接拼接SQL语句。例如使用database/sql里面的查询函数Prepare和Query，或者Exec(query string, args …interface{})。<br>在应用发布之前建议使用专业的SQL注入检测工具进行检测，以及时修补被发现的SQL注入漏洞。网上有很多这方面的开源工具，例如sqlmap、SQLninja等。<br>避免网站打印出SQL错误信息，比如类型错误、字段不匹配等，把代码里的SQL语句暴露出来，以防止攻击者利用这些错误信息进行SQL注入。</p>
 
       
     </div>
@@ -571,7 +588,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+            <a href="/tags/网络安全/" rel="tag"># 网络安全</a>
           
         </div>
       
@@ -584,8 +601,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/20/非阻塞同步和非阻塞异步的区别/" rel="next" title="非阻塞同步和非阻塞异步的区别">
-                <i class="fa fa-chevron-left"></i> 非阻塞同步和非阻塞异步的区别
+              <a href="/2019/05/16/hibernate配置/" rel="next" title="hibernate配置">
+                <i class="fa fa-chevron-left"></i> hibernate配置
               </a>
             
           </div>
@@ -593,10 +610,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/29/Mysql的索引原理和运用/" rel="prev" title="Mysql的索引原理和运用">
-                Mysql的索引原理和运用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -752,7 +765,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉树"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4E8C;&#x53C9;&#x6811;" class="headerlink" title="&#x4E8C;&#x53C9;&#x6811;"></a>&#x4E8C;&#x53C9;&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#堆"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5806;" class="headerlink" title="&#x5806;"></a>&#x5806;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉查找树（BST）"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#xFF08;BST&#xFF09;" class="headerlink" title="&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#xFF08;BST&#xFF09;"></a>&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#xFF08;BST&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;" class="headerlink" title="&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;"></a>&#x5E73;&#x8861;&#x4E8C;&#x53C9;&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x7EA2;&#x9ED1;&#x6811;" class="headerlink" title="&#x7EA2;&#x9ED1;&#x6811;"></a>&#x7EA2;&#x9ED1;&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-B-B-树"><span class="nav-number">6.</span> <span class="nav-text"><a href="#B-B-B-&#x6811;" class="headerlink" title="B- B+ B*&#x6811;"></a>B- B+ B*&#x6811;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSM树-Log-Structured-Merge-Trees"><span class="nav-number">7.</span> <span class="nav-text"><a href="#LSM&#x6811;-Log-Structured-Merge-Trees" class="headerlink" title="LSM&#x6811;(Log-Structured Merge-Trees)"></a>LSM&#x6811;(Log-Structured Merge-Trees)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#预防CSRF攻击"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x9884;&#x9632;CSRF&#x653B;&#x51FB;" class="headerlink" title="&#x9884;&#x9632;CSRF&#x653B;&#x51FB;"></a>&#x9884;&#x9632;CSRF&#x653B;&#x51FB;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是CSRF"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;CSRF" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;CSRF"></a>&#x4EC0;&#x4E48;&#x662F;CSRF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSRF的原理"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#CSRF&#x7684;&#x539F;&#x7406;" class="headerlink" title="CSRF&#x7684;&#x539F;&#x7406;"></a>CSRF&#x7684;&#x539F;&#x7406;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何预防CSRF"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x9884;&#x9632;CSRF" class="headerlink" title="&#x5982;&#x4F55;&#x9884;&#x9632;CSRF"></a>&#x5982;&#x4F55;&#x9884;&#x9632;CSRF</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过滤数据"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x8FC7;&#x6EE4;&#x6570;&#x636E;" class="headerlink" title="&#x8FC7;&#x6EE4;&#x6570;&#x636E;"></a>&#x8FC7;&#x6EE4;&#x6570;&#x636E;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#避免XSS攻击"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x907F;&#x514D;XSS&#x653B;&#x51FB;" class="headerlink" title="&#x907F;&#x514D;XSS&#x653B;&#x51FB;"></a>&#x907F;&#x514D;XSS&#x653B;&#x51FB;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是XSS"><span class="nav-number">3.1.</span> <span class="nav-text"><a href="#&#x4EC0;&#x4E48;&#x662F;XSS" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;XSS"></a>&#x4EC0;&#x4E48;&#x662F;XSS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何预防XSS"><span class="nav-number">3.2.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x9884;&#x9632;XSS" class="headerlink" title="&#x5982;&#x4F55;&#x9884;&#x9632;XSS"></a>&#x5982;&#x4F55;&#x9884;&#x9632;XSS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#避免SQL注入"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x907F;&#x514D;SQL&#x6CE8;&#x5165;" class="headerlink" title="&#x907F;&#x514D;SQL&#x6CE8;&#x5165;"></a>&#x907F;&#x514D;SQL&#x6CE8;&#x5165;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何预防SQL注入"><span class="nav-number">4.1.</span> <span class="nav-text"><a href="#&#x5982;&#x4F55;&#x9884;&#x9632;SQL&#x6CE8;&#x5165;" class="headerlink" title="&#x5982;&#x4F55;&#x9884;&#x9632;SQL&#x6CE8;&#x5165;"></a>&#x5982;&#x4F55;&#x9884;&#x9632;SQL&#x6CE8;&#x5165;</span></a></li></ol></li></ol></div>
             
 
           </div>
