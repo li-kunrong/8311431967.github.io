@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="dp," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="爬楼梯 题目描述：有 N 阶楼梯，每次可以上一阶或者两阶，求有多少种上楼梯的方法。 定义一个数组 dp 存储上楼梯的方法数（为了方便讨论，数组下标从 1 开始），dp[i] 表示走到第 i 个楼梯的方法数目。 第 i 个楼梯可以从第 i-1 和 i-2 个楼梯再走一步到达，走到第 i 个楼梯的方法数为走到第 i-1 和第 i-2 个楼梯的方法数之和。 考虑到 dp[i] 只与 dp[i - 1]">
+<meta name="keywords" content="dp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划-1">
+<meta property="og:url" content="http://yoursite.com/2019/05/26/动态规划-1/index.html">
+<meta property="og:site_name" content="Kunrong-blog">
+<meta property="og:description" content="爬楼梯 题目描述：有 N 阶楼梯，每次可以上一阶或者两阶，求有多少种上楼梯的方法。 定义一个数组 dp 存储上楼梯的方法数（为了方便讨论，数组下标从 1 开始），dp[i] 表示走到第 i 个楼梯的方法数目。 第 i 个楼梯可以从第 i-1 和 i-2 个楼梯再走一步到达，走到第 i 个楼梯的方法数为走到第 i-1 和第 i-2 个楼梯的方法数之和。 考虑到 dp[i] 只与 dp[i - 1]">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-26T13:06:37.086Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动态规划-1">
+<meta name="twitter:description" content="爬楼梯 题目描述：有 N 阶楼梯，每次可以上一阶或者两阶，求有多少种上楼梯的方法。 定义一个数组 dp 存储上楼梯的方法数（为了方便讨论，数组下标从 1 开始），dp[i] 表示走到第 i 个楼梯的方法数目。 第 i 个楼梯可以从第 i-1 和 i-2 个楼梯再走一步到达，走到第 i 个楼梯的方法数为走到第 i-1 和第 i-2 个楼梯的方法数之和。 考虑到 dp[i] 只与 dp[i - 1]">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"left"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/26/动态规划-1/"/>
+
+
+
+
+
+  <title>动态规划-1 | Kunrong-blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<!-- 背景动画 -->
+<script type="text/javascript" src="/js/src/particle.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kunrong-blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于作者
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-secweb">
+          <a href="/Secweb/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            导航
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+
+      <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '></a> </li>
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/26/动态规划-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kunrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/upload_image/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kunrong-blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">动态规划-1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-26T18:21:22+08:00">
+                2019-05-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="爬楼梯"><a href="#爬楼梯" class="headerlink" title="爬楼梯"></a>爬楼梯</h1><p> 题目描述：有 N 阶楼梯，每次可以上一阶或者两阶，求有多少种上楼梯的方法。</p>
+<p>定义一个数组 dp 存储上楼梯的方法数（为了方便讨论，数组下标从 1 开始），dp[i] 表示走到第 i 个楼梯的方法数目。</p>
+<p>第 i 个楼梯可以从第 i-1 和 i-2 个楼梯再走一步到达，走到第 i 个楼梯的方法数为走到第 i-1 和第 i-2 个楼梯的方法数之和。</p>
+<p>考虑到 dp[i] 只与 dp[i - 1] 和 dp[i - 2] 有关，因此可以只用两个变量来存储 dp[i - 1] 和 dp[i - 2]，使得原来的 O(N) 空间复杂度优化为 O(1) 复杂度。</p>
+<pre><code>public int climbStairs(int n) {
+    if (n &lt;= 2) {
+        return n;
+    }
+    int pre2 = 1, pre1 = 2;
+    for (int i = 2; i &lt; n; i++) {
+        int cur = pre1 + pre2;
+        pre2 = pre1;
+        pre1 = cur;
+    }
+    return pre1;
+}
+</code></pre><h1 id="强盗抢劫"><a href="#强盗抢劫" class="headerlink" title="强盗抢劫"></a>强盗抢劫</h1><p>题目描述：抢劫一排住户，但是不能抢邻近的住户，求最大抢劫量。</p>
+<p>定义 dp 数组用来存储最大的抢劫量，其中 dp[i] 表示抢到第 i 个住户时的最大抢劫量。</p>
+<p>由于不能抢劫邻近住户，如果抢劫了第 i -1 个住户，那么就不能再抢劫第 i 个住户，所以</p>
+<pre><code>dp[i] = max(dp[i-2]+nums[i],dp[i-1])
+</code></pre><p>数组方法</p>
+<pre><code>class Solution {
+      public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+        if (nums.length == 1)
+            return nums[0];
+        if (nums.length == 2)
+            return Math.max(nums[0],nums[1]);
+        int[] dp = new  int[nums.length];
+        dp[0] = nums[0];
+        dp[1] = Math.max(dp[0],nums[1]);
+        for (int i = 2; i &lt; nums.length; i++) {
+            dp[i] = Math.max(dp[i-1], dp[i-2]+nums[i]);
+        }
+        return dp[nums.length-1];
+    }
+}
+</code></pre><p>非数组方法</p>
+<pre><code>public int rob(int[] nums) {
+    int pre2 = 0, pre1 = 0;
+    for (int i = 0; i &lt; nums.length; i++) {
+        int cur = Math.max(pre2 + nums[i], pre1);
+        pre2 = pre1;
+        pre1 = cur;
+    }
+    return pre1;
+}
+</code></pre><h1 id="强盗在环形街区抢劫"><a href="#强盗在环形街区抢劫" class="headerlink" title="强盗在环形街区抢劫"></a>强盗在环形街区抢劫</h1><p>这个和刚才的没区别，主要是比较，抢不抢第0个，选最大的。</p>
+<pre><code>public int rob(int[] nums) {
+    if (nums == null || nums.length == 0) {
+        return 0;
+    }
+    int n = nums.length;
+    if (n == 1) {
+        return nums[0];
+    }
+    return Math.max(rob(nums, 0, n - 2), rob(nums, 1, n - 1));
+}
+
+private int rob(int[] nums, int first, int last) {
+    int pre2 = 0, pre1 = 0;
+    for (int i = first; i &lt;= last; i++) {
+        int cur = Math.max(pre1, pre2 + nums[i]);
+        pre2 = pre1;
+        pre1 = cur;
+    }
+    return pre1;
+}
+</code></pre><h1 id="矩阵的最小路径和"><a href="#矩阵的最小路径和" class="headerlink" title="矩阵的最小路径和"></a>矩阵的最小路径和</h1><p>[[1,3,1],<br> [1,5,1],<br> [4,2,1]]<br>Given the above grid map, return 7. Because the path 1→3→1→1→1 minimizes the sum.<br>题目描述：求从矩阵的左上角到右下角的最小路径和，每次只能向右和向下移动。</p>
+<pre><code>public int minPathSum(int[][] grid) {
+    if (grid.length == 0 || grid[0].length == 0) {
+        return 0;
+    }
+    int m = grid.length, n = grid[0].length;
+    int[] dp = new int[n];
+    for (int i = 0; i &lt; m; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            if (j == 0) {
+                dp[j] = dp[j];        // 只能从上侧走到该位置
+            } else if (i == 0) {
+                dp[j] = dp[j - 1];    // 只能从左侧走到该位置
+            } else {
+                dp[j] = Math.min(dp[j - 1], dp[j]);
+            }
+            dp[j] += grid[i][j];
+        }
+    }
+    return dp[n - 1];
+}
+</code></pre><h1 id="矩阵的总路径数"><a href="#矩阵的总路径数" class="headerlink" title="矩阵的总路径数"></a>矩阵的总路径数</h1><p>题目描述：统计从矩阵左上角到右下角的路径总数，每次只能向右或者向下移动。</p>
+<pre><code>public int uniquePaths(int m, int n) {
+    int[] dp = new int[n];
+    Arrays.fill(dp, 1);
+    for (int i = 1; i &lt; m; i++) {
+        for (int j = 1; j &lt; n; j++) {
+            dp[j] = dp[j] + dp[j - 1];
+        }
+    }
+    return dp[n - 1];
+}
+</code></pre><p>也可以直接用数学公式求解，这是一个组合问题。机器人总共移动的次数 S=m+n-2，向下移动的次数 D=m-1，那么问题可以看成从 S 中取出 D 个位置的组合数量，这个问题的解为 C(S, D)。</p>
+<pre><code>public int uniquePaths(int m, int n) {
+    int S = m + n - 2;  // 总共的移动次数
+    int D = m - 1;      // 向下的移动次数
+    long ret = 1;
+    for (int i = 1; i &lt;= D; i++) {
+        ret = ret * (S - D + i) / i;
+    }
+    return (int) ret;
+}
+</code></pre><h1 id="数组区间和"><a href="#数组区间和" class="headerlink" title="数组区间和"></a>数组区间和</h1><blockquote>
+<p>Given nums = [-2, 0, 3, -5, 2, -1]</p>
+<p>sumRange(0, 2) -&gt; 1</p>
+<p>sumRange(2, 5) -&gt; -1</p>
+<p>sumRange(0, 5) -&gt; -3</p>
+</blockquote>
+<pre><code>class NumArray {
+
+    private int[] sums;
+
+    public NumArray(int[] nums) {
+        sums = new int[nums.length + 1];
+        for (int i = 1; i &lt;= nums.length; i++) {
+            sums[i] = sums[i - 1] + nums[i - 1];
+        }
+    }
+
+    public int sumRange(int i, int j) {
+        return sums[j + 1] - sums[i];
+    }
+}
+</code></pre><h1 id="数组中等差递增子区间的个数"><a href="#数组中等差递增子区间的个数" class="headerlink" title="数组中等差递增子区间的个数"></a>数组中等差递增子区间的个数</h1><p>A = [1, 2, 3, 4]</p>
+<p>return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.</p>
+<pre><code>public int numberOfArithmeticSlices(int[] A) {
+    if (A == null || A.length == 0) {
+        return 0;
+    }
+    int n = A.length;
+    int[] dp = new int[n];
+    for (int i = 2; i &lt; n; i++) {
+        if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) {
+            dp[i] = dp[i - 1] + 1;
+        }
+    }
+    int total = 0;
+    for (int cnt : dp) {
+        total += cnt;
+    }
+    return total;
+}
+</code></pre><h1 id="最长递增子序列"><a href="#最长递增子序列" class="headerlink" title="最长递增子序列"></a>最长递增子序列</h1><p>已知一个序列 {S1, S2,…,Sn}，取出若干数组成新的序列 {Si1, Si2,…, Sim}，其中 i1、i2 … im 保持递增，即新序列中各个数仍然保持原数列中的先后顺序，称新序列为原序列的一个 子序列 。</p>
+<p>如果在子序列中，当下标 ix &gt; iy 时，Six &gt; Siy，称子序列为原序列的一个 递增子序列 。</p>
+<p>定义一个数组 dp 存储最长递增子序列的长度，dp[n] 表示以 Sn 结尾的序列的最长递增子序列长度。对于一个递增子序列 {Si1, Si2,…,Sim}，如果 im &lt; n 并且 Sim &lt; Sn，此时 {Si1, Si2,…, Sim, Sn} 为一个递增子序列，递增子序列的长度增加 1。满足上述条件的递增子序列中，长度最长的那个递增子序列就是要找的，在长度最长的递增子序列上加上 Sn 就构成了以 Sn 为结尾的最长递增子序列。因此 dp[n] = max{ dp[i]+1 | Si &lt; Sn &amp;&amp; i &lt; n} 。</p>
+<p>因为在求 dp[n] 时可能无法找到一个满足条件的递增子序列，此时 {Sn} 就构成了递增子序列，需要对前面的求解方程做修改，令 dp[n] 最小为 1，即：</p>
+<pre><code>dp[n] = max(1,dp[i]+1|Si&lt;Sn&amp;&amp;i&lt;n)
+
+
+public int lengthOfLIS(int[] nums) {
+    int n = nums.length;
+    int[] dp = new int[n];
+    for (int i = 0; i &lt; n; i++) {
+        int max = 1;
+        for (int j = 0; j &lt; i; j++) {
+            if (nums[i] &gt; nums[j]) {
+                max = Math.max(max, dp[j] + 1);
+            }
+        }
+        dp[i] = max;
+    }
+    int ret = 0;
+    for (int i = 0; i &lt; n; i++) {
+        ret = Math.max(ret, dp[i]);
+    }
+    return ret;
+}
+</code></pre><p>以上解法的时间复杂度为 O(N2)，可以使用二分查找将时间复杂度降低为 O(NlogN)。</p>
+<p>定义一个 tails 数组，其中 tails[i] 存储长度为 i + 1 的最长递增子序列的最后一个元素。对于一个元素 x，</p>
+<p>如果它大于 tails 数组所有的值，那么把它添加到 tails 后面，表示最长递增子序列长度加 1；<br>如果 tails[i-1] &lt; x &lt;= tails[i]，那么更新 tails[i] = x。<br>例如对于数组 [4,3,6,5]，有：</p>
+<p>tails      len      num</p>
+<p>[]         0        4</p>
+<p>[4]        1        3</p>
+<p>[3]        1        6</p>
+<p>[3,6]      2        5</p>
+<p>[3,5]      2        null</p>
+<p>可以看出 tails 数组保持有序，因此在查找 Si 位于 tails 数组的位置时就可以使用二分查找。</p>
+<pre><code>public int lengthOfLIS(int[] nums) {
+    int n = nums.length;
+    int[] tails = new int[n];
+    int len = 0;
+    for (int num : nums) {
+        int index = binarySearch(tails, len, num);
+        tails[index] = num;
+        if (index == len) {
+            len++;
+        }
+    }
+    return len;
+}
+
+private int binarySearch(int[] tails, int len, int key) {
+    int l = 0, h = len;
+    while (l &lt; h) {
+        int mid = l + (h - l) / 2;
+        if (tails[mid] == key) {
+            return mid;
+        } else if (tails[mid] &gt; key) {
+            h = mid;
+        } else {
+            l = mid + 1;
+        }
+    }
+    return l;
+}
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dp/" rel="tag"># dp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/26/链表-2/" rel="next" title="链表-2">
+                <i class="fa fa-chevron-left"></i> 链表-2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjI3Mi84ODM2"></div>
+    </div>
+
+  
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/upload_image/avatar.gif"
+                alt="Kunrong" />
+            
+              <p class="site-author-name" itemprop="name">Kunrong</p>
+              <p class="site-description motion-element" itemprop="description">share my technology</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/8311431967" target="_blank" title="github">
+                    
+                      <i class="fa fa-fw fa-globe"></i>github</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/1967-59-52/activities" target="_blank" title="zhihu">
+                    
+                      <i class="fa fa-fw fa-globe"></i>zhihu</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#爬楼梯"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x722C;&#x697C;&#x68AF;" class="headerlink" title="&#x722C;&#x697C;&#x68AF;"></a>&#x722C;&#x697C;&#x68AF;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#强盗抢劫"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5F3A;&#x76D7;&#x62A2;&#x52AB;" class="headerlink" title="&#x5F3A;&#x76D7;&#x62A2;&#x52AB;"></a>&#x5F3A;&#x76D7;&#x62A2;&#x52AB;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#强盗在环形街区抢劫"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x5F3A;&#x76D7;&#x5728;&#x73AF;&#x5F62;&#x8857;&#x533A;&#x62A2;&#x52AB;" class="headerlink" title="&#x5F3A;&#x76D7;&#x5728;&#x73AF;&#x5F62;&#x8857;&#x533A;&#x62A2;&#x52AB;"></a>&#x5F3A;&#x76D7;&#x5728;&#x73AF;&#x5F62;&#x8857;&#x533A;&#x62A2;&#x52AB;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵的最小路径和"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x77E9;&#x9635;&#x7684;&#x6700;&#x5C0F;&#x8DEF;&#x5F84;&#x548C;" class="headerlink" title="&#x77E9;&#x9635;&#x7684;&#x6700;&#x5C0F;&#x8DEF;&#x5F84;&#x548C;"></a>&#x77E9;&#x9635;&#x7684;&#x6700;&#x5C0F;&#x8DEF;&#x5F84;&#x548C;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#矩阵的总路径数"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x77E9;&#x9635;&#x7684;&#x603B;&#x8DEF;&#x5F84;&#x6570;" class="headerlink" title="&#x77E9;&#x9635;&#x7684;&#x603B;&#x8DEF;&#x5F84;&#x6570;"></a>&#x77E9;&#x9635;&#x7684;&#x603B;&#x8DEF;&#x5F84;&#x6570;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组区间和"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x6570;&#x7EC4;&#x533A;&#x95F4;&#x548C;" class="headerlink" title="&#x6570;&#x7EC4;&#x533A;&#x95F4;&#x548C;"></a>&#x6570;&#x7EC4;&#x533A;&#x95F4;&#x548C;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组中等差递增子区间的个数"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x6570;&#x7EC4;&#x4E2D;&#x7B49;&#x5DEE;&#x9012;&#x589E;&#x5B50;&#x533A;&#x95F4;&#x7684;&#x4E2A;&#x6570;" class="headerlink" title="&#x6570;&#x7EC4;&#x4E2D;&#x7B49;&#x5DEE;&#x9012;&#x589E;&#x5B50;&#x533A;&#x95F4;&#x7684;&#x4E2A;&#x6570;"></a>&#x6570;&#x7EC4;&#x4E2D;&#x7B49;&#x5DEE;&#x9012;&#x589E;&#x5B50;&#x533A;&#x95F4;&#x7684;&#x4E2A;&#x6570;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最长递增子序列"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x6700;&#x957F;&#x9012;&#x589E;&#x5B50;&#x5E8F;&#x5217;" class="headerlink" title="&#x6700;&#x957F;&#x9012;&#x589E;&#x5B50;&#x5E8F;&#x5217;"></a>&#x6700;&#x957F;&#x9012;&#x589E;&#x5B50;&#x5E8F;&#x5217;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kunrong</span>
+
+  
+</div>
+<!--
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+-->
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
