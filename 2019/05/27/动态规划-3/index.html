@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="设计模式," />
+  <meta name="keywords" content="dp," />
 
 
 
@@ -81,18 +81,21 @@
 
 
 
-<meta name="description" content="简介定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点。 作用：在我们的系统中，有一些对象其实我们只需要一个，比如说：线程池、缓存、对话框、注册表、日志对象、充当打印机、显卡等设备驱动程序的对象。事实上，这一类对象只能有一个实例，如果制造出多个实例就可能会导致一些问题的产生，比如：程序的行为异常、资源使用过量、或者不一致性的结果。 好处： · 对于频繁使用的对象，可以省略创建对象所花费的时">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="前言dp算法总结3 找零钱的最少硬币数Example 1: coins = [1, 2, 5], amount = 11 return 3 (11 = 5 + 5 + 1) Example 2: coins = [2], amount = 3 return -1. 题目描述：给一些面额的硬币，要求用这些硬币来组成给定面额的钱数，并且使得硬币数量最少。硬币可以重复使用。 物品：硬币 物品大小：面额">
+<meta name="keywords" content="dp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例模式">
-<meta property="og:url" content="http://yoursite.com/2019/01/16/单例模式/index.html">
+<meta property="og:title" content="动态规划-3">
+<meta property="og:url" content="http://yoursite.com/2019/05/27/动态规划-3/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="简介定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点。 作用：在我们的系统中，有一些对象其实我们只需要一个，比如说：线程池、缓存、对话框、注册表、日志对象、充当打印机、显卡等设备驱动程序的对象。事实上，这一类对象只能有一个实例，如果制造出多个实例就可能会导致一些问题的产生，比如：程序的行为异常、资源使用过量、或者不一致性的结果。 好处： · 对于频繁使用的对象，可以省略创建对象所花费的时">
+<meta property="og:description" content="前言dp算法总结3 找零钱的最少硬币数Example 1: coins = [1, 2, 5], amount = 11 return 3 (11 = 5 + 5 + 1) Example 2: coins = [2], amount = 3 return -1. 题目描述：给一些面额的硬币，要求用这些硬币来组成给定面额的钱数，并且使得硬币数量最少。硬币可以重复使用。 物品：硬币 物品大小：面额">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-16T09:39:29.901Z">
+<meta property="og:image" content="https://camo.githubusercontent.com/4af704fdf3262077169ae31722c94cca2788f2e3/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f38336163626230322d383732612d343137382d623232612d6338396333636236303236332e6a7067">
+<meta property="og:image" content="https://camo.githubusercontent.com/defda68284569bec35db7dcd91eb5b6f1e479b8d/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31653263353838632d373262372d343435652d616163622d6435356463386138386332392e706e67">
+<meta property="og:updated_time" content="2019-05-27T10:20:04.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例模式">
-<meta name="twitter:description" content="简介定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点。 作用：在我们的系统中，有一些对象其实我们只需要一个，比如说：线程池、缓存、对话框、注册表、日志对象、充当打印机、显卡等设备驱动程序的对象。事实上，这一类对象只能有一个实例，如果制造出多个实例就可能会导致一些问题的产生，比如：程序的行为异常、资源使用过量、或者不一致性的结果。 好处： · 对于频繁使用的对象，可以省略创建对象所花费的时">
+<meta name="twitter:title" content="动态规划-3">
+<meta name="twitter:description" content="前言dp算法总结3 找零钱的最少硬币数Example 1: coins = [1, 2, 5], amount = 11 return 3 (11 = 5 + 5 + 1) Example 2: coins = [2], amount = 3 return -1. 题目描述：给一些面额的硬币，要求用这些硬币来组成给定面额的钱数，并且使得硬币数量最少。硬币可以重复使用。 物品：硬币 物品大小：面额">
+<meta name="twitter:image" content="https://camo.githubusercontent.com/4af704fdf3262077169ae31722c94cca2788f2e3/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f38336163626230322d383732612d343137382d623232612d6338396333636236303236332e6a7067">
 
 
 
@@ -122,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/16/单例模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/05/27/动态规划-3/"/>
 
 
 
 
 
-  <title>单例模式 | Kunrong-blog</title>
+  <title>动态规划-3 | Kunrong-blog</title>
   
 
 
@@ -418,7 +421,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/单例模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/动态规划-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -435,7 +438,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单例模式</h1>
+          <h1 class="post-title" itemprop="name headline">动态规划-3</h1>
         
 
         <div class="post-meta">
@@ -447,8 +450,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T16:46:32+08:00">
-                2019-01-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T13:28:39+08:00">
+                2019-05-27
               </time>
             
 
@@ -470,8 +473,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -507,35 +510,160 @@
       
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>定义：<br>保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
-<p>作用：<br>在我们的系统中，有一些对象其实我们只需要一个，比如说：线程池、缓存、对话框、注册表、日志对象、充当打印机、显卡等设备驱动程序的对象。事实上，这一类对象只能有一个实例，如果制造出多个实例就可能会导致一些问题的产生，比如：程序的行为异常、资源使用过量、或者不一致性的结果。</p>
-<p>好处：<br> · 对于频繁使用的对象，可以省略创建对象所花费的时间，对于重量级对象，是非常客观的一笔系统开销；<br> · 由于new操作的次数减少，因而对系统内存的使用频率也会降低，减轻GC压力</p>
-<p>  为什么不使用全局变量确保一个类只有一个实例呢？</p>
-<p>  我们知道全局变量分为静态变量和实例变量，静态变量也可以保证该类的实例只存在一个。<br>只要程序加载了类的字节码，不用创建任何实例对象，静态变量就会被分配空间，静态变量就可以被使用了。</p>
-<p>但是，如果说这个对象非常消耗资源，而且程序某次的执行中一直没用，这样就造成了资源的浪费。利用单例模式的话，我们就可以实现在需要使用时才创建对象，这样就避免了不必要的资源浪费。 不仅仅是因为这个原因，在程序中我们要尽量避免全局变量的使用，大量使用全局变量给程序的调试、维护等带来困难。</p>
-<h3 id="单例模式的实现"><a href="#单例模式的实现" class="headerlink" title="单例模式的实现"></a>单例模式的实现</h3><p>通常单例模式在Java语言中，有两种构建方式：</p>
-<p>饿汉方式。指全局的单例实例在类装载时构建<br>懒汉方式。指全局的单例实例在第一次被使用时构建。</p>
-<p>不管是那种创建方式，它们通常都存在下面几点相似处：</p>
-<p>单例类必须要有一个 private 访问级别的构造函数，只有这样，才能确保单例不会在系统中的其他代码内被实例化;<br>instance 成员变量和 uniqueInstance 方法必须是 static 的。</p>
-<ol>
-<li>饿汉模式 （线程安全）</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton&#123;</span><br><span class="line">    private static Singleton uniqueSingleton = new Singleton();</span><br><span class="line"></span><br><span class="line">    private Singleton ()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line">        return uniqueSingleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>所谓 “饿汉方式” 就是说JVM在加载这个类时就马上创建此唯一的单例实例，不管你用不用，先创建了再说，如果一直没有被使用，便浪费了空间，典型的空间换时间，每次调用的时候，就不需要再判断，节省了运行时间。</p>
-<ol>
-<li>懒汉式（非线程安全和synchronized关键字线程安全版本 ）</li>
-</ol>
-<p>2.1 非线程安全</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">      private static Singleton uniqueInstance;  </span><br><span class="line">      private Singleton ()&#123;</span><br><span class="line">      &#125;   </span><br><span class="line">      //没有加入synchronized关键字的版本是线程不安全的</span><br><span class="line">      public static Singleton getInstance() &#123;</span><br><span class="line">          //判断当前单例是否已经存在，若存在则返回，不存在则再建立单例</span><br><span class="line">	      if (uniqueInstance == null) &#123;  </span><br><span class="line">	          uniqueInstance = new Singleton();  </span><br><span class="line">	      &#125;  </span><br><span class="line">	      return uniqueInstance;  </span><br><span class="line">      &#125;  </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p> 所谓 “ 懒汉式” 就是说单例实例在第一次被使用时构建，而不是在JVM在加载这个类时就马上创建此唯一的单例实例。</p>
-<p>但是上面这种方式很明显是线程不安全的，如果多个线程同时访问getInstance()方法时就会出现问题。</p>
-<p> 2.2 线程安全篇</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static synchronized Singleton getInstance() &#123;  </span><br><span class="line">      if (instance == null) &#123;  </span><br><span class="line">          uniqueInstance = new Singleton();  </span><br><span class="line">      &#125;  </span><br><span class="line">      return uniqueInstance;  </span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
-<p>我们知道synchronized关键字偏重量级锁。虽然在JavaSE1.6之后synchronized关键字进行了主要包括：为了减少获得锁和释放锁带来的性能消耗而引入的偏向锁和轻量级锁以及其它各种优化之后执行效率有了显著提升。</p>
-<p>但是在程序中每次使用getInstance() 都要经过synchronized加锁这一层，这难免会增加getInstance()的方法的时间消费，而且还可能会发生阻塞。我们下面介绍到的 双重检查加锁版本 就是为了解决这个问题而存在的。</p>
-<p>2.3 双重锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    //volatile保证，当uniqueInstance变量被初始化成Singleton实例时，多个线程可以正确处理uniqueInstance变量</span><br><span class="line">    private volatile static Singleton uniqueInstance;</span><br><span class="line">    private Singleton() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line">       //检查实例，如果不存在，就进入同步代码块</span><br><span class="line">        if (uniqueInstance == null) &#123;</span><br><span class="line">            //只有第一次才彻底执行这里的代码</span><br><span class="line">            synchronized(Singleton.class) &#123;</span><br><span class="line">               //进入同步代码块后，再检查一次，如果仍是null，才创建实例</span><br><span class="line">                if (uniqueInstance == null) &#123;</span><br><span class="line">                    uniqueInstance = new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>dp算法总结3</p>
+<h1 id="找零钱的最少硬币数"><a href="#找零钱的最少硬币数" class="headerlink" title="找零钱的最少硬币数"></a>找零钱的最少硬币数</h1><p>Example 1:</p>
+<p>coins = [1, 2, 5], amount = 11</p>
+<p>return 3 (11 = 5 + 5 + 1)</p>
+<p>Example 2:</p>
+<p>coins = [2], amount = 3</p>
+<p>return -1.</p>
+<p>题目描述：给一些面额的硬币，要求用这些硬币来组成给定面额的钱数，并且使得硬币数量最少。硬币可以重复使用。</p>
+<p>物品：硬币</p>
+<p>物品大小：面额</p>
+<p>物品价值：数量</p>
+<p>因为硬币可以重复使用，因此这是一个完全背包问题。完全背包只需要将 0-1 背包中逆序遍历 dp 数组改为正序遍历即可。</p>
+<pre><code>class Solution {
+    public int coinChange(int[] coins, int amount) {
+        if(coins == null || coins.length == 0 || amount&lt;=0)
+            return 0;
+        int[] dp = new int[amount+1];
+        for (int coin: coins) {
+            for (int i = coin; i&lt;=amount;i++) {
+                if (i==coin) {
+                    dp[i] = 1;
+                }else if (dp[i]==0 &amp;&amp;dp[i-coin]!=0) {
+                    dp[i] = dp[i-coin]+1;
+                }else if (dp[i-coin]!=0){
+                    dp[i]= Math.min(dp[i],dp[i-coin]+1);
+                }
+            }
+        }
+        return dp[amount]==0?-1:dp[amount];
+    }
+}
+</code></pre><h1 id="找零钱的硬币数组合"><a href="#找零钱的硬币数组合" class="headerlink" title="找零钱的硬币数组合"></a>找零钱的硬币数组合</h1><p>Input: amount = 5, coins = [1, 2, 5]</p>
+<p>Output: 4</p>
+<p>Explanation: there are four ways to make up the amount:</p>
+<p>5=5</p>
+<p>5=2+2+1</p>
+<p>5=2+1+1+1</p>
+<p>5=1+1+1+1+1</p>
+<p>完全背包问题，使用 dp 记录可达成目标的组合数目。</p>
+<pre><code>public int change(int amount, int[] coins) {
+    if (amount == 0 || coins == null || coins.length == 0) {
+        return 0;
+    }
+    int[] dp = new int[amount + 1];
+    dp[0] = 1;
+    for (int coin : coins) {
+        for (int i = coin; i &lt;= amount; i++) {
+            dp[i] += dp[i - coin];
+        }
+    }
+    return dp[amount];
+}
+</code></pre><h1 id="字符串按单词列表分割"><a href="#字符串按单词列表分割" class="headerlink" title="字符串按单词列表分割"></a>字符串按单词列表分割</h1><p>s = “leetcode”,</p>
+<p>dict = [“leet”, “code”].</p>
+<p>Return true because “leetcode” can be segmented as “leet<br>code”.</p>
+<p>dict 中的单词没有使用次数的限制，因此这是一个完全背包问题。该问题涉及到字典中单词的使用顺序，因此可理解为涉及顺序的完全背包问题。</p>
+<p>求解顺序的完全背包问题时，对物品的迭代应该放在最里层。</p>
+<pre><code>public boolean wordBreak(String s, List&lt;String&gt; wordDict) {
+    int n = s.length();
+    boolean[] dp = new boolean[n + 1];
+    dp[0] = true;
+    for (int i = 1; i &lt;= n; i++) {
+        for (String word : wordDict) {   // 对物品的迭代应该放在最里层
+            int len = word.length();
+            if (len &lt;= i &amp;&amp; word.equals(s.substring(i - len, i))) {
+                dp[i] = dp[i] || dp[i - len];
+            }
+        }
+    }
+    return dp[n];
+}
+</code></pre><h1 id="组合总和"><a href="#组合总和" class="headerlink" title="组合总和"></a>组合总和</h1><p>nums = [1, 2, 3]</p>
+<p>target = 4</p>
+<p>The possible combination ways are:</p>
+<p>(1, 1, 1, 1)</p>
+<p>(1, 1, 2)</p>
+<p>(1, 2, 1)</p>
+<p>(1, 3)</p>
+<p>(2, 1, 1)</p>
+<p>(2, 2)</p>
+<p>(3, 1)</p>
+<p>Note that different sequences are counted as different combinations.</p>
+<p>Therefore the output is 7.</p>
+<p>和硬币组合总数很像，不够这里要先排序</p>
+<pre><code>class Solution {
+    public int combinationSum4(int[] nums, int target) {
+        if (nums == null || nums.length ==0 )
+            return 0;
+        int dp[] = new int[target+1];
+        dp[0] = 1;
+        Arrays.sort(nums);
+        for (int i = 1; i &lt;= target; i++) {
 
+            for (int j = 0; j &lt; nums.length&amp;&amp;nums[j]&lt;=i; j++) {
+                dp[i] += dp[i-nums[j]];
+            }
+        }
+        return dp[target];
+    }
+}
+</code></pre><h1 id="需要冷却期的股票交易"><a href="#需要冷却期的股票交易" class="headerlink" title="需要冷却期的股票交易"></a>需要冷却期的股票交易</h1><p>题目描述：交易之后需要有一天的冷却时间。</p>
+<p>图解：</p>
+<p><img src="https://camo.githubusercontent.com/4af704fdf3262077169ae31722c94cca2788f2e3/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f38336163626230322d383732612d343137382d623232612d6338396333636236303236332e6a7067" alt=""></p>
+<p>状态解释：</p>
+<p>S2:初始状态||股票卖后的cooldown状态</p>
+<p>Buy: 购买股票 -price</p>
+<p>S1: 购买股票后的等待卖股票状态</p>
+<p>Sell： 卖掉股票 +price</p>
+<pre><code>public int maxProfit(int[] prices) {
+    if (prices == null || prices.length == 0) {
+        return 0;
+    }
+    int N = prices.length;
+    int[] buy = new int[N];
+    int[] s1 = new int[N];
+    int[] sell = new int[N];
+    int[] s2 = new int[N];
+    s1[0] = buy[0] = -prices[0];
+    sell[0] = s2[0] = 0;
+    for (int i = 1; i &lt; N; i++) {
+        buy[i] = s2[i - 1] - prices[i];
+        s1[i] = Math.max(buy[i - 1], s1[i - 1]);
+        sell[i] = Math.max(buy[i - 1], s1[i - 1]) + prices[i];
+        s2[i] = Math.max(s2[i - 1], sell[i - 1]);
+    }
+    return Math.max(sell[N - 1], s2[N - 1]);
+}
+</code></pre><h1 id="需要交易费用的股票交易"><a href="#需要交易费用的股票交易" class="headerlink" title="需要交易费用的股票交易"></a>需要交易费用的股票交易</h1><p>Input: prices = [1, 3, 2, 8, 4, 9], fee = 2</p>
+<p>Output: 8</p>
+<p>Explanation: The maximum profit can be achieved by:</p>
+<p>Buying at prices[0] = 1</p>
+<p>Selling at prices[3] = 8</p>
+<p>Buying at prices[4] = 4</p>
+<p>Selling at prices[5] = 9</p>
+<p>The total profit is ((8 - 1) - 2) + ((9 - 4) - 2) = 8.</p>
+<p>题目描述：每交易一次，都要支付一定的费用。</p>
+<p><img src="https://camo.githubusercontent.com/defda68284569bec35db7dcd91eb5b6f1e479b8d/68747470733a2f2f63732d6e6f7465732d313235363130393739362e636f732e61702d6775616e677a686f752e6d7971636c6f75642e636f6d2f31653263353838632d373262372d343435652d616163622d6435356463386138386332392e706e67" alt=""></p>
+<pre><code>public int maxProfit(int[] prices, int fee) {
+    int N = prices.length;
+    int[] buy = new int[N];
+    int[] s1 = new int[N];
+    int[] sell = new int[N];
+    int[] s2 = new int[N];
+    s1[0] = buy[0] = -prices[0];
+    sell[0] = s2[0] = 0;
+    for (int i = 1; i &lt; N; i++) {
+        buy[i] = Math.max(sell[i - 1], s2[i - 1]) - prices[i];
+        s1[i] = Math.max(buy[i - 1], s1[i - 1]);
+        sell[i] = Math.max(buy[i - 1], s1[i - 1]) - fee + prices[i];
+        s2[i] = Math.max(s2[i - 1], sell[i - 1]);
+    }
+    return Math.max(sell[N - 1], s2[N - 1]);
+}
+</code></pre>
       
     </div>
     
@@ -552,7 +680,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            <a href="/tags/dp/" rel="tag"># dp</a>
           
         </div>
       
@@ -565,8 +693,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/06/记录一次面试/" rel="next" title="记录一次面试">
-                <i class="fa fa-chevron-left"></i> 记录一次面试
+              <a href="/2019/05/27/动态规划-2/" rel="next" title="动态规划-2">
+                <i class="fa fa-chevron-left"></i> 动态规划-2
               </a>
             
           </div>
@@ -574,10 +702,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/18/三次握手，四次挥手详解/" rel="prev" title="三次握手，四次挥手详解">
-                三次握手，四次挥手详解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -733,7 +857,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式的实现"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;" class="headerlink" title="&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;"></a>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#找零钱的最少硬币数"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x627E;&#x96F6;&#x94B1;&#x7684;&#x6700;&#x5C11;&#x786C;&#x5E01;&#x6570;" class="headerlink" title="&#x627E;&#x96F6;&#x94B1;&#x7684;&#x6700;&#x5C11;&#x786C;&#x5E01;&#x6570;"></a>&#x627E;&#x96F6;&#x94B1;&#x7684;&#x6700;&#x5C11;&#x786C;&#x5E01;&#x6570;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#找零钱的硬币数组合"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x627E;&#x96F6;&#x94B1;&#x7684;&#x786C;&#x5E01;&#x6570;&#x7EC4;&#x5408;" class="headerlink" title="&#x627E;&#x96F6;&#x94B1;&#x7684;&#x786C;&#x5E01;&#x6570;&#x7EC4;&#x5408;"></a>&#x627E;&#x96F6;&#x94B1;&#x7684;&#x786C;&#x5E01;&#x6570;&#x7EC4;&#x5408;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串按单词列表分割"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x5B57;&#x7B26;&#x4E32;&#x6309;&#x5355;&#x8BCD;&#x5217;&#x8868;&#x5206;&#x5272;" class="headerlink" title="&#x5B57;&#x7B26;&#x4E32;&#x6309;&#x5355;&#x8BCD;&#x5217;&#x8868;&#x5206;&#x5272;"></a>&#x5B57;&#x7B26;&#x4E32;&#x6309;&#x5355;&#x8BCD;&#x5217;&#x8868;&#x5206;&#x5272;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#组合总和"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x7EC4;&#x5408;&#x603B;&#x548C;" class="headerlink" title="&#x7EC4;&#x5408;&#x603B;&#x548C;"></a>&#x7EC4;&#x5408;&#x603B;&#x548C;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需要冷却期的股票交易"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x9700;&#x8981;&#x51B7;&#x5374;&#x671F;&#x7684;&#x80A1;&#x7968;&#x4EA4;&#x6613;" class="headerlink" title="&#x9700;&#x8981;&#x51B7;&#x5374;&#x671F;&#x7684;&#x80A1;&#x7968;&#x4EA4;&#x6613;"></a>&#x9700;&#x8981;&#x51B7;&#x5374;&#x671F;&#x7684;&#x80A1;&#x7968;&#x4EA4;&#x6613;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需要交易费用的股票交易"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x9700;&#x8981;&#x4EA4;&#x6613;&#x8D39;&#x7528;&#x7684;&#x80A1;&#x7968;&#x4EA4;&#x6613;" class="headerlink" title="&#x9700;&#x8981;&#x4EA4;&#x6613;&#x8D39;&#x7528;&#x7684;&#x80A1;&#x7968;&#x4EA4;&#x6613;"></a>&#x9700;&#x8981;&#x4EA4;&#x6613;&#x8D39;&#x7528;&#x7684;&#x80A1;&#x7968;&#x4EA4;&#x6613;</span></a></li></ol></div>
             
 
           </div>

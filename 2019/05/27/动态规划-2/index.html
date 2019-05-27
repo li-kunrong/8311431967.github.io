@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="设计模式," />
+  <meta name="keywords" content="dp," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="简介定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点。 作用：在我们的系统中，有一些对象其实我们只需要一个，比如说：线程池、缓存、对话框、注册表、日志对象、充当打印机、显卡等设备驱动程序的对象。事实上，这一类对象只能有一个实例，如果制造出多个实例就可能会导致一些问题的产生，比如：程序的行为异常、资源使用过量、或者不一致性的结果。 好处： · 对于频繁使用的对象，可以省略创建对象所花费的时">
-<meta name="keywords" content="设计模式">
+<meta name="description" content="前言动态规划算法总结-2 一组整数对能够构成的最长链Input: [[1,2], [2,3], [3,4]] Output: 2 Explanation: The longest chain is [1,2] -&amp;gt; [3,4] 题目描述：对于 (a, b) 和 (c, d) ，如果 b &amp;lt; c，则它们可以构成一条链。 solution：先根据a[0]排序，然后比较b[0]和a[1]的大">
+<meta name="keywords" content="dp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="单例模式">
-<meta property="og:url" content="http://yoursite.com/2019/01/16/单例模式/index.html">
+<meta property="og:title" content="动态规划-2">
+<meta property="og:url" content="http://yoursite.com/2019/05/27/动态规划-2/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="简介定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点。 作用：在我们的系统中，有一些对象其实我们只需要一个，比如说：线程池、缓存、对话框、注册表、日志对象、充当打印机、显卡等设备驱动程序的对象。事实上，这一类对象只能有一个实例，如果制造出多个实例就可能会导致一些问题的产生，比如：程序的行为异常、资源使用过量、或者不一致性的结果。 好处： · 对于频繁使用的对象，可以省略创建对象所花费的时">
+<meta property="og:description" content="前言动态规划算法总结-2 一组整数对能够构成的最长链Input: [[1,2], [2,3], [3,4]] Output: 2 Explanation: The longest chain is [1,2] -&amp;gt; [3,4] 题目描述：对于 (a, b) 和 (c, d) ，如果 b &amp;lt; c，则它们可以构成一条链。 solution：先根据a[0]排序，然后比较b[0]和a[1]的大">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-16T09:39:29.901Z">
+<meta property="og:updated_time" content="2019-05-27T05:26:57.325Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="单例模式">
-<meta name="twitter:description" content="简介定义：保证一个类仅有一个实例，并提供一个访问它的全局访问点。 作用：在我们的系统中，有一些对象其实我们只需要一个，比如说：线程池、缓存、对话框、注册表、日志对象、充当打印机、显卡等设备驱动程序的对象。事实上，这一类对象只能有一个实例，如果制造出多个实例就可能会导致一些问题的产生，比如：程序的行为异常、资源使用过量、或者不一致性的结果。 好处： · 对于频繁使用的对象，可以省略创建对象所花费的时">
+<meta name="twitter:title" content="动态规划-2">
+<meta name="twitter:description" content="前言动态规划算法总结-2 一组整数对能够构成的最长链Input: [[1,2], [2,3], [3,4]] Output: 2 Explanation: The longest chain is [1,2] -&amp;gt; [3,4] 题目描述：对于 (a, b) 和 (c, d) ，如果 b &amp;lt; c，则它们可以构成一条链。 solution：先根据a[0]排序，然后比较b[0]和a[1]的大">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/16/单例模式/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/05/27/动态规划-2/"/>
 
 
 
 
 
-  <title>单例模式 | Kunrong-blog</title>
+  <title>动态规划-2 | Kunrong-blog</title>
   
 
 
@@ -418,7 +418,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/单例模式/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/27/动态规划-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -435,7 +435,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">单例模式</h1>
+          <h1 class="post-title" itemprop="name headline">动态规划-2</h1>
         
 
         <div class="post-meta">
@@ -447,8 +447,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T16:46:32+08:00">
-                2019-01-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-27T10:13:04+08:00">
+                2019-05-27
               </time>
             
 
@@ -470,8 +470,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -507,35 +507,228 @@
       
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>定义：<br>保证一个类仅有一个实例，并提供一个访问它的全局访问点。</p>
-<p>作用：<br>在我们的系统中，有一些对象其实我们只需要一个，比如说：线程池、缓存、对话框、注册表、日志对象、充当打印机、显卡等设备驱动程序的对象。事实上，这一类对象只能有一个实例，如果制造出多个实例就可能会导致一些问题的产生，比如：程序的行为异常、资源使用过量、或者不一致性的结果。</p>
-<p>好处：<br> · 对于频繁使用的对象，可以省略创建对象所花费的时间，对于重量级对象，是非常客观的一笔系统开销；<br> · 由于new操作的次数减少，因而对系统内存的使用频率也会降低，减轻GC压力</p>
-<p>  为什么不使用全局变量确保一个类只有一个实例呢？</p>
-<p>  我们知道全局变量分为静态变量和实例变量，静态变量也可以保证该类的实例只存在一个。<br>只要程序加载了类的字节码，不用创建任何实例对象，静态变量就会被分配空间，静态变量就可以被使用了。</p>
-<p>但是，如果说这个对象非常消耗资源，而且程序某次的执行中一直没用，这样就造成了资源的浪费。利用单例模式的话，我们就可以实现在需要使用时才创建对象，这样就避免了不必要的资源浪费。 不仅仅是因为这个原因，在程序中我们要尽量避免全局变量的使用，大量使用全局变量给程序的调试、维护等带来困难。</p>
-<h3 id="单例模式的实现"><a href="#单例模式的实现" class="headerlink" title="单例模式的实现"></a>单例模式的实现</h3><p>通常单例模式在Java语言中，有两种构建方式：</p>
-<p>饿汉方式。指全局的单例实例在类装载时构建<br>懒汉方式。指全局的单例实例在第一次被使用时构建。</p>
-<p>不管是那种创建方式，它们通常都存在下面几点相似处：</p>
-<p>单例类必须要有一个 private 访问级别的构造函数，只有这样，才能确保单例不会在系统中的其他代码内被实例化;<br>instance 成员变量和 uniqueInstance 方法必须是 static 的。</p>
-<ol>
-<li>饿汉模式 （线程安全）</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton&#123;</span><br><span class="line">    private static Singleton uniqueSingleton = new Singleton();</span><br><span class="line"></span><br><span class="line">    private Singleton ()&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line">        return uniqueSingleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>所谓 “饿汉方式” 就是说JVM在加载这个类时就马上创建此唯一的单例实例，不管你用不用，先创建了再说，如果一直没有被使用，便浪费了空间，典型的空间换时间，每次调用的时候，就不需要再判断，节省了运行时间。</p>
-<ol>
-<li>懒汉式（非线程安全和synchronized关键字线程安全版本 ）</li>
-</ol>
-<p>2.1 非线程安全</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">      private static Singleton uniqueInstance;  </span><br><span class="line">      private Singleton ()&#123;</span><br><span class="line">      &#125;   </span><br><span class="line">      //没有加入synchronized关键字的版本是线程不安全的</span><br><span class="line">      public static Singleton getInstance() &#123;</span><br><span class="line">          //判断当前单例是否已经存在，若存在则返回，不存在则再建立单例</span><br><span class="line">	      if (uniqueInstance == null) &#123;  </span><br><span class="line">	          uniqueInstance = new Singleton();  </span><br><span class="line">	      &#125;  </span><br><span class="line">	      return uniqueInstance;  </span><br><span class="line">      &#125;  </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p> 所谓 “ 懒汉式” 就是说单例实例在第一次被使用时构建，而不是在JVM在加载这个类时就马上创建此唯一的单例实例。</p>
-<p>但是上面这种方式很明显是线程不安全的，如果多个线程同时访问getInstance()方法时就会出现问题。</p>
-<p> 2.2 线程安全篇</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static synchronized Singleton getInstance() &#123;  </span><br><span class="line">      if (instance == null) &#123;  </span><br><span class="line">          uniqueInstance = new Singleton();  </span><br><span class="line">      &#125;  </span><br><span class="line">      return uniqueInstance;  </span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
-<p>我们知道synchronized关键字偏重量级锁。虽然在JavaSE1.6之后synchronized关键字进行了主要包括：为了减少获得锁和释放锁带来的性能消耗而引入的偏向锁和轻量级锁以及其它各种优化之后执行效率有了显著提升。</p>
-<p>但是在程序中每次使用getInstance() 都要经过synchronized加锁这一层，这难免会增加getInstance()的方法的时间消费，而且还可能会发生阻塞。我们下面介绍到的 双重检查加锁版本 就是为了解决这个问题而存在的。</p>
-<p>2.3 双重锁</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;</span><br><span class="line"></span><br><span class="line">    //volatile保证，当uniqueInstance变量被初始化成Singleton实例时，多个线程可以正确处理uniqueInstance变量</span><br><span class="line">    private volatile static Singleton uniqueInstance;</span><br><span class="line">    private Singleton() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public static Singleton getInstance() &#123;</span><br><span class="line">       //检查实例，如果不存在，就进入同步代码块</span><br><span class="line">        if (uniqueInstance == null) &#123;</span><br><span class="line">            //只有第一次才彻底执行这里的代码</span><br><span class="line">            synchronized(Singleton.class) &#123;</span><br><span class="line">               //进入同步代码块后，再检查一次，如果仍是null，才创建实例</span><br><span class="line">                if (uniqueInstance == null) &#123;</span><br><span class="line">                    uniqueInstance = new Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return uniqueInstance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>动态规划算法总结-2</p>
+<h1 id="一组整数对能够构成的最长链"><a href="#一组整数对能够构成的最长链" class="headerlink" title="一组整数对能够构成的最长链"></a>一组整数对能够构成的最长链</h1><p>Input: [[1,2], [2,3], [3,4]]</p>
+<p>Output: 2</p>
+<p>Explanation: The longest chain is [1,2] -&gt; [3,4]</p>
+<p>题目描述：对于 (a, b) 和 (c, d) ，如果 b &lt; c，则它们可以构成一条链。</p>
+<p>solution：先根据a[0]排序，然后比较b[0]和a[1]的大小，进行累加。</p>
+<pre><code>class Solution {
+    public int findLongestChain(int[][] pairs) {
+        if(pairs== null || pairs.length ==0 ) 
+            return 0;
+        int[] dp = new int[pairs.length];
+        Arrays.fill(dp,1);
+        Arrays.sort(pairs,(a,b)-&gt;(a[0]-b[0]));
+        for (int i = 0; i &lt; pairs.length; i++) {
+            for (int j = 0; j &lt; i; j++) {
+                if (pairs[i][0]&gt;pairs[j][1]) {
+                    dp[i] = Math.max(dp[i],dp[j]+1);
+                }
+            }
+        }
+        int res = 0;
+        for (int i: dp) {
+            if (res&lt;i){
+                res = i;
+            }
 
+        }
+        return res;
+
+    }
+}
+</code></pre><h1 id="最长摆动子序列"><a href="#最长摆动子序列" class="headerlink" title="最长摆动子序列"></a>最长摆动子序列</h1><p>Input: [1,7,4,9,2,5]</p>
+<p>Output: 6</p>
+<p>The entire sequence is a wiggle sequence.</p>
+<p>Input: [1,17,5,10,13,15,10,5,16,8]</p>
+<p>Output: 7</p>
+<p>There are several subsequences that achieve this length.<br>One is [1,17,10,13,10,16,8].</p>
+<p>Input: [1,2,3,4,5,6,7,8,9]</p>
+<p>Output: 2</p>
+<p>要求：使用 O(N) 时间复杂度求解。</p>
+<p>solution: 巧妙运用dp</p>
+<pre><code>class Solution {
+    public int wiggleMaxLength(int[] nums) {
+        if (nums==null || nums.length ==0 ) {
+            return 0;
+
+        }
+        int up =1;
+        int down = 1;
+        for (int i = 1; i &lt; nums.length; i++) {
+            if (nums[i]&gt;nums[i-1]) {
+                up = down+1;
+            }else if (nums[i]&lt;nums[i-1]) {
+                down = up+1;
+            }
+        }
+        return Math.max(up,down);
+    }
+}
+</code></pre><h1 id="最长公共子序列"><a href="#最长公共子序列" class="headerlink" title="最长公共子序列"></a>最长公共子序列</h1><p>对于两个子序列 S1 和 S2，找出它们最长的公共子序列。</p>
+<p>定义一个二维数组 dp 用来存储最长公共子序列的长度，其中 dp[i][j] 表示 S1 的前 i 个字符与 S2 的前 j 个字符最长公共子序列的长度。考虑 S1i 与 S2j 值是否相等，分为两种情况：</p>
+<p>当 S1i==S2j 时，那么就能在 S1 的前 i-1 个字符与 S2 的前 j-1 个字符最长公共子序列的基础上再加上 S1i 这个值，最长公共子序列长度加 1，即 dp[i][j] = dp[i-1][j-1] + 1。<br>当 S1i != S2j 时，此时最长公共子序列为 S1 的前 i-1 个字符和 S2 的前 j 个字符最长公共子序列，或者 S1 的前 i 个字符和 S2 的前 j-1 个字符最长公共子序列，取它们的最大者，即 dp[i][j] = max{ dp[i-1][j], dp[i][j-1] }。<br>综上，最长公共子序列的状态转移方程为：</p>
+<pre><code>dp[i][j] = { 
+             dp[i-1][j-1]+1;               S1i==S2j;
+             max(dp[i-1][j],dp[i][j-1]);  S1i!=S2j;
+           }
+</code></pre><p>与最长递增子序列相比，最长公共子序列有以下不同点：</p>
+<p>针对的是两个序列，求它们的最长公共子序列。</p>
+<p>在最长递增子序列中，dp[i] 表示以 Si 为结尾的最长递增子序列长度，子序列必须包含 Si ；在最长公共子序列中，dp[i][j] 表示 S1 中前 i 个字符与 S2 中前 j 个字符的最长公共子序列长度，不一定包含 S1i 和 S2j。</p>
+<p>在求最终解时，最长公共子序列中 dp[N][M] 就是最终解，而最长递增子序列中 dp[N] 不是最终解，因为以 SN 为结尾的最长递增子序列不一定是整个序列最长递增子序列，需要遍历一遍 dp 数组找到最大者。</p>
+<pre><code>public int lengthOfLCS(int[] nums1, int[] nums2) {
+    int n1 = nums1.length, n2 = nums2.length;
+    int[][] dp = new int[n1 + 1][n2 + 1];
+    for (int i = 1; i &lt;= n1; i++) {
+        for (int j = 1; j &lt;= n2; j++) {
+            if (nums1[i - 1] == nums2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+            }
+        }
+    }
+    return dp[n1][n2];
+}
+</code></pre><h1 id="0-1-背包"><a href="#0-1-背包" class="headerlink" title="0-1 背包"></a>0-1 背包</h1><p>有一个容量为 N 的背包，要用这个背包装下物品的价值最大，这些物品有两个属性：体积 w 和价值 v。</p>
+<p>定义一个二维数组 dp 存储最大价值，其中 dp[i][j] 表示前 i 件物品体积不超过 j 的情况下能达到的最大价值。设第 i 件物品体积为 w，价值为 v，根据第 i 件物品是否添加到背包中，可以分两种情况讨论：</p>
+<ul>
+<li>第 i 件物品没添加到背包，总体积不超过 j 的前 i 件物品的最大价值就是总体积不超过 j 的前 i-1 件物品的最大价值，dp[i][j] = dp[i-1][j]。</li>
+<li>第 i 件物品添加到背包中，dp[i][j] = dp[i-1][j-w] + v。</li>
+</ul>
+<p>第 i 件物品可添加也可以不添加，取决于哪种情况下最大价值更大。因此，0-1 背包的状态转移方程为：</p>
+<pre><code>dp[i][j] = max{dp[i-1][j], dp[i-1][j-w]+v};
+</code></pre><hr>
+<pre><code>public int knapsack(int W, int N, int[] weights, int[] values) {
+    int[][] dp = new int[N + 1][W + 1];
+    for (int i = 1; i &lt;= N; i++) {
+        int w = weights[i - 1], v = values[i - 1];
+        for (int j = 1; j &lt;= W; j++) {
+            if (j &gt;= w) {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - w] + v);
+            } else {
+                dp[i][j] = dp[i - 1][j];
+            }
+        }
+    }
+    return dp[N][W];
+}
+</code></pre><h2 id="空间优化"><a href="#空间优化" class="headerlink" title="空间优化"></a>空间优化</h2><p>在程序实现时可以对 0-1 背包做优化。观察状态转移方程可以知道，前 i 件物品的状态仅与前 i-1 件物品的状态有关，因此可以将 dp 定义为一维数组，其中 dp[j] 既可以表示 dp[i-1][j] 也可以表示 dp[i][j]。此时，</p>
+<pre><code>dp[j] = max{dp[j],dp[j-w]+v};
+</code></pre><p>因为 dp[j-w] 表示 dp[i-1][j-w]，因此不能先求 dp[i][j-w]，以防将 dp[i-1][j-w] 覆盖。也就是说要先计算 dp[i][j] 再计算 dp[i][j-w]，在程序实现时需要按倒序来循环求解。</p>
+<p>变种</p>
+<p>完全背包：物品数量为无限个</p>
+<p>多重背包：物品数量有限制</p>
+<p>多维费用背包：物品不仅有重量，还有体积，同时考虑这两种限制</p>
+<p>其它：物品之间相互约束或者依赖</p>
+<h1 id="划分数组为和相等的两部分"><a href="#划分数组为和相等的两部分" class="headerlink" title="划分数组为和相等的两部分"></a>划分数组为和相等的两部分</h1><p>Input: [1, 5, 11, 5]</p>
+<p>Output: true</p>
+<p>Explanation: The array can be partitioned as [1, 5, 5] and [11].<br>可以看成一个背包大小为 sum/2 的 0-1 背包问题。</p>
+<pre><code> /**
+     * 划分数组为和相等的两部分
+     * solution： 先判断sum的奇偶性
+     * 从和的一半开始计算，如果可以把dp[mid]变成true，就是可以有数字达到目的
+     * @param nums
+     * @return
+     */
+public boolean canPartition(int[] nums) {
+    int sum = getSum(nums);
+    if (sum%2!=0)
+        return false;
+    int mid = sum/2;
+    boolean dp[] = new boolean[mid+1];
+    dp[0] = true;
+    for (int x:nums) {
+        for (int i = mid; i &gt;=x; i--) {
+            dp[i] = dp[i] || dp[i-x];
+        }
+    }
+    return dp[mid];
+
+}
+
+public static int getSum(int []nums) {
+    int res = 0;
+    for (int i:nums)
+        res+=i;
+    return res;
+}
+</code></pre><h1 id="改变一组数的正负号使得它们的和为一给定数"><a href="#改变一组数的正负号使得它们的和为一给定数" class="headerlink" title="改变一组数的正负号使得它们的和为一给定数"></a>改变一组数的正负号使得它们的和为一给定数</h1><p>Input: </p>
+<p>nums is [1, 1, 1, 1, 1], S is 3.</p>
+<p>Output: 5<br>Explanation:</p>
+<p>-1+1+1+1+1 = 3</p>
+<p>+1-1+1+1+1 = 3</p>
+<p>+1+1-1+1+1 = 3</p>
+<p>+1+1+1-1+1 = 3</p>
+<p>+1+1+1+1-1 = 3</p>
+<p>There are 5 ways to assign symbols to make the sum of nums be target 3.<br>该问题可以转换为 Subset Sum 问题，从而使用 0-1 背包的方法来求解。</p>
+<p>可以将这组数看成两部分，P 和 N，其中 P 使用正号，N 使用负号，有以下推导：</p>
+<pre><code>sum(P) - sum(N) = target
+sum(P) + sum(N) + sum(P) - sum(N) = target + sum(P) + sum(N)
+2 * sum(P) = target + sum(nums)
+</code></pre><p>因此只要找到一个子集，令它们都取正号，并且和等于 (target + sum(nums))/2，就证明存在解。</p>
+<pre><code>public int findTargetSumWays(int[] nums, int S) {
+    int sum = computeArraySum(nums);
+    if (sum &lt; S || (sum + S) % 2 == 1) {
+        return 0;
+    }
+    int W = (sum + S) / 2;
+    int[] dp = new int[W + 1];
+    dp[0] = 1;
+    for (int num : nums) {
+        for (int i = W; i &gt;= num; i--) {
+            dp[i] = dp[i] + dp[i - num];
+        }
+    }
+    return dp[W];
+}
+
+private int computeArraySum(int[] nums) {
+    int sum = 0;
+    for (int num : nums) {
+        sum += num;
+    }
+    return sum;
+}
+</code></pre><p>DFS 解法：</p>
+<pre><code>public int findTargetSumWays(int[] nums, int S) {
+    return findTargetSumWays(nums, 0, S);
+}
+
+private int findTargetSumWays(int[] nums, int start, int S) {
+    if (start == nums.length) {
+        return S == 0 ? 1 : 0;
+    }
+    return findTargetSumWays(nums, start + 1, S + nums[start])
+            + findTargetSumWays(nums, start + 1, S - nums[start]);
+}
+</code></pre><h1 id="01-字符构成最多的字符串"><a href="#01-字符构成最多的字符串" class="headerlink" title="01 字符构成最多的字符串"></a>01 字符构成最多的字符串</h1><p>Input: Array = {“10”, “0001”, “111001”, “1”, “0”}, m = 5, n = 3<br>Output: 4</p>
+<p>Explanation: There are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are “10”,”0001”,”1”,”0”</p>
+<p>这是一个多维费用的 0-1 背包问题，有两个背包大小，0 的数量和 1 的数量。</p>
+<pre><code>public int findMaxForm(String[] strs, int m, int n) {
+    if (strs == null || strs.length == 0) {
+        return 0;
+    }
+    int[][] dp = new int[m + 1][n + 1];
+    for (String s : strs) {    // 每个字符串只能用一次
+        int ones = 0, zeros = 0;
+        for (char c : s.toCharArray()) {
+            if (c == &apos;0&apos;) {
+                zeros++;
+            } else {
+                ones++;
+            }
+        }
+        for (int i = m; i &gt;= zeros; i--) {
+            for (int j = n; j &gt;= ones; j--) {
+                dp[i][j] = Math.max(dp[i][j], dp[i - zeros][j - ones] + 1);
+            }
+        }
+    }
+    return dp[m][n];
+}
+</code></pre>
       
     </div>
     
@@ -552,7 +745,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+            <a href="/tags/dp/" rel="tag"># dp</a>
           
         </div>
       
@@ -565,8 +758,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/06/记录一次面试/" rel="next" title="记录一次面试">
-                <i class="fa fa-chevron-left"></i> 记录一次面试
+              <a href="/2019/05/26/动态规划-1/" rel="next" title="动态规划-1">
+                <i class="fa fa-chevron-left"></i> 动态规划-1
               </a>
             
           </div>
@@ -575,8 +768,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/18/三次握手，四次挥手详解/" rel="prev" title="三次握手，四次挥手详解">
-                三次握手，四次挥手详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/27/动态规划-3/" rel="prev" title="动态规划-3">
+                动态规划-3 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -733,7 +926,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x7B80;&#x4ECB;" class="headerlink" title="&#x7B80;&#x4ECB;"></a>&#x7B80;&#x4ECB;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式的实现"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;" class="headerlink" title="&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;"></a>&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x7684;&#x5B9E;&#x73B0;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一组整数对能够构成的最长链"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4E00;&#x7EC4;&#x6574;&#x6570;&#x5BF9;&#x80FD;&#x591F;&#x6784;&#x6210;&#x7684;&#x6700;&#x957F;&#x94FE;" class="headerlink" title="&#x4E00;&#x7EC4;&#x6574;&#x6570;&#x5BF9;&#x80FD;&#x591F;&#x6784;&#x6210;&#x7684;&#x6700;&#x957F;&#x94FE;"></a>&#x4E00;&#x7EC4;&#x6574;&#x6570;&#x5BF9;&#x80FD;&#x591F;&#x6784;&#x6210;&#x7684;&#x6700;&#x957F;&#x94FE;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最长摆动子序列"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x6700;&#x957F;&#x6446;&#x52A8;&#x5B50;&#x5E8F;&#x5217;" class="headerlink" title="&#x6700;&#x957F;&#x6446;&#x52A8;&#x5B50;&#x5E8F;&#x5217;"></a>&#x6700;&#x957F;&#x6446;&#x52A8;&#x5B50;&#x5E8F;&#x5217;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最长公共子序列"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x5E8F;&#x5217;" class="headerlink" title="&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x5E8F;&#x5217;"></a>&#x6700;&#x957F;&#x516C;&#x5171;&#x5B50;&#x5E8F;&#x5217;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0-1-背包"><span class="nav-number">5.</span> <span class="nav-text"><a href="#0-1-&#x80CC;&#x5305;" class="headerlink" title="0-1 &#x80CC;&#x5305;"></a>0-1 &#x80CC;&#x5305;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#空间优化"><span class="nav-number">5.1.</span> <span class="nav-text"><a href="#&#x7A7A;&#x95F4;&#x4F18;&#x5316;" class="headerlink" title="&#x7A7A;&#x95F4;&#x4F18;&#x5316;"></a>&#x7A7A;&#x95F4;&#x4F18;&#x5316;</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#划分数组为和相等的两部分"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5212;&#x5206;&#x6570;&#x7EC4;&#x4E3A;&#x548C;&#x76F8;&#x7B49;&#x7684;&#x4E24;&#x90E8;&#x5206;" class="headerlink" title="&#x5212;&#x5206;&#x6570;&#x7EC4;&#x4E3A;&#x548C;&#x76F8;&#x7B49;&#x7684;&#x4E24;&#x90E8;&#x5206;"></a>&#x5212;&#x5206;&#x6570;&#x7EC4;&#x4E3A;&#x548C;&#x76F8;&#x7B49;&#x7684;&#x4E24;&#x90E8;&#x5206;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改变一组数的正负号使得它们的和为一给定数"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x6539;&#x53D8;&#x4E00;&#x7EC4;&#x6570;&#x7684;&#x6B63;&#x8D1F;&#x53F7;&#x4F7F;&#x5F97;&#x5B83;&#x4EEC;&#x7684;&#x548C;&#x4E3A;&#x4E00;&#x7ED9;&#x5B9A;&#x6570;" class="headerlink" title="&#x6539;&#x53D8;&#x4E00;&#x7EC4;&#x6570;&#x7684;&#x6B63;&#x8D1F;&#x53F7;&#x4F7F;&#x5F97;&#x5B83;&#x4EEC;&#x7684;&#x548C;&#x4E3A;&#x4E00;&#x7ED9;&#x5B9A;&#x6570;"></a>&#x6539;&#x53D8;&#x4E00;&#x7EC4;&#x6570;&#x7684;&#x6B63;&#x8D1F;&#x53F7;&#x4F7F;&#x5F97;&#x5B83;&#x4EEC;&#x7684;&#x548C;&#x4E3A;&#x4E00;&#x7ED9;&#x5B9A;&#x6570;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#01-字符构成最多的字符串"><span class="nav-number">8.</span> <span class="nav-text"><a href="#01-&#x5B57;&#x7B26;&#x6784;&#x6210;&#x6700;&#x591A;&#x7684;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="01 &#x5B57;&#x7B26;&#x6784;&#x6210;&#x6700;&#x591A;&#x7684;&#x5B57;&#x7B26;&#x4E32;"></a>01 &#x5B57;&#x7B26;&#x6784;&#x6210;&#x6700;&#x591A;&#x7684;&#x5B57;&#x7B26;&#x4E32;</span></a></li></ol></div>
             
 
           </div>
