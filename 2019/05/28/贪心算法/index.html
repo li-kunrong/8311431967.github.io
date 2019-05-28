@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="DP," />
+  <meta name="keywords" content="贪心," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="暴力匹配   如果用暴力匹配的思路，并假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置，则有： 如果当前字符匹配成功（即S[i] == P[j]），则i++，j++，继续匹配下一个字符；如果失配（即S[i]! = P[j]），令i = i - (j - 1)，j = 0。相当于每次匹配失败时，i 回溯，j 被置为0。    理清楚了暴力匹配算法的流程及内在的逻辑，咱们可以写出暴力匹配的代">
-<meta name="keywords" content="DP">
+<meta name="description" content="前言对贪心算法题的总结 分配饼干Input: [1,2], [1,2,3]Output: 2 Explanation: You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2. You have 3 cookies and their sizes are big enough to gratify al">
+<meta name="keywords" content="贪心">
 <meta property="og:type" content="article">
-<meta property="og:title" content="kmp详解">
-<meta property="og:url" content="http://yoursite.com/2018/12/08/kmp详解/index.html">
+<meta property="og:title" content="贪心算法">
+<meta property="og:url" content="http://yoursite.com/2019/05/28/贪心算法/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="暴力匹配   如果用暴力匹配的思路，并假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置，则有： 如果当前字符匹配成功（即S[i] == P[j]），则i++，j++，继续匹配下一个字符；如果失配（即S[i]! = P[j]），令i = i - (j - 1)，j = 0。相当于每次匹配失败时，i 回溯，j 被置为0。    理清楚了暴力匹配算法的流程及内在的逻辑，咱们可以写出暴力匹配的代">
+<meta property="og:description" content="前言对贪心算法题的总结 分配饼干Input: [1,2], [1,2,3]Output: 2 Explanation: You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2. You have 3 cookies and their sizes are big enough to gratify al">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-08T13:58:20.709Z">
+<meta property="og:updated_time" content="2019-05-28T07:24:58.742Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="kmp详解">
-<meta name="twitter:description" content="暴力匹配   如果用暴力匹配的思路，并假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置，则有： 如果当前字符匹配成功（即S[i] == P[j]），则i++，j++，继续匹配下一个字符；如果失配（即S[i]! = P[j]），令i = i - (j - 1)，j = 0。相当于每次匹配失败时，i 回溯，j 被置为0。    理清楚了暴力匹配算法的流程及内在的逻辑，咱们可以写出暴力匹配的代">
+<meta name="twitter:title" content="贪心算法">
+<meta name="twitter:description" content="前言对贪心算法题的总结 分配饼干Input: [1,2], [1,2,3]Output: 2 Explanation: You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2. You have 3 cookies and their sizes are big enough to gratify al">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/08/kmp详解/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/05/28/贪心算法/"/>
 
 
 
 
 
-  <title>kmp详解 | Kunrong-blog</title>
+  <title>贪心算法 | Kunrong-blog</title>
   
 
 
@@ -418,7 +418,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/kmp详解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/28/贪心算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -435,7 +435,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">kmp详解</h1>
+          <h1 class="post-title" itemprop="name headline">贪心算法</h1>
         
 
         <div class="post-meta">
@@ -447,8 +447,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-08T19:56:11+08:00">
-                2018-12-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T10:53:26+08:00">
+                2019-05-28
               </time>
             
 
@@ -507,54 +507,199 @@
       
 
       
-        <h3 id="暴力匹配"><a href="#暴力匹配" class="headerlink" title="暴力匹配"></a>暴力匹配</h3><p>   如果用暴力匹配的思路，并假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置，则有：</p>
-<p>如果当前字符匹配成功（即S[i] == P[j]），则i++，j++，继续匹配下一个字符；<br>如果失配（即S[i]! = P[j]），令i = i - (j - 1)，j = 0。相当于每次匹配失败时，i 回溯，j 被置为0。<br>    理清楚了暴力匹配算法的流程及内在的逻辑，咱们可以写出暴力匹配的代码，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">int ViolentMatch(char* s, char* p)</span><br><span class="line">&#123;</span><br><span class="line">	int sLen = strlen(s);</span><br><span class="line">	int pLen = strlen(p);</span><br><span class="line"> </span><br><span class="line">	int i = 0;</span><br><span class="line">	int j = 0;</span><br><span class="line">	while (i &lt; sLen &amp;&amp; j &lt; pLen)</span><br><span class="line">	&#123;</span><br><span class="line">		if (s[i] == p[j])</span><br><span class="line">		&#123;</span><br><span class="line">			//①如果当前字符匹配成功（即S[i] == P[j]），则i++，j++    </span><br><span class="line">			i++;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			//②如果失配（即S[i]! = P[j]），令i = i - (j - 1)，j = 0    </span><br><span class="line">			i = i - j + 1;</span><br><span class="line">			j = 0;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	//匹配成功，返回模式串p在文本串s中的位置，否则返回-1</span><br><span class="line">	if (j == pLen)</span><br><span class="line">		return i - j;</span><br><span class="line">	else</span><br><span class="line">		return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>kmp优化的是不匹配的时候字符串滑动到哪里。</p>
-<pre><code>int kmpSearch(String a,String b, int[] next) {
-    int i  = 0;
-    int j = 0;
-    int slen = a.length();
-    int plen = b.length();
-    char s[] = a.toCharArray();
-    char p[] = b.toCharArray();
-    while (i &lt; slen &amp;&amp; j &lt; plen) {
-        if (j == -1 || s[i]== p[j]) {
-            i++;
-            j++;
-        }else {
-            j = next[j];
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对贪心算法题的总结</p>
+<h1 id="分配饼干"><a href="#分配饼干" class="headerlink" title="分配饼干"></a>分配饼干</h1><p>Input: [1,2], [1,2,3]<br>Output: 2</p>
+<p>Explanation: You have 2 children and 3 cookies. The greed factors of 2 children are 1, 2.</p>
+<p>You have 3 cookies and their sizes are big enough to gratify all of the children,<br>You need to output 2.</p>
+<p>题目描述：每个孩子都有一个满足度，每个饼干都有一个大小，只有饼干的大小大于等于一个孩子的满足度，该孩子才会获得满足。求解最多可以获得满足的孩子数量。</p>
+<p>给一个孩子的饼干应当尽量小又能满足该孩子，这样大饼干就能拿来给满足度比较大的孩子。因为最小的孩子最容易得到满足，所以先满足最小的孩子。</p>
+<p>证明：假设在某次选择中，贪心策略选择给当前满足度最小的孩子分配第 m 个饼干，第 m 个饼干为可以满足该孩子的最小饼干。假设存在一种最优策略，给该孩子分配第 n 个饼干，并且 m &lt; n。我们可以发现，经过这一轮分配，贪心策略分配后剩下的饼干一定有一个比最优策略来得大。因此在后续的分配中，贪心策略一定能满足更多的孩子。也就是说不存在比贪心策略更优的策略，即贪心策略就是最优策略。</p>
+<pre><code>public int findContentChildren(int[] g, int[] s) {
+    Arrays.sort(g);
+    Arrays.sort(s);
+    int gi = 0, si = 0;
+    while (gi &lt; g.length &amp;&amp; si &lt; s.length) {
+        if (g[gi] &lt;= s[si]) {
+            gi++;
         }
+        si++;
     }
-    if (j==plen) {
-        return i-j;
-    }
-    return -1;
+    return gi;
 }
-</code></pre><p>next数组是前缀和后缀的最大匹配，运用k = next[k] 缩短寻找时间。</p>
-<p>```</p>
-<pre><code> int[] getNext(String s) {
-    int []next = new int[s.length()];
-    next[0] = -1;
-    int k = -1;
-    int j  = 0;
-    char p[] = s.toCharArray();
-    while (j &lt; p.length-1) {
-        if (k==-1 || p[j] == p[k]) {
-            ++j;
-            ++k;
-            next[j] = k;
-        }else{
-            k = next[k];
+</code></pre><h1 id="不重叠的区间个数"><a href="#不重叠的区间个数" class="headerlink" title="不重叠的区间个数"></a>不重叠的区间个数</h1><p>Input: [ [1,2], [1,2], [1,2] ]</p>
+<p>Output: 2</p>
+<p>Explanation: You need to remove two [1,2] to make the rest of intervals non-overlapping.<br>Input: [ [1,2], [2,3] ]</p>
+<p>Output: 0</p>
+<p>Explanation: You don’t need to remove any of the intervals since they’re already non-overlapping.</p>
+<p>题目描述：计算让一组区间不重叠所需要移除的区间个数。</p>
+<p>先计算最多能组成的不重叠区间个数，然后用区间总个数减去不重叠区间的个数。</p>
+<p>在每次选择中，区间的结尾最为重要，选择的区间结尾越小，留给后面的区间的空间越大，那么后面能够选择的区间个数也就越大。</p>
+<p>按区间的结尾进行排序，每次选择结尾最小，并且和前一个区间不重叠的区间。</p>
+<pre><code> public int eraseOverlapIntervals(Interval[] intervals) {
+    if(intervals == null || intervals.length == 0)
+        return 0;
+    Arrays.sort(intervals, Comparator.comparingInt(o-&gt;o.end));
+    int end = intervals[0].end;
+    int cnt = 1;
+    for (int i = 1; i &lt; intervals.length; i++) {
+        if (intervals[i].start&lt;end) {
+            continue;
         }
+        end = intervals[i].end;
+        cnt++;
     }
-    for ( int i = 0; i&lt; next.length; i++) {
-        System.out.print(next[i] + &quot; &quot;);
-    }
-    return  next;
+    return intervals.length - cnt;
 }
-</code></pre><p>参考资料：<br><a href="https://blog.csdn.net/v_july_v/article/details/7041827" target="_blank" rel="noopener">https://blog.csdn.net/v_july_v/article/details/7041827</a> 最全资料<br> <a href="https://www.bilibili.com/video/av11866460?from=search&amp;seid=12730654434238709250" target="_blank" rel="noopener">https://www.bilibili.com/video/av11866460?from=search&amp;seid=12730654434238709250</a> 视频</p>
 
+class Interval {
+    int start;
+    int end;
+    Interval() { start = 0; end = 0; }
+    Interval(int s, int e) { start = s; end = e; }
+}
+</code></pre><h1 id="投飞镖刺破气球"><a href="#投飞镖刺破气球" class="headerlink" title="投飞镖刺破气球"></a>投飞镖刺破气球</h1><p>题目描述：气球在一个水平数轴上摆放，可以重叠，飞镖垂直投向坐标轴，使得路径上的气球都被刺破。求解最小的投飞镖次数使所有气球都被刺破。</p>
+<p>也是计算不重叠的区间个数，不过和 Non-overlapping Intervals 的区别在于，[1, 2] 和 [2, 3] 在本题中算是重叠区间。</p>
+<pre><code>public int findMinArrowShots(int[][] points) {
+    if (points.length == 0) {
+        return 0;
+    }
+    Arrays.sort(points, Comparator.comparingInt(o -&gt; o[1]));
+    int cnt = 1, end = points[0][1];
+    for (int i = 1; i &lt; points.length; i++) {
+        if (points[i][0] &lt;= end) {
+            continue;
+        }
+        cnt++;
+        end = points[i][1];
+    }
+    return cnt;
+}
+</code></pre><h1 id="根据身高和序号重组队列"><a href="#根据身高和序号重组队列" class="headerlink" title="根据身高和序号重组队列"></a>根据身高和序号重组队列</h1><p>Input:<br>[[7,0], [4,4], [7,1], [5,0], [6,1], [5,2]]</p>
+<p>Output:<br>[[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]<br>题目描述：一个学生用两个分量 (h, k) 描述，h 表示身高，k 表示排在前面的有 k 个学生的身高比他高或者和他一样高。</p>
+<p>为了使插入操作不影响后续的操作，身高较高的学生应该先做插入操作，否则身高较小的学生原先正确插入的第 k 个位置可能会变成第 k+1 个位置。</p>
+<p>身高 h 降序、个数 k 值升序，然后将某个学生插入队列的第 k 个位置中。</p>
+<pre><code>public int[][] reconstructQueue(int[][] people) {
+    if (people == null || people.length == 0 || people[0].length == 0) {
+        return new int[0][0];
+    }
+    Arrays.sort(people, (a, b) -&gt; (a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]));
+    List&lt;int[]&gt; queue = new ArrayList&lt;&gt;();
+    for (int[] p : people) {
+        queue.add(p[1], p);
+    }
+    return queue.toArray(new int[queue.size()][]);
+}
+</code></pre><h1 id="买卖股票最大的收益"><a href="#买卖股票最大的收益" class="headerlink" title="买卖股票最大的收益"></a>买卖股票最大的收益</h1><p>题目描述：一次股票交易包含买入和卖出，只进行一次交易，求最大收益。</p>
+<p>只要记录前面的最小价格，将这个最小价格作为买入价格，然后将当前的价格作为售出价格，查看当前收益是不是最大收益。</p>
+<pre><code>public int maxProfit(int[] prices) {
+    int n = prices.length;
+    if (n == 0) return 0;
+    int soFarMin = prices[0];
+    int max = 0;
+    for (int i = 1; i &lt; n; i++) {
+        if (soFarMin &gt; prices[i]) soFarMin = prices[i];
+        else max = Math.max(max, prices[i] - soFarMin);
+    }
+    return max;
+}
+</code></pre><h1 id="买卖股票的最大收益-II"><a href="#买卖股票的最大收益-II" class="headerlink" title="买卖股票的最大收益 II"></a>买卖股票的最大收益 II</h1><p>题目描述：一次股票交易包含买入和卖出，只进行一次交易，求最大收益。</p>
+<p>只要记录前面的最小价格，将这个最小价格作为买入价格，然后将当前的价格作为售出价格，查看当前收益是不是最大收益。</p>
+<pre><code>class Solution {
+    public int maxProfit(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int sofarmin = prices[0];
+        int max = 0;
+        for (int i = 1; i &lt; prices.length; i++) {
+            if (prices[i]&lt;sofarmin) {
+                sofarmin= prices[i];
+            }else {
+                max = Math.max(max,prices[i]-sofarmin);
+            }
+        }
+        return max;
+    }
+}
+</code></pre><h1 id="买卖股票的最大收益-II-1"><a href="#买卖股票的最大收益-II-1" class="headerlink" title="买卖股票的最大收益 II"></a>买卖股票的最大收益 II</h1><p>题目描述：可以进行多次交易，多次交易之间不能交叉进行，可以进行多次交易。</p>
+<p>对于 [a, b, c, d]，如果有 a &lt;= b &lt;= c &lt;= d ，那么最大收益为 d - a。而 d - a = (d - c) + (c - b) + (b - a) ，因此当访问到一个 prices[i] 且 prices[i] - prices[i-1] &gt; 0，那么就把 prices[i] - prices[i-1] 添加到收益中。</p>
+<pre><code>public int maxProfit(int[] prices) {
+    int profit = 0;
+    for (int i = 1; i &lt; prices.length; i++) {
+        if (prices[i] &gt; prices[i - 1]) {
+            profit += (prices[i] - prices[i - 1]);
+        }
+    }
+    return profit;
+}
+</code></pre><h1 id="种植花朵"><a href="#种植花朵" class="headerlink" title="种植花朵"></a>种植花朵</h1><p>Input: flowerbed = [1,0,0,0,1], n = 1<br>Output: True</p>
+<p>题目描述：flowerbed 数组中 1 表示已经种下了花朵。花朵之间至少需要一个单位的间隔，求解是否能种下 n 朵花。</p>
+<pre><code>class Solution {
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int len = flowerbed.length;
+        int cnt = 0;
+        for (int i = 0; i &lt; len&amp;&amp;cnt&lt;n; i++){
+            if (flowerbed[i] == 1) {
+                continue;
+            }
+            int pre = i==0?0 :flowerbed[i-1];
+            int next =i == len-1?0:flowerbed[i+1];
+            if (pre== 0 &amp;&amp; next ==0) {
+                cnt++;
+                flowerbed[i] = 1;
+            }
+        }
+        return cnt&gt;=n;
+    }
+}
+</code></pre><h1 id="判断是否为子序列"><a href="#判断是否为子序列" class="headerlink" title="判断是否为子序列"></a>判断是否为子序列</h1><p>s = “abc”, t = “ahbgdc”<br>Return true.</p>
+<pre><code>class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int index = -1;
+        for (char c: s.toCharArray()) {
+            index = t.indexOf(c,index+1);
+            if (index == -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+</code></pre><h1 id="修改一个数成为非递减数组"><a href="#修改一个数成为非递减数组" class="headerlink" title="修改一个数成为非递减数组"></a>修改一个数成为非递减数组</h1><p>Input: [4,2,3]</p>
+<p>Output: True</p>
+<p>Explanation: You could modify the first 4 to 1 to get a non-decreasing array.</p>
+<p>题目描述：判断一个数组是否能只修改一个数就成为非递减数组。</p>
+<p>在出现 nums[i] &lt; nums[i - 1] 时，需要考虑的是应该修改数组的哪个数，使得本次修改能使 i 之前的数组成为非递减数组，并且 不影响后续的操作 。优先考虑令 nums[i - 1] = nums[i]，因为如果修改 nums[i] = nums[i - 1] 的话，那么 nums[i] 这个数会变大，就有可能比 nums[i + 1] 大，从而影响了后续操作。</p>
+<p>还有一个比较特别的情况就是 nums[i] &lt; nums[i - 2]，修改 nums[i - 1] = nums[i] 不能使数组成为非递减数组，只能修改 nums[i] = nums[i - 1]。</p>
+<pre><code>public boolean checkPossibility(int[] nums) {
+    int cnt = 0;
+    for (int i = 1; i &lt; nums.length &amp;&amp; cnt &lt; 2; i++) {
+        if (nums[i] &gt;= nums[i - 1]) {
+            continue;
+        }
+        cnt++;
+        if (i - 2 &gt;= 0 &amp;&amp; nums[i - 2] &gt; nums[i]) {
+            nums[i] = nums[i - 1];
+        } else {
+            nums[i - 1] = nums[i];
+        }
+    }
+    return cnt &lt;= 1;
+}
+</code></pre><h1 id="子数组最大的和"><a href="#子数组最大的和" class="headerlink" title="子数组最大的和"></a>子数组最大的和</h1><p>For example, given the array [-2,1,-3,4,-1,2,1,-5,4],<br>the contiguous subarray [4,-1,2,1] has the largest sum = 6.</p>
+<pre><code>public int maxSubArray(int[] nums) {
+    if (nums == null || nums.length == 0) {
+        return 0;
+    }
+    int preSum = nums[0];
+    int maxSum = preSum;
+    for (int i = 1; i &lt; nums.length; i++) {
+        preSum = preSum &gt; 0 ? preSum + nums[i] : nums[i];
+        maxSum = Math.max(maxSum, preSum);
+    }
+    return maxSum;
+}
+</code></pre>
       
     </div>
     
@@ -571,7 +716,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/DP/" rel="tag"># DP</a>
+            <a href="/tags/贪心/" rel="tag"># 贪心</a>
           
         </div>
       
@@ -584,8 +729,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/09/多线程读写文件/" rel="next" title="多线程读写文件">
-                <i class="fa fa-chevron-left"></i> 多线程读写文件
+              <a href="/2019/05/27/动态规划-3/" rel="next" title="动态规划-3">
+                <i class="fa fa-chevron-left"></i> 动态规划-3
               </a>
             
           </div>
@@ -593,10 +738,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/06/记录一次面试/" rel="prev" title="记录一次面试">
-                记录一次面试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -752,7 +893,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力匹配"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x66B4;&#x529B;&#x5339;&#x914D;" class="headerlink" title="&#x66B4;&#x529B;&#x5339;&#x914D;"></a>&#x66B4;&#x529B;&#x5339;&#x914D;</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分配饼干"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x5206;&#x914D;&#x997C;&#x5E72;" class="headerlink" title="&#x5206;&#x914D;&#x997C;&#x5E72;"></a>&#x5206;&#x914D;&#x997C;&#x5E72;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不重叠的区间个数"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E0D;&#x91CD;&#x53E0;&#x7684;&#x533A;&#x95F4;&#x4E2A;&#x6570;" class="headerlink" title="&#x4E0D;&#x91CD;&#x53E0;&#x7684;&#x533A;&#x95F4;&#x4E2A;&#x6570;"></a>&#x4E0D;&#x91CD;&#x53E0;&#x7684;&#x533A;&#x95F4;&#x4E2A;&#x6570;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#投飞镖刺破气球"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x6295;&#x98DE;&#x9556;&#x523A;&#x7834;&#x6C14;&#x7403;" class="headerlink" title="&#x6295;&#x98DE;&#x9556;&#x523A;&#x7834;&#x6C14;&#x7403;"></a>&#x6295;&#x98DE;&#x9556;&#x523A;&#x7834;&#x6C14;&#x7403;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#根据身高和序号重组队列"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x6839;&#x636E;&#x8EAB;&#x9AD8;&#x548C;&#x5E8F;&#x53F7;&#x91CD;&#x7EC4;&#x961F;&#x5217;" class="headerlink" title="&#x6839;&#x636E;&#x8EAB;&#x9AD8;&#x548C;&#x5E8F;&#x53F7;&#x91CD;&#x7EC4;&#x961F;&#x5217;"></a>&#x6839;&#x636E;&#x8EAB;&#x9AD8;&#x548C;&#x5E8F;&#x53F7;&#x91CD;&#x7EC4;&#x961F;&#x5217;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#买卖股票最大的收益"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x4E70;&#x5356;&#x80A1;&#x7968;&#x6700;&#x5927;&#x7684;&#x6536;&#x76CA;" class="headerlink" title="&#x4E70;&#x5356;&#x80A1;&#x7968;&#x6700;&#x5927;&#x7684;&#x6536;&#x76CA;"></a>&#x4E70;&#x5356;&#x80A1;&#x7968;&#x6700;&#x5927;&#x7684;&#x6536;&#x76CA;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#买卖股票的最大收益-II"><span class="nav-number">7.</span> <span class="nav-text"><a href="#&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x5927;&#x6536;&#x76CA;-II" class="headerlink" title="&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x5927;&#x6536;&#x76CA; II"></a>&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x5927;&#x6536;&#x76CA; II</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#买卖股票的最大收益-II-1"><span class="nav-number">8.</span> <span class="nav-text"><a href="#&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x5927;&#x6536;&#x76CA;-II-1" class="headerlink" title="&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x5927;&#x6536;&#x76CA; II"></a>&#x4E70;&#x5356;&#x80A1;&#x7968;&#x7684;&#x6700;&#x5927;&#x6536;&#x76CA; II</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#种植花朵"><span class="nav-number">9.</span> <span class="nav-text"><a href="#&#x79CD;&#x690D;&#x82B1;&#x6735;" class="headerlink" title="&#x79CD;&#x690D;&#x82B1;&#x6735;"></a>&#x79CD;&#x690D;&#x82B1;&#x6735;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判断是否为子序列"><span class="nav-number">10.</span> <span class="nav-text"><a href="#&#x5224;&#x65AD;&#x662F;&#x5426;&#x4E3A;&#x5B50;&#x5E8F;&#x5217;" class="headerlink" title="&#x5224;&#x65AD;&#x662F;&#x5426;&#x4E3A;&#x5B50;&#x5E8F;&#x5217;"></a>&#x5224;&#x65AD;&#x662F;&#x5426;&#x4E3A;&#x5B50;&#x5E8F;&#x5217;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改一个数成为非递减数组"><span class="nav-number">11.</span> <span class="nav-text"><a href="#&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x6570;&#x6210;&#x4E3A;&#x975E;&#x9012;&#x51CF;&#x6570;&#x7EC4;" class="headerlink" title="&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x6570;&#x6210;&#x4E3A;&#x975E;&#x9012;&#x51CF;&#x6570;&#x7EC4;"></a>&#x4FEE;&#x6539;&#x4E00;&#x4E2A;&#x6570;&#x6210;&#x4E3A;&#x975E;&#x9012;&#x51CF;&#x6570;&#x7EC4;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#子数组最大的和"><span class="nav-number">12.</span> <span class="nav-text"><a href="#&#x5B50;&#x6570;&#x7EC4;&#x6700;&#x5927;&#x7684;&#x548C;" class="headerlink" title="&#x5B50;&#x6570;&#x7EC4;&#x6700;&#x5927;&#x7684;&#x548C;"></a>&#x5B50;&#x6570;&#x7EC4;&#x6700;&#x5927;&#x7684;&#x548C;</span></a></li></ol></div>
             
 
           </div>
