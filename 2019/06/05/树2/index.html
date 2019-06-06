@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Java集合," />
+  <meta name="keywords" content="tree," />
 
 
 
@@ -81,22 +81,18 @@
 
 
 
-<meta name="description" content="Java集合包LIst的实现类主要有： LInkedList， ArrayList， Vetcor，Stack（Stack继承自Vector） LInkedList是双向链表的实现的双端队列，他不是线程安全的，只适用于单线程。 ArrayList是数组的实现的队列，它是一个动态数组，也不是线程安全的，只适用于单线程。 Vector是数组实现的矢量队列，他也是一个动态数组，不过和ArrayList不">
-<meta name="keywords" content="Java集合">
+<meta name="description" content="前言对leetcode上树的题解的总结2。 把二叉查找树每个节点的值都加上比它大的节点的值Input: The root of a Binary Search Tree like this:    5  /   \ 2     13 Output: The root of a Greater Tree like this:    18   /   \ 20     13 因为是bst，比该节点大的">
+<meta name="keywords" content="tree">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" Java 集合类和 JUC集合类">
-<meta property="og:url" content="http://yoursite.com/2018/09/04/Java-集合类和-JUC集合类/index.html">
+<meta property="og:title" content="树2">
+<meta property="og:url" content="http://yoursite.com/2019/06/05/树2/index.html">
 <meta property="og:site_name" content="Kunrong-blog">
-<meta property="og:description" content="Java集合包LIst的实现类主要有： LInkedList， ArrayList， Vetcor，Stack（Stack继承自Vector） LInkedList是双向链表的实现的双端队列，他不是线程安全的，只适用于单线程。 ArrayList是数组的实现的队列，它是一个动态数组，也不是线程安全的，只适用于单线程。 Vector是数组实现的矢量队列，他也是一个动态数组，不过和ArrayList不">
+<meta property="og:description" content="前言对leetcode上树的题解的总结2。 把二叉查找树每个节点的值都加上比它大的节点的值Input: The root of a Binary Search Tree like this:    5  /   \ 2     13 Output: The root of a Greater Tree like this:    18   /   \ 20     13 因为是bst，比该节点大的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://i.imgur.com/ePjYbOY.jpg">
-<meta property="og:image" content="https://i.imgur.com/y942TgW.jpg">
-<meta property="og:image" content="https://i.imgur.com/Zt9DEt1.jpg">
-<meta property="og:updated_time" content="2018-09-04T11:17:32.001Z">
+<meta property="og:updated_time" content="2019-06-06T04:47:33.993Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" Java 集合类和 JUC集合类">
-<meta name="twitter:description" content="Java集合包LIst的实现类主要有： LInkedList， ArrayList， Vetcor，Stack（Stack继承自Vector） LInkedList是双向链表的实现的双端队列，他不是线程安全的，只适用于单线程。 ArrayList是数组的实现的队列，它是一个动态数组，也不是线程安全的，只适用于单线程。 Vector是数组实现的矢量队列，他也是一个动态数组，不过和ArrayList不">
-<meta name="twitter:image" content="https://i.imgur.com/ePjYbOY.jpg">
+<meta name="twitter:title" content="树2">
+<meta name="twitter:description" content="前言对leetcode上树的题解的总结2。 把二叉查找树每个节点的值都加上比它大的节点的值Input: The root of a Binary Search Tree like this:    5  /   \ 2     13 Output: The root of a Greater Tree like this:    18   /   \ 20     13 因为是bst，比该节点大的">
 
 
 
@@ -126,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/04/Java-集合类和-JUC集合类/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/06/05/树2/"/>
 
 
 
 
 
-  <title> Java 集合类和 JUC集合类 | Kunrong-blog</title>
+  <title>树2 | Kunrong-blog</title>
   
 
 
@@ -422,7 +418,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/Java-集合类和-JUC集合类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/05/树2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kunrong">
@@ -439,7 +435,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"> Java 集合类和 JUC集合类</h1>
+          <h1 class="post-title" itemprop="name headline">树2</h1>
         
 
         <div class="post-meta">
@@ -451,8 +447,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T18:29:10+08:00">
-                2018-09-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-05T20:38:53+08:00">
+                2019-06-05
               </time>
             
 
@@ -474,8 +470,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -511,48 +507,116 @@
       
 
       
-        <h1 id="Java集合包"><a href="#Java集合包" class="headerlink" title="Java集合包"></a>Java集合包</h1><h2 id="LIst的实现类主要有：-LInkedList，-ArrayList，-Vetcor，Stack（Stack继承自Vector）"><a href="#LIst的实现类主要有：-LInkedList，-ArrayList，-Vetcor，Stack（Stack继承自Vector）" class="headerlink" title="LIst的实现类主要有： LInkedList， ArrayList， Vetcor，Stack（Stack继承自Vector）"></a>LIst的实现类主要有： LInkedList， ArrayList， Vetcor，Stack（Stack继承自Vector）</h2><ol>
-<li>LInkedList是双向链表的实现的双端队列，他不是线程安全的，只适用于单线程。</li>
-<li>ArrayList是数组的实现的队列，它是一个动态数组，也不是线程安全的，只适用于单线程。</li>
-<li>Vector是数组实现的矢量队列，他也是一个动态数组，不过和ArrayList不同的是，Vector是支持并发的。</li>
-<li>Stack是Vector实现的栈，和Vector一样，他也是线程安全。</li>
-</ol>
-<h2 id="Set实现类：-HashSet和TreeSet。"><a href="#Set实现类：-HashSet和TreeSet。" class="headerlink" title="Set实现类： HashSet和TreeSet。"></a>Set实现类： HashSet和TreeSet。</h2><ol>
-<li>HashSet是一个没有重复元素的集合，它通过HashMap实现的，HashSet不是线程安全的。</li>
-<li>TreeSet也是一个没有重复元素的集合，其中的元素是有序的，她是通过TreeMap实现的，TreeSet也不是线程安全的，只适用于单线程。</li>
-</ol>
-<h2 id="Map的实现类主要有-HashMap，WeakHashMap-Hashtable和TreeMap"><a href="#Map的实现类主要有-HashMap，WeakHashMap-Hashtable和TreeMap" class="headerlink" title="Map的实现类主要有 HashMap，WeakHashMap, Hashtable和TreeMap"></a>Map的实现类主要有 HashMap，WeakHashMap, Hashtable和TreeMap</h2><ol>
-<li>HashMap是存储“键-值对”的哈希表；它不是线程安全的，只适用于单线程。</li>
-<li>WeakHashMap是也是哈希表；和HashMap不同的是，HashMap的“键”是强引用类型，而WeakHashMap的“键”是弱引用类型，也就是说当WeakHashMap 中的某个键不再正常使用时，会被从WeakHashMap中被自动移除。WeakHashMap也不是线程安全的，只适用于单线程。</li>
-<li>Hashtable也是哈希表；和HashMap不同的是，Hashtable是线程安全的，支持并发。</li>
-<li>TreeMap也是哈希表，不过TreeMap中的“键-值对”是有序的，它是通过R-B Tree(红黑树)实现的；TreeMap不是线程安全的，只适用于单线程。</li>
-</ol>
-<blockquote>
-<p>为了方便，我们将前面介绍集合类统称为”java集合包“。java集合包大多是“非线程安全的”，虽然可以通过Collections工具类中的方法获取java集合包对应的同步类，但是这些同步类的并发效率并不是很高。为了更好的支持高并发任务，并发大师Doug Lea在JUC(java.util.concurrent)包中添加了java集合包中单线程类的对应的支持高并发的类。例如，ArrayList对应的高并发类是CopyOnWriteArrayList，HashMap对应的高并发类是ConcurrentHashMap，等等。</p>
-<p>JUC包在添加”java集合包“对应的高并发类时，为了保持API接口的一致性，使用了”Java集合包“中的框架。例如，CopyOnWriteArrayList实现了“Java集合包”中的List接口，HashMap继承了“java集合包”中的AbstractMap类，等等。得益于“JUC包使用了Java集合包中的类”，如果我们了解了Java集合包中的类的思想之后，理解JUC包中的类也相对容易；理解时，最大的难点是，对JUC包是如何添加对“高并发”的支持的！</p>
-</blockquote>
-<h1 id="JUC的集合类"><a href="#JUC的集合类" class="headerlink" title="JUC的集合类"></a>JUC的集合类</h1><h2 id="List和Set"><a href="#List和Set" class="headerlink" title="List和Set"></a>List和Set</h2><p>JUC集合包中的List和Set实现类包括: CopyOnWriteArrayList, CopyOnWriteArraySet和ConcurrentSkipListSet。ConcurrentSkipListSet稍后在说明Map时再说明，CopyOnWriteArrayList 和 CopyOnWriteArraySet的框架如下图所示：</p>
-<p><img src="https://i.imgur.com/ePjYbOY.jpg" alt=""></p>
-<ol>
-<li>CopyOrWriteArrayList相当于线程安全的ArrayList，它实现了List接口，CopyOnWriteArrayList是支持高并发的。</li>
-<li>CopyOnWriteArraySet相当于线程安全的HashSet，它继承于AbstractSet类。CopyOnWriteArraySet内部包含一个CopyOnWriteArrayList对象，它是通过CopyOnWriteArrayList实现的。</li>
-</ol>
-<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><p>JUC集合包中Map的实现类包括: ConcurrentHashMap和ConcurrentSkipListMap。它们的框架如下图所示：</p>
-<p><img src="https://i.imgur.com/y942TgW.jpg" alt=""></p>
-<ol>
-<li>ConcurrentHashMap是线程安全的哈希表(相当于线程安全的HashMap)；它继承于AbstractMap类，并且实现ConcurrentMap接口。（jdk7以前用锁分段实现，jdk8用CAS无锁算法实现）</li>
-<li>ConcurrentSkipListMap是线程安全的有序的哈希表(相当于线程安全的TreeMap); 它继承于AbstractMap类，并且实现ConcurrentNavigableMap接口。ConcurrentSkipListMap是通过“跳表”来实现的，它支持并发。</li>
-<li>ConcurrentSkipListSet是线程安全的有序的集合(相当于线程安全的TreeSet)；它继承于AbstractSet，并实现了NavigableSet接口。ConcurrentSkipListSet是通过ConcurrentSkipListMap实现的，它也支持并发。</li>
-</ol>
-<h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><p>JUC集合包中Queue的实现类包括: ArrayBlockingQueue， LinkedBlockQueue，LinkedBlockDeque，ConcurrentQueue和ConcurrentDeque。</p>
-<p><img src="https://i.imgur.com/Zt9DEt1.jpg" alt=""></p>
-<ol>
-<li>ArrayBlockingQueue是数组实现线程安全的有节的阻塞队列；</li>
-<li>LinkedBLockingQueue是单向链表实现的（指定大小）阻塞对列，该队列按FIFO排序元素</li>
-<li>LinkedBlockingDeque是双向链表实现的(指定大小)双向并发阻塞队列，该阻塞队列同时支持FIFO和FILO两种操作方式。</li>
-<li>ConcurrentLinkedQueue是单向链表实现的无界队列，该队列按 FIFO（先进先出）排序元素。</li>
-<li>ConcurrentLinkedDeque是双向链表实现的无界队列，该队列同时支持FIFO和FILO两种操作方式。</li>
-</ol>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对leetcode上树的题解的总结2。</p>
+<h1 id="把二叉查找树每个节点的值都加上比它大的节点的值"><a href="#把二叉查找树每个节点的值都加上比它大的节点的值" class="headerlink" title="把二叉查找树每个节点的值都加上比它大的节点的值"></a>把二叉查找树每个节点的值都加上比它大的节点的值</h1><p>Input: The root of a Binary Search Tree like this:</p>
+<pre><code>   5
+ /   \
+2     13
+</code></pre><p>Output: The root of a Greater Tree like this:</p>
+<pre><code>   18
+  /   \
+20     13
+</code></pre><p>因为是bst，比该节点大的肯定在右子树，所以先遍历右子树。</p>
+<pre><code>private int sum = 0;
+
+public TreeNode convertBST(TreeNode root) {
+    traver(root);
+    return root;
+}
+
+private void traver(TreeNode node) {
+    if (node == null) return;
+    traver(node.right);
+    sum += node.val;
+    node.val = sum;
+    traver(node.left);
+}
+</code></pre><h1 id="二叉查找树的最近公共祖先"><a href="#二叉查找树的最近公共祖先" class="headerlink" title="二叉查找树的最近公共祖先"></a>二叉查找树的最近公共祖先</h1><pre><code>       _______6______
+      /                \
+  ___2__             ___8__
+ /      \           /      \
+0        4         7        9
+        /  \
+       3   5
+
+For example, the lowest common ancestor (LCA) of nodes 2 and 8 is 6. Another example is LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.
+</code></pre><p>这个root.val都大于两个节点时，证明其在两个节点右边。<br>当这个root.val都小于两个节点时，证明其在两个节点的左边。</p>
+<p>只有当两个在分别左右时才是最近的公共祖先。</p>
+<pre><code>public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    if (root.val &gt; p.val &amp;&amp; root.val &gt; q.val) return lowestCommonAncestor(root.left, p, q);
+    if (root.val &lt; p.val &amp;&amp; root.val &lt; q.val) return lowestCommonAncestor(root.right, p, q);
+    return root;
+}
+</code></pre><h1 id="二叉树的最近公共祖先"><a href="#二叉树的最近公共祖先" class="headerlink" title="二叉树的最近公共祖先"></a>二叉树的最近公共祖先</h1><pre><code>       _______3______
+      /              \
+  ___5__           ___1__
+ /      \         /      \
+6        2       0        8
+        /  \
+       7    4
+
+For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another example is LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.
+</code></pre><hr>
+<pre><code>public static BTreeNode getLastCommonNode(BTreeNode pRoot, BTreeNode pLeft, BTreeNode pRight){
+    //发现目标节点则通过返回值标记该子树发现了某个目标结点
+    if(pRoot == null || pRoot == pLeft || pRoot == pRight){
+        return pRoot;
+    }
+    //查看左子树中是否有目标结点，没有为null
+    BTreeNode left = getLastCommonNode(pRoot.left, pLeft, pRight);
+    //查看右子树是否有目标节点，没有为null
+    BTreeNode right = getLastCommonNode(pRoot.right, pLeft, pRight);
+    //都不为空，说明做右子树都有目标结点，则公共祖先就是本身
+    if(left != null &amp;&amp; right != null){
+        return pRoot;
+    }
+    //如果发现了目标节点，则继续向上标记为该目标节点
+    return left == null ? right : left;
+
+}
+</code></pre><h1 id="从有序数组中构造二叉查找树"><a href="#从有序数组中构造二叉查找树" class="headerlink" title="从有序数组中构造二叉查找树"></a>从有序数组中构造二叉查找树</h1><p>中序遍历，中间的为头结点。</p>
+<pre><code>public TreeNode sortedArrayToBST(int[] nums) {
+    return toBST(nums, 0, nums.length - 1);
+}
+
+private TreeNode toBST(int[] nums, int sIdx, int eIdx){
+    if (sIdx &gt; eIdx) return null;
+    int mIdx = (sIdx + eIdx) / 2;
+    TreeNode root = new TreeNode(nums[mIdx]);
+    root.left =  toBST(nums, sIdx, mIdx - 1);
+    root.right = toBST(nums, mIdx + 1, eIdx);
+    return root;
+}
+</code></pre><h1 id="在二叉查找树中寻找两个节点，使它们的和为一个给定值"><a href="#在二叉查找树中寻找两个节点，使它们的和为一个给定值" class="headerlink" title="在二叉查找树中寻找两个节点，使它们的和为一个给定值"></a>在二叉查找树中寻找两个节点，使它们的和为一个给定值</h1><p>Input:</p>
+<pre><code>    5
+   / \
+  3   6
+ / \   \
+2   4   7
+</code></pre><p>Target = 9</p>
+<p>Output: True</p>
+<p>使用中序遍历得到有序数组之后，再利用双指针对数组进行查找。</p>
+<p>应该注意到，这一题不能用分别在左右子树两部分来处理这种思想，因为两个待求的节点可能分别在左右子树中。</p>
+<pre><code>public boolean findTarget(TreeNode root, int k) {
+    List&lt;Integer&gt; nums = new ArrayList&lt;&gt;();
+    inOrder(root, nums);
+    int i = 0, j = nums.size() - 1;
+    while (i &lt; j) {
+        int sum = nums.get(i) + nums.get(j);
+        if (sum == k) return true;
+        if (sum &lt; k) i++;
+        else j--;
+    }
+    return false;
+}
+
+private void inOrder(TreeNode root, List&lt;Integer&gt; nums) {
+    if (root == null) return;
+    inOrder(root.left, nums);
+    nums.add(root.val);
+    inOrder(root.right, nums);
+}
+</code></pre><h1 id="Trie"><a href="#Trie" class="headerlink" title="Trie"></a>Trie</h1><p>trie，又称前缀树或字典树，用于判断字符串是否存在或者是否具有某种字符串前缀。</p>
 
       
     </div>
@@ -570,7 +634,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java集合/" rel="tag"># Java集合</a>
+            <a href="/tags/tree/" rel="tag"># tree</a>
           
         </div>
       
@@ -583,8 +647,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/31/Servlet-基础学习/" rel="next" title="Servlet 基础学习">
-                <i class="fa fa-chevron-left"></i> Servlet 基础学习
+              <a href="/2019/05/29/树/" rel="next" title="树">
+                <i class="fa fa-chevron-left"></i> 树
               </a>
             
           </div>
@@ -592,10 +656,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/09/mysql基本操作/" rel="prev" title="mysql基本知识">
-                mysql基本知识 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -751,7 +811,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java集合包"><span class="nav-number">1.</span> <span class="nav-text"><a href="#Java&#x96C6;&#x5408;&#x5305;" class="headerlink" title="Java&#x96C6;&#x5408;&#x5305;"></a>Java&#x96C6;&#x5408;&#x5305;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LIst的实现类主要有：-LInkedList，-ArrayList，-Vetcor，Stack（Stack继承自Vector）"><span class="nav-number">1.1.</span> <span class="nav-text"><a href="#LIst&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709;&#xFF1A;-LInkedList&#xFF0C;-ArrayList&#xFF0C;-Vetcor&#xFF0C;Stack&#xFF08;Stack&#x7EE7;&#x627F;&#x81EA;Vector&#xFF09;" class="headerlink" title="LIst&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709;&#xFF1A; LInkedList&#xFF0C; ArrayList&#xFF0C; Vetcor&#xFF0C;Stack&#xFF08;Stack&#x7EE7;&#x627F;&#x81EA;Vector&#xFF09;"></a>LIst&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709;&#xFF1A; LInkedList&#xFF0C; ArrayList&#xFF0C; Vetcor&#xFF0C;Stack&#xFF08;Stack&#x7EE7;&#x627F;&#x81EA;Vector&#xFF09;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set实现类：-HashSet和TreeSet。"><span class="nav-number">1.2.</span> <span class="nav-text"><a href="#Set&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A;-HashSet&#x548C;TreeSet&#x3002;" class="headerlink" title="Set&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A; HashSet&#x548C;TreeSet&#x3002;"></a>Set&#x5B9E;&#x73B0;&#x7C7B;&#xFF1A; HashSet&#x548C;TreeSet&#x3002;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map的实现类主要有-HashMap，WeakHashMap-Hashtable和TreeMap"><span class="nav-number">1.3.</span> <span class="nav-text"><a href="#Map&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709;-HashMap&#xFF0C;WeakHashMap-Hashtable&#x548C;TreeMap" class="headerlink" title="Map&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709; HashMap&#xFF0C;WeakHashMap, Hashtable&#x548C;TreeMap"></a>Map&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x4E3B;&#x8981;&#x6709; HashMap&#xFF0C;WeakHashMap, Hashtable&#x548C;TreeMap</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JUC的集合类"><span class="nav-number">2.</span> <span class="nav-text"><a href="#JUC&#x7684;&#x96C6;&#x5408;&#x7C7B;" class="headerlink" title="JUC&#x7684;&#x96C6;&#x5408;&#x7C7B;"></a>JUC&#x7684;&#x96C6;&#x5408;&#x7C7B;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#List和Set"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#List&#x548C;Set" class="headerlink" title="List&#x548C;Set"></a>List&#x548C;Set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Map"><span class="nav-number">2.1.1.</span> <span class="nav-text"><a href="#Map" class="headerlink" title="Map"></a>Map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue"><span class="nav-number">2.1.2.</span> <span class="nav-text"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x524D;&#x8A00;" class="headerlink" title="&#x524D;&#x8A00;"></a>&#x524D;&#x8A00;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#把二叉查找树每个节点的值都加上比它大的节点的值"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x628A;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x503C;&#x90FD;&#x52A0;&#x4E0A;&#x6BD4;&#x5B83;&#x5927;&#x7684;&#x8282;&#x70B9;&#x7684;&#x503C;" class="headerlink" title="&#x628A;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x503C;&#x90FD;&#x52A0;&#x4E0A;&#x6BD4;&#x5B83;&#x5927;&#x7684;&#x8282;&#x70B9;&#x7684;&#x503C;"></a>&#x628A;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x6BCF;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x503C;&#x90FD;&#x52A0;&#x4E0A;&#x6BD4;&#x5B83;&#x5927;&#x7684;&#x8282;&#x70B9;&#x7684;&#x503C;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉查找树的最近公共祖先"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x7684;&#x6700;&#x8FD1;&#x516C;&#x5171;&#x7956;&#x5148;" class="headerlink" title="&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x7684;&#x6700;&#x8FD1;&#x516C;&#x5171;&#x7956;&#x5148;"></a>&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x7684;&#x6700;&#x8FD1;&#x516C;&#x5171;&#x7956;&#x5148;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉树的最近公共祖先"><span class="nav-number">4.</span> <span class="nav-text"><a href="#&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6700;&#x8FD1;&#x516C;&#x5171;&#x7956;&#x5148;" class="headerlink" title="&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6700;&#x8FD1;&#x516C;&#x5171;&#x7956;&#x5148;"></a>&#x4E8C;&#x53C9;&#x6811;&#x7684;&#x6700;&#x8FD1;&#x516C;&#x5171;&#x7956;&#x5148;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#从有序数组中构造二叉查找树"><span class="nav-number">5.</span> <span class="nav-text"><a href="#&#x4ECE;&#x6709;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x6784;&#x9020;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;" class="headerlink" title="&#x4ECE;&#x6709;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x6784;&#x9020;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;"></a>&#x4ECE;&#x6709;&#x5E8F;&#x6570;&#x7EC4;&#x4E2D;&#x6784;&#x9020;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在二叉查找树中寻找两个节点，使它们的和为一个给定值"><span class="nav-number">6.</span> <span class="nav-text"><a href="#&#x5728;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x4E2D;&#x5BFB;&#x627E;&#x4E24;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x4F7F;&#x5B83;&#x4EEC;&#x7684;&#x548C;&#x4E3A;&#x4E00;&#x4E2A;&#x7ED9;&#x5B9A;&#x503C;" class="headerlink" title="&#x5728;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x4E2D;&#x5BFB;&#x627E;&#x4E24;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x4F7F;&#x5B83;&#x4EEC;&#x7684;&#x548C;&#x4E3A;&#x4E00;&#x4E2A;&#x7ED9;&#x5B9A;&#x503C;"></a>&#x5728;&#x4E8C;&#x53C9;&#x67E5;&#x627E;&#x6811;&#x4E2D;&#x5BFB;&#x627E;&#x4E24;&#x4E2A;&#x8282;&#x70B9;&#xFF0C;&#x4F7F;&#x5B83;&#x4EEC;&#x7684;&#x548C;&#x4E3A;&#x4E00;&#x4E2A;&#x7ED9;&#x5B9A;&#x503C;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Trie"><span class="nav-number">7.</span> <span class="nav-text"><a href="#Trie" class="headerlink" title="Trie"></a>Trie</span></a></li></ol></div>
             
 
           </div>
